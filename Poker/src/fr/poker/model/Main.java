@@ -9,7 +9,56 @@ import java.util.*;
 
 /** @pdOid 5297f71e-4058-45c5-8737-2961cce95442 */
 public class Main {
-   /** @pdOid 717673b2-dd8e-47f3-8821-10adcd55ae5b */
+   @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bestCombinaison == null) ? 0 : bestCombinaison.hashCode());
+		result = prime * result + ((cartes == null) ? 0 : cartes.hashCode());
+		result = prime * result + ((joueur == null) ? 0 : joueur.hashCode());
+		result = prime * result + nbCartes;
+		result = prime * result + nbCartesMax;
+		result = prime * result + ((tour == null) ? 0 : tour.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Main other = (Main) obj;
+		if (bestCombinaison == null) {
+			if (other.bestCombinaison != null)
+				return false;
+		} else if (!bestCombinaison.equals(other.bestCombinaison))
+			return false;
+		if (cartes == null) {
+			if (other.cartes != null)
+				return false;
+		} else if (!cartes.equals(other.cartes))
+			return false;
+		if (joueur == null) {
+			if (other.joueur != null)
+				return false;
+		} else if (!joueur.equals(other.joueur))
+			return false;
+		if (nbCartes != other.nbCartes)
+			return false;
+		if (nbCartesMax != other.nbCartesMax)
+			return false;
+		if (tour == null) {
+			if (other.tour != null)
+				return false;
+		} else if (!tour.equals(other.tour))
+			return false;
+		return true;
+	}
+
+/** @pdOid 717673b2-dd8e-47f3-8821-10adcd55ae5b */
    private Joueur joueur;
    /** @pdOid 89e5f7ce-0209-4cbc-b462-219945383d02 */
    private List<Carte> cartes;

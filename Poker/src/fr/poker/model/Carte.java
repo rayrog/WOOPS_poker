@@ -30,7 +30,53 @@ public class Carte {
    /** @pdOid e0f698d9-3baa-462c-90b6-e48a6592854b
        @pdRoleInfo migr=yes name=Carte assc=association37 */
    public static Carte ROI_PIQUE;
-   /** @pdOid e6e19525-0886-450f-8cc6-7fc91c8330b9
+   @Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + (active ? 1231 : 1237);
+	result = prime * result + ((couleur == null) ? 0 : couleur.hashCode());
+	result = prime * result + ((main == null) ? 0 : main.hashCode());
+	result = prime * result + ((table == null) ? 0 : table.hashCode());
+	result = prime * result + ((valeur == null) ? 0 : valeur.hashCode());
+	return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Carte other = (Carte) obj;
+	if (active != other.active)
+		return false;
+	if (couleur == null) {
+		if (other.couleur != null)
+			return false;
+	} else if (!couleur.equals(other.couleur))
+		return false;
+	if (main == null) {
+		if (other.main != null)
+			return false;
+	} else if (!main.equals(other.main))
+		return false;
+	if (table == null) {
+		if (other.table != null)
+			return false;
+	} else if (!table.equals(other.table))
+		return false;
+	if (valeur == null) {
+		if (other.valeur != null)
+			return false;
+	} else if (!valeur.equals(other.valeur))
+		return false;
+	return true;
+}
+
+/** @pdOid e6e19525-0886-450f-8cc6-7fc91c8330b9
        @pdRoleInfo migr=yes name=Carte assc=association38 */
    public static Carte ROI_TREFLE;
    /** @pdOid 1b656e09-4a97-46aa-be40-32eb22fff707

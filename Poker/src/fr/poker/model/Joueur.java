@@ -9,7 +9,68 @@ import java.util.*;
 
 /** @pdOid fcbf3f3f-553d-4ea7-af34-4c9d1312da0b */
 public class Joueur {
-   /** @pdOid 02c5da90-19c6-47aa-8911-2417e8ef9421 */
+   @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + aSuivi;
+		result = prime * result + ((cartes == null) ? 0 : cartes.hashCode());
+		result = prime * result + ((compte == null) ? 0 : compte.hashCode());
+		result = prime * result + creditPartie;
+		result = prime * result + (etat ? 1231 : 1237);
+		result = prime * result + id;
+		result = prime * result + (isDown ? 1231 : 1237);
+		result = prime * result + Arrays.hashCode(main);
+		result = prime * result + ((mise == null) ? 0 : mise.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Joueur other = (Joueur) obj;
+		if (aSuivi != other.aSuivi)
+			return false;
+		if (cartes == null) {
+			if (other.cartes != null)
+				return false;
+		} else if (!cartes.equals(other.cartes))
+			return false;
+		if (compte == null) {
+			if (other.compte != null)
+				return false;
+		} else if (!compte.equals(other.compte))
+			return false;
+		if (creditPartie != other.creditPartie)
+			return false;
+		if (etat != other.etat)
+			return false;
+		if (id != other.id)
+			return false;
+		if (isDown != other.isDown)
+			return false;
+		if (!Arrays.equals(main, other.main))
+			return false;
+		if (mise == null) {
+			if (other.mise != null)
+				return false;
+		} else if (!mise.equals(other.mise))
+			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		return true;
+	}
+
+/** @pdOid 02c5da90-19c6-47aa-8911-2417e8ef9421 */
    private int id;
    /** @pdOid 7656f825-f972-4bf7-9d1f-a8ac08055cb1
        @pdRoleInfo migr=yes name=Compte assc=association88 */

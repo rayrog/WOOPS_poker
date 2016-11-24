@@ -9,7 +9,39 @@ import java.util.*;
 
 /** @pdOid 723cc03b-7917-4aa1-8c78-b95d2a524f87 */
 public class Mise {
-   /** @pdOid 13f6850d-b2a6-412f-a6f3-2f1566e7c56d */
+   @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + montant;
+		result = prime * result + ((pot == null) ? 0 : pot.hashCode());
+		result = prime * result + (relance ? 1231 : 1237);
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mise other = (Mise) obj;
+		if (montant != other.montant)
+			return false;
+		if (pot == null) {
+			if (other.pot != null)
+				return false;
+		} else if (!pot.equals(other.pot))
+			return false;
+		if (relance != other.relance)
+			return false;
+		return true;
+	}
+
+/** @pdOid 13f6850d-b2a6-412f-a6f3-2f1566e7c56d */
    private int montant;
    /** @pdOid 9337149a-69df-4603-a199-fc87bf91eee3 */
    private boolean relance;

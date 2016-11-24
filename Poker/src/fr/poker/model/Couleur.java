@@ -2,7 +2,26 @@ package fr.poker.model;
 
 /** @pdOid 23fd333e-c170-4134-8155-89089b644e95 */
 public class Couleur {
-   /** @pdOid d4560ebc-0e6a-4e80-a402-a1213cdf8f6e */
+   @Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Couleur other = (Couleur) obj;
+		if (id != other.id)
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		return true;
+	}
+
+/** @pdOid d4560ebc-0e6a-4e80-a402-a1213cdf8f6e */
    private int id;
    /** @pdOid ba1d6a03-6e80-4798-b7d6-495fa2b41ce9 */
    private String nom;
@@ -72,11 +91,14 @@ public class Couleur {
    	return new Couleur[]{PIQUE, COEUR, TREFLE, CARREAU};
    }
    
-   /** @pdOid dcc42fa2-9e9a-4d23-bad4-0b6df928f063 */
-   public int hashCode() {
-      // TODO: implement
-      return 0;
-   }
+   @Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + id;
+	result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+	return result;
+}
    
    /** @pdOid 8f7e933f-ea93-4afb-8fe3-3f1291bf8ab0 */
    @Override

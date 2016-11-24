@@ -3,7 +3,35 @@ import java.lang.annotation.*;
 
 /** @pdOid 3e349e3f-d4e4-4a55-962c-f501145c0979 */
 public class Valeur {
-   /** @pdOid a521a1f2-fbc9-4e7c-a06f-b0a3e5bc7f3a */
+   @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + valeur;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Valeur other = (Valeur) obj;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (valeur != other.valeur)
+			return false;
+		return true;
+	}
+
+/** @pdOid a521a1f2-fbc9-4e7c-a06f-b0a3e5bc7f3a */
    private String nom;
    /** @pdOid ffea8023-c3ba-47b9-961d-9f5d5ac21b4b */
    private int valeur;

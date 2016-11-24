@@ -9,121 +9,165 @@ import java.util.*;
 
 /** @pdOid 8902f8c9-f17e-4df7-8098-2aec67d74285 */
 public class Compte {
-   /** @pdOid 5ec4455c-bc6d-476e-8bee-4c53f9b49756 */
-   private int id;
-   /** @pdOid 28e6ef37-bcc7-4348-aa48-1016312a1c47 */
-   private String pseudo;
-   /** @pdOid 89dc4d5f-925f-4aa5-b995-df070b561fac */
-   private String nom;
-   /** @pdOid 82001975-bef7-4e0b-b4a6-b519361d5a16 */
-   private String prenom;
-   /** @pdOid 564c8461-4f5b-4167-96f4-52cd4ebc17ac */
-   private String mail;
-   /** @pdOid 8ef7913c-320e-48e9-9031-463eb921cbfa */
-   private int tel;
-   /** @pdOid 2872dcf1-66d0-4492-a534-71628307821a */
-   private int hash;
-   /** @pdOid 1358fb7a-9b9c-4fe4-bb00-d42824686eb7 */
-   private int credit;
-   /** @pdOid 34249d47-6e4d-4fbd-8b36-269f80caa2a5 */
-   private String bio;
-   
-   /** @pdRoleInfo migr=no name=Joueur assc=association87 mult=0..1 */
-   public Joueur joueur;
-   
-   /** @pdOid f6845131-ad43-49c6-8c01-4b1ab89234a0 */
-   public int getId() {
-      // TODO: implement
-      return 0;
-   }
-   
-   /** @pdOid 5afbfefb-1e7e-41de-a7bc-413d352f9e9d */
-   public int getPseudo() {
-      // TODO: implement
-      return 0;
-   }
-   
-   /** @pdOid c420992b-3dbe-400e-b28c-b1e218857c00 */
-   public int setPseudo() {
-      // TODO: implement
-      return 0;
-   }
-   
-   /** @pdOid 8dc5015b-6156-4756-bf59-009a9512caa6 */
-   public String getNom() {
-      // TODO: implement
-      return null;
-   }
-   
-   /** @pdOid ab669a86-74c3-49cd-8bfa-e14e989a995e */
-   public void setNom() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 596f7157-b7de-433c-910a-25415822b112 */
-   public String getPrenom() {
-      // TODO: implement
-      return null;
-   }
-   
-   /** @pdOid 990818c3-8883-41e8-ac29-d907ad6eb534 */
-   public void setPrenom() {
-      // TODO: implement
-   }
-   
-   /** @pdOid c54a5154-96e9-4a39-9974-ed3e409e64e5 */
-   public String getMail() {
-      // TODO: implement
-      return null;
-   }
-   
-   /** @pdOid 2580f6ec-2ab8-4164-b447-ad8d53583e12 */
-   public void setMail() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 8794e7ee-cf18-4a4f-bef3-85632ce9190f */
-   public int getTel() {
-      // TODO: implement
-      return 0;
-   }
-   
-   /** @pdOid eb225060-0b93-4341-855b-7e577611d510 */
-   public void setTel() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 59a520c7-9bf4-4088-a33a-a09b8eb4597d */
-   public int getPasswd() {
-      // TODO: implement
-      return 0;
-   }
-   
-   /** @pdOid 10508e73-48ec-47b6-8a51-97b250939415 */
-   public void setPasswd() {
-      // TODO: implement
-   }
-   
-   /** @pdOid c924afd3-5a01-41fd-bbea-d2fb117c8194 */
-   public int getCredit() {
-      // TODO: implement
-      return 0;
-   }
-   
-   /** @pdOid 6548cd32-6775-497e-b179-e088c5065533 */
-   public void setCredit() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 24c6a9aa-3eb6-4d7f-9431-c91e12347ef1 */
-   public String getBio() {
-      // TODO: implement
-      return null;
-   }
-   
-   /** @pdOid cfe13f1a-3a00-4702-b1a7-27ba3c4e93d7 */
-   public void setBio() {
-      // TODO: implement
-   }
+	/** @pdOid 5ec4455c-bc6d-476e-8bee-4c53f9b49756 */
+	private int id;
+	/** @pdOid 28e6ef37-bcc7-4348-aa48-1016312a1c47 */
+	private String pseudo;
+	/** @pdOid 89dc4d5f-925f-4aa5-b995-df070b561fac */
+	private String nom;
+	/** @pdOid 82001975-bef7-4e0b-b4a6-b519361d5a16 */
+	private String prenom;
+	/** @pdOid 564c8461-4f5b-4167-96f4-52cd4ebc17ac */
+	private String mail;
+	/** @pdOid 8ef7913c-320e-48e9-9031-463eb921cbfa */
+	private int tel;
+	/** @pdOid 2872dcf1-66d0-4492-a534-71628307821a */
+	private int hash;
+	/** @pdOid 1358fb7a-9b9c-4fe4-bb00-d42824686eb7 */
+	private int credit;
+	/** @pdOid 34249d47-6e4d-4fbd-8b36-269f80caa2a5 */
+	private String bio;
+
+	/** @pdRoleInfo migr=no name=Joueur assc=association87 mult=0..1 */
+	public Joueur joueur;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public int getTel() {
+		return tel;
+	}
+
+	public void setTel(int tel) {
+		this.tel = tel;
+	}
+
+	public int getHash() {
+		return hash;
+	}
+
+	public void setHash(int hash) {
+		this.hash = hash;
+	}
+
+	public int getCredit() {
+		return credit;
+	}
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
+		result = prime * result + credit;
+		result = prime * result + hash;
+		result = prime * result + id;
+		result = prime * result + ((joueur == null) ? 0 : joueur.hashCode());
+		result = prime * result + ((mail == null) ? 0 : mail.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		result = prime * result + ((pseudo == null) ? 0 : pseudo.hashCode());
+		result = prime * result + tel;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Compte other = (Compte) obj;
+		if (bio == null) {
+			if (other.bio != null)
+				return false;
+		} else if (!bio.equals(other.bio))
+			return false;
+		if (credit != other.credit)
+			return false;
+		if (hash != other.hash)
+			return false;
+		if (id != other.id)
+			return false;
+		if (joueur == null) {
+			if (other.joueur != null)
+				return false;
+		} else if (!joueur.equals(other.joueur))
+			return false;
+		if (mail == null) {
+			if (other.mail != null)
+				return false;
+		} else if (!mail.equals(other.mail))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		if (pseudo == null) {
+			if (other.pseudo != null)
+				return false;
+		} else if (!pseudo.equals(other.pseudo))
+			return false;
+		if (tel != other.tel)
+			return false;
+		return true;
+	}
 
 }
