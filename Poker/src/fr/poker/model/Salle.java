@@ -14,7 +14,7 @@ public class Salle {
    /** @pdOid 6623902f-5d73-4495-a4a3-3914e1f9b393 */
    private String nom;
    /** @pdOid b06b46f1-afb5-405f-95a9-9080d81e351e */
-   private boolean private;
+   private boolean privat;
    /** @pdOid d3156aac-5a7a-4a71-bd2e-6e38951a3415 */
    private int hash;
    /** @pdOid eba3bbc9-4ad4-4dc6-be9c-cded7bbe8f11 */

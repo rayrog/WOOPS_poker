@@ -1,5 +1,4 @@
-
-import java.lang.annotation.*;
+package fr.poker.model;
 
 /** @pdOid 23fd333e-c170-4134-8155-89089b644e95 */
 public class Couleur {
@@ -10,16 +9,16 @@ public class Couleur {
    
    /** @pdOid 30684fd6-1288-4acc-8c0d-ed593085f004
        @pdRoleInfo migr=yes name=Couleur assc=association15 */
-   public Couleur PIQUE = new Couleur("Pique");
+   public static Couleur PIQUE = new Couleur("Pique");
    /** @pdOid 5f03df0d-f1bb-4e0b-86de-4c5e9c71c307
        @pdRoleInfo migr=yes name=Couleur assc=association16 */
-   public Couleur TREFLE = new Couleur("Trefle");
+   public static Couleur TREFLE = new Couleur("Trefle");
    /** @pdOid a12467dd-660b-48bb-a8cd-cc2d9e7b972a
        @pdRoleInfo migr=yes name=Couleur assc=association17 */
-   public Couleur COEUR = new Couleur("Coeur");
+   public static Couleur COEUR = new Couleur("Coeur");
    /** @pdOid 63584a9d-a297-4a0e-a89c-4d1739d8758b
        @pdRoleInfo migr=yes name=Couleur assc=association18 */
-   public Couleur CARREAU = new Couleur("Carreau");
+   public static Couleur CARREAU = new Couleur("Carreau");
    
    /** @param nom
     * @pdOid 47fd47a5-6bc9-41ad-851d-160467f0e352 */
@@ -59,9 +58,8 @@ public class Couleur {
    
    /** @param o
     * @pdOid 5cd5be9f-b7bf-4546-9c24-709c3c448941 */
-   @Override
    public int compareTo(Couleur o) {
-   	if(nom.compareTo(o.getNom())==0 && id.compareTo(o.getId()==0){
+   	if(nom.compareTo(o.getNom())==0 && id == o.getId()){
    		return 0; //égal
    	}
    	else {

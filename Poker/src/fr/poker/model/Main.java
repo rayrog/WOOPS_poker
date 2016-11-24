@@ -14,7 +14,7 @@ public class Main {
    /** @pdOid 89e5f7ce-0209-4cbc-b462-219945383d02 */
    private List<Carte> cartes;
    /** @pdOid 487b56f0-ce5f-4a9a-9dc4-cd3777fef0e8 */
-   private Combinaison bestCombinaison;
+   private AbstractCombinaison bestCombinaison;
    /** @pdOid fc483325-1ca8-4c8e-a9f8-95b230c6cbe4 */
    private int nbCartes;
    /** @pdOid a1d025c9-6c0e-4078-bad5-a4e430a74269 */
@@ -24,13 +24,13 @@ public class Main {
    public java.util.Collection<Tour> tour;
    
    /** @pdOid 77c13941-80fd-4886-b5e0-3e84bc528225 */
-   public Combinaison getBestCombinaison() {
+   public AbstractCombinaison getBestCombinaison() {
       // TODO: implement
       return null;
    }
    
    /** @pdOid aa4d0125-40fc-4156-807e-529017e3704a */
-   public Combinaison setBestCombinaison() {
+   public AbstractCombinaison setBestCombinaison() {
       // TODO: implement
       return null;
    }

@@ -10,43 +10,43 @@ public class Valeur {
    
    /** @pdOid 8e865eee-7618-4007-bf9a-8c7e928431a3
        @pdRoleInfo migr=yes name=Valeur assc=association19 */
-   public Valeur DEUX;
+   public static Valeur DEUX;
    /** @pdOid c335d63e-6dbf-48d9-af19-06e1604a0f33
        @pdRoleInfo migr=yes name=Valeur assc=association20 */
-   public Valeur TROIS;
+   public static Valeur TROIS;
    /** @pdOid d26b2477-02f9-4d87-81cb-f3ac8e14a8fd
        @pdRoleInfo migr=yes name=Valeur assc=association21 */
-   public Valeur QUATRE;
+   public static Valeur QUATRE;
    /** @pdOid d9bd0e59-59c0-4a49-b0c6-0671bc5a1541
        @pdRoleInfo migr=yes name=Valeur assc=association22 */
-   public Valeur CINQ;
+   public static Valeur CINQ;
    /** @pdOid 8f862121-139c-469a-8f29-994516900897
        @pdRoleInfo migr=yes name=Valeur assc=association23 */
-   public Valeur SIX;
+   public static Valeur SIX;
    /** @pdOid aee0e468-1406-4ad7-a059-ca10e99da2e8
        @pdRoleInfo migr=yes name=Valeur assc=association24 */
-   public Valeur SEPT;
+   public static Valeur SEPT;
    /** @pdOid 1bf2f01e-ac7d-4275-b59b-ed1f412aca4e
        @pdRoleInfo migr=yes name=Valeur assc=association25 */
-   public Valeur HUIT;
+   public static Valeur HUIT;
    /** @pdOid c668fd4d-1291-4f21-b564-fea5281d0415
        @pdRoleInfo migr=yes name=Valeur assc=association26 */
-   public Valeur NEUF;
+   public static Valeur NEUF;
    /** @pdOid 5b9d0c7e-7ff5-4b17-bddc-b661560e46b9
        @pdRoleInfo migr=yes name=Valeur assc=association27 */
-   public Valeur DIX;
+   public static Valeur DIX;
    /** @pdOid 2dd3c154-9119-49d7-9161-00a4d2b5fbcb
        @pdRoleInfo migr=yes name=Valeur assc=association28 */
-   public Valeur VALET;
+   public static Valeur VALET;
    /** @pdOid 114eac25-8fe2-49e3-a5a1-cd6216d30a8b
        @pdRoleInfo migr=yes name=Valeur assc=association29 */
-   public Valeur DAME;
+   public static Valeur DAME;
    /** @pdOid 76422494-0f12-490d-95ef-8cc585501359
        @pdRoleInfo migr=yes name=Valeur assc=association30 */
-   public Valeur ROI;
+   public static Valeur ROI;
    /** @pdOid f8009dd4-70ec-423d-bb28-68bffbef34ea
        @pdRoleInfo migr=yes name=Valeur assc=association31 */
-   public Valeur AS;
+   public static Valeur AS;
    
    /** @param valeur
     * @pdOid 48b9470e-1eb3-4238-8582-428287ea29c7 */
@@ -79,7 +79,7 @@ public class Valeur {
    /** @param valeur
     * @pdOid 6fefed8e-e22e-4b7a-9ac4-1dc8df2c6094 */
    public void setValeur(int valeur) {
-      this.valeur = valeur
+      this.valeur = valeur;
    }
    
    /** @pdOid 523de563-de5f-4148-abfd-755c3bd90978 */
@@ -95,9 +95,8 @@ public class Valeur {
    
    /** @param valeur
     * @pdOid e48afae2-fe23-46dc-8f6b-f6a611158956 */
-   @Override
    public int compareTo(Valeur valeur) {
-   	return this.valeur - valeur;
+   	return 0; //to fix
    }
    
    /** @pdOid a1abeef5-0416-47c4-99cc-bddcde453478 */
