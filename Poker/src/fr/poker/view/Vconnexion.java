@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-public class Connexion {
+public class Vconnexion {
 
 	private JFrame frame;
 	private JPasswordField pwdMotDePasse;
@@ -25,11 +25,11 @@ public class Connexion {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Connexion window = new Connexion();
+					Vconnexion window = new Vconnexion();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class Connexion {
 	/**
 	 * Create the application.
 	 */
-	public Connexion() {
+	public Vconnexion() {
 		initialize();
 	}
 
@@ -62,7 +62,7 @@ public class Connexion {
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogo.setIcon(new ImageIcon(Connexion.class.getResource("/fr/poker/view/pictures/logo.png")));
+		lblLogo.setIcon(new ImageIcon(Vconnexion.class.getResource("/fr/poker/view/pictures/logo.png")));
 		lblLogo.setBounds(434, 145, 160, 154);
 		frame.getContentPane().add(lblLogo);
 		
