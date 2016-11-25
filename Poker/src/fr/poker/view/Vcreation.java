@@ -13,7 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
-public class Creation {
+public class Vcreation {
 
 	private JFrame frame;
 	private JTextField txtNomDeLa;
@@ -32,7 +32,7 @@ public class Creation {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Creation window = new Creation();
+					Vcreation window = new Vcreation();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class Creation {
 	/**
 	 * Create the application.
 	 */
-	public Creation() {
+	public Vcreation() {
 		initialize();
 	}
 

@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenu;
 
-public class Accueil {
+public class Vaccueil {
 
 	private JFrame frame;
 	private JTable table;
@@ -23,11 +23,11 @@ public class Accueil {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Accueil window = new Accueil();
+					Vaccueil window = new Vaccueil();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class Accueil {
 	/**
 	 * Create the application.
 	 */
-	public Accueil() {
+	public Vaccueil() {
 		initialize();
 	}
 
@@ -52,7 +52,7 @@ public class Accueil {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Accueil.class.getResource("/fr/poker/view/pictures/logo.png")));
+		label.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logo.png")));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(538, 156, 160, 154);
 		frame.getContentPane().add(label);
@@ -76,13 +76,13 @@ public class Accueil {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnDconnexion.setIcon(new ImageIcon(Accueil.class.getResource("/fr/poker/view/pictures/logout.png")));
+		btnDconnexion.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logout.png")));
 		btnDconnexion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnDconnexion.setBounds(10, 11, 191, 51);
 		frame.getContentPane().add(btnDconnexion);
 		
 		JButton btnParamtres = new JButton("Param\u00E8tres");
-		btnParamtres.setIcon(new ImageIcon(Accueil.class.getResource("/fr/poker/view/pictures/settings.png")));
+		btnParamtres.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
 		btnParamtres.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnParamtres.setBounds(1083, 201, 191, 51);
 		frame.getContentPane().add(btnParamtres);
