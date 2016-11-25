@@ -2,11 +2,13 @@ package fr.poker.controller;
 
 import static java.lang.System.out;
 import java.util.EventListener;
+import fr.poker.view.*;
 
-public class Connexion{
+public class Cconnexion{
 
 	public static void DisplayConnexion() {
 		out.println("Hello, world");
+		fr.poker.view.Connexion.main();;
 	}
 	
 	

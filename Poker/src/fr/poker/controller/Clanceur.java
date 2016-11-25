@@ -3,7 +3,7 @@ package fr.poker.controller;
 import fr.poker.controller.*;
 //import view; To do 
 
-public class Lanceur {
+public class Clanceur {
 	
 	/*Lance la fenetre de connexion
 	 * 
@@ -16,7 +16,7 @@ public class Lanceur {
 	 */
 	public static void main(String[] args){
 		try{
-		Connexion.DisplayConnexion();
+		Cconnexion.DisplayConnexion();
 		}
 		catch(Exception e){}
 		//FenetrePrincipale.getInstance();

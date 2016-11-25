@@ -6,7 +6,7 @@ import java.util.EventListener;
 
 
 
-public class Accueil {
+public class Caccueil {
 	
 	/*Display view.accueil 
 	Boutton Connexion disable 
