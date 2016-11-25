@@ -6,9 +6,9 @@ public class Joueur {
 
 	private int id; // Pour identifier un joueur dans une partie
 	private Compte compte; // Pour définir sur quel compte le joueur joue
-	private int creditPartie; // Cagnotte avec laquelle le joueur décide de
+	protected int creditPartie; // Cagnotte avec laquelle le joueur décide de
 								// commencer la partie
-	private boolean etat; // True = en jeu ; False = Spectateur
+	protected boolean etat; // True = en jeu ; False = Spectateur
 	private String role; // Dealer, petite blinde, grosse blinde, neutre
 	private boolean isDown; // True = couché; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou
@@ -79,6 +79,8 @@ public class Joueur {
 	public void quitterSalle() {
 		//TODO : a gérer avec la base de données pour éviter de supprimer toutes les infos du joueurs (stats)
 	}
+	
+	//AJOUTER REJOINDRE TABLE
 	
 	public void getInfos(){
 		System.out.println("Compte : "+ compte );
