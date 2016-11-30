@@ -1,6 +1,7 @@
 package fr.poker.view;
 
 import java.awt.EventQueue;
+import static java.lang.System.out;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class Vconnexion {
 	private JFrame frame;
 	private JPasswordField pwdMotDePasse;
 	private JTextField txtEmail;
+	private JButton btnConnexion; // pour le controler, sert aux get.
 
 	/**
 	 * Launch the application.
@@ -38,10 +40,11 @@ public class Vconnexion {
 		});
 	}
 
+	
 	/**
 	 * Create the application.
 	 */
-	public Vconnexion() {
+	public Vconnexion(){
 		initialize();
 	}
 
@@ -89,9 +92,13 @@ public class Vconnexion {
 		frame.getContentPane().add(lblWorldOfOnline);
 		
 		JButton btnInscription = new JButton("Inscription");
+		btnInscription = new JButton("Inscription");
 		btnInscription.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnInscription.setBounds(445, 468, 176, 51);
 		frame.getContentPane().add(btnInscription);
+		
+		
+		
 		
 		JButton btnConnexion = new JButton("Connexion");
 		btnConnexion.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -99,5 +106,15 @@ public class Vconnexion {
 		frame.getContentPane().add(btnConnexion);
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	
+	public JButton getBtnConnexion(){
+		return btnConnexion;
+
+	}
+	
+	public JFrame getFrame(){
+		return frame;
 	}
 }

@@ -7,48 +7,45 @@ import java.util.EventListener;
 
 
 public class Caccueil {
+	/*display connexionscreen;
+	 * 
+	public interface ActionListener extends EventListener{}
+	display list of current games;
+	display player name / current money;
 	
-	/*Display view.accueil 
-	Boutton Connexion disable 
-	boutton inscription enable 
-	*/
-
-
 	
-	/*
-	 * while click on inscription/connexion pas NOK : 
-	 
-
+	while partie not selected on the list 
+	{ 	
+		if partie OK to be join
 		{
-		verifier que compte et password remplis  
-		
-			si oui : 
-				display click connexion en non grisé 
-				( faire avec des gets)
-		
-				si non :
-					do nothing
+			enable Rejoindre 
 		}
-	
-			
-			/* Une fois un bouton cliqué :  
-	
-	listener click connexion
-	{
-		demander à la BDD si login/pwd OK
-		Si ok : 
-			Afficher connexion reussie et ouvrir controller
-			Accueil 
-			
-	}
-	
-	listener click Inscription 
-	{
-		lance controller.inscription 
 		
 	}
-
-
-*/
+	
+	
+	
+	
+	listener deconnexion
+	{
+		controller.accueil;
 	}
+	
+	listener paramètres 
+	{
+		controller. parametrage compte ;
+	}
+	
+	listener créer une partie 
+	{
+		
+		controller. 
+	}
+	listener rejoindre
+	
+} catch (NumberFormatException nfe) {     
+    JOptionPane.showMessageDialog(null,"Input must be a number.");
+}
+}*/
+	
 }
