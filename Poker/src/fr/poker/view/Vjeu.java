@@ -324,6 +324,22 @@ public class Vjeu {
 		lblMiseJ7.setBounds(877, 136, 59, 14);
 		frame.getContentPane().add(lblMiseJ7);
 		
+		JLabel lblPotTotal = new JLabel("PotTotal");
+		lblPotTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotTotal.setForeground(new Color(128, 0, 0));
+		lblPotTotal.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPotTotal.setBackground(Color.LIGHT_GRAY);
+		lblPotTotal.setBounds(597, 187, 73, 14);
+		frame.getContentPane().add(lblPotTotal);
+		
+		JLabel lblPotJoueur = new JLabel("PotJoueur");
+		lblPotJoueur.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJoueur.setForeground(new Color(128, 0, 0));
+		lblPotJoueur.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPotJoueur.setBackground(Color.LIGHT_GRAY);
+		lblPotJoueur.setBounds(1057, 631, 89, 14);
+		frame.getContentPane().add(lblPotJoueur);
+		
 		textFieldMise = new JTextField();
 		textFieldMise.setBounds(430, 729, 108, 28);
 		frame.getContentPane().add(textFieldMise);
