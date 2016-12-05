@@ -11,12 +11,18 @@ import javax.swing.JFrame;
 public class Cconnexion extends JFrame {
 	
 
-	public static void DisplayConnexion() {
+	public static void displayConnexion() {
 		Vconnexion fenetreCo = new Vconnexion();
 		
 	}
 
-	public static void RunCconnexion() {
-		DisplayConnexion();
+	public static void runCconnexion() {
+		displayConnexion();
+	}
+
+	public static void login() {
+
+
+		
 	}
 }

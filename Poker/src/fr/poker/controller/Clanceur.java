@@ -19,7 +19,7 @@ public class Clanceur {
 	*/
 	public static void main(String[] args){
 		try{
-		Cconnexion.RunCconnexion();	
+		Cconnexion.runCconnexion();	
 		
 		}
 		catch(Exception e){
