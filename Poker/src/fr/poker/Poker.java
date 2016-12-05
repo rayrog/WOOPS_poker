@@ -13,17 +13,14 @@ public class Poker {
 		Compte c2 = new Compte(2, "Dadidoo", "Miky", "Bob", "toz@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5,
 				"Cherche pas t'es mort");
 		Joueur j = new Joueur(1, c, 5, true);
-		Joueur dealer = new Joueur(2, null, 0, true, "Dealer");
 		
 		/* Test pour Paquet, carte, couleur, Valeur */
-		 System.out.println(paq);
-		 System.out.println(paq.piocher());
-		 System.out.println(paq);
+//		 System.out.println(paq);
+//		 System.out.println(paq.piocher());
+//		 System.out.println(paq);
 
 		/* Test Joueur */
 		// System.out.println(j);
-		// System.out.println(dealer);
-
 		// j.miser(3);
 		// System.out.println(j);
 		// j.relancer(3);

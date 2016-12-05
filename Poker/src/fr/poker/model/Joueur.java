@@ -18,7 +18,7 @@ public class Joueur {
 
 	private AbstractCombinaison bestCombinaison; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
-	float mise; // A voir si la liste est la meilleure solution 
+	float mise; 
 
 	/* Joueur de base*/
 	public Joueur(int id, Compte compte, float creditPartie, boolean etat) { 
@@ -29,19 +29,6 @@ public class Joueur {
 			this.etat = false;
 		else
 			this.etat = etat;
-	}
-	
-	/* Joueur avec un role affecté (Ex: Création d'un dealer) */
-	public Joueur(int id, Compte compte, int creditPartie, boolean etat, String role) {
-		this.id = id;
-		this.compte = compte;
-		this.creditPartie = creditPartie;
-		if(creditPartie == 0) // si crédit nul le joueur est d'office spectateur
-			this.etat = false;
-		else{
-			this.etat = etat;
-			this.role = role;
-		}
 	}
 
 	public int getId() {
