@@ -1,12 +1,37 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  MainHaute.java
- * Author:  Rayan
- * Purpose: Defines the Class MainHaute
- ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 4c1d11fb-4989-4cdd-88bf-7d68e9b207c6 */
 public class MainHaute extends AbstractCombinaison {
+	public MainHaute() {
+	super("Carte haute");
+}
+
+	@Override
+	public int getValeur() {
+		return 0;
+	}
+
+	@Override
+	public boolean verifier(List<Carte> cartes) {
+		setCombinaisonProche(true);
+		if (cartes.size() > 0) {
+			Collections.sort(cartes, new Comparateur());
+			List<Valeur> kikers = new ArrayList<Valeur>();
+			int size = cartes.size();
+			int i = 1;
+			while (size - i >= 0 && kikers.size() < 5) {
+				kikers.add(cartes.get(size - i).getValeur());
+				i++;
+			}
+			setKikers(kikers);
+		}
+		return true;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Aucune combinaison";
+	}
+
 }

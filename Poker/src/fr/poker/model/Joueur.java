@@ -87,8 +87,8 @@ public class Joueur {
 		return cartes;
 	}
 
-	public void setCartes(List<Carte> cartes) {
-		this.cartes = cartes;
+	public void addCarte(Carte cartes) {
+		this.cartes.add(cartes);
 	}
 
 	public AbstractCombinaison getBestCombinaison() {

@@ -22,6 +22,11 @@ public class MainJoueur {
 		return cartes;
 	}
 
+	public void setCartes() {
+		cartes = joueur.getCartes();
+		cartes.addAll(2, table.getCartes());
+	}
+
 	public void addCarte(Carte carte) {
 		cartes.add(carte);
 	}
@@ -30,8 +35,8 @@ public class MainJoueur {
 		return bestCombinaison;
 	}
 
-	public void setBestCombinaison(AbstractCombinaison bestCombinaison) {
-		//TODO: implement
+	public void setBestCombinaison() {
+		
 		this.bestCombinaison = bestCombinaison;
 	}
 
@@ -50,6 +55,15 @@ public class MainJoueur {
 	public int getNbCartesMax() {
 		return nbCartesMax;
 	}
-	
+
+	public Table getTable() {
+		return table;
+	}
+
+	@Override
+	public String toString() {
+		return "MainJoueur [joueur=" + joueur + ", table=" + table + ", cartes=" + cartes + ", bestCombinaison="
+				+ bestCombinaison + ", nbCartes=" + nbCartes + ", nbCartesMax=" + nbCartesMax + "]";
+	}	
 	
 }
