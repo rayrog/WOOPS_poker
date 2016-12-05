@@ -13,8 +13,6 @@ public class CconnexionListener implements ActionListener{
 		if (e.getActionCommand() == "Inscription") {
 			System.out.println("Ouverture de la page d'inscription");
 			//CInscription.displayInscription();
-			//test
-				
 		}
 		if (e.getActionCommand() == "Connexion") {
 			System.out.println("Tentative de connexion");
