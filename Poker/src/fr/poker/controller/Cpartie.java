@@ -9,4 +9,5 @@ import fr.poker.model.Paquet;
 
 public class Cpartie extends Thread {
 
+	
 }
