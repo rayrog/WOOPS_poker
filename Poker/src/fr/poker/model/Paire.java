@@ -13,15 +13,15 @@ public class Paire extends AbstractCombinaison {
 		setCombinaisonProche(true);
 		if(cartes.size()>1){
 			for(Valeur v : Valeur.values()){
-				if(compterValeur(v, cartes)==2){
-					setValeurHaute(v);
+				if(compterValeur(v, cartes)==2){ //on cherche la valeur de la paire
+					setValeurHaute(v); 
 					List<Valeur> kikers = new ArrayList<Valeur>();
 					Collections.sort(cartes, new Comparateur());
 					int size=cartes.size();
 					int i=1;
-					while(kikers.size()<3 && i<=size){
-						if(size-i>=0 && !cartes.get(size-i).getValeur().equals(v)){
-							kikers.add(cartes.get(size-i).getValeur());
+					while(kikers.size()<3 && i<=size){ //Une paire a 3 kikers
+						if(size-i>=0 && !cartes.get(size-i).getValeur().equals(v)){ //Si la valeur de la carte est differente de la valeur de la paire
+							kikers.add(cartes.get(size-i).getValeur());//on lajoute
 						}
 						i++;
 					}
