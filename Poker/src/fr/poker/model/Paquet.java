@@ -32,7 +32,7 @@ public class Paquet {
 		int i = 0;
 		for(Carte o : p)
 		{
-		    if (i == item){
+		    if (i == item && !p.isEmpty()){
 		        c = o;
 		    	p.remove(o);
 		    	return c;

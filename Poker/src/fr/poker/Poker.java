@@ -14,11 +14,11 @@ public class Poker {
 				"Cherche pas t'es mort");
 		Joueur j = new Joueur(1, c, 5, true);
 		Joueur dealer = new Joueur(2, null, 0, true, "Dealer");
-
+		
 		/* Test pour Paquet, carte, couleur, Valeur */
-		// System.out.println(paq);
-		// System.out.println(paq.piocher());
-		// System.out.println(paq);
+		 System.out.println(paq);
+		 System.out.println(paq.piocher());
+		 System.out.println(paq);
 
 		/* Test Joueur */
 		// System.out.println(j);
@@ -30,29 +30,29 @@ public class Poker {
 		// System.out.println(j);
 
 		/* Test Compte */
-		System.out.println(c.getJoueur());
-		System.out.println(j);
-
-		Scanner sc = new Scanner(System.in);
-		float potDepart = 0;
-
-		do {
-			System.out.println("Choissisez votre pot de départ pour la partie :");
-
-			try {
-				potDepart = sc.nextFloat(); //TODO: fix me (reset the scanner if catch the exception)
-				if (potDepart > 0) {
-					c.createJoueur(potDepart);
-					System.out.println("Joueur créé avec un pot de départ de " + c.joueur.getCreditPartie());
-				}
-			} catch (Exception e) {
-				System.out.println("Il faut entrer un chiffre \n");
-				
-			}
-		} while (c.getJoueur() == null );
-
-		if (c.joueur != null)
-			c.joueur.miser(3);
+////		System.out.println(c.getJoueur());
+////		System.out.println(j);
+//
+//		Scanner sc = new Scanner(System.in);
+//		float potDepart = 0;
+//
+//		do {
+//			System.out.println("Choissisez votre pot de départ pour la partie :");
+//
+//			try {
+//				potDepart = sc.nextFloat(); //TODO: fix me (reset the scanner if catch the exception)
+//				if (potDepart > 0) {
+//					c.createJoueur(potDepart);
+//					System.out.println("Joueur créé avec un pot de départ de " + c.joueur.getCreditPartie());
+//				}
+//			} catch (Exception e) {
+//				System.out.println("Il faut entrer un chiffre \n");
+//				
+//			}
+//		} while (c.getJoueur() == null );
+//
+//		if (c.joueur != null)
+//			c.joueur.miser(3);
 	}
 
 }
