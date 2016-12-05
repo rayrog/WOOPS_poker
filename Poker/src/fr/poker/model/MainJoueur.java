@@ -5,14 +5,16 @@ import java.util.*;
 public class MainJoueur {
 
 	private Joueur joueur;
+	private Table table;
 	private List<Carte> cartes;
 	private AbstractCombinaison bestCombinaison;
 	private int nbCartes;
 	private int nbCartesMax;
 
-	public MainJoueur(Joueur joueur) {
+	public MainJoueur(Joueur joueur, Table table) {
 		super();
 		this.joueur = joueur;
+		this.table = table;
 		nbCartesMax = 5;
 	}
 

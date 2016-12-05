@@ -16,7 +16,7 @@ public class Joueur {
 	private List<Carte> cartes; // Cartes distribuées au joueur au début de la
 								// partie
 
-	private AbstractCombinaison bestCombinaison; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
+	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
 	float mise; 
 
@@ -92,11 +92,7 @@ public class Joueur {
 	}
 
 	public AbstractCombinaison getBestCombinaison() {
-		return bestCombinaison;
-	}
-
-	public void setBestCombinaison(AbstractCombinaison bestCombinaison) {
-		this.bestCombinaison = bestCombinaison;
+		return m.getBestCombinaison();
 	}
 
 	public float getMise() {
@@ -152,7 +148,7 @@ public class Joueur {
 	public String toString() {
 		return "Joueur [id=" + id + ", compte=" + compte.getPseudo() + ", creditPartie=" + creditPartie + ", etat=" + etat
 				+ ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes
-				+ ", bestCombinaison=" + bestCombinaison + ", mise=" + mise + "]";
+				+ ", bestCombinaison=" + m.getBestCombinaison()+ ", mise=" + mise + "]";
 	}
 
 	/*
