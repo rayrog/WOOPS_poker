@@ -1,20 +1,18 @@
 package fr.poker.model;
 
-import java.util.*;
-
 public class Compte {
 	private int id;
 	private String pseudo;
 	private String nom;
 	private String prenom;
 	private String mail;
-	private int tel;
-	private int hash;
+	private String tel;
+	private String hash;
 	private int credit;
 	private String bio;
 	public Joueur joueur;
 
-	public Compte(int id, String pseudo, String nom, String prenom, String mail, int tel, int hash, int credit,
+	public Compte(int id, String pseudo, String nom, String prenom, String mail, String tel, String hash, int credit,
 			String bio) {
 		this.id = id;
 		this.pseudo = pseudo;
@@ -67,19 +65,19 @@ public class Compte {
 		this.mail = mail;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
-	public int getHash() {
+	public String getHash() {
 		return hash;
 	}
 
-	public void setHash(int hash) {
+	public void setHash(String hash) {
 		this.hash = hash;
 	}
 
@@ -103,8 +101,8 @@ public class Compte {
 		return joueur;
 	}
 
-	public void setJoueur(Joueur joueur) {
-		this.joueur = joueur;
+	public void createJoueur(float creditPartie) {
+		this.joueur = new Joueur(this.id, this, creditPartie, true);
 	}
 
 	@Override
