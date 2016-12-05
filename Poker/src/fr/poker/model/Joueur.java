@@ -5,10 +5,10 @@ import java.util.*;
 public class Joueur {
 
 	private int id; // Pour identifier un joueur dans une partie
-	private Compte compte; // Pour définir sur quel compte le joueur joue
-	private int creditPartie; // Cagnotte avec laquelle le joueur décide de
+	protected Compte compte; // Pour définir sur quel compte le joueur joue
+	protected float creditPartie; // Cagnotte avec laquelle le joueur décide de
 								// commencer la partie
-	private boolean etat; // True = en jeu ; False = Spectateur
+	protected boolean etat; // True = en jeu ; False = Spectateur
 	private String role; // Dealer, petite blinde, grosse blinde, neutre
 	private boolean isDown; // True = couché; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou
@@ -21,7 +21,7 @@ public class Joueur {
 	float mise; // A voir si la liste est la meilleure solution 
 
 	/* Joueur de base*/
-	public Joueur(int id, Compte compte, int creditPartie, boolean etat) { 
+	public Joueur(int id, Compte compte, float creditPartie, boolean etat) { 
 		this.id = id;
 		this.compte = compte;
 		this.creditPartie = creditPartie;		
@@ -32,7 +32,6 @@ public class Joueur {
 	}
 	
 	/* Joueur avec un role affecté (Ex: Création d'un dealer) */
-
 	public Joueur(int id, Compte compte, int creditPartie, boolean etat, String role) {
 		this.id = id;
 		this.compte = compte;
@@ -45,6 +44,77 @@ public class Joueur {
 		}
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public float getCreditPartie() {
+		return creditPartie;
+	}
+
+	public void setCreditPartie(float creditPartie) {
+		this.creditPartie = creditPartie;
+	}
+
+	public boolean getEtat() {
+		return etat;
+	}
+
+	public void setEtat(boolean etat) {
+		this.etat = etat;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isDown() {
+		return isDown;
+	}
+
+	public void setDown(boolean isDown) {
+		this.isDown = isDown;
+	}
+
+	public int getaSuivi() {
+		return aSuivi;
+	}
+
+	public void setaSuivi(int aSuivi) {
+		this.aSuivi = aSuivi;
+	}
+
+	public List<Carte> getCartes() {
+		return cartes;
+	}
+
+	public void setCartes(List<Carte> cartes) {
+		this.cartes = cartes;
+	}
+
+	public AbstractCombinaison getBestCombinaison() {
+		return bestCombinaison;
+	}
+
+	public void setBestCombinaison(AbstractCombinaison bestCombinaison) {
+		this.bestCombinaison = bestCombinaison;
+	}
+
+	public float getMise() {
+		return mise;
+	}
 
 	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5€)
 		if(creditPartie - montant >= 0){
@@ -52,7 +122,7 @@ public class Joueur {
 			mise = montant;	
 			return mise;
 		} else{ 
-			System.out.println("Credit insuffisant");
+			System.out.println("Credit insuffisant pour miser " + montant);
 			return -1;
 		}
 	}
@@ -93,7 +163,7 @@ public class Joueur {
 
 	@Override
 	public String toString() {
-		return "Joueur [id=" + id + ", compte=" + compte + ", creditPartie=" + creditPartie + ", etat=" + etat
+		return "Joueur [id=" + id + ", compte=" + compte.getPseudo() + ", creditPartie=" + creditPartie + ", etat=" + etat
 				+ ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes
 				+ ", bestCombinaison=" + bestCombinaison + ", mise=" + mise + "]";
 	}
