@@ -19,7 +19,7 @@ public class Clanceur {
 	*/
 	public static void main(String[] args){
 		try{
-		Cconnexion.RunCconnexion();	
+		Cinscription.displayInscription();
 		
 		}
 		catch(Exception e){

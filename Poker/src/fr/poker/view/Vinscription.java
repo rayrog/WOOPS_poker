@@ -6,8 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import fr.poker.controller.listener.CinscriptionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -22,10 +27,11 @@ public class Vinscription {
 	private JPasswordField pwdConfirm;
 	private JTextField txtEmail;
 	private JTextField txtPhoneNumber;
+	JButton btnSignUp;
 
-	/**
+/*	*//**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,18 +44,11 @@ public class Vinscription {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the application.
 	 */
 	public Vinscription() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.setBounds(100, 100, 1300, 800);
@@ -130,9 +129,75 @@ public class Vinscription {
 		txtPhoneNumber.setBounds(427, 494, 367, 51);
 		frame.getContentPane().add(txtPhoneNumber);
 		
-		JButton btnSignUp = new JButton("Inscription");
+		this.btnSignUp = new JButton("Inscription");
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSignUp.setBounds(427, 556, 367, 51);
+		btnSignUp.addActionListener(new CinscriptionListener());
 		frame.getContentPane().add(btnSignUp);
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JPasswordField getPwdAccount() {
+		return pwdAccount;
+	}
+
+	public void setPwdAccount(JPasswordField pwdAccount) {
+		this.pwdAccount = pwdAccount;
+	}
+
+	public JTextField getTxtLastName() {
+		return txtLastName;
+	}
+
+	public void setTxtLastName(JTextField txtLastName) {
+		this.txtLastName = txtLastName;
+	}
+
+	public JTextField getTxtPseudo() {
+		return txtPseudo;
+	}
+
+	public void setTxtPseudo(JTextField txtPseudo) {
+		this.txtPseudo = txtPseudo;
+	}
+
+	public JTextField getTxtFirstName() {
+		return txtFirstName;
+	}
+
+	public void setTxtFirstName(JTextField txtFirstName) {
+		this.txtFirstName = txtFirstName;
+	}
+
+	public JPasswordField getPwdConfirm() {
+		return pwdConfirm;
+	}
+
+	public void setPwdConfirm(JPasswordField pwdConfirm) {
+		this.pwdConfirm = pwdConfirm;
+	}
+
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public void setTxtEmail(JTextField txtEmail) {
+		this.txtEmail = txtEmail;
+	}
+
+	public JTextField getTxtPhoneNumber() {
+		return txtPhoneNumber;
+	}
+
+	public void setTxtPhoneNumber(JTextField txtPhoneNumber) {
+		this.txtPhoneNumber = txtPhoneNumber;
+	}
+	
 }

@@ -14,6 +14,7 @@ public class Cconnexion extends JFrame {
 	public static void DisplayConnexion() {
 		Vconnexion fenetreCo = new Vconnexion();
 		
+		
 	}
 
 	public static void RunCconnexion() {
