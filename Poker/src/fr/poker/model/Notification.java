@@ -1,12 +1,27 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  Notification.java
- * Author:  Rayan
- * Purpose: Defines the Class Notification
- ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid e1036dba-5342-4d85-94d9-8793e5e7ec27 */
 public class Notification {
+	private String message;
+
+	public Notification(String message) {
+		super();
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	@Override
+	public String toString() {
+		return "[NOTIF] " + message;
+	}
+	
+	
 }
