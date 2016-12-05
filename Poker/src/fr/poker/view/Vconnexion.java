@@ -1,15 +1,9 @@
 package fr.poker.view;
 
 import java.awt.EventQueue;
-import static java.lang.System.out;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.SystemColor;
 import javax.swing.JLabel;
-import javax.swing.JSlider;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
