@@ -15,8 +15,8 @@ public class CconnexionListener implements ActionListener{
 		}
 		if (e.getActionCommand() == "Connexion") {
 			System.out.println("Tentative de connexion");
-			System.out.println(Vconnexion.getFrames().);
-			System.out.println(pwdMotDePasse.getPassword());
+		//	System.out.println(Vconnexion.getFrames().);
+		//	System.out.println(pwdMotDePasse.getPassword());
 
 		}
 	}

@@ -1,29 +1,9 @@
 package fr.poker.view;
 
 
-import java.awt.EventQueue;
-import static java.lang.System.out;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-
+import java.awt.*;
+import javax.swing.*;
 import fr.poker.controller.listener.CconnexionListener;
-
-import java.awt.Font;
-import javax.swing.JTextField;
-
 
 public class Vconnexion extends JFrame {
 		JFrame frame;
@@ -34,6 +14,7 @@ public class Vconnexion extends JFrame {
 		
 		public Vconnexion(){		
 			frame = new JFrame();
+			frame.setResizable(false);
 			frame.getContentPane().setBackground(new Color(39, 78, 19));
 			frame.getContentPane().setLayout(null);
 			
@@ -89,16 +70,6 @@ public class Vconnexion extends JFrame {
 			frame.setVisible(true);
 			
 			
-		}
-		
-		
-		public JFrame getFrame() {
-			return frame;
-		}
-
-
-		public void setFrame(JFrame frame) {
-			this.frame = frame;
 		}
 
 
