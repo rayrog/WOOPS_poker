@@ -9,26 +9,26 @@ public class Carre extends AbstractCombinaison {
 
 	@Override
 	public boolean verifier(List<Carte> cartes) {
-		boolean res=false;
+		boolean res = false;
 		setCombinaisonProche(false);
-		if(cartes.size()>3){
-			for(Valeur v : Valeur.values()){
-				if(compterValeur(v, cartes)==4){
+		if (cartes.size() > 3) {
+			for (Valeur v : Valeur.values()) {
+				if (compterValeur(v, cartes) == 4) { // On cherche la valeur du carre
 					setValeurHaute(v);
 					List<Valeur> kikers = new ArrayList<Valeur>();
 					Collections.sort(cartes, new Comparateur());
-					int size=cartes.size();
-					int i=1;
-					while(kikers.size()<1 && i<=size){
-						if(!cartes.get(size-i).getValeur().equals(v)){
-							kikers.add(cartes.get(size-i).getValeur());
+					int size = cartes.size();
+					int i = 1;
+					while (kikers.size() < 1 && i <= size) { // un seul kiker possible
+						if (!cartes.get(size - i).getValeur().equals(v)) {
+							kikers.add(cartes.get(size - i).getValeur());
 						}
 						i++;
 					}
 					setKikers(kikers);
-					res=true;
+					res = true;
 				}
-				if(compterValeur(v, cartes)==3){
+				if (compterValeur(v, cartes) == 3) {
 					setCombinaisonProche(true);
 				}
 			}
@@ -38,7 +38,7 @@ public class Carre extends AbstractCombinaison {
 
 	@Override
 	public String getDescription() {
-		return "Carré de "+getValeurHaute().getNom().toLowerCase();
+		return "Carré de " + getValeurHaute().getNom().toLowerCase();
 	}
 
 	@Override

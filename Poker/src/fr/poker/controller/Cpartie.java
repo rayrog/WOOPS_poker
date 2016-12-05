@@ -1,7 +1,8 @@
 package fr.poker.controller;
 
-import java.util.*;
-import fr.poker.model.*;
+import java.util.ArrayList;
+
+import fr.poker.model.Joueur;
 
 public class Cpartie {
 
@@ -12,12 +13,12 @@ public class Cpartie {
 	}
 
 	public void run() {
-		
+
 		for (int i = 0; i < mesJoueurs.size(); i++) {
-			
+
 			Joueur currentJ = mesJoueurs.get(i);
 			System.out.println("Je suis actuellement sur ce joueur: " + currentJ);
-			
+
 			switch (i) {
 			case 1:
 				currentJ.setRole("Dealer");
@@ -34,5 +35,4 @@ public class Cpartie {
 		}
 	}
 
-	
 }
