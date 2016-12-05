@@ -15,14 +15,14 @@ import javax.swing.JPasswordField;
 public class Vcreation {
 
 	private JFrame frame;
-	private JTextField txtNomDeLa;
-	private JMenu mnNewMenu;
-	private JButton btnTournoi;
-	private JButton btnClassique;
-	private JMenu mnTypeDeSalle;
-	private JButton btnPublique;
-	private JButton btnPrive;
-	private JPasswordField passwordField;
+	private JTextField txtRoomName;
+	private JMenu mnGameMode;
+	private JButton btnTournament;
+	private JButton btnClassic;
+	private JMenu mnRoomType;
+	private JButton btnPublic;
+	private JButton btnPrivate;
+	private JPasswordField passwordRoom;
 
 	/**
 	 * Launch the application.
@@ -56,58 +56,58 @@ public class Vcreation {
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("World Of Online Poker");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.LIGHT_GRAY);
-		label.setFont(new Font("Tahoma", Font.ITALIC, 20));
-		label.setBounds(504, 100, 234, 63);
-		frame.getContentPane().add(label);
+		JLabel lblSlogan = new JLabel("World Of Online Poker");
+		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSlogan.setForeground(Color.LIGHT_GRAY);
+		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
+		lblSlogan.setBounds(504, 100, 234, 63);
+		frame.getContentPane().add(lblSlogan);
 		
-		JLabel lblCrationDePartie = new JLabel("Cr\u00E9ation de partie");
-		lblCrationDePartie.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCrationDePartie.setForeground(Color.LIGHT_GRAY);
-		lblCrationDePartie.setFont(new Font("Tahoma", Font.BOLD, 45));
-		lblCrationDePartie.setBounds(385, 42, 466, 63);
-		frame.getContentPane().add(lblCrationDePartie);
+		JLabel lblCreate = new JLabel("Cr\u00E9ation de partie");
+		lblCreate.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCreate.setForeground(Color.LIGHT_GRAY);
+		lblCreate.setFont(new Font("Tahoma", Font.BOLD, 45));
+		lblCreate.setBounds(385, 42, 466, 63);
+		frame.getContentPane().add(lblCreate);
 		
-		txtNomDeLa = new JTextField();
-		txtNomDeLa.setForeground(Color.GRAY);
-		txtNomDeLa.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtNomDeLa.setText("Nom de la salle");
-		txtNomDeLa.setBounds(424, 172, 401, 63);
-		frame.getContentPane().add(txtNomDeLa);
-		txtNomDeLa.setColumns(10);
+		txtRoomName = new JTextField();
+		txtRoomName.setForeground(Color.GRAY);
+		txtRoomName.setFont(new Font("Tahoma", Font.BOLD, 20));
+		txtRoomName.setText("Nom de la salle");
+		txtRoomName.setBounds(424, 172, 401, 63);
+		frame.getContentPane().add(txtRoomName);
+		txtRoomName.setColumns(10);
 		
-		mnNewMenu = new JMenu("Mode de jeu");
-		mnNewMenu.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		mnNewMenu.setBounds(424, 269, 196, 32);
-		frame.getContentPane().add(mnNewMenu);
+		mnGameMode = new JMenu("Mode de jeu");
+		mnGameMode.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		mnGameMode.setBounds(424, 269, 196, 32);
+		frame.getContentPane().add(mnGameMode);
 		
-		btnClassique = new JButton("Classique");
-		mnNewMenu.add(btnClassique);
+		btnClassic = new JButton("Classique");
+		mnGameMode.add(btnClassic);
 		
-		btnTournoi = new JButton("Tournoi");
-		mnNewMenu.add(btnTournoi);
+		btnTournament = new JButton("Tournoi");
+		mnGameMode.add(btnTournament);
 		
-		mnTypeDeSalle = new JMenu("Type de salle");
-		mnTypeDeSalle.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		mnTypeDeSalle.setBounds(424, 337, 196, 32);
-		frame.getContentPane().add(mnTypeDeSalle);
+		mnRoomType = new JMenu("Type de salle");
+		mnRoomType.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		mnRoomType.setBounds(424, 337, 196, 32);
+		frame.getContentPane().add(mnRoomType);
 		
-		btnPublique = new JButton("Publique");
-		mnTypeDeSalle.add(btnPublique);
+		btnPublic = new JButton("Publique");
+		mnRoomType.add(btnPublic);
 		
-		btnPrive = new JButton("Priv\u00E9e");
-		mnTypeDeSalle.add(btnPrive);
+		btnPrivate = new JButton("Priv\u00E9e");
+		mnRoomType.add(btnPrivate);
 		
-		passwordField = new JPasswordField();
-		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
-		passwordField.setBounds(649, 411, 176, 41);
-		frame.getContentPane().add(passwordField);
+		passwordRoom = new JPasswordField();
+		passwordRoom.setHorizontalAlignment(SwingConstants.LEFT);
+		passwordRoom.setBounds(649, 411, 176, 41);
+		frame.getContentPane().add(passwordRoom);
 		
-		JButton btnCreer = new JButton("Cr\u00E9er la salle");
-		btnCreer.setBounds(424, 411, 215, 52);
-		frame.getContentPane().add(btnCreer);
+		JButton btnCreate = new JButton("Cr\u00E9er la salle");
+		btnCreate.setBounds(424, 411, 215, 52);
+		frame.getContentPane().add(btnCreate);
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

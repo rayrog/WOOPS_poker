@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class Vaccueil {
 
 	private JFrame frame;
-	private JTable table;
+	private JTable tableGameList;
 
 	/**
 	 * Launch the application.
@@ -51,59 +51,59 @@ public class Vaccueil {
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.getContentPane().setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logo.png")));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(538, 156, 160, 154);
-		frame.getContentPane().add(label);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logo.png")));
+		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogo.setBounds(538, 156, 160, 154);
+		frame.getContentPane().add(lblLogo);
 		
-		JLabel label_1 = new JLabel("WOOP");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.LIGHT_GRAY);
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 45));
-		label_1.setBounds(530, 38, 168, 63);
-		frame.getContentPane().add(label_1);
+		JLabel lblTitle = new JLabel("WOOP");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setForeground(Color.LIGHT_GRAY);
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 45));
+		lblTitle.setBounds(530, 38, 168, 63);
+		frame.getContentPane().add(lblTitle);
 		
-		JLabel label_2 = new JLabel("World Of Online Poker");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setForeground(Color.LIGHT_GRAY);
-		label_2.setFont(new Font("Tahoma", Font.ITALIC, 20));
-		label_2.setBounds(500, 96, 234, 63);
-		frame.getContentPane().add(label_2);
+		JLabel lblSlogan = new JLabel("World Of Online Poker");
+		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSlogan.setForeground(Color.LIGHT_GRAY);
+		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
+		lblSlogan.setBounds(500, 96, 234, 63);
+		frame.getContentPane().add(lblSlogan);
 		
-		JButton btnDconnexion = new JButton("D\u00E9connexion");
-		btnDconnexion.addActionListener(new ActionListener() {
+		JButton btnLogoff = new JButton("D\u00E9connexion");
+		btnLogoff.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnDconnexion.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logout.png")));
-		btnDconnexion.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnDconnexion.setBounds(10, 11, 191, 51);
-		frame.getContentPane().add(btnDconnexion);
+		btnLogoff.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logout.png")));
+		btnLogoff.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnLogoff.setBounds(10, 11, 191, 51);
+		frame.getContentPane().add(btnLogoff);
 		
-		JButton btnParamtres = new JButton("Param\u00E8tres");
-		btnParamtres.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
-		btnParamtres.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnParamtres.setBounds(1083, 201, 191, 51);
-		frame.getContentPane().add(btnParamtres);
+		JButton btnParameters = new JButton("Param\u00E8tres");
+		btnParameters.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
+		btnParameters.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnParameters.setBounds(1083, 201, 191, 51);
+		frame.getContentPane().add(btnParameters);
 		
-		JButton btnCrerUnePartie = new JButton("Cr\u00E9er une partie");
-		btnCrerUnePartie.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCrerUnePartie.setBounds(530, 321, 191, 51);
-		frame.getContentPane().add(btnCrerUnePartie);
+		JButton btnCreate = new JButton("Cr\u00E9er une partie");
+		btnCreate.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnCreate.setBounds(530, 321, 191, 51);
+		frame.getContentPane().add(btnCreate);
 		
-		JButton btnRejoindreUnePartie = new JButton("Rejoindre une partie");
-		btnRejoindreUnePartie.addActionListener(new ActionListener() {
+		JButton btnJoin = new JButton("Rejoindre une partie");
+		btnJoin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnRejoindreUnePartie.setEnabled(false);
-		btnRejoindreUnePartie.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnRejoindreUnePartie.setBounds(519, 619, 215, 51);
-		frame.getContentPane().add(btnRejoindreUnePartie);
+		btnJoin.setEnabled(false);
+		btnJoin.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnJoin.setBounds(519, 619, 215, 51);
+		frame.getContentPane().add(btnJoin);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		tableGameList = new JTable();
+		tableGameList.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -115,8 +115,8 @@ public class Vaccueil {
 				"N\u00B0", "Type", "Nom", "Mode", "Joueurs"
 			}
 		));
-		table.setBounds(380, 409, 454, 136);
-		frame.getContentPane().add(table);
+		tableGameList.setBounds(380, 409, 454, 136);
+		frame.getContentPane().add(tableGameList);
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
