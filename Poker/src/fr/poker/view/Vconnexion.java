@@ -12,6 +12,7 @@ public class Vconnexion extends JFrame {
 		JButton btnConnexion;
 		JButton btnInscription;
 		
+		
 		public Vconnexion(){		
 			frame = new JFrame();
 			frame.setResizable(false);

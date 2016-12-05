@@ -6,26 +6,23 @@ public class Joueur {
 
 	private int id; // Pour identifier un joueur dans une partie
 	protected Compte compte; // Pour définir sur quel compte le joueur joue
-	protected float creditPartie; // Cagnotte avec laquelle le joueur décide de
-								// commencer la partie
+	protected float creditPartie; // Cagnotte avec laquelle le joueur décide de commencer la partie
 	protected boolean etat; // True = en jeu ; False = Spectateur
 	private String role; // Dealer, petite blinde, grosse blinde, neutre
 	private boolean isDown; // True = couché; false = en jeu
-	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou
-						// plusieurs relances
-	private List<Carte> cartes; // Cartes distribuées au joueur au début de la
-								// partie
+	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
+	private List<Carte> cartes; // Cartes distribuées au joueur au début de la partie
 
 	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
-	float mise; 
+	float mise;
 
-	/* Joueur de base*/
-	public Joueur(int id, Compte compte, float creditPartie, boolean etat) { 
+	/* Joueur de base */
+	public Joueur(int id, Compte compte, float creditPartie, boolean etat) {
 		this.id = id;
 		this.compte = compte;
-		this.creditPartie = creditPartie;		
-		if(creditPartie == 0) // si crédit nul le joueur est d'office spectateur
+		this.creditPartie = creditPartie;
+		if (creditPartie == 0) // si crédit nul le joueur est d'office spectateur
 			this.etat = false;
 		else
 			this.etat = etat;
@@ -100,22 +97,22 @@ public class Joueur {
 	}
 
 	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5€)
-		if(creditPartie - montant >= 0){
+		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			mise = montant;	
+			mise = montant;
 			return mise;
-		} else{ 
+		} else {
 			System.out.println("Credit insuffisant pour miser " + montant);
 			return -1;
 		}
 	}
 
 	public float relancer(float montant) {
-		if(creditPartie - montant >= 0){
+		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			mise += montant;	
+			mise += montant;
 			return mise;
-		} else{ 
+		} else {
 			System.out.println("Credit insuffisant");
 			return -1;
 		}
@@ -130,39 +127,38 @@ public class Joueur {
 	}
 
 	public void quitterSalle() {
-		//TODO : a gérer avec la base de données pour éviter de supprimer toutes les infos du joueurs (stats)
+		// TODO : a gérer avec la base de données pour éviter de supprimer toutes les infos du joueurs (stats)
 	}
-	
-	public void getInfos(){
-		System.out.println("Compte : "+ compte );
+
+	public void getInfos() {
+		System.out.println("Compte : " + compte);
 		System.out.println("Credit restants : " + creditPartie);
-		if(etat == true){
+		if (etat == true) {
 			System.out.println("En jeu");
 			System.out.println("Role : " + role);
-		}
-		else
+		} else
 			System.out.println("Spectateur");
 	}
 
 	@Override
 	public String toString() {
-		return "Joueur [id=" + id + ", compte=" + compte.getPseudo() + ", creditPartie=" + creditPartie + ", etat=" + etat
-				+ ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes
-				+ ", bestCombinaison=" + m.getBestCombinaison()+ ", mise=" + mise + "]";
+		return "Joueur [id=" + id + ", compte=" + compte.getPseudo() + ", creditPartie=" + creditPartie + ", etat=" + etat + ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", bestCombinaison=" + m.getBestCombinaison() + ", mise=" + mise + "]";
 	}
 
-	/*
-	@Override
-	public String toString() {
-		String joueur ="Joueur [id=" + id + ", compte=" + compte + ", creditPartie=" + creditPartie;
-		
-		if(etat = true){
-			joueur += ". ,En jeu en tant que " + role +",";
-		}
-		else
-			joueur += " ,Spectateur,";
-		joueur += " role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", bestCombinaison=" + bestCombinaison + ", mise=" + mise + "]";
-		
-		return joueur;
-	}*/
+	public void setCartes(List<Carte> listeCartes) {
+		this.cartes = listeCartes;
+	}
+
+	// @Override
+	// public String toString() {
+	// String joueur = "Joueur [id=" + id + ", compte=" + compte + ", creditPartie=" + creditPartie;
+	//
+	// if (etat = true) {
+	// joueur += ". ,En jeu en tant que " + role + ",";
+	// } else
+	// joueur += " ,Spectateur,";
+	// joueur += " role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", bestCombinaison=" + bestCombinaison + ", mise=" + mise + "]";
+	//
+	// return joueur;
+	// }
 }

@@ -1,22 +1,25 @@
 package fr.poker.controller;
 
-import fr.poker.view.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
-
 import javax.swing.JFrame;
 
-public class Cconnexion extends JFrame {
-	
+import fr.poker.view.Vconnexion;
 
-	public static void DisplayConnexion() {
+public class Cconnexion extends JFrame {
+
+	/** Serial UID */
+	private static final long serialVersionUID = 8934682278090456214L;
+
+	public static void displayConnexion() {
 		Vconnexion fenetreCo = new Vconnexion();
-		
 	}
 
-	public static void RunCconnexion() {
-		DisplayConnexion();
+	public static void runCconnexion() {
+		displayConnexion();
+	}
+
+	public static void login() {
+
+
+		
 	}
 }
