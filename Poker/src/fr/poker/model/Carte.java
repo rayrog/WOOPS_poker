@@ -107,11 +107,6 @@ public boolean equals(Object obj) {
       return valeur.compareTo(carte.getValeur());
    }
    
-   public Carte getAllCards() {
-      // TODO: implement
-      return null;
-   }
-   
    @Override
    public String toString() {
    	return valeur.toString()+" de "+couleur.toString();

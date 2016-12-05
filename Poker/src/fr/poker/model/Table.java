@@ -55,16 +55,16 @@ public class Table {
 		return cartes;
 	}
 
-	public void setCartes(List<Carte> cartes) {
-		this.cartes = cartes;
+	public void addCarte(Carte carte) {
+		this.cartes.add(carte);
 	}
 
 	public List<Joueur> getJoueurs() {
 		return joueurs;
 	}
 
-	public void setJoueurs(List<Joueur> joueurs) {
-		this.joueurs = joueurs;
+	public void addJoueur( Joueur joueur) {
+		this.joueurs.add(joueur);
 	}
 
 	public int getTour() {
@@ -81,7 +81,7 @@ public class Table {
 			nbJoueurs++;
 			joueurs.add(j);
 		} else
-			System.out.println("Il n'y a plus de place dans cette table");
+			System.out.println("Vous n'avez pas votre place a cette table");
 	}
 
 	public void quitterTable(Joueur j) {
