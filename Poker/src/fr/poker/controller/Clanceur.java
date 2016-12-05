@@ -5,12 +5,7 @@ public class Clanceur {
 	/*
 	 * Lance la fenetre de connexion
 	 * 
-	 * Voir pour rajouter des test : a internet ? a bien les fichiers requis
-	 * pour se connecter au serveur
-	 * 
-	 * 
-	 * 
-	 *
+	 * Voir pour rajouter des test : a internet ? a bien les fichiers requis pour se connecter au serveur
 	 */
 	public static void main(String[] args) {
 		try {
