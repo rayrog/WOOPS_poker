@@ -51,13 +51,13 @@ public class Poker {
 		// float potDepart = 0;
 		//
 		// do {
-		// System.out.println("Choissisez votre pot de départ pour la partie :");
+		// System.out.println("Choissisez votre pot de dï¿½part pour la partie :");
 		//
 		// try {
 		// potDepart = sc.nextFloat(); //TODO: fix me (reset the scanner if catch the exception)
 		// if (potDepart > 0) {
 		// c.createJoueur(potDepart);
-		// System.out.println("Joueur créé avec un pot de départ de " + c.joueur.getCreditPartie());
+		// System.out.println("Joueur crï¿½ï¿½ avec un pot de dï¿½part de " + c.joueur.getCreditPartie());
 		// }
 		// } catch (Exception e) {
 		// System.out.println("Il faut entrer un chiffre \n");
@@ -76,10 +76,10 @@ public class Poker {
 	}
 
 	/**
-	 * Génére un couple de cartes par joueur
+	 * Gï¿½nï¿½re un couple de cartes par joueur
 	 * 
-	 * @param joueurs La liste de joueurs à initialiser
-	 * @param paq Le paquet à utiliser
+	 * @param joueurs La liste de joueurs ï¿½ initialiser
+	 * @param paq Le paquet ï¿½ utiliser
 	 */
 	private static void initJoueurs(ArrayList<Joueur> joueurs, Paquet paq) {
 		List<Carte> listeCartes;

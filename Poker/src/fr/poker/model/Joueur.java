@@ -5,13 +5,13 @@ import java.util.*;
 public class Joueur {
 
 	private int id; // Pour identifier un joueur dans une partie
-	protected Compte compte; // Pour définir sur quel compte le joueur joue
-	protected float creditPartie; // Cagnotte avec laquelle le joueur décide de commencer la partie
+	protected Compte compte; // Pour dï¿½finir sur quel compte le joueur joue
+	protected float creditPartie; // Cagnotte avec laquelle le joueur dï¿½cide de commencer la partie
 	protected boolean etat; // True = en jeu ; False = Spectateur
 	private String role; // Dealer, petite blinde, grosse blinde, neutre
-	private boolean isDown; // True = couché; false = en jeu
+	private boolean isDown; // True = couchï¿½; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
-	private List<Carte> cartes; // Cartes distribuées au joueur au début de la partie
+	private List<Carte> cartes; // Cartes distribuï¿½es au joueur au dï¿½but de la partie
 
 	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
@@ -22,7 +22,7 @@ public class Joueur {
 		this.id = id;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
-		if (creditPartie == 0) // si crédit nul le joueur est d'office spectateur
+		if (creditPartie == 0) // si crï¿½dit nul le joueur est d'office spectateur
 			this.etat = false;
 		else
 			this.etat = etat;
@@ -96,7 +96,7 @@ public class Joueur {
 		return mise;
 	}
 
-	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5€)
+	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5ï¿½)
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			mise = montant;
@@ -127,7 +127,7 @@ public class Joueur {
 	}
 
 	public void quitterSalle() {
-		// TODO : a gérer avec la base de données pour éviter de supprimer toutes les infos du joueurs (stats)
+		// TODO : a gï¿½rer avec la base de donnï¿½es pour ï¿½viter de supprimer toutes les infos du joueurs (stats)
 	}
 
 	public void getInfos() {
