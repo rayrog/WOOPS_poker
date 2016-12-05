@@ -1,5 +1,5 @@
 package fr.poker.controller;
 
-public class Accueil {
+public class CparametrageCompte {
 
 }
