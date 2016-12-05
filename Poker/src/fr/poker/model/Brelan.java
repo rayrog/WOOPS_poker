@@ -1,18 +1,49 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  Brelan.java
- * Author:  Rayan
- * Purpose: Defines the Class Brelan
- ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid a68a17b9-3271-491c-8d5b-e59b11687e6f */
 public class Brelan extends AbstractCombinaison {
-   /** @pdOid 9c3ba819-5f37-4626-ae40-c855b23701a2 */
-   public int getValeur() {
-      // TODO: implement
-      return 0;
-   }
+	public Brelan() {
+		super("Brelan");
+	}
+
+	@Override
+	public boolean verifier(List<Carte> cartes) {
+		boolean res=false;
+		setCombinaisonProche(false);
+		if(cartes.size()>2){
+			for(Valeur v : Valeur.values()){
+				if(compterValeur(v, cartes)==3){
+					setValeurHaute(v);
+					List<Valeur> kikers = new ArrayList<Valeur>();
+					Collections.sort(cartes, new Comparateur());
+					int size=cartes.size();
+					int i=1;
+					while(kikers.size()<2 && i<=size){
+						if(!cartes.get(size-i).getValeur().equals(v)){
+							kikers.add(cartes.get(size-i).getValeur());
+						}
+						i++;
+					}
+					setKikers(kikers);
+					res=true;
+				}
+				if(compterValeur(v, cartes)==2){
+					setCombinaisonProche(true);
+				}
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public int getValeur() {
+		return 3;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Brelan de "+getValeurHaute().getNom().toLowerCase();
+	}
 
 }

@@ -1,5 +1,7 @@
 package fr.poker.controller;
 
+import static java.lang.System.out;
+
 import fr.poker.controller.*;
 //import view; To do 
 
@@ -13,14 +15,21 @@ public class Clanceur {
 	 * 
 	 * 
 	 * 
-	 */
+	 *
+	*/
 	public static void main(String[] args){
 		try{
-		Cconnexion.DisplayConnexion();
+		Cconnexion.RunCconnexion();	
+		
 		}
-		catch(Exception e){}
+		catch(Exception e){
+			e.printStackTrace();
+			
+		}
 		//FenetrePrincipale.getInstance();
 		//Partie.getInstance().start();
 	}
 	
 }
+
+

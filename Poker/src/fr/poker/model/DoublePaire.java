@@ -1,18 +1,56 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  DoublePaire.java
- * Author:  Rayan
- * Purpose: Defines the Class DoublePaire
- ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 7e5d31b8-f1d3-447a-bf00-0a24cf2dd87b */
 public class DoublePaire extends AbstractCombinaison {
-   /** @pdOid 849a8850-3f17-46fc-a5bc-4cbd82a07436 */
-   public int getValeur() {
-      // TODO: implement
-      return 0;
-   }
+	public DoublePaire() {
+		super("Double paire");
+	}
+
+	@Override
+	public boolean verifier(List<Carte> cartes) {
+		boolean res=false;
+		setCombinaisonProche(false);
+		if(cartes.size()>3){
+			for(Valeur valeur1 : Valeur.values()){
+				for(Valeur valeur2 : Valeur.values()){
+					if(valeur1.compareTo(valeur2)>0){
+						int cpt1=compterValeur(valeur1, cartes);
+						int cpt2=compterValeur(valeur2, cartes);;
+						if(cpt1==2 && cpt2==2){
+							setValeurHaute(valeur1);
+							setValeurBasse(valeur2);
+							List<Valeur> kikers = new ArrayList<Valeur>();
+							Collections.sort(cartes, new Comparateur());
+							int size=cartes.size();
+							int i=1;
+							while(kikers.size()<1 && i<=size){
+								if(!cartes.get(size-i).getValeur().equals(valeur1) && !cartes.get(size-i).getValeur().equals(valeur2)){
+									kikers.add(cartes.get(size-i).getValeur());
+								}
+								i++;
+							}
+							setKikers(kikers);
+							res=true;
+						}
+						if(cpt1==2 || cpt2==2){
+							setCombinaisonProche(true);
+						}
+					}
+				}
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Double paire : "+getValeurHaute().getNom().toLowerCase()+" et "+getValeurBasse().getNom().toLowerCase();
+	}
+
+	@Override
+	public int getValeur() {
+		return 2;
+	}
 
 }

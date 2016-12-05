@@ -1,23 +1,46 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  Paire.java
- * Author:  Rayan
- * Purpose: Defines the Class Paire
- ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 6d66a47b-c390-4d21-a57c-ec080d9deb10 */
 public class Paire extends AbstractCombinaison {
-   /** @pdOid 55c41c43-f4a3-45f4-b7d4-1f8b5f808417 */
-   public Paire() {
-      // TODO: implement
-   }
-   
-   /** @pdOid f01ed7ff-2180-4b64-b5df-c7959de26f55 */
-   public int getValeur() {
-      // TODO: implement
-      return 0;
-   }
+	public Paire() {
+		super("Paire");
+	}
+
+	@Override
+	public boolean verifier(List<Carte> cartes) {
+		boolean res=false;
+		setCombinaisonProche(true);
+		if(cartes.size()>1){
+			for(Valeur v : Valeur.values()){
+				if(compterValeur(v, cartes)==2){
+					setValeurHaute(v);
+					List<Valeur> kikers = new ArrayList<Valeur>();
+					Collections.sort(cartes, new Comparateur());
+					int size=cartes.size();
+					int i=1;
+					while(kikers.size()<3 && i<=size){
+						if(size-i>=0 && !cartes.get(size-i).getValeur().equals(v)){
+							kikers.add(cartes.get(size-i).getValeur());
+						}
+						i++;
+					}
+					setKikers(kikers);
+					res=true;
+				}
+			}
+		}
+		return res;
+	}
+
+	@Override
+	public int getValeur() {
+		return 1;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Paire de "+getValeurHaute().getNom().toLowerCase();
+	}
 
 }

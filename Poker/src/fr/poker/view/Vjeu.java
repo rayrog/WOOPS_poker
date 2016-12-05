@@ -58,12 +58,12 @@ public class Vjeu {
 		lblChat.setBounds(33, 563, 73, 19);
 		frame.getContentPane().add(lblChat);
 		
-		JLabel lblMonProfil = new JLabel("Mon Profil");
-		lblMonProfil.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMonProfil.setForeground(Color.LIGHT_GRAY);
-		lblMonProfil.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblMonProfil.setBounds(1124, 569, 134, 30);
-		frame.getContentPane().add(lblMonProfil);
+		JLabel lblMyProfil = new JLabel("Mon Profil");
+		lblMyProfil.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMyProfil.setForeground(Color.LIGHT_GRAY);
+		lblMyProfil.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMyProfil.setBounds(1124, 569, 134, 30);
+		frame.getContentPane().add(lblMyProfil);
 		
 		JLabel lblJ1 = new JLabel("");
 		lblJ1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
@@ -353,10 +353,10 @@ public class Vjeu {
 		btnEnvoyer.setBounds(319, 730, 89, 23);
 		frame.getContentPane().add(btnEnvoyer);
 		
-		JButton btnNewButton = new JButton("Miser");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setBounds(548, 729, 103, 28);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnMiser = new JButton("Miser");
+		btnMiser.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnMiser.setBounds(548, 729, 103, 28);
+		frame.getContentPane().add(btnMiser);
 		
 		JButton btnSuivre = new JButton("Suivre");
 		btnSuivre.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -373,9 +373,9 @@ public class Vjeu {
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(7, 608, 391, 110);
-		frame.getContentPane().add(panel);
+		JPanel panelChat = new JPanel();
+		panelChat.setBounds(7, 608, 391, 110);
+		frame.getContentPane().add(panelChat);
 		
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/background.png")));

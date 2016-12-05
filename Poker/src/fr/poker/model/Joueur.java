@@ -16,9 +16,9 @@ public class Joueur {
 	private List<Carte> cartes; // Cartes distribuées au joueur au début de la
 								// partie
 
-	private AbstractCombinaison bestCombinaison; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
+	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
-	float mise; // A voir si la liste est la meilleure solution 
+	float mise; 
 
 	/* Joueur de base*/
 	public Joueur(int id, Compte compte, float creditPartie, boolean etat) { 
@@ -29,19 +29,6 @@ public class Joueur {
 			this.etat = false;
 		else
 			this.etat = etat;
-	}
-	
-	/* Joueur avec un role affecté (Ex: Création d'un dealer) */
-	public Joueur(int id, Compte compte, int creditPartie, boolean etat, String role) {
-		this.id = id;
-		this.compte = compte;
-		this.creditPartie = creditPartie;
-		if(creditPartie == 0) // si crédit nul le joueur est d'office spectateur
-			this.etat = false;
-		else{
-			this.etat = etat;
-			this.role = role;
-		}
 	}
 
 	public int getId() {
@@ -100,16 +87,12 @@ public class Joueur {
 		return cartes;
 	}
 
-	public void setCartes(List<Carte> cartes) {
-		this.cartes = cartes;
+	public void addCarte(Carte cartes) {
+		this.cartes.add(cartes);
 	}
 
 	public AbstractCombinaison getBestCombinaison() {
-		return bestCombinaison;
-	}
-
-	public void setBestCombinaison(AbstractCombinaison bestCombinaison) {
-		this.bestCombinaison = bestCombinaison;
+		return m.getBestCombinaison();
 	}
 
 	public float getMise() {
@@ -165,7 +148,7 @@ public class Joueur {
 	public String toString() {
 		return "Joueur [id=" + id + ", compte=" + compte.getPseudo() + ", creditPartie=" + creditPartie + ", etat=" + etat
 				+ ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes
-				+ ", bestCombinaison=" + bestCombinaison + ", mise=" + mise + "]";
+				+ ", bestCombinaison=" + m.getBestCombinaison()+ ", mise=" + mise + "]";
 	}
 
 	/*

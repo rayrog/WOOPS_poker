@@ -4,16 +4,14 @@ import java.util.*;
 
 public class Table {
 	private int id;
-	private String nom;
 	private int placeMax;
 	private int nbJoueurs;
 	private List<Carte> cartes;
 	private List<Joueur> joueurs;
 	public int tour;
 
-	public Table(int id, String nom, int placeMax) {
+	public Table(int id, int placeMax) {
 		this.id = id;
-		this.nom = nom;
 		this.placeMax = placeMax;
 		this.nbJoueurs = 0;
 		this.tour = 0;
@@ -25,14 +23,6 @@ public class Table {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
 	}
 
 	public int getPlaceMax() {
@@ -77,6 +67,7 @@ public class Table {
 
 	public void rejoindreTable(Joueur j) {
 		if (nbJoueurs <= placeMax && j.creditPartie > 0) {
+
 			j.etat = true;
 			nbJoueurs++;
 			joueurs.add(j);

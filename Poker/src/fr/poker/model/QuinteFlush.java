@@ -1,18 +1,46 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  QuinteFlush.java
- * Author:  Rayan
- * Purpose: Defines the Class QuinteFlush
- ***********************************************************************/
 
 import java.util.*;
 
-/** @pdOid 60c3f5cf-6cbe-459a-96d6-7562bb8d3300 */
 public class QuinteFlush extends AbstractCombinaison {
-   /** @pdOid 171257fc-9df3-483f-b300-b298f9f3854b */
-   public int getValeur() {
-      // TODO: implement
-      return 0;
-   }
+	public QuinteFlush() {
+		super("Quinte flush");
+	}
+	@Override
+	public boolean verifier(List<Carte> cartes) {
+		int cpt=0;
+		if(cartes.size()>4){
+			Collections.sort((ArrayList) cartes);
+			List<Integer> differences = new ArrayList<Integer>();
+			for (int i=1; i<cartes.size(); i++){
+				differences.add(cartes.get(i).compareTo(cartes.get(i-1)));
+			}
+			cpt=0;
+			for(int i : differences){
+				if(i==1){
+					cpt++;
+					setValeurHaute(cartes.get(i).getValeur());
+				}
+				else {
+					if(cpt==4){
+						return true;
+					}
+					cpt=0;
+				}
+			}
+		}
+		setCombinaisonProche(cpt==3);
+		return cpt==4;
+	}
+	@Override
+	public int getValeur() {
+		return 8;
+	}
+
+	@Override
+	public String getDescription() {
+		return "Quinte Flush";
+	}
+
 
 }

@@ -8,13 +8,19 @@ public class Poker {
 
 	public static void main(String[] args) {
 
-		Paquet paq = new Paquet("Jeu de 52 cartes");
 		Compte c = new Compte(1, "Dididoo", "Dujardin", "Luka", "worldofkalu@gmail.com", "0667929511",
 				"15#61ds064ez6!65$64", 5, "Cherche pas t'es mort");
 		Compte c2 = new Compte(2, "Dadidoo", "Miky", "Bob", "toz@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5,
 				"Cherche pas t'es mort");
 		Joueur j = new Joueur(1, c, 5, true);
-		Joueur dealer = new Joueur(2, null, 0, true, "Dealer");
+
+		Salle s = new Salle();
+		Table t = new Table(1, 7);
+		
+		Paquet paq = new Paquet("Jeu de 52 cartes");
+		MainJoueur m = new MainJoueur(j, t);
+		
+
 		
 		
 		ArrayList<Joueur> mesJoueurs = new ArrayList<Joueur>();	
@@ -28,8 +34,6 @@ public class Poker {
 
 		/* Test Joueur */
 		// System.out.println(j);
-		// System.out.println(dealer);
-
 		// j.miser(3);
 		// System.out.println(j);
 		// j.relancer(3);
@@ -59,6 +63,13 @@ public class Poker {
 //
 //		if (c.joueur != null)
 //			c.joueur.miser(3);
+		
+		/* Test MainJoueur*/
+		t.addCarte(paq.piocher());
+		j.addCarte(paq.piocher());
+		m.setCartes();
+		System.out.println(m);
 	}
+	
 
 }

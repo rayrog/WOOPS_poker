@@ -1,9 +1,4 @@
 package fr.poker.model;
-/***********************************************************************
- * Module:  Paquet.java
- * Author:  Rayan
- * Purpose: Defines the Class Paquet
- ***********************************************************************/
 
 import java.util.*;
 
