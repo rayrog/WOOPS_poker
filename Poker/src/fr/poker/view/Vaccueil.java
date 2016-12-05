@@ -48,6 +48,7 @@ public class Vaccueil {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.getContentPane().setLayout(null);
 		
