@@ -116,10 +116,6 @@ public class Joueur {
 		return mise;
 	}
 
-	public void setMise(float mise) {
-		this.mise = mise;
-	}
-
 	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5€)
 		if(creditPartie - montant >= 0){
 			creditPartie -= montant;
@@ -153,8 +149,6 @@ public class Joueur {
 	public void quitterSalle() {
 		//TODO : a gérer avec la base de données pour éviter de supprimer toutes les infos du joueurs (stats)
 	}
-	
-	//AJOUTER REJOINDRE TABLE
 	
 	public void getInfos(){
 		System.out.println("Compte : "+ compte );

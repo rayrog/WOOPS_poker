@@ -40,14 +40,14 @@ public class Poker {
 			System.out.println("Choissisez votre pot de départ pour la partie :");
 
 			try {
-				potDepart = sc.nextFloat();
+				potDepart = sc.nextFloat(); //TODO: fix me (reset the scanner if catch the exception)
 				if (potDepart > 0) {
 					c.createJoueur(potDepart);
 					System.out.println("Joueur créé avec un pot de départ de " + c.joueur.getCreditPartie());
 				}
 			} catch (Exception e) {
 				System.out.println("Il faut entrer un chiffre \n");
-				sc = null;
+				
 			}
 		} while (c.getJoueur() == null );
 
