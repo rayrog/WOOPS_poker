@@ -1,5 +1,6 @@
 package fr.poker;
 
+import fr.poker.controller.Cdistribuer2cartes;
 import fr.poker.model.*;
 import java.util.*;
 
@@ -15,10 +16,15 @@ public class Poker {
 		Joueur j = new Joueur(1, c, 5, true);
 		Joueur dealer = new Joueur(2, null, 0, true, "Dealer");
 		
+		
+		ArrayList<Joueur> mesJoueurs = new ArrayList<Joueur>();	
+		mesJoueurs.add(j);
+		new Cdistribuer2cartes(mesJoueurs,paq);
+		System.out.println(mesJoueurs);
 		/* Test pour Paquet, carte, couleur, Valeur */
-		 System.out.println(paq);
-		 System.out.println(paq.piocher());
-		 System.out.println(paq);
+//		 System.out.println(paq);
+//		 System.out.println(paq.piocher());
+//		 System.out.println(paq);
 
 		/* Test Joueur */
 		// System.out.println(j);
