@@ -22,7 +22,7 @@ public class CBconnect {
 		this.st = null;
 	}
 	
-	private static void connexion(){
+	public static void connexion(){
 		try{
 				//Etape 1 : Chargement du driver
 				Class.forName("com.mysql.jdbc.Driver");

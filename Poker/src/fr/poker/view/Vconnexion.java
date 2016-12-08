@@ -68,10 +68,17 @@ public class Vconnexion extends JFrame {
 			frame.getContentPane().add(btnConnexion);
 			frame.setBounds(100, 100, 1300, 800);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setVisible(true);
+			//frame.setVisible(true);
 			
 			
 		}
+
+		
+
+		public JFrame getFrame() {
+			return frame;
+		}
+
 
 
 		public JButton getBtnInscription() {
