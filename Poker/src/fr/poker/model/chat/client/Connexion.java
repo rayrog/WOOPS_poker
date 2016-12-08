@@ -46,7 +46,7 @@ public class Connexion implements Runnable {
 		  }
 		
 		else {
-			System.err.println("Vos informations sont incorrectes "); 
+			System.err.println("Erreur de login ou de mot de passe "); 
 		  }
 		
 	}
