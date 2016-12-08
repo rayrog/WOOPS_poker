@@ -84,7 +84,7 @@ public class Vaccueil {
 		JButton btnParameters = new JButton("Param\u00E8tres");
 		btnParameters.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
 		btnParameters.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnParameters.setBounds(1083, 201, 191, 51);
+		btnParameters.setBounds(1093, 11, 191, 51);
 		frame.getContentPane().add(btnParameters);
 		
 		JButton btnCreate = new JButton("Cr\u00E9er une partie");
