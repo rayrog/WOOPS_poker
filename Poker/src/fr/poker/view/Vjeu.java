@@ -1,6 +1,7 @@
 package fr.poker.view;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,14 +11,15 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Vjeu {
+public class Vjeu{
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textFieldMise;
 	private JTextField textFieldChat;
-
+	private String messageRecu;
 	/**
 	 * Launch the application.
 	 */
@@ -25,7 +27,7 @@ public class Vjeu {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Vjeu window = new Vjeu();
+					Vjeu window = new Vjeu("message parametre");
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +39,9 @@ public class Vjeu {
 	/**
 	 * Create the application.
 	 */
-	public Vjeu() {
-		initialize();
+	public Vjeu(String message) {
+		this.messageRecu=message;
+		initialize();	
 	}
 
 	/**
@@ -57,6 +60,8 @@ public class Vjeu {
 		lblChat.setForeground(Color.LIGHT_GRAY);
 		lblChat.setBounds(33, 563, 73, 19);
 		frame.getContentPane().add(lblChat);
+		// Modif
+		//lblChat.setText("mdrrr!!!!!!test");
 		
 		JLabel lblMyProfil = new JLabel("Mon Profil");
 		lblMyProfil.setHorizontalAlignment(SwingConstants.CENTER);
@@ -342,11 +347,13 @@ public class Vjeu {
 		textFieldMise.setBounds(430, 729, 108, 28);
 		frame.getContentPane().add(textFieldMise);
 		textFieldMise.setColumns(10);
-		
+		////////////////////////////////////////////////////////////////////////////////////////
+		//ICI
 		textFieldChat = new JTextField();
 		textFieldChat.setBounds(7, 724, 305, 33);
 		frame.getContentPane().add(textFieldChat);
 		textFieldChat.setColumns(10);
+		textFieldChat.setText("Je suis dans la zone ou j'écris");
 		
 		JButton btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -373,9 +380,15 @@ public class Vjeu {
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
 		
+		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JPanel panelChat = new JPanel();
 		panelChat.setBounds(7, 608, 391, 110);
 		frame.getContentPane().add(panelChat);
+		// Modif Corentin PRIMA
+		panelChat.setLayout(new FlowLayout());
+		//JLabel label = new JLabel("Ici il faut afficher le resultat du chat");
+		JLabel label = new JLabel(messageRecu);
+		panelChat.add(label);
 		
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/background.png")));

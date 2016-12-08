@@ -8,11 +8,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CBconnect {
-	private static String url;
-	private static String login;
-	private static String passwd;
-	private static Connection cn;
-	private static Statement st;
+	private String url;
+	private String login;
+	private String passwd;
+	private Connection cn;
+	private Statement st;
 	public CBconnect() {
 		//Information d'accès à la base de données
 		this.url="jdbc:mysql://172.23.2.15:3306/Poker";
@@ -21,8 +21,16 @@ public class CBconnect {
 		this.cn = null;
 		this.st = null;
 	}
+
+	public static void main(String[] args) {
+		CBconnect connect = new CBconnect();
+		connect.connexion();
+		connect.lire();
+		
+	}
 	
-	public static void connexion(){
+//maybe static
+	public void connexion(){
 		try{
 				//Etape 1 : Chargement du driver
 				Class.forName("com.mysql.jdbc.Driver");
@@ -37,7 +45,7 @@ public class CBconnect {
 		}
 	}
 
-	private static void fermerConnexion(){
+	private void fermerConnexion(){
 		try{
 			//Etape 1 : libérer ressources de la mémoire
 			cn.close();
@@ -48,9 +56,9 @@ public class CBconnect {
 		}
 	}
 	
-	public static void lire(){
+	public void lire(){
 		try{
-			String sql = "DELETE * FROM `javadb`";
+			String sql = "SELECT * FROM `Compte`";
 			//Etape 4 : exécution requête
 			ResultSet rs = st.executeQuery(sql);
 			//Etape 5 : récupérer les metadata (informations globales)
@@ -75,7 +83,7 @@ public class CBconnect {
 		}
 	}
 	
-	public static void ecrire(String donne){
+	public void ecrire(String donne){
 		try{
 			String sql = "INSERT INTO javadb (`personne`) VALUE('"+donne+"')";
 			//Etape 4 : exécution requête
@@ -87,7 +95,7 @@ public class CBconnect {
 		}		
 	}
 	
-	public static void supprimer(){
+	public void supprimer(){
 		try{
 			String sql = "DELETE * FROM `javadb`";
 			//Etape 4 : exécution requête

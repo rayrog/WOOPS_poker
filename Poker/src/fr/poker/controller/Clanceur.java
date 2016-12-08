@@ -8,7 +8,7 @@ public class Clanceur {
 
 	public static void main(String[] args) {
 		try {
-			Cconnexion.runCconnexion();
+			Cinscription.displayInscription();
 
 		} catch (Exception e) {
 			e.printStackTrace();

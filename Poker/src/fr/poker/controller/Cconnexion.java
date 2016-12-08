@@ -12,6 +12,7 @@ public class Cconnexion extends JFrame {
 	/** Serial UID */
 	private static final long serialVersionUID = 8934682278090456214L;
 
+
 	public static void displayConnexion() {
 		//Vconnexion fenetreCo = new Vconnexion();
 		fenetreCo.getFrame().setVisible(true);
@@ -39,7 +40,7 @@ public class Cconnexion extends JFrame {
 			// lancer page de connexion 
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Erreur de connexion : ", "InfoBox: " + "Error Login", JOptionPane.INFORMATION_MESSAGE);	
+			//JOptionPane.showMessageDialog(null, "Erreur de connexion : ", "InfoBox: " + "Error Login", JOptionPane.INFORMATION_MESSAGE);	
 		}
 	}
 }
