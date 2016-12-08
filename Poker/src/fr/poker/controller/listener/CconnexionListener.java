@@ -1,8 +1,9 @@
+package fr.poker.controller.listener;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import fr.poker.controller.*;
-import fr.poker.view.Vconnexion;
 
 public class CconnexionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
