@@ -5,7 +5,7 @@ import java.net.*;
 public class Client {
 
 	public static Socket socket = null;
-	public static Thread t1;
+	public static Thread monthread;
 	
 	public static void main(String[] args) {
 	
@@ -15,10 +15,10 @@ public class Client {
 		System.out.println("Demande de connexion");
 		//socket = new Socket("127.0.0.1",5009);
 		socket = new Socket("172.23.2.15",5009);
-		System.out.println("Connexion établie avec le serveur, authentification :"); // Si le message s'affiche c'est que je suis connecté
+		System.out.println("La connexion avec le serveur est ok :"); // Si le message s'affiche c'est que je suis connecté
 		
-		t1 = new Thread(new Connexion(socket));
-		t1.start();
+		monthread = new Thread(new Connexion(socket));
+		monthread.start();
 		
 		
 		

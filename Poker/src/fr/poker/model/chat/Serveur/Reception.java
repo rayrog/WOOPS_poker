@@ -2,6 +2,8 @@ package fr.poker.model.chat.Serveur;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import fr.poker.view.Vjeu;
+
 
 public class Reception implements Runnable {
 
@@ -17,10 +19,10 @@ public class Reception implements Runnable {
 	public void run() {
 		
 		while(true){
-	        try {
-	        System.out.println("J'envoie un message");	
+	        try {	
 			message = in.readLine();
-			System.out.println(login+" : "+message);
+			System.out.println(login+"dit"+" : "+message);
+			//Vjeu window = new Vjeu("message parametre du serveur");
 			
 		    } catch (IOException e) {
 				

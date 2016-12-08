@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import fr.poker.controller.listener.CaccueilListener;
+
 public class Vaccueil {
 
 	private JFrame frame;
@@ -71,20 +73,18 @@ public class Vaccueil {
 		lblSlogan.setBounds(500, 96, 234, 63);
 		frame.getContentPane().add(lblSlogan);
 		
-		JButton btnLogoff = new JButton("D\u00E9connexion");
-		btnLogoff.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		JButton btnLogoff = new JButton("Deconnexion");
+		btnLogoff.addActionListener(new CaccueilListener());
 		btnLogoff.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logout.png")));
 		btnLogoff.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLogoff.setBounds(10, 11, 191, 51);
 		frame.getContentPane().add(btnLogoff);
 		
-		JButton btnParameters = new JButton("Param\u00E8tres");
+		JButton btnParameters = new JButton("Parametres");
+		btnParameters.addActionListener(new CaccueilListener());
 		btnParameters.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
 		btnParameters.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnParameters.setBounds(1083, 201, 191, 51);
+		btnParameters.setBounds(1093, 11, 191, 51);
 		frame.getContentPane().add(btnParameters);
 		
 		JButton btnCreate = new JButton("Cr\u00E9er une partie");
