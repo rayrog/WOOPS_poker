@@ -9,17 +9,17 @@ public class Cconnexion extends JFrame {
 	/** Serial UID */
 	private static final long serialVersionUID = 8934682278090456214L;
 
-	public static void displayConnexion() {
+	public static void DisplayConnexion() {
 		Vconnexion fenetreCo = new Vconnexion();
 	}
 
 	public static void runCconnexion() {
-		displayConnexion();
+		DisplayConnexion();
 	}
 
 	public static void login() {
 
-
+		
 		
 	}
 }

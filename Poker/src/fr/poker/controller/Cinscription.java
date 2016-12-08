@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 import fr.poker.view.*;
 
@@ -14,6 +15,14 @@ public class Cinscription extends JFrame {
 		
 		Vinscription v = new Vinscription();
 		v.getFrame().setVisible(true);
+	}
+	
+	public static void deleteTxtInField(JTextField txtField) {
+		txtField.setText("");
+	}
+	
+	public static void fillField(JTextField txtField, String txt) {
+		txtField.setText(txt);
 	}
 	
 	public static void runInscription(){
