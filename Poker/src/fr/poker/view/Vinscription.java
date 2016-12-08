@@ -50,6 +50,7 @@ public class Vinscription {
 	 */
 	public Vinscription() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
