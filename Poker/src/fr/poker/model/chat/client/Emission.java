@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import fr.poker.view.Vjeu;
+
 
 public class Emission implements Runnable {
 
@@ -25,6 +27,9 @@ public class Emission implements Runnable {
 				message = sc.nextLine();
 				out.println(message);
 			    out.flush();
+			    System.out.println("Vjeu a partir d'émission :");
+			    Vjeu window = new Vjeu("Vjeu a partir d'émission :");
+			    window.frame.setVisible(true);
 			  }
 	}
 }
