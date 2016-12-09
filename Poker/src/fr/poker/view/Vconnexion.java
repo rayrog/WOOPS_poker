@@ -77,10 +77,10 @@ public class Vconnexion extends JFrame {
 			frame.getContentPane().add(btnConnexion);
 			frame.setBounds(100, 100, 1300, 800);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 			
 			
 		}
-
 
 		public JFrame getFrame() {
 			return frame;

@@ -27,8 +27,7 @@ public class Emission implements Runnable {
 				message = sc.nextLine();
 				out.println(message);
 			    out.flush();
-			    System.out.println("Vjeu a partir d'émission :");
-			    Vjeu window = new Vjeu("Vjeu a partir d'émission :");
+			    Vjeu window = new Vjeu(message);
 			    window.frame.setVisible(true);
 			  }
 	}

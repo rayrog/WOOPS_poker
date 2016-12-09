@@ -29,6 +29,7 @@ public class CBconnect {
 		
 	}
 	
+//maybe static
 	public void connexion(){
 		try{
 				//Etape 1 : Chargement du driver
