@@ -23,8 +23,8 @@ public class MainJoueur {
 	}
 
 	public void setCartes() {
-		cartes = joueur.getCartes();
-		cartes.addAll(2, table.getCartes());
+		cartes = joueur.getCartes(); //Ajout des cartes du joueur
+		cartes.addAll(2, table.getCartes());	//Ajout des cartes de la table
 	}
 
 	public void addCarte(Carte carte) {
