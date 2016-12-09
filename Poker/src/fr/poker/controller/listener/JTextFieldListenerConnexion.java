@@ -28,18 +28,17 @@ public class JTextFieldListenerConnexion implements MouseListener, FocusListener
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
 		if(textField.getText().equals("")){
-				switch (textField.getName()) {
-				case "pwdMotDePasse":
-					textField.setText("Mot de passe");
-					break;
-				case "txtEmail":
-					textField.setText("E-mail");
-					break;
-				default:
-					break;
-				}
-		}
-		
+			switch (textField.getName()) {
+			case "pwdMotDePasse":
+				textField.setText("Mot de passe");
+				break;
+			case "txtEmail":
+				textField.setText("E-mail");
+				break;
+			default:
+				break;
+			}
+		}	
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {

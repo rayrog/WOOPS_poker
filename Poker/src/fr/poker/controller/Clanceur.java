@@ -9,8 +9,9 @@ public class Clanceur {
 //	 * 
 	
 	public static void main(String[] args) {
-		Cconnexion ccon =new Cconnexion();
+		Cconnexion ccon = new Cconnexion();
 		try {
+			System.out.println("LALALALA");
 			ccon.displayConnexion();;
 
 		} catch (Exception e) {

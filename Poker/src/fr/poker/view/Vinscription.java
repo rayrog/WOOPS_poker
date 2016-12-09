@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cinscription;
+import fr.poker.controller.listener.JButtonListenerInscription;
 import fr.poker.controller.listener.JTextFieldListenerInscription;
 
 import javax.swing.JTextField;
@@ -34,14 +35,15 @@ public class Vinscription {
 	private JTextField txtPhoneNumber;
 	private String [] textInitiaux;
 	private JButton btnSignUp;
+	private JButton btnBack;
 
 /*
 	 * Create the application.
 	 */
-	public Vinscription(Cinscription cins) {
+	public Vinscription(Cinscription cins, JFrame feneco) {
 		String[] texts = {"Mot de passe", "Confirmer", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone"};
 		textInitiaux = texts;
-		this.frame = new JFrame();
+		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.setBounds(100, 100, 1300, 800);
@@ -154,8 +156,14 @@ public class Vinscription {
 		this.btnSignUp = new JButton("Inscription");
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSignUp.setBounds(427, 556, 367, 51);
-		//btnSignUp.addActionListener(new CinscriptionListener(null));
+		btnSignUp.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnSignUp);
+		
+		btnBack = new JButton("Retour");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnBack.setBounds(427, 610, 367, 51);
+		btnBack.addActionListener(new JButtonListenerInscription(cins));
+		frame.getContentPane().add(btnBack);
 	}
 
 	public String[] getTextInitiaux() {

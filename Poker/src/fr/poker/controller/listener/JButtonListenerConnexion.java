@@ -7,15 +7,15 @@ import java.awt.event.MouseListener;
 import fr.poker.controller.*;
 
 public class JButtonListenerConnexion implements ActionListener{
-	private Cconnexion cc;
+	private Cconnexion cCon;
 	public JButtonListenerConnexion(Cconnexion c) {
 		// TODO Auto-generated constructor stub
-		this.cc = c;
+		this.cCon = c;
 	}
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Inscription")) {
 			System.out.println("Tentative de d'inscription");
-			cc.runInscription();
+			cCon.runInscription();
 			
 		}
 		if (e.getActionCommand().equals("Connexion")) {

@@ -12,13 +12,26 @@ import fr.poker.view.*;
 public class Cinscription extends JFrame {
 	private Vinscription vins;
 	private JFrame frameins;
-	public Cinscription(JFrame feneco) {
-		vins = new Vinscription(this);
-
+	private Cconnexion ccon;
+	public Cinscription(Cconnexion c) {
+		this.vins = new Vinscription(this, c.getFenetreco().getFrame());
+		this.ccon = c;
 	}
 	
+	public Cconnexion getCcon() {
+		return ccon;
+	}
+
+	public void setCcon(Cconnexion ccon) {
+		this.ccon = ccon;
+	}
+
 	public void displayInscription(){
 		vins.getFrame().setVisible(true);
+	}
+	
+	public void closeInscription(){
+		vins.getFrame().dispose();
 	}
 	
 	public void deleteTxtInField(JTextField txtField) {
