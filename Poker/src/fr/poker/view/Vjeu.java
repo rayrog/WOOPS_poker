@@ -9,6 +9,10 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import fr.poker.controller.listener.CconnexionListener;
+import fr.poker.controller.listener.CjeuListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -18,8 +22,9 @@ public class Vjeu{
 
 	public JFrame frame;
 	private JTextField textFieldMise;
-	private JTextField textFieldChat;
-	private String messageRecu;
+	public static JTextField textFieldChat;
+	public static JPanel panelChat;
+	public static String messageRecu;
 	/**
 	 * Launch the application.
 	 */
@@ -355,10 +360,13 @@ public class Vjeu{
 		textFieldChat.setColumns(10);
 		textFieldChat.setText("Je suis dans la zone ou j'écris");
 		
+		
+		///////////////////////////////////////////////////////////////////////////////////// ICI
 		JButton btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnvoyer.setBounds(319, 730, 89, 23);
 		frame.getContentPane().add(btnEnvoyer);
+		btnEnvoyer.addActionListener(new CjeuListener());
 		
 		JButton btnMiser = new JButton("Miser");
 		btnMiser.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -389,6 +397,8 @@ public class Vjeu{
 		//JLabel label = new JLabel("Ici il faut afficher le resultat du chat");
 		JLabel label = new JLabel(messageRecu);
 		panelChat.add(label);
+		// Modif update
+		//panelChat.updateUI();
 		
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/background.png")));
