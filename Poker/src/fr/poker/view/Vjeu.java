@@ -25,6 +25,7 @@ public class Vjeu{
 	public static JTextField textFieldChat;
 	public static JPanel panelChat;
 	public static String messageRecu;
+	public static JLabel label;
 	/**
 	 * Launch the application.
 	 */
