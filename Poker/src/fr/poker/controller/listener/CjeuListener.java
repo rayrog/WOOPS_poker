@@ -18,8 +18,8 @@ public class CjeuListener implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-/*		// TODO Auto-generated method stub
-		//System.out.println("Coucou je suis dans CjeuListener");
+		// TODO Auto-generated method stub
+		System.out.println("Coucou je suis dans CjeuListener");
 		//panelChat.updateUI();
 		// Je recupere mon texte:
 		//String message;
@@ -31,5 +31,5 @@ public class CjeuListener implements ActionListener{
 		//Vjeu.label.repaint();
 		//Vjeu window = new Vjeu(Vjeu.messageRecu);
 	    //window.frame.setVisible(true);
-*/	}
+	}
 }
