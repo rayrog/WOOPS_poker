@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 
 import fr.poker.controller.Caccueil;
 import fr.poker.controller.Cconnexion;
+import fr.poker.controller.Cparametre;
 
 public class JButtonListenerAccueil implements ActionListener {
 	private Cconnexion cCon;
 	private Caccueil CAcc;
+	private Cparametre CPara;
 	
 	public JButtonListenerAccueil(Caccueil c) {
 		this.CAcc=c;
@@ -20,13 +22,10 @@ public class JButtonListenerAccueil implements ActionListener {
 			CAcc.closeAccueil();
 			cCon=new Cconnexion();
 			cCon.displayConnexion();
-			
-			
 		}
 		if (e.getActionCommand() == "Parametres") {
 			System.out.println("Parametres");
-
-			
+			CAcc.runParametres();
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package fr.poker.controller;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -12,6 +13,7 @@ public class Cconnexion extends JFrame {
 	private Vconnexion fenetreco;
 	private Cinscription cins;
 	private Caccueil cacc;
+	private CBconnect cbcon;
 	public Cconnexion() {
 		// TODO Auto-generated constructor stub
 		this.fenetreco = new Vconnexion(this);
@@ -29,23 +31,28 @@ public class Cconnexion extends JFrame {
 	}
 	
 	public void login() {
-		boolean loginOK=true;
-		
+		int IDMail=-1;
+		int IDPass=-1;
 		System.out.println(fenetreco.getTxtEmail().getText());
 		System.out.println(fenetreco.getPwdMotDePasse().getText()); // temp for debug 
-		//CBconnect.connexion();
-		//CBconnect.lire();
 		// comparer couple login mdp avec la bdd >>>> si Ok : LoginOK a true 
-		if (loginOK==true){
-			System.out.println("Login OK, ouverture de la page de connection");
-			this.runAccueil();
-			// lancer page de connexion 
+		cbcon = new CBconnect();
+		// Recupere L'id du mail utiliser dans la bdd
+		IDMail=cbcon.checkMail(fenetreco.getTxtEmail().getText());
+		//Recupere L'ID du PWD utilisé 
+		IDPass=cbcon.checkPasswd(fenetreco.getPwdMotDePasse().getText());
+		
+		// Si idpwd + id MAIl identique et non = -1 : Login OK Ouverture de la page d'accueil
+		if (IDMail==IDPass && IDMail!=-1 && IDPass!=-1 ){
+			System.out.println("Login + Mail OK : Ouverture Accueil Joueur n°" + IDMail);
+			this.runAccueil(IDMail);
 		}
 		else {
-			//JOptionPane.showMessageDialog(null, "Erreur de connexion : ", "InfoBox: " + "Error Login", JOptionPane.INFORMATION_MESSAGE);	
+			if (IDPass==-1 || IDMail==-1){
+				JOptionPane.showMessageDialog(null, "Error Mail ou pwd ", "InfoBox: " + "Error Mail ou pwd", JOptionPane.INFORMATION_MESSAGE);	
+			}
 		}
 	}
-	
 	
 	
 	public void deleteTxtInField(JTextField textField) {
@@ -62,8 +69,8 @@ public class Cconnexion extends JFrame {
 		cins.displayInscription();
 	}
 	
-	public void runAccueil() {
-		this.cacc = new Caccueil(this);
+	public void runAccueil(int Id) {
+		this.cacc = new Caccueil(this, Id);
 		this.closeConnexion();
 		cacc.displayAccueil();
 	}
