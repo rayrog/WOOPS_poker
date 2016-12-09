@@ -6,9 +6,6 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;

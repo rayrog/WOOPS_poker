@@ -8,7 +8,7 @@ import fr.poker.controller.Cconnexion;
 import fr.poker.controller.listener.JTextFieldListenerConnexion;
 import fr.poker.controller.listener.JButtonListenerConnexion;
 
-public class Vconnexion extends JFrame {
+public class Vconnexion {
 		JFrame frame;
 		JPasswordField pwdMotDePasse;
 		JTextField txtEmail;
