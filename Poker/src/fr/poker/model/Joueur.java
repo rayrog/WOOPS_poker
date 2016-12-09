@@ -12,10 +12,11 @@ public class Joueur {
 	private boolean isDown; // True = couch�; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
 	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la partie
+	private Table table; // Table sur laquelle le joueur joue
 
 	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
-	float mise;
+	public float mise;
 	
 	public Joueur(){
 		super();
@@ -26,7 +27,7 @@ public class Joueur {
 		this.id = id;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
-		if (creditPartie == 0) // si cr�dit nul le joueur est d'office spectateur
+		if (creditPartie == 0) // si credit nul le joueur est d'office spectateur
 			this.etat = false;
 		else
 			this.etat = etat;
@@ -76,6 +77,14 @@ public class Joueur {
 		this.isDown = isDown;
 	}
 
+	public Table getTable() {
+		return table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+
 	public int getaSuivi() {
 		return aSuivi;
 	}
@@ -100,7 +109,7 @@ public class Joueur {
 		return mise;
 	}
 
-	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5�)
+	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5euro)
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			mise = montant;
