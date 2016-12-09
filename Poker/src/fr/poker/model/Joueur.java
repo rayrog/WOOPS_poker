@@ -8,7 +8,7 @@ public class Joueur {
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
 	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de commencer la partie
 	protected boolean etat; // True = en jeu ; False = Spectateur
-	private String role; // Dealer, petite blinde, grosse blinde, neutre
+	private String role; // Dealer, Petite blinde, Grosse blinde, Neutre
 	private boolean isDown; // True = couch�; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
 	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la partie
@@ -16,9 +16,13 @@ public class Joueur {
 	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
 	float mise;
+	
+	public Joueur(){
+		super();
+	}
 
-	/* Joueur de base */
 	public Joueur(int id, Compte compte, float creditPartie, boolean etat) {
+		super();
 		this.id = id;
 		this.compte = compte;
 		this.creditPartie = creditPartie;

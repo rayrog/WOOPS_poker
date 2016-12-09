@@ -50,10 +50,7 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 	public int comparerKikers(AbstractCombinaison c) {
 		int res = 0;
 		if (getKikers() != null) {
-			Collections.sort(getKikers()); // On utise Collections et pas List
-											// ne peut pas etre sort et pas
-											// ArrayList pour eviter les
-											// problemes de type
+			Collections.sort(getKikers()); // On utise Collections car peut etre sort et evite les problemes de type
 			Collections.sort(c.getKikers());
 			int i = 1;
 			while (i <= getKikers().size() && res == 0) {

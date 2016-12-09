@@ -5,17 +5,17 @@ import java.util.*;
 public class Table {
 	private int id;
 	private int placeMax;
-	private int nbJoueurs;
 	private List<Carte> cartes;
-	private List<Joueur> joueurs;
-	public int tour;
+	private ArrayList<Joueur> joueurs;
+	public int tour;		// tour 0: Mise initiale; tour 1: flop(3 cartes); tour 2: Turn(1carte); tour 3: River(1 Carte); tour 4: Pour check le gagnant
 
-	public Table(int id, int placeMax) {
-		this.id = id;
+	public Table(int placeMax) {
+		this.id = 1;	// A gérer avec la base de données
 		this.placeMax = placeMax;
-		this.nbJoueurs = 0;
 		this.tour = 0;
 	}
+	
+	
 
 	public int getId() {
 		return id;
@@ -34,11 +34,16 @@ public class Table {
 	}
 
 	public int getNbJoueurs() {
-		return nbJoueurs;
+		return joueurs.size();
 	}
-
-	public void setNbJoueurs(int nbJoueurs) {
-		this.nbJoueurs = nbJoueurs;
+	
+	public int getNbJoueursEnJeu(){
+		int i = 0;
+		for(Joueur j : getJoueurs()){
+			if(!j.isDown())
+				i++;
+		}
+		return i;
 	}
 
 	public List<Carte> getCartes() {
@@ -49,12 +54,32 @@ public class Table {
 		this.cartes.add(carte);
 	}
 
-	public List<Joueur> getJoueurs() {
-		return joueurs;
+	public ArrayList<Joueur> getJoueurs() {
+		ArrayList<Joueur> liste = new ArrayList<Joueur>();
+		
+		for(Joueur j : this.joueurs){
+			if(j.etat)	//en jeu
+				liste.add(j);
+		}
+		return liste;
+	}
+
+	public ArrayList<Joueur> getSpectateurs() {
+		ArrayList<Joueur> liste = new ArrayList<Joueur>();
+		
+		for(Joueur j : this.joueurs){
+			if(!j.etat)	//en jeu
+				liste.add(j);
+		}
+		return liste;
 	}
 
 	public void addJoueur( Joueur joueur) {
 		this.joueurs.add(joueur);
+	}
+	
+	public void delJoueur(Joueur joueur){
+		this.joueurs.remove(joueur);
 	}
 
 	public int getTour() {
@@ -66,10 +91,9 @@ public class Table {
 	}
 
 	public void rejoindreTable(Joueur j) {
-		if (nbJoueurs <= placeMax && j.creditPartie > 0) {
+		if (getNbJoueurs() <= placeMax && j.creditPartie > 0) {
 
 			j.etat = true;
-			nbJoueurs++;
 			joueurs.add(j);
 		} else
 			System.out.println("Vous n'avez pas votre place a cette table");
@@ -77,7 +101,6 @@ public class Table {
 
 	public void quitterTable(Joueur j) {
 		j.etat = false;
-		nbJoueurs--;
 		joueurs.remove(j);
 	}
 	

@@ -36,7 +36,7 @@ public class Cconnexion extends JFrame {
 		//CBconnect.lire();
 		// comparer couple login mdp avec la bdd >>>> si Ok : LoginOK a true 
 		if (loginOK==true){
-			System.out.println("Login OK, ouverture de la page de connection");
+			System.out.println("Login OK, ouverture de la page de connexion");
 			// lancer page de connexion 
 		}
 		else {
