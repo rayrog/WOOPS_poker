@@ -14,7 +14,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import fr.poker.controller.listener.CaccueilListener;
+import fr.poker.controller.Caccueil;
+import fr.poker.controller.listener.JButtonListenerAccueil;;
 
 public class Vaccueil {
 
@@ -24,6 +25,7 @@ public class Vaccueil {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,18 +38,13 @@ public class Vaccueil {
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the application.
 	 */
-	public Vaccueil() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	public Vaccueil(Caccueil cacc) {
+		//String[] texts = {""
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
@@ -74,14 +71,14 @@ public class Vaccueil {
 		frame.getContentPane().add(lblSlogan);
 		
 		JButton btnLogoff = new JButton("Deconnexion");
-		btnLogoff.addActionListener(new CaccueilListener());
+		btnLogoff.addActionListener(new JButtonListenerAccueil(cacc));
 		btnLogoff.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logout.png")));
 		btnLogoff.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLogoff.setBounds(10, 11, 191, 51);
 		frame.getContentPane().add(btnLogoff);
 		
 		JButton btnParameters = new JButton("Parametres");
-		btnParameters.addActionListener(new CaccueilListener());
+		btnParameters.addActionListener(new JButtonListenerAccueil(null));
 		btnParameters.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
 		btnParameters.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnParameters.setBounds(1093, 11, 191, 51);
@@ -119,5 +116,24 @@ public class Vaccueil {
 		frame.getContentPane().add(tableGameList);
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JTable getTableGameList() {
+		return tableGameList;
+	}
+
+	public void setTableGameList(JTable tableGameList) {
+		this.tableGameList = tableGameList;
+	}
+	
+	
 }

@@ -10,8 +10,8 @@ public class Cpartie {
 		this.maTable = new Table(nbJoueurs);
 	}
 
-	public void run() {
-
+	public void run() { //Pour lancer la premiere partie
+		
 	}
 
 	public void distribuerRole(Table table) {
