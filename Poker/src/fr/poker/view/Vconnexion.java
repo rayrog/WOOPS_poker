@@ -9,11 +9,11 @@ import fr.poker.controller.listener.JTextFieldListenerConnexion;
 import fr.poker.controller.listener.JButtonListenerConnexion;
 
 public class Vconnexion {
-		JFrame frame;
-		JPasswordField pwdMotDePasse;
-		JTextField txtEmail;
-		JButton btnConnexion;
-		JButton btnInscription;
+		private JFrame frame;
+		private JPasswordField pwdMotDePasse;
+		private JTextField txtEmail;
+		private JButton btnConnexion;
+		private JButton btnInscription;
 		
 		public Vconnexion(Cconnexion c){		
 			frame = new JFrame();

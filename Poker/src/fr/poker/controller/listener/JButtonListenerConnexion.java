@@ -18,7 +18,7 @@ public class JButtonListenerConnexion implements ActionListener{
 		}
 		if (e.getActionCommand().equals("Connexion")) {
 			System.out.println("Tentative de connexion");
-			//Cconnexion.login();
+			cCon.login();
 			
 		}
 	}

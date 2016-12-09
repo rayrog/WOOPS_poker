@@ -11,6 +11,7 @@ public class Cconnexion extends JFrame {
 
 	private Vconnexion fenetreco;
 	private Cinscription cins;
+	private Caccueil cacc;
 	public Cconnexion() {
 		// TODO Auto-generated constructor stub
 		this.fenetreco = new Vconnexion(this);
@@ -24,8 +25,28 @@ public class Cconnexion extends JFrame {
 	}
 	
 	public void closeConnexion() {
-		fenetreco.dispose();
+		fenetreco.getFrame().dispose();
 	}
+	
+	public void login() {
+		boolean loginOK=true;
+		
+		System.out.println(fenetreco.getTxtEmail().getText());
+		System.out.println(fenetreco.getPwdMotDePasse().getText()); // temp for debug 
+		//CBconnect.connexion();
+		//CBconnect.lire();
+		// comparer couple login mdp avec la bdd >>>> si Ok : LoginOK a true 
+		if (loginOK==true){
+			System.out.println("Login OK, ouverture de la page de connection");
+			this.runAccueil();
+			// lancer page de connexion 
+		}
+		else {
+			//JOptionPane.showMessageDialog(null, "Erreur de connexion : ", "InfoBox: " + "Error Login", JOptionPane.INFORMATION_MESSAGE);	
+		}
+	}
+	
+	
 	
 	public void deleteTxtInField(JTextField textField) {
 		textField.setText("");
@@ -41,6 +62,12 @@ public class Cconnexion extends JFrame {
 		cins.displayInscription();
 	}
 	
+	public void runAccueil() {
+		this.cacc = new Caccueil(this);
+		this.closeConnexion();
+		cacc.displayAccueil();
+	}
+	
 
 	public Vconnexion getFenetreco() {
 		return fenetreco;
@@ -49,23 +76,8 @@ public class Cconnexion extends JFrame {
 
 	public void setFenetreco(Vconnexion fenetreco) {
 		this.fenetreco = fenetreco;
-}
-/*	public void login() {
-		boolean loginOK=false;
-		System.out.println(fenetreCo.getTxtEmail().getText());
-		System.out.println(fenetreCo.getPwdMotDePasse().getText()); // temp for debug 
-		//CBconnect.connexion();
-		//CBconnect.lire();
-		// comparer couple login mdp avec la bdd >>>> si Ok : LoginOK a true 
-		if (loginOK==true){
-			System.out.println("Login OK, ouverture de la page de connection");
-			// lancer page de connexion 
-		}
-		else {
-			//JOptionPane.showMessageDialog(null, "Erreur de connexion : ", "InfoBox: " + "Error Login", JOptionPane.INFORMATION_MESSAGE);	
-		}
+	}
 
-	}*/
 	
 }
 

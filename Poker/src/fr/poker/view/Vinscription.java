@@ -145,7 +145,7 @@ public class Vinscription {
 		txtPhoneNumber.addFocusListener(new JTextFieldListenerInscription(cins, txtPhoneNumber));
 		//txtPhoneNumber.addActionListener(new CinscriptionListener(txtPhoneNumber));
 		
-		this.btnSignUp = new JButton("Inscription");
+		btnSignUp = new JButton("Inscription");
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSignUp.setBounds(427, 556, 367, 51);
 		btnSignUp.addActionListener(new JButtonListenerInscription(cins));
