@@ -1,6 +1,5 @@
 package fr.poker.controller.listener;
 
-import java.awt.TextField;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;

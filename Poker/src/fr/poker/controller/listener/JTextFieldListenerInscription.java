@@ -1,7 +1,5 @@
 package fr.poker.controller.listener;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -10,7 +8,6 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 
 import fr.poker.controller.Cinscription;
-import fr.poker.view.Vinscription;
 
 public class JTextFieldListenerInscription implements MouseListener, FocusListener{
 	private JTextField textField;
