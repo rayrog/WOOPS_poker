@@ -11,7 +11,6 @@ import fr.poker.view.Vjeu;
 
 public class CjeuListener implements ActionListener{
 	
-	private JTextField textField;
 	public CjeuListener()
 	{
 		//this.textField = txt;
@@ -24,11 +23,15 @@ public class CjeuListener implements ActionListener{
 		// Je recupere mon texte:
 		//String message;
 		//message = Vjeu.textFieldChat.getText();
-		//Vjeu.messageRecu = Vjeu.textFieldChat.getText();
+		Vjeu.messageRecu = Vjeu.textFieldChat.getText();
 		//System.out.println("mdr");
 		//JLabel label = new JLabel(Vjeu.messageRecu);
 		//Vjeu.panelChat.add(label);
-		//Vjeu.label.repaint();
+		//Vjeu.label.updateUI();
+		//Vjeu.panelChat.update(null);
+		Vjeu.panelChat.removeAll();
+		JLabel label = new JLabel(Vjeu.messageRecu);
+		Vjeu.panelChat.add(label);
 		//Vjeu window = new Vjeu(Vjeu.messageRecu);
 	    //window.frame.setVisible(true);
 	}
