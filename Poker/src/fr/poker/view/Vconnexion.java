@@ -3,7 +3,10 @@ package fr.poker.view;
 
 import java.awt.*;
 import javax.swing.*;
-import fr.poker.controller.listener.CconnexionListener;
+
+import fr.poker.controller.Cconnexion;
+import fr.poker.controller.listener.JTextFieldListenerConnexion;
+import fr.poker.controller.listener.JButtonListenerConnexion;
 
 public class Vconnexion extends JFrame {
 		JFrame frame;
@@ -12,8 +15,8 @@ public class Vconnexion extends JFrame {
 		JButton btnConnexion;
 		JButton btnInscription;
 		
-		
-		public Vconnexion(){		
+		//fzefzeifhzeihf
+		public Vconnexion(Cconnexion c){		
 			frame = new JFrame();
 			frame.setResizable(false);
 			frame.getContentPane().setBackground(new Color(39, 78, 19));
@@ -23,7 +26,10 @@ public class Vconnexion extends JFrame {
 			pwdMotDePasse.setBackground(Color.LIGHT_GRAY);
 			pwdMotDePasse.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			pwdMotDePasse.setText("Mot de passe");
+			pwdMotDePasse.setName("pwdMotDePasse");
 			pwdMotDePasse.setBounds(445, 396, 367, 51);
+			pwdMotDePasse.addMouseListener(new JTextFieldListenerConnexion(c, pwdMotDePasse));
+			pwdMotDePasse.addFocusListener(new JTextFieldListenerConnexion(c, pwdMotDePasse));
 			frame.getContentPane().add(pwdMotDePasse);
 			
 			JLabel lblLogo = new JLabel("");
@@ -36,7 +42,10 @@ public class Vconnexion extends JFrame {
 			txtEmail.setBackground(Color.LIGHT_GRAY);
 			txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 25));
 			txtEmail.setText("E-mail");
+			txtEmail.setName("txtEmail");
 			txtEmail.setBounds(447, 326, 365, 51);
+			txtEmail.addMouseListener(new JTextFieldListenerConnexion(c, txtEmail));
+			txtEmail.addFocusListener(new JTextFieldListenerConnexion(c, txtEmail));
 			frame.getContentPane().add(txtEmail);
 			txtEmail.setColumns(10);
 			
@@ -57,28 +66,35 @@ public class Vconnexion extends JFrame {
 			this.btnInscription = new JButton("Inscription");
 			btnInscription.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnInscription.setBounds(445, 468, 176, 51);
-			btnInscription.addActionListener(new CconnexionListener());
+			btnInscription.addActionListener(new JButtonListenerConnexion(c));
 		
 			this.btnConnexion = new JButton("Connexion");
 			btnConnexion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnConnexion.setBounds(636, 468, 176, 51);
-			btnConnexion.addActionListener(new CconnexionListener());	
+			btnConnexion.addActionListener(new JButtonListenerConnexion(c));	
 			
 			frame.getContentPane().add(btnInscription);
 			frame.getContentPane().add(btnConnexion);
 			frame.setBounds(100, 100, 1300, 800);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			//frame.setVisible(true);
+
 			
 			
 		}
-
-		
 
 		public JFrame getFrame() {
 			return frame;
 		}
 
+
+		public void setFrame(JFrame frame) {
+			this.frame = frame;
+		}
+
+
+		public void setBtnConnexion(JButton btnConnexion) {
+			this.btnConnexion = btnConnexion;
+		}
 
 
 		public JButton getBtnInscription() {
