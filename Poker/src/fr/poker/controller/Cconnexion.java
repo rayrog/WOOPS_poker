@@ -1,34 +1,56 @@
 package fr.poker.controller;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 
 import fr.poker.controller.bdd.CBconnect;
 import fr.poker.view.Vconnexion;
 
 public class Cconnexion extends JFrame {
-	static Vconnexion fenetreCo = new Vconnexion();
-	
+
+	private Vconnexion fenetreco;
+	private Cinscription cins;
+	public Cconnexion() {
+		// TODO Auto-generated constructor stub
+		this.fenetreco = new Vconnexion(this);
+	}
+
 	/** Serial UID */
 	private static final long serialVersionUID = 8934682278090456214L;
 
-
-	public static void displayConnexion() {
-		//Vconnexion fenetreCo = new Vconnexion();
-		fenetreCo.getFrame().setVisible(true);
+	public void displayConnexion() {
+		fenetreco.getFrame().setVisible(true);
 	}
 	
-	public static void closeConnexion() {
-		//Vconnexion fenetreCo = new Vconnexion();
-		//fenetreCo.removeAll();
-		fenetreCo.getFrame().dispose();
+	public void closeConnexion() {
+		fenetreco.dispose();
+	}
+	
+	public void deleteTxtInField(JTextField textField) {
+		textField.setText("");
+	}
+	
+	public void fillField(JTextField txtField, String txt) {
+		txtField.setText(txt);
+	}
+	
+	public void runInscription() {
+		this.cins = new Cinscription(this);
+		fenetreco.getFrame().setVisible(false);
+		cins.displayInscription();
+	}
+	
+
+	public Vconnexion getFenetreco() {
+		return fenetreco;
+
 	}
 
-	public static void runCconnexion() {
-		displayConnexion();
-	}
-
-	public static void login() {
+	public void setFenetreco(Vconnexion fenetreco) {
+		this.fenetreco = fenetreco;
+}
+/*	public void login() {
 		boolean loginOK=false;
 		System.out.println(fenetreCo.getTxtEmail().getText());
 		System.out.println(fenetreCo.getPwdMotDePasse().getText()); // temp for debug 
@@ -42,6 +64,8 @@ public class Cconnexion extends JFrame {
 		else {
 			//JOptionPane.showMessageDialog(null, "Erreur de connexion : ", "InfoBox: " + "Error Login", JOptionPane.INFORMATION_MESSAGE);	
 		}
-	}
+
+	}*/
+	
 }
 

@@ -10,22 +10,43 @@ import javax.swing.JTextField;
 import fr.poker.view.*;
 
 public class Cinscription extends JFrame {
-	
-	public static void displayInscription(){
-		
-		Vinscription v = new Vinscription();
-		v.getFrame().setVisible(true);
+	private Vinscription vins;
+	private JFrame frameins;
+	private Cconnexion ccon;
+	public Cinscription(Cconnexion c) {
+		this.vins = new Vinscription(this, c.getFenetreco().getFrame());
+		this.ccon = c;
 	}
 	
-	public static void deleteTxtInField(JTextField txtField) {
+	public Cconnexion getCcon() {
+		return ccon;
+	}
+
+	public void setCcon(Cconnexion ccon) {
+		this.ccon = ccon;
+	}
+
+	public void displayInscription(){
+		vins.getFrame().setVisible(true);
+	}
+	
+	public void closeInscription(){
+		vins.getFrame().dispose();
+	}
+	
+	public void deleteTxtInField(JTextField txtField) {
 		txtField.setText("");
 	}
 	
-	public static void fillField(JTextField txtField, String txt) {
+	public void fillField(JTextField txtField, String txt) {
 		txtField.setText(txt);
 	}
 	
-	public static void runInscription(){
+	public void runInscription(){
 		displayInscription();
+	}
+	
+	public void verifyFields(ArrayList<JTextField> fiels){
+		
 	}
 }

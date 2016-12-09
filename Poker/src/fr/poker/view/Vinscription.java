@@ -15,7 +15,9 @@ import java.util.Arrays;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import fr.poker.controller.listener.CinscriptionListener;
+import fr.poker.controller.Cinscription;
+import fr.poker.controller.listener.JButtonListenerInscription;
+import fr.poker.controller.listener.JTextFieldListenerInscription;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -33,27 +35,12 @@ public class Vinscription {
 	private JTextField txtPhoneNumber;
 	private String [] textInitiaux;
 	private JButton btnSignUp;
+	private JButton btnBack;
 
-/*	*//**
-	 * Launch the application.
-	 *//*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vinscription window = new Vinscription();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
+/*
 	 * Create the application.
 	 */
-	public Vinscription() {
+	public Vinscription(Cinscription cins, JFrame feneco) {
 		String[] texts = {"Mot de passe", "Confirmer", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone"};
 		textInitiaux = texts;
 		frame = new JFrame();
@@ -70,9 +57,9 @@ public class Vinscription {
 		pwdAccount.setBackground(Color.LIGHT_GRAY);
 		pwdAccount.setBounds(427, 308, 367, 51);
 		frame.getContentPane().add(pwdAccount);
-		pwdAccount.addMouseListener(new CinscriptionListener(pwdAccount));
-		pwdAccount.addFocusListener(new CinscriptionListener(pwdAccount));
-		pwdAccount.addActionListener(new CinscriptionListener(pwdAccount));
+		pwdAccount.addMouseListener(new JTextFieldListenerInscription(cins, pwdAccount));
+		pwdAccount.addFocusListener(new JTextFieldListenerInscription(cins, pwdAccount));
+		//pwdAccount.addActionListener(new JTextFieldListener(pwdAccount));
 		
 		pwdConfirm = new JPasswordField();
 		pwdConfirm.setText(textInitiaux[1]);
@@ -81,9 +68,9 @@ public class Vinscription {
 		pwdConfirm.setBackground(Color.LIGHT_GRAY);
 		pwdConfirm.setBounds(427, 370, 367, 51);
 		frame.getContentPane().add(pwdConfirm);
-		pwdConfirm.addMouseListener(new CinscriptionListener(pwdConfirm));
-		pwdConfirm.addFocusListener(new CinscriptionListener(pwdConfirm));
-		pwdConfirm.addActionListener(new CinscriptionListener(pwdConfirm));
+		pwdConfirm.addMouseListener(new JTextFieldListenerInscription(cins, pwdConfirm));
+		pwdConfirm.addFocusListener(new JTextFieldListenerInscription(cins, pwdConfirm));
+		//pwdConfirm.addActionListener(new CinscriptionListener(pwdConfirm));
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/logo.png")));
@@ -113,9 +100,9 @@ public class Vinscription {
 		txtLastName.setBackground(Color.LIGHT_GRAY);
 		txtLastName.setBounds(427, 184, 176, 51);
 		frame.getContentPane().add(txtLastName);
-		txtLastName.addMouseListener(new CinscriptionListener(txtLastName));
-		txtLastName.addFocusListener(new CinscriptionListener(txtLastName));
-		txtLastName.addActionListener(new CinscriptionListener(txtLastName)); 
+		txtLastName.addMouseListener(new JTextFieldListenerInscription(cins, txtLastName));
+		txtLastName.addFocusListener(new JTextFieldListenerInscription(cins, txtLastName));
+		//txtLastName.addActionListener(new CinscriptionListener(txtLastName)); 
 
 		
 		txtFirstName = new JTextField();
@@ -126,9 +113,9 @@ public class Vinscription {
 		txtFirstName.setBackground(Color.LIGHT_GRAY);
 		txtFirstName.setBounds(618, 184, 176, 51);
 		frame.getContentPane().add(txtFirstName);
-		txtFirstName.addMouseListener(new CinscriptionListener(txtFirstName));
-		txtFirstName.addFocusListener(new CinscriptionListener(txtFirstName));
-		txtFirstName.addActionListener(new CinscriptionListener(txtFirstName));
+		txtFirstName.addMouseListener(new JTextFieldListenerInscription(cins, txtFirstName));
+		txtFirstName.addFocusListener(new JTextFieldListenerInscription(cins, txtFirstName));
+		//txtFirstName.addActionListener(new CinscriptionListener(txtFirstName));
 		
 		txtPseudo = new JTextField();
 		txtPseudo.setText(textInitiaux[4]);
@@ -138,9 +125,9 @@ public class Vinscription {
 		txtPseudo.setBackground(Color.LIGHT_GRAY);
 		txtPseudo.setBounds(427, 246, 367, 51);
 		frame.getContentPane().add(txtPseudo);
-		txtPseudo.addMouseListener(new CinscriptionListener(txtPseudo));
-		txtPseudo.addFocusListener(new CinscriptionListener(txtPseudo));
-		txtPseudo.addActionListener(new CinscriptionListener(txtPseudo));
+		txtPseudo.addMouseListener(new JTextFieldListenerInscription(cins, txtPseudo));
+		txtPseudo.addFocusListener(new JTextFieldListenerInscription(cins, txtPseudo));
+		//txtPseudo.addActionListener(new CinscriptionListener(txtPseudo));
 		
 		txtEmail = new JTextField();
 		txtEmail.setText(textInitiaux[5]);
@@ -150,9 +137,9 @@ public class Vinscription {
 		txtEmail.setBackground(Color.LIGHT_GRAY);
 		txtEmail.setBounds(427, 432, 367, 51);
 		frame.getContentPane().add(txtEmail);
-		txtEmail.addMouseListener(new CinscriptionListener(txtEmail));
-		txtEmail.addFocusListener(new CinscriptionListener(txtEmail));
-		txtEmail.addActionListener(new CinscriptionListener(txtEmail));
+		txtEmail.addMouseListener(new JTextFieldListenerInscription(cins, txtEmail));
+		txtEmail.addFocusListener(new JTextFieldListenerInscription(cins, txtEmail));
+		//txtEmail.addActionListener(new CinscriptionListener(txtEmail));
 		
 		txtPhoneNumber = new JTextField();
 		txtPhoneNumber.setText(textInitiaux[6]);
@@ -162,15 +149,21 @@ public class Vinscription {
 		txtPhoneNumber.setBackground(Color.LIGHT_GRAY);
 		txtPhoneNumber.setBounds(427, 494, 367, 51);
 		frame.getContentPane().add(txtPhoneNumber);
-		txtPhoneNumber.addMouseListener(new CinscriptionListener(txtPhoneNumber));
-		txtPhoneNumber.addFocusListener(new CinscriptionListener(txtPhoneNumber));
-		txtPhoneNumber.addActionListener(new CinscriptionListener(txtPhoneNumber));
+		txtPhoneNumber.addMouseListener(new JTextFieldListenerInscription(cins, txtPhoneNumber));
+		txtPhoneNumber.addFocusListener(new JTextFieldListenerInscription(cins, txtPhoneNumber));
+		//txtPhoneNumber.addActionListener(new CinscriptionListener(txtPhoneNumber));
 		
 		this.btnSignUp = new JButton("Inscription");
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSignUp.setBounds(427, 556, 367, 51);
-		btnSignUp.addActionListener(new CinscriptionListener(null));
+		btnSignUp.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnSignUp);
+		
+		btnBack = new JButton("Retour");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnBack.setBounds(427, 610, 367, 51);
+		btnBack.addActionListener(new JButtonListenerInscription(cins));
+		frame.getContentPane().add(btnBack);
 	}
 
 	public String[] getTextInitiaux() {

@@ -10,12 +10,10 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-import fr.poker.controller.listener.CconnexionListener;
 import fr.poker.controller.listener.CjeuListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Vjeu{
