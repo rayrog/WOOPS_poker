@@ -22,13 +22,14 @@ public class CBconnect {
 		this.st = null;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		CBconnect connect = new CBconnect();
 		connect.connexion();
 		connect.lire();
 		
 	}
 	
+
 //maybe static
 	public void connexion(){
 		try{
@@ -82,6 +83,90 @@ public class CBconnect {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public int checkMail(String mail){
+		
+		/*
+		 * Cette fct sert à tester si le mail en paramètre existe.
+		 * Renvois ID Joueur si mail existe dans bdd sinon renvois -1
+		 * 
+		 */
+		int resultat=-1;
+		try{
+			//Connexion à la BDD 
+			connexion();
+			
+			String sql = "SELECT ID FROM `Compte` WHERE `mail` LIKE '";
+			sql = new StringBuilder(sql).insert(sql.length(),mail).toString();
+			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+			
+			// debug : affichage requete :
+				//System.out.println(sql);
+			
+			//exÃ©cution requÃªte
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			//test si le mail existe, si oui, change la valeur de resultat par -1
+			if (rs.next())
+			{	
+				String name = rs.getString(1);
+				//debug : Affichage Mail + ID
+				//	System.out.println("Mail Found. ID player is " + name);
+				resultat=Integer.parseInt(name);
+			}
+			else {
+				System.out.println("Mail not Found in bdd");
+			}
+			fermerConnexion();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resultat;
+	}
+	
+	
+	public int checkPasswd(String pwd){
+		
+		/*
+		 * Cette fct sert à tester si le pwd en paramètre existe.
+		 * Renvois ID Joueur si pwd existe dans bdd sinon renvois -1
+		 * 
+		 */
+		int resultat=-1;
+		try{
+			//Connexion à la BDD 
+			connexion();
+			
+			String sql = "SELECT ID FROM `Compte` WHERE `hash` LIKE '";
+			sql = new StringBuilder(sql).insert(sql.length(),pwd).toString();
+			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+			
+			// debug : affichage requete 
+			//	System.out.println(sql);
+			
+			//exÃ©cution requÃªte
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			//test si le mail existe, si oui, change la valeur de resultat par -1
+			if (rs.next())
+			{	
+				String name = rs.getString(1);
+				//debug : 
+			//	System.out.println("pwd Found. ID player is " + name);
+				resultat=Integer.parseInt(name);
+			}
+			else {
+				System.out.println("pwd not Found in bdd");
+			}
+			fermerConnexion();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resultat;
+	}
+	
+	
 	
 	public void ecrire(String donne){
 		try{

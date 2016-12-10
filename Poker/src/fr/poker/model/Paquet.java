@@ -37,6 +37,10 @@ public class Paquet {
 		    	p.remove(o);
 		    	return c;
 		    }
+		    if (p.isEmpty()){
+		    	System.out.println("Paquet vide impossible de piocher");
+		    	return null;
+		    }
 		    i = i + 1;
 		}
 		

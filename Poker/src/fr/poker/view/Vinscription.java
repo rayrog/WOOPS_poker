@@ -1,17 +1,9 @@
 package fr.poker.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -154,7 +146,7 @@ public class Vinscription {
 		txtPhoneNumber.addFocusListener(new JTextFieldListenerInscription(cins, txtPhoneNumber));
 		//txtPhoneNumber.addActionListener(new CinscriptionListener(txtPhoneNumber));
 		
-		this.btnSignUp = new JButton("Inscription");
+		btnSignUp = new JButton("Inscription");
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSignUp.setBounds(427, 556, 367, 51);
 		btnSignUp.addActionListener(new JButtonListenerInscription(cins));

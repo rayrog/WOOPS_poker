@@ -8,21 +8,26 @@ public class Joueur {
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
 	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de commencer la partie
 	protected boolean etat; // True = en jeu ; False = Spectateur
-	private String role; // Dealer, petite blinde, grosse blinde, neutre
+	private String role; // Dealer, Petite blinde, Grosse blinde, Neutre
 	private boolean isDown; // True = couch�; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
 	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la partie
+	private Table table; // Table sur laquelle le joueur joue
 
 	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
 
-	float mise;
+	public float mise;
+	
+	public Joueur(){
+		super();
+	}
 
-	/* Joueur de base */
 	public Joueur(int id, Compte compte, float creditPartie, boolean etat) {
+		super();
 		this.id = id;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
-		if (creditPartie == 0) // si cr�dit nul le joueur est d'office spectateur
+		if (creditPartie == 0) // si credit nul le joueur est d'office spectateur
 			this.etat = false;
 		else
 			this.etat = etat;
@@ -72,6 +77,14 @@ public class Joueur {
 		this.isDown = isDown;
 	}
 
+	public Table getTable() {
+		return table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+
 	public int getaSuivi() {
 		return aSuivi;
 	}
@@ -96,7 +109,7 @@ public class Joueur {
 		return mise;
 	}
 
-	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5�)
+	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5euro)
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			mise = montant;

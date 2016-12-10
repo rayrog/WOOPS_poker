@@ -20,7 +20,7 @@ public class Poker {
 		Joueur j2 = new Joueur(2, c2, 5, true);
 		
 		Salle s = new Salle();
-		Table t = new Table(1, 7);
+		Table t = new Table(7);
 
 		Paquet paq = new Paquet("Jeu de 52 cartes");
 		MainJoueur m = new MainJoueur(j1, t);
@@ -28,7 +28,6 @@ public class Poker {
 		ArrayList<Joueur> mesJoueurs = new ArrayList<Joueur>();
 		mesJoueurs.add(j1);
 		mesJoueurs.add(j2);
-		initJoueurs(mesJoueurs, paq);
 		System.out.println(mesJoueurs);
 		
 		/* Test pour Paquet, carte, couleur, Valeur */
@@ -75,23 +74,5 @@ public class Poker {
 		System.out.println(m);
 	}
 
-	/**
-	 * G�n�re un couple de cartes par joueur
-	 * 
-	 * @param joueurs La liste de joueurs � initialiser
-	 * @param paq Le paquet � utiliser
-	 */
-	private static void initJoueurs(ArrayList<Joueur> joueurs, Paquet paq) {
-		List<Carte> listeCartes;
-
-		for (Joueur joueur : joueurs) {
-			listeCartes = new ArrayList<Carte>();
-
-			listeCartes.add(paq.piocher());
-			listeCartes.add(paq.piocher());
-
-			joueur.setCartes(listeCartes);
-		}
-	}
 
 }

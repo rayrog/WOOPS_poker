@@ -1,7 +1,16 @@
 package fr.poker.controller;
 
 import static java.lang.System.out;
+
+import java.util.ArrayList;
 import java.util.EventListener;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import fr.poker.view.Vaccueil;
+import fr.poker.view.Vinscription;
+import fr.poker.view.Vparametres;
 
 public class Caccueil {
 	/*
@@ -30,5 +39,74 @@ public class Caccueil {
 	 * } catch (NumberFormatException nfe) { JOptionPane.showMessageDialog(null,
 	 * "Input must be a number."); } }
 	 */
+	
+	
+	
+	private Vaccueil vacc;
+	private JFrame frameacc;
+	private Cconnexion ccon;
+	private int IDplayer;
+	private Cparametre cParam;;
+	private Vparametres fentrePara;
+	
+	public Caccueil(Cconnexion c,int ID) {
+		this.vacc = new Vaccueil(this);
+		this.ccon = c;
+		this.IDplayer=ID;
+		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+		//vacc.set
+	}
+	
+	
+	public int getIDplayer() {
+		return IDplayer;
+	}
+
+
+	public void setIDplayer(int iDplayer) {
+		IDplayer = iDplayer;
+	}
+
+
+	public Cconnexion getCcon() {
+		return ccon;
+	}
+
+	public void setCcon(Cconnexion ccon) {
+		this.ccon = ccon;
+	}
+
+	public void displayAccueil(){
+		vacc.getFrame().setVisible(true);
+	}
+	
+	
+	public void runParametres(){
+		this.cParam = new Cparametre(this, IDplayer);
+		fentrePara.getFrame().setVisible(false);
+		cParam.displayParametres();
+	}
+	
+	public void closeAccueil(){
+		vacc.getFrame().dispose();
+	}
+	
+	/*public void deleteTxtInField(JTextField txtField) {
+		txtField.setText("");
+	}
+	
+	public void fillField(JTextField txtField, String txt) {
+		txtField.setText(txt);
+	}
+	*/
+	
+	public void runAccueil(){
+		displayAccueil();
+	}
+	/*
+	
+	public void verifyFields(ArrayList<JTextField> fiels){
+		
+	}*/
 
 }

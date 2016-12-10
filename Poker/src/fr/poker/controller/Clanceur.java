@@ -11,7 +11,7 @@ public class Clanceur {
 	public static void main(String[] args) {
 		Cconnexion ccon = new Cconnexion();
 		try {
-			System.out.println("LALALALA");
+			System.out.println("Ouverture page connexion");
 			ccon.displayConnexion();;
 
 		} catch (Exception e) {

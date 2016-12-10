@@ -6,11 +6,11 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import fr.poker.controller.Cparametre;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -30,6 +30,7 @@ public class Vparametres {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,19 +42,13 @@ public class Vparametres {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
+	 * @param cparametre 
 	 */
-	public Vparametres() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	public Vparametres(Cparametre cparametre) {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
@@ -169,4 +164,79 @@ public class Vparametres {
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JPasswordField getPwdAccount() {
+		return pwdAccount;
+	}
+
+	public void setPwdAccount(JPasswordField pwdAccount) {
+		this.pwdAccount = pwdAccount;
+	}
+
+	public JPasswordField getPwdConfirm() {
+		return pwdConfirm;
+	}
+
+	public void setPwdConfirm(JPasswordField pwdConfirm) {
+		this.pwdConfirm = pwdConfirm;
+	}
+
+	public JTextField getTxtLastName() {
+		return txtLastName;
+	}
+
+	public void setTxtLastName(JTextField txtLastName) {
+		this.txtLastName = txtLastName;
+	}
+
+	public JTextField getTxtFirstName() {
+		return txtFirstName;
+	}
+
+	public void setTxtFirstName(JTextField txtFirstName) {
+		this.txtFirstName = txtFirstName;
+	}
+
+	public JTextField getTxtPseudo() {
+		return txtPseudo;
+	}
+
+	public void setTxtPseudo(JTextField txtPseudo) {
+		this.txtPseudo = txtPseudo;
+	}
+
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public void setTxtEmail(JTextField txtEmail) {
+		this.txtEmail = txtEmail;
+	}
+
+	public JTextField getTxtPhoneNumber() {
+		return txtPhoneNumber;
+	}
+
+	public void setTxtPhoneNumber(JTextField txtPhoneNumber) {
+		this.txtPhoneNumber = txtPhoneNumber;
+	}
+
+	public JTextField getTxtMoney() {
+		return txtMoney;
+	}
+
+	public void setTxtMoney(JTextField txtMoney) {
+		this.txtMoney = txtMoney;
+	}
+
+	
+	
 }
