@@ -36,6 +36,7 @@ public class Vinscription {
 	private String [] textInitiaux;
 	private JButton btnSignUp;
 	private JButton btnBack;
+	private JLabel lblErrorField;
 
 /*
 	 * Create the application.
@@ -164,6 +165,12 @@ public class Vinscription {
 		btnBack.setBounds(427, 610, 367, 51);
 		btnBack.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnBack);
+		
+		lblErrorField = new JLabel("Tous les champs doivent être renseignés !!!");
+		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		lblErrorField.setForeground(Color.RED);
+		lblErrorField.setBounds(459, 168, 307, 16);
+		frame.getContentPane().add(lblErrorField);
 	}
 
 	public String[] getTextInitiaux() {

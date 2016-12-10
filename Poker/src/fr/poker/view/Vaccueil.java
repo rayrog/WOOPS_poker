@@ -117,6 +117,11 @@ public class Vaccueil {
 		));
 		tableGameList.setBounds(380, 409, 454, 136);
 		frame.getContentPane().add(tableGameList);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(1093, 154, 176, 27);
+		frame.getContentPane().add(lblNewLabel);
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
