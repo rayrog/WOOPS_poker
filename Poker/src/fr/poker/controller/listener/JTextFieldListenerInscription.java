@@ -11,17 +11,18 @@ import fr.poker.controller.Cinscription;
 
 public class JTextFieldListenerInscription implements MouseListener, FocusListener{
 	private JTextField textField;
-	private Cinscription cins;
+	private Cinscription cIns;
+	private String [] texts;
 	public JTextFieldListenerInscription(Cinscription c, JTextField txt)
 	{
 		this.textField = txt;
-		this.cins = c;
+		this.cIns = c;
 	}
 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		cins.deleteTxtInField(this.textField);
+		cIns.deleteTxtInField(this.textField);
 	}
 
 	@Override
@@ -51,33 +52,34 @@ public class JTextFieldListenerInscription implements MouseListener, FocusListen
 	}
 	@Override
 	public void focusLost(FocusEvent e) {
+		texts = cIns.getVins().getTextInitiaux();
 		if(textField.getText().equals("")){
-				switch (textField.getName()) {
-				case "pwdAccount":
-					textField.setText("Mot de passe");
-					break;
-				case "pwdConfirm":
-					textField.setText("Confirmer");
-					break;
-				case "txtLastName":
-					textField.setText("Nom");
-					break;
-				case "txtFirstName":
-					textField.setText("Pr\u00E9nom");
-					break;
-				case "txtPseudo":
-					textField.setText("Pseudo");
-					break;
-				case "txtEmail":
-					textField.setText("E-mail");
-					break;
-				case "txtPhoneNumber":
-					textField.setText("N\u00B0 T\u00E9l\u00E9phone");
-					break;
-					
-				default:
-					break;
-				}
+			switch (textField.getName()) {
+			case "pwdAccount":
+				textField.setText(texts[0]);
+				break;
+			case "pwdConfirm":
+				textField.setText(texts[1]);
+				break;
+			case "txtLastName":
+				textField.setText(texts[2]);
+				break;
+			case "txtFirstName":
+				textField.setText(texts[3]);
+				break;
+			case "txtPseudo":
+				textField.setText(texts[4]);
+				break;
+			case "txtEmail":
+				textField.setText(texts[5]);
+				break;
+			case "txtPhoneNumber":
+				textField.setText(texts[6]);
+				break;
+
+			default:
+				break;
 			}
 		}
+	}
 }
