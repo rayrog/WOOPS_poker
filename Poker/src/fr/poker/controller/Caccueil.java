@@ -30,9 +30,9 @@ public class Caccueil {
 	 * 
 	 * listener deconnexion { controller.accueil; }
 	 * 
-	 * listener paramètres { controller. parametrage compte ; }
+	 * listener paramï¿½tres { controller. parametrage compte ; }
 	 * 
-	 * listener créer une partie {
+	 * listener crï¿½er une partie {
 	 * 
 	 * controller. } listener rejoindre
 	 * 
@@ -46,7 +46,8 @@ public class Caccueil {
 	private JFrame frameacc;
 	private Cconnexion ccon;
 	private int IDplayer;
-	private Cparametre cParam;;
+	private Cparametre cParam;
+	private Ccreation cCrea;
 	private Vparametres fentrePara;
 	
 	public Caccueil(Cconnexion c,int ID) {
@@ -57,7 +58,6 @@ public class Caccueil {
 
 	}
 	
-	
 	public Caccueil(Cparametre c, int ID){
 		this.vacc = new Vaccueil(this);
 		this.cParam=c;
@@ -66,6 +66,13 @@ public class Caccueil {
 
 	}
 
+
+	public Caccueil(Ccreation c, int ID) {
+		this.vacc = new Vaccueil(this);
+		this.cCrea=c;
+		this.IDplayer=ID;
+		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+	}
 
 	public int getIDplayer() {
 		return IDplayer;
@@ -118,5 +125,14 @@ public class Caccueil {
 	public void verifyFields(ArrayList<JTextField> fiels){
 		
 	}*/
+
+
+	public void runCreation() {
+		this.cCrea = new Ccreation(this, IDplayer);
+		vacc.getFrame().setVisible(false);
+		cCrea.displayCrea();
+		// TODO Auto-generated method stub
+		
+	}
 
 }

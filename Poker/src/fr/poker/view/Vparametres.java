@@ -140,13 +140,13 @@ public class Vparametres {
 		frame.getContentPane().add(txtPhoneNumber);
 		
 		this.btnRegister = new JButton("Enregistrer");
-		btnRegister.setBounds(465, 506, 177, 51);
+		btnRegister.setBounds(465, 506, 367, 51);
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnRegister);
 		btnRegister.addActionListener(new JButtonListenerParametres(cparametre));
 		
 		this.btnCancel = new JButton("Annuler");
-		btnCancel.setBounds(657, 507, 177, 51);
+		btnCancel.setBounds(466, 692, 366, 51);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCancel);
 		btnCancel.addActionListener(new JButtonListenerParametres(cparametre));

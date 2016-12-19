@@ -71,7 +71,8 @@ public class Vaccueil{
 			frame.getContentPane().add(btnParameters);
 			
 			
-			this.btnCreate = new JButton("Creer une partie");
+			this.btnCreate = new JButton("Cr\u00E9er une partie");
+			btnCreate.addActionListener(new JButtonListenerAccueil(cacc));
 			btnCreate.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnCreate.setBounds(530, 321, 191, 51);
 			frame.getContentPane().add(btnCreate);

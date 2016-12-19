@@ -85,8 +85,8 @@ public class CBconnect {
 		}
 	}
 	
-/*PARTIE CONNEXION*/	
-	public int connexionCheckMail(String mail){
+/*PARTIE FONCTIONS GENERIQUE*/	
+	public int checkMail(String mail){
 		
 		/*
 		 * Cette fct sert � tester si le mail en param�tre existe.
@@ -127,7 +127,7 @@ public class CBconnect {
 	}
 	
 	
-	public int connexionCheckPasswd(String pwd){
+	public int checkPasswd(String pwd){
 		
 		/*
 		 * Cette fct sert � tester si le pwd en param�tre existe.
@@ -167,6 +167,45 @@ public class CBconnect {
 		return resultat;
 	}
 	
+	public int checkPseudo(String pseudo){
+		
+		/*
+		 * Cette fct sert � tester si le pwd en param�tre existe.
+		 * Renvois ID Joueur si le pseudo existe dans bdd sinon renvois -1
+		 * 
+		 */
+		int resultat=-1;
+		try{
+			//Connexion � la BDD 
+			connexion();
+			
+			String sql = "SELECT ID FROM `Compte` WHERE `pseudo` LIKE '";
+			sql = new StringBuilder(sql).insert(sql.length(),pseudo).toString();
+			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+			
+			// debug : affichage requete 
+			//	System.out.println(sql);
+			
+			//exécution requête
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			//test si le mail existe, si oui, change la valeur de resultat par -1
+			if (rs.next())
+			{	
+				String name = rs.getString(1);
+				//debug : 
+			//	System.out.println("pwd Found. ID player is " + name);
+				resultat=Integer.parseInt(name);
+			}
+			else {
+				System.out.println("pwd not Found in bdd");
+			}
+			fermerConnexion();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return resultat;
+	}
 	
 /* PARTIE INSCRIPTION */
 	//Vérification avant intégration dans la BDD	
