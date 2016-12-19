@@ -12,11 +12,10 @@ public class JButtonListenerMiser implements ActionListener{
 		
 	}
 	
-	
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Je mise");
-		//Vjeu.mise = Vjeu.textFieldMise.getText();
-		
-		//Joueur.miser(Vjeu.mise);
+		Vjeu.mise = Vjeu.textFieldMise.getText();
+		float miseFloat = Float.parseFloat(Vjeu.mise); // Je fais un cast de mon String en float
+		//j1.miser(Vjeu.miseFloat);
 	}
 }

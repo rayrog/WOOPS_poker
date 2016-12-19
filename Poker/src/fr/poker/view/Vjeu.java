@@ -24,10 +24,11 @@ import javax.swing.JTextField;
 public class Vjeu{
 
 	public JFrame frame;
-	private JTextField textFieldMise;
+	public static JTextField textFieldMise;
 	public static JTextField textFieldChat;
 	public static JPanel panelChat;
 	public static String messageRecu;
+	public static String mise;
 	public static JLabel label;
 	/**
 	 * Launch the application.
@@ -364,6 +365,7 @@ public class Vjeu{
 		textFieldMise.setBounds(430, 729, 108, 28);
 		frame.getContentPane().add(textFieldMise);
 		textFieldMise.setColumns(10);
+		textFieldMise.setText("0.5");
 		////////////////////////////////////////////////////////////////////////////////////////
 		//ICI
 		textFieldChat = new JTextField();
