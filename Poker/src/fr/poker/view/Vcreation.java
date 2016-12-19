@@ -105,12 +105,12 @@ public class Vcreation {
 		frame.getContentPane().add(txtNameSalle);
 		
 		pwdSalle = new JPasswordField();
-		pwdSalle.setBounds(466, 285, 367, 51);
+		pwdSalle.setBounds(466, 298, 367, 51);
 		pwdSalle.setText("Mot de passe");
 		pwdSalle.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		pwdSalle.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(pwdSalle);
-		pwdSalle.setVisible(false);
+		pwdSalle.setEnabled(false);
 		
 		pwdSalleConfirm = new JPasswordField();
 		pwdSalleConfirm.setBounds(466, 367, 367, 51);
@@ -118,39 +118,39 @@ public class Vcreation {
 		pwdSalleConfirm.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		pwdSalleConfirm.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(pwdSalleConfirm);
-		pwdSalleConfirm.setVisible(false);
+		pwdSalleConfirm.setEnabled(false);
 		
 		this.btnCreationSalle = new JButton("Créer la salle");
 		btnCreationSalle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCreationSalle.setBounds(466, 430, 367, 51);
+		btnCreationSalle.setBounds(466, 419, 367, 51);
 		btnCreationSalle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCreationSalle);
 
 		
 		this.btnBack = new JButton("Retour");
-		btnBack.setBounds(467, 482, 366, 51);
+		btnBack.setBounds(467, 470, 366, 51);
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnBack);
 		
 		JRadioButton rdbtnPrivate = new JRadioButton("Privée");
 		rdbtnPrivate.setFont(new Font("Tahoma", Font.BOLD, 16));
-		rdbtnPrivate.setBounds(476, 211, 141, 23);
+		rdbtnPrivate.setBounds(586, 211, 141, 23);
 		frame.getContentPane().add(rdbtnPrivate);
 		
 		JRadioButton rdbtnPublique = new JRadioButton("Publique");
 		rdbtnPublique.setFont(new Font("Tahoma", Font.BOLD, 16));
-		rdbtnPublique.setBounds(692, 211, 141, 23);
+		rdbtnPublique.setBounds(586, 247, 141, 23);
 		frame.getContentPane().add(rdbtnPublique);
 		
 		lblMotDePasse = new JLabel("Mot de passe");
 		lblMotDePasse.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblMotDePasse.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMotDePasse.setBounds(466, 270, 367, 16);
+		lblMotDePasse.setBounds(466, 282, 367, 16);
 		frame.getContentPane().add(lblMotDePasse);
-		lblMotDePasse.setVisible(false);
+		lblMotDePasse.setEnabled(false);
 		
 		
 		lblConfirmationMotDe = new JLabel("Confirmation mot de passe");
@@ -158,7 +158,7 @@ public class Vcreation {
 		lblConfirmationMotDe.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblConfirmationMotDe.setBounds(466, 351, 367, 16);
 		frame.getContentPane().add(lblConfirmationMotDe);
-		lblConfirmationMotDe.setVisible(false);
+		lblConfirmationMotDe.setEnabled(false);
 		
 		JLabel labelPresentation = new JLabel("Création de partie");
 		labelPresentation.setHorizontalAlignment(SwingConstants.CENTER);
