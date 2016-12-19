@@ -26,7 +26,6 @@ public class Vinscription {
 	private JTextField txtEmail;
 	private JTextField txtPhoneNumber;
 	private String [] textInitiaux;
-	private String [] txtFieldAll;
 	private JButton btnSignUp;
 	private JButton btnBack;
 	private JLabel lblErrorField;
@@ -43,7 +42,7 @@ public JLabel getLblErrorField() {
 	 * Create the application.
 	 */
 	public Vinscription(Cinscription cins, JFrame feneco) {
-		String[] texts = {"Mot de passe ", "Confirmer ", "Nom ", "Pr\u00E9nom ",  "Pseudo ", "E-mail ", "N\u00B0 T\u00E9l\u00E9phone "};
+		String[] texts = {"Mot de passe", "Confirmer", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone"};
 		textInitiaux = texts;
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -168,8 +167,7 @@ public JLabel getLblErrorField() {
 		btnBack.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnBack);
 		
-		lblErrorField = new JLabel("");
-		lblErrorField.setHorizontalAlignment(SwingConstants.CENTER);
+
 		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		lblErrorField.setForeground(Color.RED);
 		lblErrorField.setBounds(405, 162, 433, 16);
