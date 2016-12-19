@@ -18,7 +18,7 @@ public class Cconnexion extends JFrame {
 		// TODO Auto-generated constructor stub
 		this.fenetreco = new Vconnexion(this);
 	}
-
+	
 	/** Serial UID */
 	private static final long serialVersionUID = 8934682278090456214L;
 
@@ -29,6 +29,7 @@ public class Cconnexion extends JFrame {
 	public void closeConnexion() {
 		fenetreco.getFrame().dispose();
 	}
+
 	
 	public void login() {
 		int IDMail=-1;
@@ -49,7 +50,7 @@ public class Cconnexion extends JFrame {
 		}
 		else {
 			if (IDPass==-1 || IDMail==-1){
-				JOptionPane.showMessageDialog(null, "Error Mail ou pwd ", "InfoBox: " + "Error Mail ou pwd", JOptionPane.INFORMATION_MESSAGE);	
+				this.fenetreco.getLblLidPwpError().setVisible(true);	
 			}
 		}
 	}
@@ -85,6 +86,8 @@ public class Cconnexion extends JFrame {
 		this.fenetreco = fenetreco;
 	}
 
+public void test() {
 	
+}
 }
 

@@ -103,6 +103,8 @@ public class Cinscription extends JFrame {
 			vins.getLblErrorField().setVisible(true);
 			return false;	
 		}
+		//Vérifie les informations par rapport à la base de donnée
+		
 		return true;
 	}
 

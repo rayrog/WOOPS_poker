@@ -29,9 +29,6 @@ public class Vinscription {
 	private JButton btnSignUp;
 	private JButton btnBack;
 	private JLabel lblErrorField;
-	private JLabel lblErrorMail;
-	private JLabel lblErrorNumPhone;
-	private JLabel lblErrorPwd;
 
 public JLabel getLblErrorField() {
 		return lblErrorField;
@@ -170,95 +167,21 @@ public JLabel getLblErrorField() {
 		btnBack.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnBack);
 		
-		lblErrorField = new JLabel("Remplir les champs obligatoires !");
+		lblErrorField = new JLabel("");
+		lblErrorField.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		lblErrorField.setForeground(Color.RED);
-		lblErrorField.setBounds(465, 162, 301, 16);
+		lblErrorField.setBounds(360, 162, 486, 16);
 		frame.getContentPane().add(lblErrorField);
 		lblErrorField.setVisible(false);
 		
-		lblErrorPwd = new JLabel("Les mots de passes doivent être identiques");
-		lblErrorPwd.setForeground(Color.RED);
-		lblErrorPwd.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lblErrorPwd.setBounds(465, 162, 301, 16);
-		frame.getContentPane().add(lblErrorPwd);
-		lblErrorPwd.setVisible(false);
-
-		
-		lblErrorMail = new JLabel("Erreur de format de l'adresse mail !");
-		lblErrorMail.setForeground(Color.RED);
-		lblErrorMail.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lblErrorMail.setBounds(479, 162, 258, 16);
-		frame.getContentPane().add(lblErrorMail);
-		lblErrorMail.setVisible(false);
-		
-		lblErrorNumPhone = new JLabel("Erreur de format du numéro de téléphone !");
-		lblErrorNumPhone.setForeground(Color.RED);
-		lblErrorNumPhone.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lblErrorNumPhone.setBounds(465, 162, 290, 16);
-		frame.getContentPane().add(lblErrorNumPhone);
-		lblErrorNumPhone.setVisible(false);
-		
-		JLabel lblInfoFields = new JLabel("* Champs obligatoires");
+		JLabel lblInfoFields = new JLabel("Tous les champs sont obligatoires !");
+		lblInfoFields.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInfoFields.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
-		lblInfoFields.setBounds(532, 673, 249, 16);
+		lblInfoFields.setBounds(488, 673, 249, 16);
 		frame.getContentPane().add(lblInfoFields);
-		
-		JLabel lblNewLabel = new JLabel("*");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		lblNewLabel.setBounds(408, 202, 17, 16);
-		frame.getContentPane().add(lblNewLabel);
-		
-		JLabel label = new JLabel("*");
-		label.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		label.setBounds(409, 268, 17, 16);
-		frame.getContentPane().add(label);
-		
-		JLabel label_1 = new JLabel("*");
-		label_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		label_1.setBounds(409, 330, 17, 16);
-		frame.getContentPane().add(label_1);
-		
-		JLabel label_2 = new JLabel("*");
-		label_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		label_2.setBounds(409, 392, 17, 16);
-		frame.getContentPane().add(label_2);
-		
-		JLabel label_3 = new JLabel("*");
-		label_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		label_3.setBounds(409, 454, 17, 16);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("*");
-		label_4.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 22));
-		label_4.setBounds(605, 202, 17, 16);
-		frame.getContentPane().add(label_4);
 		lblErrorField.setVisible(false);
 		
-	}
-
-	public JLabel getLblErrorPwd() {
-		return lblErrorPwd;
-	}
-
-	public void setLblErrorPwd(JLabel lblErrorPwd) {
-		this.lblErrorPwd = lblErrorPwd;
-	}
-
-	public JLabel getLblErrorMail() {
-		return lblErrorMail;
-	}
-
-	public void setLblErrorMail(JLabel lblErrorMail) {
-		this.lblErrorMail = lblErrorMail;
-	}
-
-	public JLabel getLblErrorNumPhone() {
-		return lblErrorNumPhone;
-	}
-
-	public void setLblErrorNumPhone(JLabel lblErrorNumPhone) {
-		this.lblErrorNumPhone = lblErrorNumPhone;
 	}
 
 	public String[] getTextInitiaux() {
