@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import fr.poker.controller.bdd.CBconnect;
 import fr.poker.view.*;
 
 public class Cinscription extends JFrame {
@@ -17,6 +18,7 @@ public class Cinscription extends JFrame {
 	private JFrame frameins;
 	private Cconnexion ccon;
 	private ArrayList<String> txtFields;
+	private CBconnect cbcon;
 	public Cinscription(Cconnexion c) {
 		this.ccon = c;
 		this.vins = new Vinscription(this, ccon.getFenetreco().getFrame());
@@ -53,8 +55,11 @@ public class Cinscription extends JFrame {
 	
 	
 	public boolean verifyFields(){
+		//Expression régulière pour les caractèress spéciaux
 		Pattern p_special_charac = Pattern.compile("[^ \\w]");
+		//Expression régulière pour l'adresse mail
 		Pattern p_mail = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		//Expression régulière pour le numéro de téléphone
 		Pattern p_num = Pattern.compile("^[0-9]{10}$");
 		ArrayList<String> compare = new ArrayList<String>();
 		for(int i = 0; i<vins.getTextInitiaux().length; i++){
@@ -106,6 +111,25 @@ public class Cinscription extends JFrame {
 		return true;
 	}
 
+	public boolean verifyBdd() {
+		cbcon = new CBconnect();
+		//Vérifie si le pseudo existe déjà en BDD
+		if(cbcon.checkPseudo(vins.getTxtPseudo().getText()) != -1) {
+			System.out.println("Le pseudo existe déjà !");
+			vins.getLblErrorField().setText("Le pseudo existe déjà !");
+			vins.getLblErrorField().setVisible(true);
+			return false;
+		}
+		//Vérifie si le mail existe déjà en BDD
+		if(cbcon.checkMail(vins.getTxtEmail().getText()) != -1) {
+			System.out.println("Le mail existe déjà en BDD");
+			vins.getLblErrorField().setText(" Le mail est déjà enregistré avec un autre compte !");
+			vins.getLblErrorField().setVisible(true);
+			return false;
+		}
+		return true;
+	}
+	
 	public Vinscription getVins() {
 		return vins;
 	}

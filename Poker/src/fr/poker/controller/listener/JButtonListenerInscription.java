@@ -18,8 +18,12 @@ public class JButtonListenerInscription implements ActionListener {
 		if (e.getActionCommand().equals("Inscription")) {
 			System.out.println("Tentative de d'inscription");
 			System.out.println(cIns.verifyFields());
+			System.out.println(cIns.verifyBdd());
 			if(cIns.verifyFields()){
-				
+				System.out.println(cIns.verifyBdd());
+				if(cIns.verifyBdd()) {
+					
+				}
 			}
 		}
 		if (e.getActionCommand().equals("Retour")) {
