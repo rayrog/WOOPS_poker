@@ -38,13 +38,13 @@ public class Cconnexion extends JFrame {
 		// comparer couple login mdp avec la bdd >>>> si Ok : LoginOK a true 
 		cbcon = new CBconnect();
 		// Recupere L'id du mail utiliser dans la bdd
-		IDMail=cbcon.checkMail(fenetreco.getTxtEmail().getText());
-		//Recupere L'ID du PWD utilisé 
-		IDPass=cbcon.checkPasswd(fenetreco.getPwdMotDePasse().getText());
+		IDMail=cbcon.connexionCheckMail(fenetreco.getTxtEmail().getText());
+		//Recupere L'ID du PWD utilisï¿½ 
+		IDPass=cbcon.connexionCheckPasswd(fenetreco.getPwdMotDePasse().getText());
 		
 		// Si idpwd + id MAIl identique et non = -1 : Login OK Ouverture de la page d'accueil
 		if (IDMail==IDPass && IDMail!=-1 && IDPass!=-1 ){
-			System.out.println("Login + Mail OK : Ouverture Accueil Joueur n°" + IDMail);
+			System.out.println("Login + Mail OK : Ouverture Accueil Joueur nï¿½" + IDMail);
 			this.runAccueil(IDMail);
 		}
 		else {
