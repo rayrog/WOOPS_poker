@@ -26,7 +26,6 @@ public class Vinscription {
 	private JTextField txtEmail;
 	private JTextField txtPhoneNumber;
 	private String [] textInitiaux;
-	private String [] txtFieldAll;
 	private JButton btnSignUp;
 	private JButton btnBack;
 	private JLabel lblErrorField;
