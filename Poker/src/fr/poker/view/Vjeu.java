@@ -12,6 +12,10 @@ import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
+import fr.poker.controller.listener.JButtonListenerCheck;
+import fr.poker.controller.listener.JButtonListenerMiser;
+import fr.poker.controller.listener.JButtonListenerSeCoucher;
+import fr.poker.controller.listener.JButtonListenerSuivre;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -380,21 +384,25 @@ public class Vjeu{
 		btnMiser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnMiser.setBounds(548, 729, 103, 28);
 		frame.getContentPane().add(btnMiser);
+		btnMiser.addActionListener(new JButtonListenerMiser());
 		
 		JButton btnSuivre = new JButton("Suivre");
 		btnSuivre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuivre.setBounds(661, 729, 103, 28);
 		frame.getContentPane().add(btnSuivre);
+		btnSuivre.addActionListener(new JButtonListenerSuivre());
 		
 		JButton btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCheck.setBounds(774, 729, 101, 28);
 		frame.getContentPane().add(btnCheck);
+		btnCheck.addActionListener(new JButtonListenerCheck());
 		
 		JButton btnSeCoucher = new JButton("Se coucher");
 		btnSeCoucher.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
+		btnSeCoucher.addActionListener(new JButtonListenerSeCoucher());
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JPanel panelChat = new JPanel();
