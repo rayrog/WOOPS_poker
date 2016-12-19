@@ -54,10 +54,19 @@ public class Caccueil {
 		this.ccon = c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
-		//vacc.set
+
 	}
 	
 	
+	public Caccueil(Cparametre c, int ID){
+		this.vacc = new Vaccueil(this);
+		this.cParam=c;
+		this.IDplayer=ID;
+		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+
+	}
+
+
 	public int getIDplayer() {
 		return IDplayer;
 	}
@@ -83,8 +92,9 @@ public class Caccueil {
 	
 	public void runParametres(){
 		this.cParam = new Cparametre(this, IDplayer);
-		fentrePara.getFrame().setVisible(false);
+		vacc.getFrame().setVisible(false);
 		cParam.displayParametres();
+		
 	}
 	
 	public void closeAccueil(){

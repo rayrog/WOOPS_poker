@@ -22,4 +22,11 @@ public class Cparametre {
 		vParam.getFrame().setVisible(true);
 	}
 
+	public void closePara() {
+		this.cAcc = new Caccueil(this, IDplayer);
+		cAcc.displayAccueil();
+		vParam.getFrame().dispose();
+		System.out.println("close parametre");
+	}
+
 }

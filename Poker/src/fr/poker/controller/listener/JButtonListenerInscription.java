@@ -2,7 +2,6 @@ package fr.poker.controller.listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.SwingUtilities;
 
 import fr.poker.controller.Cinscription;
