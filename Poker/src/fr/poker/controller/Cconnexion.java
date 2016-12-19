@@ -86,8 +86,6 @@ public class Cconnexion extends JFrame {
 		this.fenetreco = fenetreco;
 	}
 
-public void test() {
-	
-}
+
 }
 
