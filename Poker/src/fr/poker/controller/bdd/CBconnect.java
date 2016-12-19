@@ -16,7 +16,6 @@ public class CBconnect {
 	private Statement st;
 	
 	
-	
 	public CBconnect() {
 		//Information d'accès à la base de données
 		this.url="jdbc:mysql://172.23.2.15:3306/Poker";
@@ -50,7 +49,7 @@ public class CBconnect {
 		}
 	}
 
-	private void fermerConnexion(){
+	public void fermerConnexion(){
 		try{
 			//Etape 1 : libérer ressources de la mémoire
 			cn.close();
@@ -87,218 +86,12 @@ public class CBconnect {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-/*PARTIE FONCTIONS Connexions/ Inscriptions*/	
-	
-	public int checkMail(String mail){
-		
-		/*
-		 * Cette fct sert � tester si le mail en param�tre existe.
-		 * Renvois ID Joueur si mail existe dans bdd sinon renvois -1
-		 * 
-		 */
-		int resultat=-1;
-		try{
-			//Connexion � la BDD 
-			connexion();
-			
-			String sql = "SELECT ID FROM `Compte` WHERE `mail` LIKE '";
-			sql = new StringBuilder(sql).insert(sql.length(),mail).toString();
-			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
-			
-			// debug : affichage requete :
-				//System.out.println(sql);
-			
-			//exécution requête
-			ResultSet rs = st.executeQuery(sql);
-			ResultSetMetaData resultMeta = rs.getMetaData();
-			//test si le mail existe, si oui, change la valeur de resultat par -1
-			if (rs.next())
-			{	
-				String name = rs.getString(1);
-				//debug : Affichage Mail + ID
-				//	System.out.println("Mail Found. ID player is " + name);
-				resultat=Integer.parseInt(name);
-			}
-			else {
-				System.out.println("Mail not Found in bdd");
-			}
-			fermerConnexion();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return resultat;
+
+	public Statement getSt() {
+		return st;
 	}
-	
-	
-	public int checkPasswd(String pwd){
-		
-		/*
-		 * Cette fct sert � tester si le pwd en param�tre existe.
-		 * Renvois ID Joueur si pwd existe dans bdd sinon renvois -1
-		 * 
-		 */
-		int resultat=-1;
-		try{
-			//Connexion � la BDD 
-			connexion();
-			
-			String sql = "SELECT ID FROM `Compte` WHERE `hash` LIKE '";
-			sql = new StringBuilder(sql).insert(sql.length(),pwd).toString();
-			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
-			
-			// debug : affichage requete 
-			//	System.out.println(sql);
-			
-			//exécution requête
-			ResultSet rs = st.executeQuery(sql);
-			ResultSetMetaData resultMeta = rs.getMetaData();
-			//test si le mail existe, si oui, change la valeur de resultat par -1
-			if (rs.next())
-			{	
-				String name = rs.getString(1);
-				//debug : 
-			//	System.out.println("pwd Found. ID player is " + name);
-				resultat=Integer.parseInt(name);
-			}
-			else {
-				System.out.println("pwd not Found in bdd");
-			}
-			fermerConnexion();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return resultat;
-	}
-	
-	public int checkPseudo(String pseudo){
-		
-		/*
-		 * Cette fct sert � tester si le pwd en param�tre existe.
-		 * Renvois ID Joueur si le pseudo existe dans bdd sinon renvois -1
-		 * 
-		 */
-		int resultat=-1;
-		try{
-			//Connexion � la BDD 
-			connexion();
-			
-			String sql = "SELECT ID FROM `Compte` WHERE `pseudo` LIKE '";
-			sql = new StringBuilder(sql).insert(sql.length(),pseudo).toString();
-			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
-			
-			// debug : affichage requete 
-			//	System.out.println(sql);
-			
-			//exécution requête
-			ResultSet rs = st.executeQuery(sql);
-			ResultSetMetaData resultMeta = rs.getMetaData();
-			//test si le mail existe, si oui, change la valeur de resultat par -1
-			if (rs.next())
-			{	
-				String name = rs.getString(1);
-				//debug : 
-			//	System.out.println("pwd Found. ID player is " + name);
-				resultat=Integer.parseInt(name);
-			}
-			else {
-				System.out.println("pwd not Found in bdd");
-			}
-			fermerConnexion();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return resultat;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*Partie traitement des salles*/
-	
-	
-	
 	
 
-	public void listeSalles(String pseudo){
-		
-		/*
-		 * Cette fct sert a lister les salles existantes 
-		 * 
-		 */
-	
-		try{
-			//Connexion � la BDD 
-			connexion();
-			
-			String sql = "SELECT ID FROM `Compte` WHERE `pseudo` LIKE '";
-			sql = new StringBuilder(sql).insert(sql.length(),pseudo).toString();
-			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
-			
-			// debug : affichage requete 
-			//	System.out.println(sql);
-			
-			//exécution requête
-			ResultSet rs = st.executeQuery(sql);
-			ResultSetMetaData resultMeta = rs.getMetaData();
-			//test si le mail existe, si oui, change la valeur de resultat par -1
-			if (rs.next())
-			{	
-				String name = rs.getString(1);
-				//debug : 
-			//	System.out.println("pwd Found. ID player is " + name);
-				//resultat=Integer.parseInt(name);
-			}
-			else {
-				System.out.println("pwd not Found in bdd");
-			}
-			fermerConnexion();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
-	
-	public void createSalle(int ID){
-		
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 // Fonctions génériques 
 	
@@ -341,48 +134,6 @@ public void supprimerTouT(){
 
 */
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-/* PARTIE INSCRIPTION */
-	//Vérification avant intégration dans la BDD	
-	public void verificationBeforeInscription (ArrayList<String> dataNewUser) {
-		
-	}
-	
-	//Ecriture des données du nouvel utilisateur dans la BDD
-	public void inscription(ArrayList<String> dataNewUser){
-		try{
-			this.lire("Compte");
-			String sql = "INSERT INTO `Poker`.`Compte` (`id`, `nom`, `prenom`, `mail`, `tel`, `hash`, `credit`, `bio`, `pseudo`) VALUES ('8', 'blabla', 'blabla', 'blabla', '0621983423', '', '50', 'hfiozehfo', 'blabla')";
-			//
-			ResultSet rs = st.executeQuery(sql);
-
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}		
-	}
-
-/**/
 
 	
 }
