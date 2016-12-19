@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 
 import javax.swing.JButton;
