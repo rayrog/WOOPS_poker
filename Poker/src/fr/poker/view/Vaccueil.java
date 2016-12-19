@@ -113,10 +113,6 @@ public class Vaccueil{
 			 
 			//Affiche liste remplie par le controleur avec les noms des parties et guette quand on clique
 			
-			
-			
-			
-			
 			String[] data = data2;	
 			list = new JList<String>(data);
 			list.setEnabled(true);
