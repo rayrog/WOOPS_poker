@@ -17,9 +17,7 @@ public class CBsalle {
 	}	
 	
 	
-
 	/*Partie traitement des salles*/
-	
 
 	public int listeSalles(){
 		
@@ -55,47 +53,7 @@ public class CBsalle {
 		}
 		return resultat;
 	}
-	
-	public void getNombreSalles(){
-		
-		/*
-		 * Cette fct sert a lister les salles existantes 
-		 */
-		
-		try{
-			//Connexion � la BDD 
-			cbCo.connexion();
-			this.st=cbCo.getSt();
-			String sql = "SELECT * FROM `Salle`";
-			
-			// debug : affichage requete 
-			//	System.out.println(sql);
-			
-			//exécution requête
-			ResultSet rs = st.executeQuery(sql);
-			ResultSetMetaData resultMeta = rs.getMetaData();
-			//test si le mail existe, si oui, change la valeur de resultat par -1
-			if (rs.next())
-			{	
-				String name = rs.getString(2);
-				//debug : 
-				System.out.println("Nom : " + name + "Nombre de joueur (to finish)" );
-			}
-			else {
-				System.out.println("Error");
-			}
-			cbCo.fermerConnexion();
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	
 
-	public void createSalle(int ID){
-		listeSalles();	
-	}
 }
 	
 	
