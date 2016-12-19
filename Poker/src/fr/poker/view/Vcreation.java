@@ -9,6 +9,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Ccreation;
+import fr.poker.controller.listener.JButtonListenerConnexion;
+import fr.poker.controller.listener.JButtonListenerCreation;
 
 import javax.swing.JTextField;
 import javax.swing.JMenu;
@@ -22,17 +24,6 @@ import javax.swing.JRadioButton;
 public class Vcreation {
 
 	private JFrame frame;
-/*	private JTextField txtRoomName;
-	private JMenu mnGameMode;
-	private JButton btnTournament;
-	private JButton btnClassic;
-	private JMenu mnRoomType;
-	private JButton btnPublic;
-	private JButton btnPrivate;
-	private JPasswordField passwordRoom;
-	private JLabel label;
-	private JPasswordField passwordField;
-	private JTextField textField;*/
 	private JPasswordField pwdSalle;
 	private JPasswordField pwdSalleConfirm;
 	private JTextField txtNameSalle;
@@ -41,34 +32,7 @@ public class Vcreation {
 	private JLabel lblMotDePasse;
 	private JLabel lblConfirmationMotDe;
 
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Vcreation window = new Vcreation();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
-	 * Create the application.
-	 */
-	/*
-	public Vcreation() {
-		initialize();
-	}*/
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	
 	public Vcreation(Ccreation ccreation) {
 		frame = new JFrame();
@@ -121,19 +85,19 @@ public class Vcreation {
 		pwdSalleConfirm.setEnabled(false);
 		
 		this.btnCreationSalle = new JButton("Créer la salle");
-		btnCreationSalle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 		btnCreationSalle.setBounds(466, 419, 367, 51);
 		btnCreationSalle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCreationSalle);
-
+		btnCreationSalle.addActionListener(new JButtonListenerCreation(ccreation));	
+		
 		
 		this.btnBack = new JButton("Retour");
 		btnBack.setBounds(467, 470, 366, 51);
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnBack);
+		btnBack.addActionListener(new JButtonListenerCreation(ccreation));	
+		
 		
 		JRadioButton rdbtnPrivate = new JRadioButton("Privée");
 		rdbtnPrivate.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -167,91 +131,7 @@ public class Vcreation {
 		labelPresentation.setBounds(426, 65, 446, 83);
 		frame.getContentPane().add(labelPresentation);
 		frame.setBounds(100, 100, 1300, 800);
-
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-/*		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(39, 78, 19));
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblSlogan = new JLabel("World Of Online Poker");
-		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSlogan.setForeground(Color.LIGHT_GRAY);
-		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
-		lblSlogan.setBounds(504, 100, 234, 63);
-		frame.getContentPane().add(lblSlogan);
-		
-		JLabel lblCreate = new JLabel("Cr\u00E9ation de partie");
-		lblCreate.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCreate.setForeground(Color.LIGHT_GRAY);
-		lblCreate.setFont(new Font("Tahoma", Font.BOLD, 45));
-		lblCreate.setBounds(385, 42, 466, 63);
-		frame.getContentPane().add(lblCreate);
-		
-		txtRoomName = new JTextField();
-		txtRoomName.setForeground(Color.GRAY);
-		txtRoomName.setFont(new Font("Tahoma", Font.BOLD, 20));
-		txtRoomName.setText("Nom de la salle");
-		txtRoomName.setBounds(424, 172, 401, 63);
-		frame.getContentPane().add(txtRoomName);
-		txtRoomName.setColumns(10);
-		
-		mnGameMode = new JMenu("Mode de jeu");
-		mnGameMode.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		mnGameMode.setBounds(424, 269, 196, 32);
-		frame.getContentPane().add(mnGameMode);
-		
-		btnClassic = new JButton("Classique");
-		mnGameMode.add(btnClassic);
-		
-		btnTournament = new JButton("Tournoi");
-		mnGameMode.add(btnTournament);
-		
-		mnRoomType = new JMenu("Type de salle");
-		mnRoomType.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		mnRoomType.setBounds(424, 337, 196, 32);
-		frame.getContentPane().add(mnRoomType);
-		
-		btnPublic = new JButton("Publique");
-		mnRoomType.add(btnPublic);
-		
-		btnPrivate = new JButton("Priv\u00E9e");
-		mnRoomType.add(btnPrivate);
-		
-		passwordRoom = new JPasswordField();
-		passwordRoom.setHorizontalAlignment(SwingConstants.LEFT);
-		passwordRoom.setBounds(424, 401, 401, 41);
-		frame.getContentPane().add(passwordRoom);
-		
-		JButton btnCreate = new JButton("Cr\u00E9er la salle");
-		btnCreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnCreate.setBounds(424, 518, 401, 52);
-		frame.getContentPane().add(btnCreate);
-		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(Vcreation.class.getResource("/fr/poker/view/pictures/logo.png")));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(240, 16, 160, 154);
-		frame.getContentPane().add(label);
-		
-		passwordField = new JPasswordField();
-		passwordField.setHorizontalAlignment(SwingConstants.LEFT);
-		passwordField.setBounds(424, 454, 401, 41);
-		frame.getContentPane().add(passwordField);
-		
-		textField = new JTextField();
-		textField.setText("Nom");
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textField.setColumns(10);
-		textField.setBackground(Color.LIGHT_GRAY);
-		textField.setBounds(364, 581, 176, 51);
-		frame.getContentPane().add(textField);
-		frame.setBounds(100, 100, 1300, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 	}
 
 	public JPasswordField getPwdSalle() {

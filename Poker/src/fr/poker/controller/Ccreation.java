@@ -2,6 +2,7 @@ package fr.poker.controller;
 
 import javax.swing.JFrame;
 
+import fr.poker.controller.bdd.CBconnect;
 import fr.poker.view.Vcreation;
 import fr.poker.view.Vparametres;
 
@@ -11,6 +12,7 @@ public class Ccreation{
 	private JFrame frameCrea;
 	private Caccueil cAcc;
 	private int IDplayer;
+	private CBconnect cbcon;
 	
 	public Ccreation(Caccueil a,int Id) {
 		this.vCrea=new Vcreation(this);
@@ -22,17 +24,31 @@ public class Ccreation{
 	
 
 	public void displayCrea(){
-		System.out.println("display creation ");
+		//System.out.println("display creation ");
 		vCrea.getFrame().setVisible(true);
+	}
+	
+	public void runAccueil() {
+		this.cAcc = new Caccueil(this, IDplayer);
+		cAcc.displayAccueil();
+		vCrea.getFrame().dispose();
+		System.out.println("close crea");	
+	}
+
+
+
+	public void runSalle() {
+		/*creation d'une salle avec les param : 
+		- Nom / privée ou publique 
+		- Password
+		*/
+		cbcon.listeSalles();
+		
+		
+		
 		
 	}
 	
-	public void closeCrea() {
-		/*this.cAcc = new Caccueil(this, IDplayer);
-		cAcc.displayAccueil();
-		vParam.getFrame().dispose();
-		System.out.println("close parametre");*/
-	}
 	
 	
 }
