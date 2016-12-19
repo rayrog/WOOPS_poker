@@ -106,16 +106,6 @@ public class Table {
 		this.pot = pot;
 	}
 
-
-
-	public void addJoueur( Joueur joueur) {
-		this.joueurs.add(joueur);
-	}
-	
-	public void delJoueur(Joueur joueur){
-		this.joueurs.remove(joueur);
-	}
-
 	public int getTour() {
 		return tour;
 	}
@@ -125,8 +115,10 @@ public class Table {
 	}
 
 	public void rejoindreTable(Joueur j) {
-		if (getNbJoueurs() <= placeMax && j.creditPartie > 0 && j.etat && tour==0)
+		if (getNbJoueurs() <= placeMax && j.creditPartie > 0 && !j.etat && tour==0){
 			joueurs.add(j);
+			j.setEtat(true);
+		}			
 		else
 			System.out.println("Vous n'avez pas encore votre place a cette table");
 	}

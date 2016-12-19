@@ -6,17 +6,21 @@ public class Salle {
    private int id;
    private String nom;
    private boolean privat;
-   private int hash;
-   private boolean mode;
-   
+   private String hash;
    public Table table;
    
-   public Salle() {
-      // TODO: implement
+   public Salle(String nom, boolean privat, String hash,  Table table) {
+      this.nom = nom;
+      this.privat = privat;
+      if(privat)
+    	  this.hash = hash;
+      this.table = table;
    }
+   	
    
-   public void rejoindre() {
-      // TODO: implement
+   public void rejoindre(Joueur j) {
+	   if(!privat)
+		   System.out.println("Attennnnnnd");
    }
    
    public void quitter() {

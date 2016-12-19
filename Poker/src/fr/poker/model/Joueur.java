@@ -12,6 +12,7 @@ public class Joueur {
 	private boolean isDown; // True = couch�; false = en jeu
 	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
 	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la partie
+	private String pseudo;
 	private Table table; // Table sur laquelle le joueur joue
 
 	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
@@ -22,9 +23,10 @@ public class Joueur {
 		super();
 	}
 
-	public Joueur(int id, Compte compte, float creditPartie, boolean etat) {
+	public Joueur(int id, Compte compte, float creditPartie, boolean etat, String pseudo) {
 		super();
 		this.id = id;
+		this.pseudo = pseudo;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
 		if (creditPartie == 0) // si credit nul le joueur est d'office spectateur
@@ -107,6 +109,14 @@ public class Joueur {
 
 	public float getMise() {
 		return mise;
+	}
+
+	public String getPseudo() {
+		return pseudo;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5euro)

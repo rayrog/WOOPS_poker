@@ -11,7 +11,7 @@ public class Cpartie {
 	}
 
 	public void run() { //Pour lancer la premiere partie
-		
+		System.out.println("Début de la nouvelle partie");
 	}
 
 	public void distribuerRole(Table table) {
@@ -120,7 +120,7 @@ public class Cpartie {
 		maTable.setTour(0);
 		for(Joueur j : maTable.getJoueurs()){ //On vire tous ceux qui ont plus de sous ou sont passer spec ou on déco
 			if(!j.getEtat() || j.getCreditPartie() <= 0)
-				maTable.delJoueur(j);
+				maTable.quitterTable(j);
 		}
 		maTable.setPaq(new Paquet("Jeu de 52 cartes de la table " + maTable.getId()));
 	}

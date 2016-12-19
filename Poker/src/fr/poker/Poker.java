@@ -16,19 +16,20 @@ public class Poker {
 	public static void main(String[] args) {
 		Compte c = new Compte(1, "Dididoo", "Dujardin", "Luka", "worldofkalu@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5, "Cherche pas t'es mort");
 		Compte c2 = new Compte(2, "Dadidoo", "Miky", "Bob", "toz@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5, "Cherche pas t'es mort");
-		Joueur j1 = new Joueur(1, c, 5, true);
-		Joueur j2 = new Joueur(2, c2, 5, true);
+		Joueur j1 = new Joueur(1, c, 5, true, "Pseudo de merde");
+		Joueur j2 = new Joueur(2, c2, 5, true, "Dadidoo");
 		
-		Salle s = new Salle();
 		Table t = new Table(7);
-
+		Salle s = new Salle("Salle 1", false, "F4uxH@shM@g€ul€", t);
+		
 		Paquet paq = new Paquet("Jeu de 52 cartes");
 		MainJoueur m = new MainJoueur(j1, t);
+		
 
-		ArrayList<Joueur> mesJoueurs = new ArrayList<Joueur>();
-		mesJoueurs.add(j1);
-		mesJoueurs.add(j2);
-		System.out.println(mesJoueurs);
+//		ArrayList<Joueur> mesJoueurs = new ArrayList<Joueur>();
+//		mesJoueurs.add(j1);
+//		mesJoueurs.add(j2);
+//		System.out.println(mesJoueurs);
 		
 		/* Test pour Paquet, carte, couleur, Valeur */
 		// System.out.println(paq);
@@ -68,10 +69,10 @@ public class Poker {
 		// c.joueur.miser(3);
 
 		/* Test MainJoueur */
-		t.addCarte(paq.piocher());
-		j1.addCarte(paq.piocher());
-		m.setCartes();
-		System.out.println(m);
+//		t.addCarte(paq.piocher());
+//		j1.addCarte(paq.piocher());
+//		m.setCartes();
+//		System.out.println(m);
 	}
 
 
