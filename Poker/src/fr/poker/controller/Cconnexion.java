@@ -64,12 +64,13 @@ public class Cconnexion extends JFrame {
 		txtField.setText(txt);
 	}
 	
-	public void runInscription() {
-		this.cins = new Cinscription(this);
-		fenetreco.getFrame().setVisible(false);
-		cins.displayInscription();
-	}
-	
+	public void runInscription() { 
+		    this.cins = new Cinscription(this); 
+		    fenetreco.getFrame().setVisible(false); 
+		    cins.displayInscription(); 
+	 } 
+		   
+
 	public void runAccueil(int Id) {
 		this.cacc = new Caccueil(this, Id);
 		this.closeConnexion();

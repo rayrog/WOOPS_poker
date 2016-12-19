@@ -7,6 +7,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import fr.poker.controller.Ccreation;
+
 import javax.swing.JTextField;
 import javax.swing.JMenu;
 import javax.swing.JButton;
@@ -27,6 +30,7 @@ public class Vcreation {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,18 +43,20 @@ public class Vcreation {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the application.
 	 */
+	/*
 	public Vcreation() {
 		initialize();
-	}
+	}*/
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	
+	public Vcreation(Ccreation ccreation) {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
@@ -111,4 +117,81 @@ public class Vcreation {
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JTextField getTxtRoomName() {
+		return txtRoomName;
+	}
+
+	public void setTxtRoomName(JTextField txtRoomName) {
+		this.txtRoomName = txtRoomName;
+	}
+
+	public JMenu getMnGameMode() {
+		return mnGameMode;
+	}
+
+	public void setMnGameMode(JMenu mnGameMode) {
+		this.mnGameMode = mnGameMode;
+	}
+
+	public JButton getBtnTournament() {
+		return btnTournament;
+	}
+
+	public void setBtnTournament(JButton btnTournament) {
+		this.btnTournament = btnTournament;
+	}
+
+	public JButton getBtnClassic() {
+		return btnClassic;
+	}
+
+	public void setBtnClassic(JButton btnClassic) {
+		this.btnClassic = btnClassic;
+	}
+
+	public JMenu getMnRoomType() {
+		return mnRoomType;
+	}
+
+	public void setMnRoomType(JMenu mnRoomType) {
+		this.mnRoomType = mnRoomType;
+	}
+
+	public JButton getBtnPublic() {
+		return btnPublic;
+	}
+
+	public void setBtnPublic(JButton btnPublic) {
+		this.btnPublic = btnPublic;
+	}
+
+	public JButton getBtnPrivate() {
+		return btnPrivate;
+	}
+
+	public void setBtnPrivate(JButton btnPrivate) {
+		this.btnPrivate = btnPrivate;
+	}
+
+	public JPasswordField getPasswordRoom() {
+		return passwordRoom;
+	}
+
+	public void setPasswordRoom(JPasswordField passwordRoom) {
+		this.passwordRoom = passwordRoom;
+	}
+
+
+	
+	
+	
 }
