@@ -46,7 +46,7 @@ public JLabel getLblErrorField() {
 	 * Create the application.
 	 */
 	public Vinscription(Cinscription cins, JFrame feneco) {
-		String[] texts = {"Mot de passe ", "Confirmer ", "Nom ", "Pr\u00E9nom ",  "Pseudo ", "E-mail ", "N\u00B0 T\u00E9l\u00E9phone "};
+		String[] texts = {"Mot de passe", "Confirmer", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone"};
 		textInitiaux = texts;
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 16));
