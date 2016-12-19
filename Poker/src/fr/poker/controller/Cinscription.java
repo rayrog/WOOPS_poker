@@ -10,27 +10,29 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import fr.poker.controller.bdd.CBcompte;
 import fr.poker.controller.bdd.CBconnect;
 import fr.poker.view.*;
 
 public class Cinscription extends JFrame {
 	private Vinscription vins;
 	private JFrame frameins;
-	private Cconnexion ccon;
+	private Cconnexion cCon;
 	private ArrayList<String> txtFields;
-	private CBconnect cbcon;
+	private CBconnect cbCon;
+	private CBcompte cbCompte;
 	public Cinscription(Cconnexion c) {
-		this.ccon = c;
-		this.vins = new Vinscription(this, ccon.getFenetreco().getFrame());
+		this.cCon = c;
+		this.vins = new Vinscription(this, cCon.getFenetreco().getFrame());
 		this.txtFields = new ArrayList<>();
 	}
 	
 	public Cconnexion getCcon() {
-		return ccon;
+		return cCon;
 	}
 
 	public void setCcon(Cconnexion ccon) {
-		this.ccon = ccon;
+		this.cCon = ccon;
 	}
 
 	public void displayInscription(){
@@ -71,8 +73,6 @@ public class Cinscription extends JFrame {
 		txtFields.add(vins.getTxtLastName().getText());
 		txtFields.add(vins.getTxtFirstName().getText());
 		txtFields.add(vins.getTxtPseudo().getText());
-//		txtFields.add(vins.getTxtEmail().getText());
-//		txtFields.add(vins.getTxtPhoneNumber().getText());
 		for(String s : txtFields){
 			//Vérifie si l'utilisateur à renseigner tous les champs
 			if(compare.contains(s)){
@@ -112,22 +112,29 @@ public class Cinscription extends JFrame {
 	}
 
 	public boolean verifyBdd() {
-		cbcon = new CBconnect();
+		cbCon = new CBconnect();
+		cbCompte = new CBcompte(cbCon);
 		//Vérifie si le pseudo existe déjà en BDD
-		if(cbcon.checkPseudo(vins.getTxtPseudo().getText()) != -1) {
+		if(cbCompte.checkPseudo(vins.getTxtPseudo().getText()) != -1) {
 			System.out.println("Le pseudo existe déjà !");
 			vins.getLblErrorField().setText("Le pseudo existe déjà !");
 			vins.getLblErrorField().setVisible(true);
 			return false;
 		}
 		//Vérifie si le mail existe déjà en BDD
-		if(cbcon.checkMail(vins.getTxtEmail().getText()) != -1) {
+		if(cbCompte.checkMail(vins.getTxtEmail().getText()) != -1) {
 			System.out.println("Le mail existe déjà en BDD");
 			vins.getLblErrorField().setText(" Le mail est déjà enregistré avec un autre compte !");
 			vins.getLblErrorField().setVisible(true);
 			return false;
 		}
 		return true;
+	}
+	
+	public void insertNewUserData() {
+		cbCon = new CBconnect();
+		cbCompte = new CBcompte(cbCon);
+		cbCompte.inscription(this);
 	}
 	
 	public Vinscription getVins() {

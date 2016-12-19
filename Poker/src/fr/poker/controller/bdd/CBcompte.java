@@ -9,12 +9,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import fr.poker.controller.Cinscription;
+
 
 public class CBcompte {
 	
 	private CBconnect cbCo;
 	private Statement st;
-	
+	private Cinscription cIns;
 	public CBcompte(CBconnect c) {
 		this.cbCo = c;
 	}	
@@ -128,7 +130,6 @@ public class CBcompte {
 			
 			//exécution requête
 			ResultSet rs = st.executeQuery(sql);
-			ResultSetMetaData resultMeta = rs.getMetaData();
 			//test si le mail existe, si oui, change la valeur de resultat par -1
 			if (rs.next())
 			{	
@@ -138,7 +139,7 @@ public class CBcompte {
 				resultat=Integer.parseInt(name);
 			}
 			else {
-				System.out.println("pwd not Found in bdd");
+				System.out.println("pseudo not Found in bdd");
 			}
 			cbCo.fermerConnexion();
 		} catch(SQLException e) {
@@ -147,22 +148,53 @@ public class CBcompte {
 		return resultat;
 	}
 	
-	
-	
-	
-/* PARTIE INSCRIPTION */
-	//Vérification avant intégration dans la BDD	
-	public void verificationBeforeInscription (ArrayList<String> dataNewUser) {
+	public int lastInsertId (String table) {
+		
+		/*
+		 * Cette fct permet de récupérer l' id du dernier compte inséré dans 
+		 * la BDD
+		 * 
+		 */
+		int resultat = -1;
+		try{
+			
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			String sql = "SELECT max(id) FROM `Poker`."+table;
+			ResultSet rs = st.executeQuery(sql);
+			if (rs.next())
+			{	
+				String id = rs.getString(1);
+				resultat=Integer.parseInt(id);
+			}			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return resultat;
 		
 	}
 	
+	
+/* PARTIE INSCRIPTION */
+
+	
 	//Ecriture des données du nouvel utilisateur dans la BDD
-	public void inscription(ArrayList<String> dataNewUser){
+	public void inscription(Cinscription c){
+		
+
 		try{
-			cbCo.lire("Compte");
-			String sql = "INSERT INTO `Poker`.`Compte` (`id`, `nom`, `prenom`, `mail`, `tel`, `hash`, `credit`, `bio`, `pseudo`) VALUES ('8', 'blabla', 'blabla', 'blabla', '0621983423', '', '50', 'hfiozehfo', 'blabla')";
-			//
-			ResultSet rs = st.executeQuery(sql);
+			cIns = c;
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			//Requête sql
+			System.out.println(lastInsertId("Compte"));
+			int lastId = lastInsertId("Compte");
+			lastId = lastId + 1;
+			String pwdHashed = cbCo.hashage(cIns.getVins().getPwdAccount().getText());
+			String sql = "INSERT INTO `Poker`.`Compte` (`id`, `nom`, `prenom`, `mail`, `tel`, `hash`, `credit`, `bio`, `pseudo`) VALUES ("+lastId+", '"+cIns.getVins().getTxtLastName().getText()+"', '"+cIns.getVins().getTxtFirstName().getText()+"', '"+cIns.getVins().getTxtEmail().getText()+"', '"+cIns.getVins().getTxtPhoneNumber().getText()+"', '"+pwdHashed+"', '50', 'Ceci est votre bio', '"+cIns.getVins().getTxtPseudo().getText()+"')";
+			int rs = st.executeUpdate(sql);
 
 			
 		} catch(SQLException e) {
