@@ -1,5 +1,7 @@
 package fr.poker.controller.bdd;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,6 +16,7 @@ public class CBconnect {
 	private String passwd;
 	private Connection cn;
 	private Statement st;
+	private String encryptedString;
 	
 	
 	public CBconnect() {
@@ -91,7 +94,25 @@ public class CBconnect {
 		return st;
 	}
 	
+	public String hashage(String pwd) {
+		try {
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			messageDigest.update(pwd.getBytes());
+			encryptedString = new String(messageDigest.digest());
+			return encryptedString;
+		} catch(NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
+	public String getEncryptedString() {
+		return encryptedString;
+	}
+
+	public void setEncryptedString(String encryptedString) {
+		this.encryptedString = encryptedString;
+	}
 	
 // Fonctions génériques 
 	
