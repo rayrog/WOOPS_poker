@@ -340,17 +340,17 @@ public class Vjeu{
 		lblPotTotal.setBounds(597, 187, 73, 14);
 		frame.getContentPane().add(lblPotTotal);
 		
-		JLabel lblNameJoueur = new JLabel("NameJoueur");
-		lblNameJoueur.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJoueur.setForeground(new Color(128, 0, 0));
-		lblNameJoueur.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNameJoueur.setBackground(Color.LIGHT_GRAY);
-		lblNameJoueur.setBounds(1057, 632, 89, 14);
-		frame.getContentPane().add(lblNameJoueur);
+		JLabel lblPlayerName = new JLabel("NameCurrentPlayer");
+		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerName.setForeground(Color.WHITE);
+		lblPlayerName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPlayerName.setBackground(Color.LIGHT_GRAY);
+		lblPlayerName.setBounds(1039, 632, 134, 14);
+		frame.getContentPane().add(lblPlayerName);
 		
 		JLabel lblPotJoueur = new JLabel("PotJoueur");
 		lblPotJoueur.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPotJoueur.setForeground(new Color(128, 0, 0));
+		lblPotJoueur.setForeground(Color.WHITE);
 		lblPotJoueur.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPotJoueur.setBackground(Color.LIGHT_GRAY);
 		lblPotJoueur.setBounds(1057, 681, 89, 14);
