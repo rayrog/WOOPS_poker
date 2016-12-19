@@ -3,9 +3,12 @@ package fr.poker.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import fr.poker.view.*;
 
@@ -50,28 +53,55 @@ public class Cinscription extends JFrame {
 	
 	
 	public boolean verifyFields(){
+		Pattern p_special_charac = Pattern.compile("[^ \\w]");
+		Pattern p_mail = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+		Pattern p_num = Pattern.compile("^[0-9]{10}$");
+		ArrayList<String> compare = new ArrayList<String>();
+		for(int i = 0; i<vins.getTextInitiaux().length; i++){
+			compare.add(vins.getTextInitiaux()[i]);
+		}
+		txtFields = new ArrayList<>();
 		txtFields.add(vins.getPwdAccount().getText());
 		txtFields.add(vins.getPwdConfirm().getText());
-		txtFields.add(vins.getTxtEmail().getText());
-		txtFields.add(vins.getTxtFirstName().getText());
 		txtFields.add(vins.getTxtLastName().getText());
-		txtFields.add(vins.getTxtPhoneNumber().getText());
+		txtFields.add(vins.getTxtFirstName().getText());
 		txtFields.add(vins.getTxtPseudo().getText());
+//		txtFields.add(vins.getTxtEmail().getText());
+//		txtFields.add(vins.getTxtPhoneNumber().getText());
 		for(String s : txtFields){
-			if(s.contains(" ") == true){
-				vins.getLblErrorNumPhone().setVisible(false);
-				vins.getLblErrorMail().setVisible(false);
-				vins.getLblErrorPwd().setVisible(false);
+			//Vérifie si l'utilisateur à renseigner tous les champs
+			if(compare.contains(s)){
+				vins.getLblErrorField().setText("Tous les champs doivent être renseignés !");
 				vins.getLblErrorField().setVisible(true);
-				return false;
+				return false;					
 			}
-			if(vins.getPwdAccount().getText().equals(vins.getPwdConfirm().getText())){
-				vins.getLblErrorNumPhone().setVisible(false);
-				vins.getLblErrorMail().setVisible(false);
-				vins.getLblErrorPwd().setVisible(true);
-				vins.getLblErrorField().setVisible(false);
-				return false;
+			Matcher m = p_special_charac.matcher(s);
+			//Vérifie si il y a des espaces ou caractères spéciaux dans les champs
+			if(s.contains(" ") == true || m.find()){
+				vins.getLblErrorField().setText("Des champs contiennent des espaces ou des caractères spéciaux !");
+				vins.getLblErrorField().setVisible(true);
+				return false;	
 			}
+		}
+		//Vérifie que le mot de passe entré et sa confirmation sont semblables
+		if((vins.getPwdAccount().getText()).equals(vins.getPwdConfirm().getText()) == false){
+			vins.getLblErrorField().setText("Les mots de passes doivent être identiques !");
+			vins.getLblErrorField().setVisible(true);
+			return false;	
+		}
+		//Vérifie si l'email a le bon format
+		Matcher m_mail = p_mail.matcher(vins.getTxtEmail().getText());
+		if(m_mail.find() == false) {
+			vins.getLblErrorField().setText("L'email doit être au bon format !");
+			vins.getLblErrorField().setVisible(true);
+			return false;		
+		}		
+		//Vérifie si e numéro de téléphone a le bon format
+		Matcher m_num = p_num.matcher(vins.getTxtPhoneNumber().getText());
+		if(m_num.find() == false) {
+			vins.getLblErrorField().setText("Le numéro de téléphone doit être au bon format !");
+			vins.getLblErrorField().setVisible(true);
+			return false;	
 		}
 		return true;
 	}
@@ -83,4 +113,5 @@ public class Cinscription extends JFrame {
 	public void setVins(Vinscription vins) {
 		this.vins = vins;
 	}
+	
 }

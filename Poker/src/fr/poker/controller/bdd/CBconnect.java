@@ -85,16 +85,16 @@ public class CBconnect {
 	}
 	
 	
-	public int checkMail(String mail){
+	public int connexionCheckMail(String mail){
 		
 		/*
-		 * Cette fct sert à tester si le mail en paramètre existe.
+		 * Cette fct sert ï¿½ tester si le mail en paramï¿½tre existe.
 		 * Renvois ID Joueur si mail existe dans bdd sinon renvois -1
 		 * 
 		 */
 		int resultat=-1;
 		try{
-			//Connexion à la BDD 
+			//Connexion ï¿½ la BDD 
 			connexion();
 			
 			String sql = "SELECT ID FROM `Compte` WHERE `mail` LIKE '";
@@ -126,16 +126,16 @@ public class CBconnect {
 	}
 	
 	
-	public int checkPasswd(String pwd){
+	public int connexionCheckPasswd(String pwd){
 		
 		/*
-		 * Cette fct sert à tester si le pwd en paramètre existe.
+		 * Cette fct sert ï¿½ tester si le pwd en paramï¿½tre existe.
 		 * Renvois ID Joueur si pwd existe dans bdd sinon renvois -1
 		 * 
 		 */
 		int resultat=-1;
 		try{
-			//Connexion à la BDD 
+			//Connexion ï¿½ la BDD 
 			connexion();
 			
 			String sql = "SELECT ID FROM `Compte` WHERE `hash` LIKE '";
