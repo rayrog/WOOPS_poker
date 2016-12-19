@@ -18,7 +18,7 @@ public class JButtonListenerAccueil implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "Deconnexion") {
-			System.out.println("Deconnexion");
+			System.out.println("Deconnexion");	
 			CAcc.closeAccueil();
 			cCon=new Cconnexion();
 			cCon.displayConnexion();
