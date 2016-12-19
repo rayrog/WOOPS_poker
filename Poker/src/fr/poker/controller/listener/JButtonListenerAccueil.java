@@ -35,6 +35,9 @@ public class JButtonListenerAccueil implements ActionListener {
 		if (e.getActionCommand() == "Rejoindre une partie"){
 			System.out.println("Rejoindre une partie");
 		}
+		if (e.getActionCommand() == "Raffraichir"){
+			System.out.println("Raffraichir");
+		}
 		
 	}
 }

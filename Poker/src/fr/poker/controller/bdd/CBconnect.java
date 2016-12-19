@@ -29,10 +29,8 @@ public class CBconnect {
 		CBconnect connect = new CBconnect();
 		connect.connexion();
 		connect.lire("Compte");
-		
 	}
 	
-
 //maybe static
 	public void connexion(){
 		try{

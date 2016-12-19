@@ -15,7 +15,7 @@ public class Cparametre {
 		this.vParam=new Vparametres(this);
 		this.IDplayer = Id;
 		this.cAcc= a;
-		System.out.println("Paramètre ouvert pour joueur : " + IDplayer);
+		System.out.println("Paramï¿½tre ouvert pour joueur : " + IDplayer);
 	}
 
 	public void displayParametres(){

@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.EventListener;
 
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
+import fr.poker.controller.bdd.CBcompte;
+import fr.poker.controller.bdd.CBconnect;
+import fr.poker.controller.bdd.CBsalle;
 import fr.poker.view.Vaccueil;
 import fr.poker.view.Vinscription;
 import fr.poker.view.Vparametres;
@@ -49,13 +54,15 @@ public class Caccueil {
 	private Cparametre cParam;
 	private Ccreation cCrea;
 	private Vparametres fentrePara;
+	private CBconnect cbcon;
+	private CBsalle cSalle;
 	
 	public Caccueil(Cconnexion c,int ID) {
 		this.vacc = new Vaccueil(this);
 		this.ccon = c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
-
+		listeSalles();
 	}
 	
 	public Caccueil(Cparametre c, int ID){
@@ -63,15 +70,15 @@ public class Caccueil {
 		this.cParam=c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
-
+		listeSalles();
 	}
-
-
+	
 	public Caccueil(Ccreation c, int ID) {
 		this.vacc = new Vaccueil(this);
 		this.cCrea=c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+		listeSalles();
 	}
 
 	public int getIDplayer() {
@@ -108,23 +115,10 @@ public class Caccueil {
 		vacc.getFrame().dispose();
 	}
 	
-	/*public void deleteTxtInField(JTextField txtField) {
-		txtField.setText("");
-	}
-	
-	public void fillField(JTextField txtField, String txt) {
-		txtField.setText(txt);
-	}
-	*/
 	
 	public void runAccueil(){
 		displayAccueil();
 	}
-	/*
-	
-	public void verifyFields(ArrayList<JTextField> fiels){
-		
-	}*/
 
 
 	public void runCreation() {
@@ -133,6 +127,15 @@ public class Caccueil {
 		cCrea.displayCrea();
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void listeSalles() {
+		int nbSalle=0;
+		System.out.println("fct liste salle");
+		cbcon = new CBconnect();
+		cSalle = new CBsalle(cbcon);
+		nbSalle=cSalle.listeSalles();
+		System.out.println("Nombre de salle : " + nbSalle);
 	}
 
 }
