@@ -170,7 +170,7 @@ public JLabel getLblErrorField() {
 		btnBack.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnBack);
 		
-		lblErrorField = new JLabel("Des champs contiennent des espaces !");
+		lblErrorField = new JLabel("Remplir les champs obligatoires !");
 		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		lblErrorField.setForeground(Color.RED);
 		lblErrorField.setBounds(465, 162, 301, 16);
