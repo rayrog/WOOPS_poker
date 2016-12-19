@@ -14,6 +14,7 @@ public class Vconnexion {
 		private JTextField txtEmail;
 		private JButton btnConnexion;
 		private JButton btnInscription;
+		private JLabel lblLidPwpError;
 		
 		public Vconnexion(Cconnexion c){		
 			frame = new JFrame();
@@ -74,11 +75,27 @@ public class Vconnexion {
 			
 			frame.getContentPane().add(btnInscription);
 			frame.getContentPane().add(btnConnexion);
+			
+			lblLidPwpError = new JLabel("L'identifiant ou le mot de passe sont incorrects !");
+			lblLidPwpError.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+			lblLidPwpError.setHorizontalAlignment(SwingConstants.CENTER);
+			lblLidPwpError.setForeground(Color.RED);
+			lblLidPwpError.setBounds(434, 297, 397, 16);
+			frame.getContentPane().add(lblLidPwpError);
 			frame.setBounds(100, 100, 1300, 800);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			lblLidPwpError.setVisible(false);
 
 			
 			
+		}
+
+		public JLabel getLblLidPwpError() {
+			return lblLidPwpError;
+		}
+
+		public void setLblLidPwpError(JLabel lblLidPwpError) {
+			this.lblLidPwpError = lblLidPwpError;
 		}
 
 		public JFrame getFrame() {
@@ -129,6 +146,4 @@ public class Vconnexion {
 		public JTextField getTxtEmail() {
 			return txtEmail;
 		}
-
-
 }

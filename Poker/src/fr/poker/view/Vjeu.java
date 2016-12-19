@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 
 import javax.swing.JButton;
@@ -224,7 +225,7 @@ public class Vjeu{
 		lblNameJ1.setForeground(new Color(128, 0, 0));
 		lblNameJ1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNameJ1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ1.setBounds(358, 118, 59, 14);
+		lblNameJ1.setBounds(360, 11, 59, 14);
 		frame.getContentPane().add(lblNameJ1);
 		
 		JLabel lblNameJ2 = new JLabel("NameJ2");
@@ -232,7 +233,7 @@ public class Vjeu{
 		lblNameJ2.setForeground(new Color(128, 0, 0));
 		lblNameJ2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNameJ2.setBackground(Color.LIGHT_GRAY);
-		lblNameJ2.setBounds(200, 291, 59, 14);
+		lblNameJ2.setBounds(126, 235, 59, 14);
 		frame.getContentPane().add(lblNameJ2);
 		
 		JLabel lblNameJ3 = new JLabel("NameJ3");
@@ -264,7 +265,7 @@ public class Vjeu{
 		lblNameJ6.setForeground(new Color(128, 0, 0));
 		lblNameJ6.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNameJ6.setBackground(Color.LIGHT_GRAY);
-		lblNameJ6.setBounds(1071, 288, 59, 14);
+		lblNameJ6.setBounds(1133, 235, 59, 14);
 		frame.getContentPane().add(lblNameJ6);
 		
 		JLabel lblNameJ7 = new JLabel("NameJ7");
@@ -272,7 +273,7 @@ public class Vjeu{
 		lblNameJ7.setForeground(new Color(128, 0, 0));
 		lblNameJ7.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNameJ7.setBackground(Color.LIGHT_GRAY);
-		lblNameJ7.setBounds(876, 118, 59, 14);
+		lblNameJ7.setBounds(878, 11, 59, 14);
 		frame.getContentPane().add(lblNameJ7);
 		
 		JLabel lblMiseJ1 = new JLabel("MiseJ1");
@@ -280,7 +281,7 @@ public class Vjeu{
 		lblMiseJ1.setForeground(new Color(128, 0, 0));
 		lblMiseJ1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblMiseJ1.setBackground(Color.LIGHT_GRAY);
-		lblMiseJ1.setBounds(357, 136, 59, 14);
+		lblMiseJ1.setBounds(359, 29, 59, 14);
 		frame.getContentPane().add(lblMiseJ1);
 		
 		JLabel lblMiseJ2 = new JLabel("MiseJ2");
@@ -288,7 +289,7 @@ public class Vjeu{
 		lblMiseJ2.setForeground(new Color(128, 0, 0));
 		lblMiseJ2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblMiseJ2.setBackground(Color.LIGHT_GRAY);
-		lblMiseJ2.setBounds(200, 309, 59, 14);
+		lblMiseJ2.setBounds(126, 253, 59, 14);
 		frame.getContentPane().add(lblMiseJ2);
 		
 		JLabel lblMiseJ3 = new JLabel("MiseJ3");
@@ -320,7 +321,7 @@ public class Vjeu{
 		lblMiseJ6.setForeground(new Color(128, 0, 0));
 		lblMiseJ6.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblMiseJ6.setBackground(Color.LIGHT_GRAY);
-		lblMiseJ6.setBounds(1073, 306, 59, 14);
+		lblMiseJ6.setBounds(1135, 253, 59, 14);
 		frame.getContentPane().add(lblMiseJ6);
 		
 		JLabel lblMiseJ7 = new JLabel("MiseJ7");
@@ -328,7 +329,7 @@ public class Vjeu{
 		lblMiseJ7.setForeground(new Color(128, 0, 0));
 		lblMiseJ7.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblMiseJ7.setBackground(Color.LIGHT_GRAY);
-		lblMiseJ7.setBounds(877, 136, 59, 14);
+		lblMiseJ7.setBounds(879, 29, 59, 14);
 		frame.getContentPane().add(lblMiseJ7);
 		
 		JLabel lblPotTotal = new JLabel("PotTotal");
@@ -339,12 +340,20 @@ public class Vjeu{
 		lblPotTotal.setBounds(597, 187, 73, 14);
 		frame.getContentPane().add(lblPotTotal);
 		
+		JLabel lblPlayerName = new JLabel("NameCurrentPlayer");
+		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerName.setForeground(Color.WHITE);
+		lblPlayerName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPlayerName.setBackground(Color.LIGHT_GRAY);
+		lblPlayerName.setBounds(1039, 632, 134, 14);
+		frame.getContentPane().add(lblPlayerName);
+		
 		JLabel lblPotJoueur = new JLabel("PotJoueur");
 		lblPotJoueur.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPotJoueur.setForeground(new Color(128, 0, 0));
+		lblPotJoueur.setForeground(Color.WHITE);
 		lblPotJoueur.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblPotJoueur.setBackground(Color.LIGHT_GRAY);
-		lblPotJoueur.setBounds(1057, 631, 89, 14);
+		lblPotJoueur.setBounds(1057, 681, 89, 14);
 		frame.getContentPane().add(lblPotJoueur);
 		
 		textFieldMise = new JTextField();

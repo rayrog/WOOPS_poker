@@ -28,14 +28,24 @@ public class Vinscription {
 	private String [] textInitiaux;
 	private JButton btnSignUp;
 	private JButton btnBack;
+	private JLabel lblErrorField;
 
-/*
+public JLabel getLblErrorField() {
+		return lblErrorField;
+	}
+
+	public void setLblErrorField(JLabel lblErrorField) {
+		this.lblErrorField = lblErrorField;
+	}
+
+	/*
 	 * Create the application.
 	 */
 	public Vinscription(Cinscription cins, JFrame feneco) {
 		String[] texts = {"Mot de passe", "Confirmer", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone"};
 		textInitiaux = texts;
 		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 16));
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.setBounds(100, 100, 1300, 800);
@@ -156,6 +166,22 @@ public class Vinscription {
 		btnBack.setBounds(427, 610, 367, 51);
 		btnBack.addActionListener(new JButtonListenerInscription(cins));
 		frame.getContentPane().add(btnBack);
+		
+		lblErrorField = new JLabel("");
+		lblErrorField.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		lblErrorField.setForeground(Color.RED);
+		lblErrorField.setBounds(360, 162, 486, 16);
+		frame.getContentPane().add(lblErrorField);
+		lblErrorField.setVisible(false);
+		
+		JLabel lblInfoFields = new JLabel("Tous les champs sont obligatoires !");
+		lblInfoFields.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfoFields.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		lblInfoFields.setBounds(488, 673, 249, 16);
+		frame.getContentPane().add(lblInfoFields);
+		lblErrorField.setVisible(false);
+		
 	}
 
 	public String[] getTextInitiaux() {
@@ -229,5 +255,4 @@ public class Vinscription {
 	public void setTxtPhoneNumber(JTextField txtPhoneNumber) {
 		this.txtPhoneNumber = txtPhoneNumber;
 	}
-	
 }

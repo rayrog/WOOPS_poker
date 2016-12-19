@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import fr.poker.view.Vaccueil;
 import fr.poker.view.Vinscription;
+import fr.poker.view.Vparametres;
 
 public class Caccueil {
 	/*
@@ -44,13 +45,38 @@ public class Caccueil {
 	private Vaccueil vacc;
 	private JFrame frameacc;
 	private Cconnexion ccon;
+	private int IDplayer;
+	private Cparametre cParam;;
+	private Vparametres fentrePara;
 	
-	public Caccueil(Cconnexion c) {
+	public Caccueil(Cconnexion c,int ID) {
 		this.vacc = new Vaccueil(this);
 		this.ccon = c;
-		//vacc.set
+		this.IDplayer=ID;
+		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+
 	}
 	
+	
+	public Caccueil(Cparametre c, int ID){
+		this.vacc = new Vaccueil(this);
+		this.cParam=c;
+		this.IDplayer=ID;
+		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+
+	}
+
+
+	public int getIDplayer() {
+		return IDplayer;
+	}
+
+
+	public void setIDplayer(int iDplayer) {
+		IDplayer = iDplayer;
+	}
+
+
 	public Cconnexion getCcon() {
 		return ccon;
 	}
@@ -61,6 +87,14 @@ public class Caccueil {
 
 	public void displayAccueil(){
 		vacc.getFrame().setVisible(true);
+	}
+	
+	
+	public void runParametres(){
+		this.cParam = new Cparametre(this, IDplayer);
+		vacc.getFrame().setVisible(false);
+		cParam.displayParametres();
+		
 	}
 	
 	public void closeAccueil(){

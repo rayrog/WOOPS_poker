@@ -4,7 +4,7 @@ import fr.poker.model.*;
 
 public class Cpartie {
 
-	private Table maTable;
+	public Table maTable;
 
 	public Cpartie(Table maTable, int nbJoueurs) {
 		this.maTable = new Table(nbJoueurs);
