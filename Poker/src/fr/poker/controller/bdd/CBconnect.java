@@ -14,6 +14,9 @@ public class CBconnect {
 	private String passwd;
 	private Connection cn;
 	private Statement st;
+	
+	
+	
 	public CBconnect() {
 		//Information d'accès à la base de données
 		this.url="jdbc:mysql://172.23.2.15:3306/Poker";
@@ -85,7 +88,15 @@ public class CBconnect {
 		}
 	}
 	
-/*PARTIE FONCTIONS GENERIQUE*/	
+	
+	
+	
+	
+	
+	
+	
+/*PARTIE FONCTIONS Connexions/ Inscriptions*/	
+	
 	public int checkMail(String mail){
 		
 		/*
@@ -207,6 +218,150 @@ public class CBconnect {
 		return resultat;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*Partie traitement des salles*/
+	
+	
+	
+	
+
+	public void listeSalles(String pseudo){
+		
+		/*
+		 * Cette fct sert a lister les salles existantes 
+		 * 
+		 */
+	
+		try{
+			//Connexion � la BDD 
+			connexion();
+			
+			String sql = "SELECT ID FROM `Compte` WHERE `pseudo` LIKE '";
+			sql = new StringBuilder(sql).insert(sql.length(),pseudo).toString();
+			sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+			
+			// debug : affichage requete 
+			//	System.out.println(sql);
+			
+			//exécution requête
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			//test si le mail existe, si oui, change la valeur de resultat par -1
+			if (rs.next())
+			{	
+				String name = rs.getString(1);
+				//debug : 
+			//	System.out.println("pwd Found. ID player is " + name);
+				//resultat=Integer.parseInt(name);
+			}
+			else {
+				System.out.println("pwd not Found in bdd");
+			}
+			fermerConnexion();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	public void createSalle(int ID){
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+// Fonctions génériques 
+	
+	/*
+public ResultSet executeRequete(String requete){
+		// Executte la requete entrée en paramètre
+		
+		// debug : affichage requete 
+		//	System.out.println(sql);
+		ResultSet rs = null;
+		ResultSetMetaData resultMeta = null;
+		try{
+			//Connexion � la BDD 
+			connexion();
+			String sql = requete;
+			//Requete
+			rs = st.executeQuery(sql);
+			resultMeta = rs.getMetaData();
+			fermerConnexion();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+	}
+	return rs;
+}
+*/
+	
+/*
+public void supprimerTouT(){
+	// ATTENTION SUPPRIME toute la Bdd
+	try{
+		String sql = "DELETE * FROM `javadb`";
+		//Etape 4 : exécution requête
+		ResultSet rs = st.executeQuery(sql);
+		
+	} catch(SQLException e) {
+		e.printStackTrace();
+	}
+}
+
+*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 /* PARTIE INSCRIPTION */
 	//Vérification avant intégration dans la BDD	
 	public void verificationBeforeInscription (ArrayList<String> dataNewUser) {
@@ -228,15 +383,6 @@ public class CBconnect {
 	}
 
 /**/
-	public void supprimer(){
-		try{
-			String sql = "DELETE * FROM `javadb`";
-			//Etape 4 : exécution requête
-			ResultSet rs = st.executeQuery(sql);
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 }

@@ -42,6 +42,10 @@ public class Ccreation{
 		- Nom / privée ou publique 
 		- Password
 		*/
+		cbcon.listeSalles();
+		
+		
+		
 		
 	}
 	
