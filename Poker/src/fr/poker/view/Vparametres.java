@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cparametre;
+import fr.poker.controller.listener.JButtonListenerAccueil;
+import fr.poker.controller.listener.JButtonListenerParametres;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -26,7 +28,10 @@ public class Vparametres {
 	private JTextField txtEmail;
 	private JTextField txtPhoneNumber;
 	private JTextField txtMoney;
-
+	private JButton btnTakeMoney;
+	private JButton btnAddMoney;
+	private JButton btnCancel;
+	private JButton btnRegister;
 	/**
 	 * Launch the application.
 	 */
@@ -134,15 +139,17 @@ public class Vparametres {
 		txtPhoneNumber.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtPhoneNumber);
 		
-		JButton btnRegister = new JButton("Enregistrer");
+		this.btnRegister = new JButton("Enregistrer");
 		btnRegister.setBounds(465, 506, 177, 51);
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnRegister);
+		btnRegister.addActionListener(new JButtonListenerParametres(cparametre));
 		
-		JButton btnCancel = new JButton("Annuler");
+		this.btnCancel = new JButton("Annuler");
 		btnCancel.setBounds(657, 507, 177, 51);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCancel);
+		btnCancel.addActionListener(new JButtonListenerParametres(cparametre));
 		
 		txtMoney = new JTextField();
 		txtMoney.setText("Argent \u00E0 d\u00E9poser");
@@ -152,16 +159,19 @@ public class Vparametres {
 		txtMoney.setBounds(466, 568, 367, 51);
 		frame.getContentPane().add(txtMoney);
 		
-		JButton btnAddMoney = new JButton("Crediter");
+		this.btnAddMoney = new JButton("Crediter");
 		btnAddMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAddMoney.setBounds(466, 630, 177, 51);
 		frame.getContentPane().add(btnAddMoney);
+		btnAddMoney.addActionListener(new JButtonListenerParametres(cparametre));
 		
-		JButton btnTakeMoney = new JButton("Retirer");
+		this.btnTakeMoney = new JButton("Retirer");
 		btnTakeMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTakeMoney.setBounds(656, 630, 177, 51);
 		frame.getContentPane().add(btnTakeMoney);
 		frame.setBounds(100, 100, 1300, 800);
+		btnTakeMoney.addActionListener(new JButtonListenerParametres(cparametre));
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
