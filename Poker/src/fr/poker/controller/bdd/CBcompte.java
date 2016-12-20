@@ -193,7 +193,7 @@ public class CBcompte {
 			int lastId = lastInsertId("Compte");
 			lastId = lastId + 1;
 			String pwdHashed = cbCo.hashage(cIns.getVins().getPwdAccount().getText());
-			String sql = "INSERT INTO `Poker`.`Compte` (`id`, `nom`, `prenom`, `mail`, `tel`, `hash`, `credit`, `bio`, `pseudo`) VALUES ("+lastId+", '"+cIns.getVins().getTxtLastName().getText()+"', '"+cIns.getVins().getTxtFirstName().getText()+"', '"+cIns.getVins().getTxtEmail().getText()+"', '"+cIns.getVins().getTxtPhoneNumber().getText()+"', '"+pwdHashed+"', '50', 'Ceci est votre bio', '"+cIns.getVins().getTxtPseudo().getText()+"')";
+			String sql = "INSERT INTO `Poker`.`Compte` (`id`, `nom`, `prenom`, `mail`, `tel`, `hash`, `credit`, `bio`, `pseudo`) VALUES ('"+lastId+"', '"+cIns.getVins().getTxtLastName().getText()+"', '"+cIns.getVins().getTxtFirstName().getText()+"', '"+cIns.getVins().getTxtEmail().getText()+"', '"+cIns.getVins().getTxtPhoneNumber().getText()+"', '"+pwdHashed+"', '50', 'Ceci est votre bio', '"+cIns.getVins().getTxtPseudo().getText()+"')";
 			int rs = st.executeUpdate(sql);
 
 			
