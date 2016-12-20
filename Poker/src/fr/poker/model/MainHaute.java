@@ -14,7 +14,6 @@ public class MainHaute extends AbstractCombinaison {
 
 	@Override
 	public boolean verifier(List<Carte> cartes) {
-		setCombinaisonProche(true);
 		if (cartes.size() > 0) {
 			Collections.sort(cartes, new Comparateur());
 			List<Valeur> kikers = new ArrayList<Valeur>();

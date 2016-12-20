@@ -6,7 +6,7 @@ public class MainJoueur {
 
 	private Joueur joueur;
 	private Table table;
-	private List<Carte> cartes;
+	private List<Carte> cartes; //TODO: transform to a Set
 	private AbstractCombinaison bestCombinaison;
 	private int nbCartes;
 	private int nbCartesMax;
@@ -16,15 +16,16 @@ public class MainJoueur {
 		this.joueur = joueur;
 		this.table = table;
 		nbCartesMax = 5;
+		cartes = joueur.getCartes(); //Ajout des cartes du joueur
+		cartes.addAll(2, table.getCartes());	//Ajout des cartes de la table
 	}
 
 	public List<Carte> getCartes() {
 		return cartes;
 	}
 
-	public void setCartes() {
-		cartes = joueur.getCartes(); //Ajout des cartes du joueur
-		cartes.addAll(2, table.getCartes());	//Ajout des cartes de la table
+	public void refresh() {
+		cartes.addAll(table.getCartes());	//Ajout des cartes de la table
 	}
 
 	public void addCarte(Carte carte) {
@@ -36,7 +37,6 @@ public class MainJoueur {
 	}
 
 	public void setBestCombinaison() {
-		
 		this.bestCombinaison = bestCombinaison;
 	}
 

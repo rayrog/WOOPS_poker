@@ -10,7 +10,6 @@ public class DoublePaire extends AbstractCombinaison {
 	@Override
 	public boolean verifier(List<Carte> cartes) {
 		boolean res=false;
-		setCombinaisonProche(false);
 		if(cartes.size()>3){
 			for(Valeur valeur1 : Valeur.values()){
 				for(Valeur valeur2 : Valeur.values()){
@@ -32,9 +31,6 @@ public class DoublePaire extends AbstractCombinaison {
 							}
 							setKikers(kikers);
 							res=true;
-						}
-						if(cpt1==2 || cpt2==2){
-							setCombinaisonProche(true);
 						}
 					}
 				}

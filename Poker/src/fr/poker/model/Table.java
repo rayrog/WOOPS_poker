@@ -18,15 +18,16 @@ public class Table {
 
 	public Table() {
 		super();
-		this.id = 1; // A g�rer avec la base de donn�es
-		this.placeMax = 7;
-		this.paq = new Paquet("Jeu de 52 cartes de la table " + id);
-		this.joueurs = new ArrayList<Joueur>();
-		this.pot = 0;
-		this.tour = 0;
-		this.smallBlind = (float) 0.5;
-		this.bigBlind = 1;
-		this.joueursAttente = new ArrayList<>();
+		id = 1; // A g�rer avec la base de donn�es
+		placeMax = 7;
+		paq = new Paquet("Jeu de 52 cartes de la table " + id);
+		joueurs = new ArrayList<Joueur>();
+		pot = 0;
+		tour = 0;
+		smallBlind = (float) 0.5;
+		bigBlind = 1;
+		joueursAttente = new ArrayList<>();
+		cartes = new ArrayList<>();
 	}
 
 	public int getId() {

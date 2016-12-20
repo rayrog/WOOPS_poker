@@ -15,38 +15,33 @@ public class Cpartie {
 	}
 
 	public void run() {
-		
+
 		System.out.println("Début de la nouvelle partie");
 		maTable.setTour(0);
 		maTable.setPot(0);
-		
+
 		Joueur winner = new Joueur();
-		
+
 		if (maTable.getJoueurs().size() > 1) {
 			distribuerRole(maTable);
+			distribuerCartes();
 			do {
-				winner=verifierGagnant();
-				
-				/*DEBUG*/
-				for(Joueur j:maTable.getJoueurs())
+				winner = verifierGagnant();
+
+				/* DEBUG */
+				for (Joueur j : maTable.getJoueurs())
 					j.getInfos();
 				System.out.println(maTable);
 				/***/
-				
-				distribuerCartes();			
-				
-				/*DEBUG*/
-				System.out.println(maTable);
-				for(Joueur j:maTable.getJoueurs())
-					j.getInfos();
-				/**/
-				
+
 				while (miseEnAttente() == -1) {
 					joueurSuivant();
+					break; // to remove--> just for debug
 				}
 				tourSuivant();
+				distribuerCartes();
 			} while (winner == null);
-			
+
 		} else
 			System.out.println("C'est dommage tu es tout seul");
 	}
@@ -104,18 +99,28 @@ public class Cpartie {
 			for (Joueur j : maTable.getJoueurs()) {
 				j.addCarte(maTable.getPaq().piocher());
 				j.addCarte(maTable.getPaq().piocher());
+				j.setM();
 			}
 		}
 		if (maTable.getTour() == 1) { // FLOP --> 3 Cartes
 			for (int i = 1; i < 4; i++) {
 				maTable.addCarte(maTable.getPaq().piocher());
+				for (Joueur j : maTable.getJoueursEnJeu())
+					j.setM();
 			}
 		}
-		if (maTable.getTour() == 2) // TURN --> 1 Carte
+		if (maTable.getTour() == 2) { // TURN --> 1 Carte
 			maTable.addCarte(maTable.getPaq().piocher());
+			for (Joueur j : maTable.getJoueursEnJeu())
+				j.setM();
+		}
 
-		if (maTable.getTour() == 3) // RIVER --> 1 Carte
+		if (maTable.getTour() == 3) {// RIVER --> 1 Carte
 			maTable.addCarte(maTable.getPaq().piocher());
+			for (Joueur j : maTable.getJoueursEnJeu())
+				j.setM();
+		}
+
 	}
 
 	public Joueur verifierGagnant() {
@@ -139,13 +144,13 @@ public class Cpartie {
 		if (maTable.getTour() == 4) { // Fin de la manche (toutes les cartes ont
 										// ete distribuees)
 			for (Joueur j : maTable.getJoueurs()) {
-				if (j.getBestCombinaison().compareTo(c) > 0) // combinaison du
-																// joueur
-																// meilleure que
-																// combinaison a
-																// comparer
-					c = j.getBestCombinaison(); // Nouvelle combinaison a
+				if (j.getM().compareTo(c) > 0) // combinaison du
+												// joueur
+												// meilleure que
+												// combinaison a
 												// comparer
+					c = j.getM(); // Nouvelle combinaison a
+									// comparer
 				gagnant = j; // Gagnant provisoire
 			}
 		}
@@ -156,7 +161,7 @@ public class Cpartie {
 	public void tourSuivant() { // Pas une m�thode de Table car on part du
 								// principe que c'est le controller qui cadence
 								// la partie
-		if (verifierGagnant() == null && miseEnAttente()==-1) {
+		if (verifierGagnant() == null && miseEnAttente() == -1) {
 			switch (maTable.getTour()) {
 			case 0:
 				maTable.setTour(1);
@@ -213,18 +218,16 @@ public class Cpartie {
 
 		return next;
 	}
-	
-	public void parler(Joueur j){
-		//TODO: enableBuutton + action listener + action + disablebutton
+
+	public void parler(Joueur j) {
+		// TODO: enableBuutton + action listener + action + disablebutton
 	}
 
 	/* Retourne -1 si tous les joueurs en jeu n'ont pas encore suivi */
 	public int miseEnAttente() {
 		for (Joueur j : maTable.getJoueursEnJeu()) {
-
 			if (!j.getaSuivi())
 				return -1;
-
 		}
 		return 1;
 	}

@@ -10,7 +10,6 @@ public class Paire extends AbstractCombinaison {
 	@Override
 	public boolean verifier(List<Carte> cartes) {
 		boolean res=false;
-		setCombinaisonProche(true);
 		if(cartes.size()>1){
 			for(Valeur v : Valeur.values()){
 				if(compterValeur(v, cartes)==2){ //on cherche la valeur de la paire

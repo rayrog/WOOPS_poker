@@ -9,10 +9,6 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 	private Valeur valeurHaute;
 	private Valeur valeurBasse;
 	private List<Valeur> kikers;
-	private boolean combinaisonProche; // Permet de savoir si on doit v�rifier
-										// qu'il y a pas une combinaison avec
-										// des carte similaires (ex: brelan de 3
-										// et carre de 3)
 
 	protected AbstractCombinaison(String nom) {
 		super();
@@ -55,17 +51,7 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 			Collections.sort(c.getKikers());
 			int i = 1;
 			while (i <= getKikers().size() && res == 0) {
-				res = getKikers().get(getKikers().size() - i).compareTo(c.getKikers().get(getKikers().size() - i)); // On
-																													// compare
-																													// le
-																													// plus
-																													// haut
-																													// kiker
-																													// de
-																													// chaque
-																													// combinaison
-																													// jusqu'�
-																													// trouver
+				res = getKikers().get(getKikers().size() - i).compareTo(c.getKikers().get(getKikers().size() - i)); 
 				i++;
 			}
 		}
@@ -154,12 +140,5 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 		this.valeurBasse = valeurBasse;
 	}
 
-	public boolean isCombinaisonProche() {
-		return combinaisonProche;
-	}
-
-	public void setCombinaisonProche(boolean combinaisonProche) {
-		this.combinaisonProche = combinaisonProche;
-	}
 
 }

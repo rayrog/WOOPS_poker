@@ -45,7 +45,6 @@ public class Quinte extends AbstractCombinaison {
 				}
 			}
 		}
-		setCombinaisonProche(cpt==3);
 		return cpt==4;
 	}
 

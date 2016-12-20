@@ -33,7 +33,6 @@ public class Flush extends AbstractCombinaison {
 			}
 			Collections.sort((ArrayList) cartes);
 			res=carreau>4 || coeur > 4 || pique > 4 || treffle > 4;
-			setCombinaisonProche(carreau>3 || coeur > 3 || pique > 3 || treffle > 3);
 			if(res){
 				List<Carte> cartesCouleur;
 				if(carreau>4){

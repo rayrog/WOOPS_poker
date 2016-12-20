@@ -10,7 +10,6 @@ public class Brelan extends AbstractCombinaison {
 	@Override
 	public boolean verifier(List<Carte> cartes) {
 		boolean res = false;
-		setCombinaisonProche(false);
 		if (cartes.size() > 2) {
 			for (Valeur v : Valeur.values()) {
 				if (compterValeur(v, cartes) == 3) { // On cherche la valeur du
@@ -27,9 +26,6 @@ public class Brelan extends AbstractCombinaison {
 						}
 						setKikers(kikers);
 						res = true;
-					}
-					if (compterValeur(v, cartes) == 2) {
-						setCombinaisonProche(true);
 					}
 				}
 			}

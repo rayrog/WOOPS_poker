@@ -10,7 +10,6 @@ public class Carre extends AbstractCombinaison {
 	@Override
 	public boolean verifier(List<Carte> cartes) {
 		boolean res = false;
-		setCombinaisonProche(false);
 		if (cartes.size() > 3) {
 			for (Valeur v : Valeur.values()) {
 				if (compterValeur(v, cartes) == 4) { // On cherche la valeur du carre
@@ -27,9 +26,6 @@ public class Carre extends AbstractCombinaison {
 					}
 					setKikers(kikers);
 					res = true;
-				}
-				if (compterValeur(v, cartes) == 3) {
-					setCombinaisonProche(true);
 				}
 			}
 		}
