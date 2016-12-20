@@ -1,7 +1,5 @@
 package fr.poker.model;
 
-import java.util.*;
-
 public class Notification {
 	private String message;
 

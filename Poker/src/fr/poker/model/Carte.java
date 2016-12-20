@@ -1,5 +1,4 @@
 package fr.poker.model;
-import java.lang.annotation.*;
 
 
 public class Carte {
