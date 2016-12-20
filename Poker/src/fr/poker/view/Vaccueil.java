@@ -44,7 +44,7 @@ public class Vaccueil{
 		private JTable table;
 		private JScrollPane listeSalle;
 		private JList<String> list;
-		private String[] data2 = {"one", "two", "three", "four","5","6","7", "three", "four","5","6","7"};	
+		private String[] data2 = {"one", "two", "three", "four","5","6","7", "three", "four","5","6","7","one", "two", "three", "four","5","6","7", "three", "four","5","6","7"};	
 		
 		public Vaccueil(Caccueil cacc){
 			frame = new JFrame();
@@ -109,7 +109,7 @@ public class Vaccueil{
 			frame.getContentPane().add(btnJoin);
 	
 			
-
+	
 			 
 			//Affiche liste remplie par le controleur avec les noms des parties et guette quand on clique
 			
@@ -119,7 +119,7 @@ public class Vaccueil{
 			list.setBounds(397, 394, 454, 136);
 		
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.getViewport().setView(list);
+			scrollPane.setViewportView(list);
 			// Ajout les mous listener
 			MouseListener mouseListener = new MouseAdapter() {
 			     public void mouseClicked(MouseEvent e) {

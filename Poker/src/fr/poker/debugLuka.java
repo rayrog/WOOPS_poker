@@ -15,8 +15,6 @@ public class debugLuka {
 			e.printStackTrace();
 
 		}
-		// FenetrePrincipale.getInstance();
-		// Partie.getInstance().start();
 	}
 
 }
