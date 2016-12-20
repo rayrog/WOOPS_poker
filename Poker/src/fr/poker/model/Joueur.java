@@ -32,8 +32,9 @@ public class Joueur {
 		this.pseudo = pseudo;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
-		this.etat = false;
+		etat = false;
 		cartes = new ArrayList<>();
+		aSuivi = false;
 	}
 
 	public int getId() {
@@ -125,6 +126,7 @@ public class Joueur {
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			mise = montant;
+			setaSuivi(true);
 		} else {
 			System.out.println("Credit insuffisant pour miser " + montant);
 		}
@@ -146,10 +148,12 @@ public class Joueur {
 	public float suivre(float montantPrecedent){  // Pour utiliser cette fonction il faut faire un getMise() 
 		if (creditPartie - montantPrecedent >= 0) {  // sur le joueur précedent et le proposer en parametre.
 			mise += montantPrecedent;
+			setaSuivi(true);
 			return 1;
 		}
 		else{
-		System.out.println("Credit insuffisant");	
+		System.out.println("Credit insuffisant");
+		setaSuivi(false);
 		return -1;
 		}
 	}
@@ -167,15 +171,14 @@ public class Joueur {
 		// toutes les infos du joueurs (stats)
 	}
 	
-	public void parler(){
-		//TODO: Timer + Listener miser suivre etc.
-	}
 	public void getInfos() {
-		System.out.println("Compte : " + compte);
+		System.out.println("Compte : " + compte.getNom());
 		System.out.println("Credit restants : " + creditPartie);
 		if (etat == true) {
 			System.out.println("En jeu");
 			System.out.println("Role : " + role);
+			System.out.println("Cartes : " + cartes);
+			System.out.println();
 		} else
 			System.out.println("Spectateur");
 	}

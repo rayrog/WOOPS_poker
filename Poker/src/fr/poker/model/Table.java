@@ -156,4 +156,13 @@ public class Table {
 		joueurs.remove(j);
 	}
 
+	@Override
+	public String toString() {
+		return "Table [placeMax=" + placeMax + ", cartes=" + cartes + ", joueurs=" + joueurs + ", joueursAttente="
+				+ joueursAttente + ", smallBlind=" + smallBlind + ", bigBlind=" + bigBlind + ", pot=" + pot + ", tour="
+				+ tour + "]";
+	}
+	
+	
+
 }

@@ -15,16 +15,38 @@ public class Cpartie {
 	}
 
 	public void run() {
+		
 		System.out.println("Début de la nouvelle partie");
 		maTable.setTour(0);
 		maTable.setPot(0);
+		
+		Joueur winner = new Joueur();
+		
 		if (maTable.getJoueurs().size() > 1) {
 			distribuerRole(maTable);
-			distribuerCartes();
-			while (miseEnAttente() == -1) {
-				joueurSuivant();
-			}
-
+			do {
+				winner=verifierGagnant();
+				
+				/*DEBUG*/
+				for(Joueur j:maTable.getJoueurs())
+					j.getInfos();
+				System.out.println(maTable);
+				/***/
+				
+				distribuerCartes();			
+				
+				/*DEBUG*/
+				System.out.println(maTable);
+				for(Joueur j:maTable.getJoueurs())
+					j.getInfos();
+				/**/
+				
+				while (miseEnAttente() == -1) {
+					joueurSuivant();
+				}
+				tourSuivant();
+			} while (winner == null);
+			
 		} else
 			System.out.println("C'est dommage tu es tout seul");
 	}
@@ -39,10 +61,12 @@ public class Cpartie {
 				case 0:
 					j.setRole("Petite blinde");
 					j.miser(maTable.getSmallBlind());
+					parler(j);
 					break;
 				case 1:
 					j.setRole("Grosse blinde");
 					j.miser(maTable.getBigBlind());
+					parler(j);
 					break;
 				default:
 					System.out.println("Erreur de role");
@@ -132,7 +156,7 @@ public class Cpartie {
 	public void tourSuivant() { // Pas une m�thode de Table car on part du
 								// principe que c'est le controller qui cadence
 								// la partie
-		if (verifierGagnant() == null) {
+		if (verifierGagnant() == null && miseEnAttente()==-1) {
 			switch (maTable.getTour()) {
 			case 0:
 				maTable.setTour(1);
@@ -151,7 +175,6 @@ public class Cpartie {
 				break;
 			}
 		}
-		maTable.setTour(1);
 	}
 
 	public void relancerManche() {
@@ -173,15 +196,28 @@ public class Cpartie {
 		maTable.setPot(0);
 	}
 
-	public void joueurSuivant() {
+	public Joueur joueurSuivant() {
+
+		Joueur next = new Joueur();
+		int nextIdx;
+
 		for (Joueur j : maTable.getJoueursEnJeu()) {
-			if (maTable.getTour() != 4) {
-				if (j.getRole() == "Petite blinde")
-					j.parler();
+			if (maTable.getTour() != 4 && j.getRole() == "Petite blinde" && !j.getaSuivi()) {
+				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
+				// enablebouton(Joueur j)
+				parler(j);
+				// disableBouton(Joueur j)
+				next = maTable.getJoueursEnJeu().get(nextIdx);
 			}
 		}
+
+		return next;
 	}
 	
+	public void parler(Joueur j){
+		//TODO: enableBuutton + action listener + action + disablebutton
+	}
+
 	/* Retourne -1 si tous les joueurs en jeu n'ont pas encore suivi */
 	public int miseEnAttente() {
 		for (Joueur j : maTable.getJoueursEnJeu()) {
