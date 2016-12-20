@@ -1,7 +1,7 @@
 package fr.poker.model;
 
 
-public class Carte {
+public class Carte implements Comparable<Carte>{
    private Couleur couleur;
    private Valeur valeur;
    private boolean active;

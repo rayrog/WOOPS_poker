@@ -103,11 +103,10 @@ public class Cpartie {
 			}
 		}
 		if (maTable.getTour() == 1) { // FLOP --> 3 Cartes
-			for (int i = 1; i < 4; i++) {
+			for (int i = 1; i < 4; i++)
 				maTable.addCarte(maTable.getPaq().piocher());
-				for (Joueur j : maTable.getJoueursEnJeu())
-					j.setM();
-			}
+			for (Joueur j : maTable.getJoueursEnJeu())
+				j.setM();
 		}
 		if (maTable.getTour() == 2) { // TURN --> 1 Carte
 			maTable.addCarte(maTable.getPaq().piocher());

@@ -122,16 +122,18 @@ public class Joueur {
 	public void setM() {
 
 		List<Carte> allCartes = new ArrayList<Carte>();
+		System.out.println("---------------------" + allCartes);
 		for (Carte c : cartes) { // Cartes du joueur
-			if (c != null) {
+			if (c != null && !allCartes.contains(c)) {
 				allCartes.add(c);
 			}
 		}
 		for (Carte c : table.getCartes()) { // Cartes de la table
-			if (c != null) {
+			if (c != null && !allCartes.contains(c)) {
 				allCartes.add(c);
 			}
 		}
+		System.out.println("---------------------" + allCartes);
 
 		QuinteFlush qfJoueur = new QuinteFlush();
 		if (qfJoueur.verifier(allCartes)) {
