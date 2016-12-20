@@ -15,4 +15,7 @@ public class Clanceur {
 		// FenetrePrincipale.getInstance();
 		// Partie.getInstance().start();
 	}
+	public static void main(String[] args) {
+		Clanceur c = new Clanceur();
+	}
 }

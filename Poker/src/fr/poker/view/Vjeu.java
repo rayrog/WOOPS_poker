@@ -39,7 +39,7 @@ public class Vjeu{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -50,13 +50,13 @@ public class Vjeu{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public Vjeu(String message) {
-		this.messageRecu=message;
+	public Vjeu() {
+		//this.messageRecu=message;
 		initialize();	
 	}
 
@@ -392,27 +392,25 @@ public class Vjeu{
 		btnMiser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnMiser.setBounds(548, 729, 103, 28);
 		frame.getContentPane().add(btnMiser);
-		btnMiser.addActionListener(new JButtonListenerJeu());
+		btnMiser.addActionListener(new JButtonListenerJeu(null));
 		
 		btnSuivre = new JButton("Suivre");
 		btnSuivre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuivre.setBounds(661, 729, 103, 28);
 		frame.getContentPane().add(btnSuivre);
-		btnSuivre.addActionListener(new JButtonListenerSuivre());
-		btnSuivre.addActionListener(new JButtonListenerJeu());
+		btnSuivre.addActionListener(new JButtonListenerJeu(null));
 		
 		btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCheck.setBounds(774, 729, 101, 28);
 		frame.getContentPane().add(btnCheck);
-		btnCheck.addActionListener(new JButtonListenerCheck());
-		btnCheck.addActionListener(new JButtonListenerJeu());
+		btnCheck.addActionListener(new JButtonListenerJeu(null));
 		
 		btnSeCoucher = new JButton("Se coucher");
 		btnSeCoucher.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
-		btnSeCoucher.addActionListener(new JButtonListenerJeu());
+		btnSeCoucher.addActionListener(new JButtonListenerJeu(null));
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JPanel panelChat = new JPanel();
