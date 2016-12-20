@@ -37,20 +37,20 @@ public class Flush extends AbstractCombinaison {
 			if(res){
 				List<Carte> cartesCouleur;
 				if(carreau>4){
-					couleur="carreau";
+					couleur="Carreau";
 					cartesCouleur=conserverCouleur(cartes, Couleur.CARREAU);
 				}
 				else if(coeur>4){
-					couleur="coeur";
+					couleur="Coeur";
 					cartesCouleur=conserverCouleur(cartes, Couleur.COEUR);
 				}
 				else if(pique>4){
-					couleur="pique";
+					couleur="Pique";
 					cartesCouleur=conserverCouleur(cartes, Couleur.PIQUE);
 				}
 				else {
 					cartesCouleur=conserverCouleur(cartes, Couleur.TREFLE);
-					couleur="trèfle";
+					couleur="Trefle";
 				}
 				Collections.sort(cartesCouleur, new Comparateur());
 				List<Valeur> kikers = new ArrayList<Valeur>();

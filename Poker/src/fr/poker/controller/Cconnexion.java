@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
+import fr.poker.controller.bdd.CBcompte;
 import fr.poker.controller.bdd.CBconnect;
 import fr.poker.view.Vconnexion;
 
@@ -12,8 +12,9 @@ public class Cconnexion extends JFrame {
 
 	private Vconnexion fenetreco;
 	private Cinscription cins;
-	private Caccueil cacc;
-	private CBconnect cbcon;
+	private Caccueil cAcc;
+	private CBconnect cbCon;
+	private CBcompte cbCompte;
 	public Cconnexion() {
 		// TODO Auto-generated constructor stub
 		this.fenetreco = new Vconnexion(this);
@@ -37,11 +38,14 @@ public class Cconnexion extends JFrame {
 		System.out.println(fenetreco.getTxtEmail().getText());
 		System.out.println(fenetreco.getPwdMotDePasse().getText()); // temp for debug 
 		// comparer couple login mdp avec la bdd >>>> si Ok : LoginOK a true 
-		cbcon = new CBconnect();
+		cbCon = new CBconnect();
+		cbCompte = new CBcompte(cbCon);
+		String pwdHashed = cbCon.hashage(fenetreco.getPwdMotDePasse().getText());
+		System.out.println(pwdHashed);
 		// Recupere L'id du mail utiliser dans la bdd
-		IDMail=cbcon.checkMail(fenetreco.getTxtEmail().getText());
+		IDMail=cbCompte.checkMail(fenetreco.getTxtEmail().getText());
 		//Recupere L'ID du PWD utilis� 
-		IDPass=cbcon.checkPasswd(fenetreco.getPwdMotDePasse().getText());
+		IDPass=cbCompte.checkPasswd(pwdHashed);
 		
 		// Si idpwd + id MAIl identique et non = -1 : Login OK Ouverture de la page d'accueil
 		if (IDMail==IDPass && IDMail!=-1 && IDPass!=-1 ){
@@ -72,9 +76,9 @@ public class Cconnexion extends JFrame {
 		   
 
 	public void runAccueil(int Id) {
-		this.cacc = new Caccueil(this, Id);
+		this.cAcc = new Caccueil(this, Id);
 		this.closeConnexion();
-		cacc.displayAccueil();
+		cAcc.displayAccueil();
 	}
 	
 

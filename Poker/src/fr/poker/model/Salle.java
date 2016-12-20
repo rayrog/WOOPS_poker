@@ -1,7 +1,5 @@
 package fr.poker.model;
 
-import java.util.*;
-
 public class Salle {
 	private int id;
 	private String nom;

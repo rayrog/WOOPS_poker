@@ -17,9 +17,10 @@ public class JButtonListenerInscription implements ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Inscription")) {
 			System.out.println("Tentative de d'inscription");
-			System.out.println(cIns.verifyFields());
 			if(cIns.verifyFields()){
-				
+				if(cIns.verifyBdd()) {
+					cIns.insertNewUserData();
+				}
 			}
 		}
 		if (e.getActionCommand().equals("Retour")) {
