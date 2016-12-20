@@ -130,6 +130,17 @@ public class Joueur {
 			return -1;
 		}
 	}
+	
+	public float suivre(float montantPrecedent){  // Pour utiliser cette fonction il faut faire un getMise() 
+		if (creditPartie - montantPrecedent >= 0) {  // sur le joueur précedent et le proposer en parametre.
+			mise += montantPrecedent;
+			return 1;
+		}
+		else{
+		System.out.println("Credit insuffisant");	
+		return -1;
+		}
+	}
 
 	public void coucher() {
 		isDown = true;
