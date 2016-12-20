@@ -1,5 +1,7 @@
 package fr.poker.model;
 
+import java.util.Scanner;
+
 public class Salle {
 	private int id;
 	private String nom;

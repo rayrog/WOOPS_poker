@@ -172,7 +172,7 @@ public class Cpartie {
 
 	public void joueurSuivant() {
 		for (Joueur j : maTable.getJoueursEnJeu()) {
-			if(!j.getaSuivi())
+			if(!j.getaSuivi()){}
 				
 		}
 	}

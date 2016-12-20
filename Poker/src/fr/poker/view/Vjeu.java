@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerCheck;
+import fr.poker.controller.listener.JButtonListenerJeu;
 import fr.poker.controller.listener.JButtonListenerMiser;
 import fr.poker.controller.listener.JButtonListenerSeCoucher;
 import fr.poker.controller.listener.JButtonListenerSuivre;
@@ -30,6 +31,11 @@ public class Vjeu{
 	public static String messageRecu;
 	public static String mise;
 	public static JLabel label;
+	public JButton btnEnvoyer;
+	public JButton btnMiser;
+	public JButton btnSuivre;
+	public JButton btnCheck;
+	public JButton btnSeCoucher;
 	/**
 	 * Launch the application.
 	 */
@@ -372,39 +378,41 @@ public class Vjeu{
 		textFieldChat.setBounds(7, 724, 305, 33);
 		frame.getContentPane().add(textFieldChat);
 		textFieldChat.setColumns(10);
-		textFieldChat.setText("Je suis dans la zone ou j'écris");
+		textFieldChat.setText("Je suis dans la zone ou j'ï¿½cris");
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////// ICI
-		JButton btnEnvoyer = new JButton("Envoyer");
+		btnEnvoyer = new JButton("Envoyer");
 		btnEnvoyer.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnvoyer.setBounds(319, 730, 89, 23);
 		frame.getContentPane().add(btnEnvoyer);
-		btnEnvoyer.addActionListener(new CjeuListener());
+		//btnEnvoyer.addActionListener(new JButtonListenerJeu());
 		
-		JButton btnMiser = new JButton("Miser");
+		btnMiser = new JButton("Miser");
 		btnMiser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnMiser.setBounds(548, 729, 103, 28);
 		frame.getContentPane().add(btnMiser);
-		btnMiser.addActionListener(new JButtonListenerMiser());
+		btnMiser.addActionListener(new JButtonListenerJeu());
 		
-		JButton btnSuivre = new JButton("Suivre");
+		btnSuivre = new JButton("Suivre");
 		btnSuivre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuivre.setBounds(661, 729, 103, 28);
 		frame.getContentPane().add(btnSuivre);
 		btnSuivre.addActionListener(new JButtonListenerSuivre());
+		btnSuivre.addActionListener(new JButtonListenerJeu());
 		
-		JButton btnCheck = new JButton("Check");
+		btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCheck.setBounds(774, 729, 101, 28);
 		frame.getContentPane().add(btnCheck);
 		btnCheck.addActionListener(new JButtonListenerCheck());
+		btnCheck.addActionListener(new JButtonListenerJeu());
 		
-		JButton btnSeCoucher = new JButton("Se coucher");
+		btnSeCoucher = new JButton("Se coucher");
 		btnSeCoucher.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
-		btnSeCoucher.addActionListener(new JButtonListenerSeCoucher());
+		btnSeCoucher.addActionListener(new JButtonListenerJeu());
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JPanel panelChat = new JPanel();
@@ -422,5 +430,45 @@ public class Vjeu{
 		lblBackground.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/background.png")));
 		lblBackground.setBounds(0, 0, 1284, 761);
 		frame.getContentPane().add(lblBackground);
+	}
+
+	public JButton getBtnEnvoyer() {
+		return btnEnvoyer;
+	}
+
+	public void setBtnEnvoyer(JButton btnEnvoyer) {
+		this.btnEnvoyer = btnEnvoyer;
+	}
+
+	public JButton getBtnMiser() {
+		return btnMiser;
+	}
+
+	public void setBtnMiser(JButton btnMiser) {
+		this.btnMiser = btnMiser;
+	}
+
+	public JButton getBtnSuivre() {
+		return btnSuivre;
+	}
+
+	public void setBtnSuivre(JButton btnSuivre) {
+		this.btnSuivre = btnSuivre;
+	}
+
+	public JButton getBtnCheck() {
+		return btnCheck;
+	}
+
+	public void setBtnCheck(JButton btnCheck) {
+		this.btnCheck = btnCheck;
+	}
+
+	public JButton getBtnSeCoucher() {
+		return btnSeCoucher;
+	}
+
+	public void setBtnSeCoucher(JButton btnSeCoucher) {
+		this.btnSeCoucher = btnSeCoucher;
 	}
 }

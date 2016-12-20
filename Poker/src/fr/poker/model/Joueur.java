@@ -36,6 +36,10 @@ public class Joueur {
 		cartes = new ArrayList<>();
 	}
 
+	public void parler(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
