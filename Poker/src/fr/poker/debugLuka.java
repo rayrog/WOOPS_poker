@@ -1,7 +1,9 @@
-package fr.poker.controller;
+package fr.poker;
 
-public class CdebugLuka {
-	public CdebugLuka(){}
+import fr.poker.controller.Cconnexion;
+
+public class debugLuka {
+	public debugLuka(){}
 	
 	public static void main(String[] args) {
 		Cconnexion ccon = new Cconnexion();
