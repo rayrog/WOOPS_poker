@@ -1,5 +1,4 @@
 package fr.poker.model;
-import java.lang.annotation.*;
 
 
 public class Carte {
@@ -8,7 +7,7 @@ public class Carte {
    private boolean active;
    
    public Carte(){
-	   
+	   super();
    }
    public Carte(Couleur couleur, Valeur valeur) {
       this.couleur = couleur;

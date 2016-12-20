@@ -6,33 +6,34 @@ public class Joueur {
 
 	private int id; // Pour identifier un joueur dans une partie
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
-	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de commencer la partie
+	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de
+									// commencer la partie
 	protected boolean etat; // True = en jeu ; False = Spectateur
 	private String role; // Dealer, Petite blinde, Grosse blinde, Neutre
 	private boolean isDown; // True = couch�; false = en jeu
-	private int aSuivi; // Index pour savoir si le joueur a jouer depuis une ou plusieurs relances
-	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la partie
+	private boolean aSuivi; // Index pour savoir si le joueur a jouer depuis une ou
+						// plusieurs relances
+	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la
+								// partie
 	private String pseudo;
 	private Table table; // Table sur laquelle le joueur joue
 
-	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et du joueur(2)
+	private MainJoueur m; // Meilleure combinaison de 5 cartes de la table(3) et
+							// du joueur(2)
 
 	public float mise;
-	
-	public Joueur(){
+
+	public Joueur() {
 		super();
 	}
 
-	public Joueur(int id, Compte compte, float creditPartie, boolean etat, String pseudo) {
+	public Joueur(Compte compte, float creditPartie, String pseudo) {
 		super();
-		this.id = id;
 		this.pseudo = pseudo;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
-		if (creditPartie == 0) // si credit nul le joueur est d'office spectateur
-			this.etat = false;
-		else
-			this.etat = etat;
+		this.etat = false;
+		cartes = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -87,11 +88,11 @@ public class Joueur {
 		this.table = table;
 	}
 
-	public int getaSuivi() {
+	public boolean getaSuivi() {
 		return aSuivi;
 	}
 
-	public void setaSuivi(int aSuivi) {
+	public void setaSuivi(boolean aSuivi) {
 		this.aSuivi = aSuivi;
 	}
 
@@ -99,8 +100,8 @@ public class Joueur {
 		return cartes;
 	}
 
-	public void addCarte(Carte cartes) {
-		this.cartes.add(cartes);
+	public void addCarte(Carte c) {
+		cartes.add(c);
 	}
 
 	public AbstractCombinaison getBestCombinaison() {
@@ -119,25 +120,26 @@ public class Joueur {
 		this.pseudo = pseudo;
 	}
 
-	public float miser(float montant) { // Float pour pouvoir miser des petites somme (Ex: 0.5euro)
+	public void miser(float montant) { // Float pour pouvoir miser des petites
+										// somme (Ex: 0.5euro)
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			mise = montant;
-			return mise;
 		} else {
 			System.out.println("Credit insuffisant pour miser " + montant);
-			return -1;
 		}
 	}
 
-	public float relancer(float montant) {
+	public void relancer(float montant) {
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			mise += montant;
-			return mise;
+			for(Joueur j : table.getJoueursEnJeu()){ //On réinitialise le flag aSuivi en cas de relance
+				j.setaSuivi(false);
+			}
+			setaSuivi(true);
 		} else {
 			System.out.println("Credit insuffisant");
-			return -1;
 		}
 	}
 
@@ -150,7 +152,8 @@ public class Joueur {
 	}
 
 	public void quitterSalle() {
-		// TODO : a g�rer avec la base de donn�es pour �viter de supprimer toutes les infos du joueurs (stats)
+		// TODO : a g�rer avec la base de donn�es pour �viter de supprimer
+		// toutes les infos du joueurs (stats)
 	}
 
 	public void getInfos() {
@@ -165,23 +168,12 @@ public class Joueur {
 
 	@Override
 	public String toString() {
-		return "Joueur [id=" + id + ", compte=" + compte.getPseudo() + ", creditPartie=" + creditPartie + ", etat=" + etat + ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", bestCombinaison=" + m.getBestCombinaison() + ", mise=" + mise + "]";
+		return "Joueur [id=" + id + ", creditPartie=" + creditPartie + ", etat=" + etat
+				+ ", role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", pseudo="
+				+ pseudo + ", table=" + table + ", m=" + m + ", mise=" + mise + "]";
 	}
 
 	public void setCartes(List<Carte> listeCartes) {
 		this.cartes = listeCartes;
 	}
-
-	// @Override
-	// public String toString() {
-	// String joueur = "Joueur [id=" + id + ", compte=" + compte + ", creditPartie=" + creditPartie;
-	//
-	// if (etat = true) {
-	// joueur += ". ,En jeu en tant que " + role + ",";
-	// } else
-	// joueur += " ,Spectateur,";
-	// joueur += " role=" + role + ", isDown=" + isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", bestCombinaison=" + bestCombinaison + ", mise=" + mise + "]";
-	//
-	// return joueur;
-	// }
 }

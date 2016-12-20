@@ -6,39 +6,74 @@ public class Cpartie {
 
 	public Table maTable;
 
-	public Cpartie(Table maTable, int nbJoueurs) {
-		this.maTable = new Table(nbJoueurs);
+	public Cpartie(Table t) {
+
+		if (t.getJoueurs().size() > 1) // On crï¿½e une partie que s'il y a
+										// dï¿½ja deux joueurs assis ï¿½ la
+										// table
+			this.maTable = t;
 	}
 
-	public void run() { //Pour lancer la premiere partie
-		System.out.println("Début de la nouvelle partie");
+	public void run() {
+		System.out.println("DÃ©but de la nouvelle partie");
+		maTable.setTour(0);
+		maTable.setPot(0);
+		if (maTable.getJoueurs().size() > 1) {
+			distribuerRole(maTable);
+			distribuerCartes();
+
+		} else
+			System.out.println("C'est dommage tu es tout seul");
 	}
 
 	public void distribuerRole(Table table) {
 		for (int i = 0; i < maTable.getJoueurs().size(); i++) {
 
 			Joueur currentJ = maTable.getJoueurs().get(i);
-			System.out.println("Je suis actuellement sur ce joueur: " + currentJ);
 
-			switch (i) {
-			case 1:
-				currentJ.setRole("Dealer");
-				break;
-			case 2:
-				currentJ.setRole("Petite blinde");
-				break;
-			case 3:
-				currentJ.setRole("Grosse blinde");
-				break;
-			default:
-				currentJ.setRole("Neutre");
+			if (maTable.getJoueurs().size() < 3) {
+				switch (i) {
+				case 0:
+					currentJ.setRole("Petite blinde");
+					currentJ.miser(maTable.getSmallBlind());
+					break;
+				case 1:
+					currentJ.setRole("Grosse blinde");
+					currentJ.miser(maTable.getBigBlind());
+					break;
+				default:
+					System.out.println("Erreur de role");
+				}
+			} else {
+				switch (i) {
+				case 0:
+					currentJ.setRole("Dealer");
+					break;
+				case 1:
+					currentJ.setRole("Petite blinde");
+					currentJ.miser(maTable.getSmallBlind());
+					break;
+				case 2:
+					currentJ.setRole("Grosse blinde");
+					currentJ.miser(maTable.getBigBlind());
+					break;
+				default:
+					currentJ.setRole("Neutre");
+				}
 			}
 		}
 	}
 
 	public void distribuerCartes() {
-		if (maTable.getTour() == 0) { // Distribution initiale de 2 cartes a
-										// chaque joueur
+		if (maTable.getTour() == 0) {
+			/* Ajout des joueurs en attente */
+			if (!maTable.getJoueursAttente().isEmpty()) {
+				for (Joueur j : maTable.getJoueursAttente()) {
+					maTable.rejoindre(j);
+					maTable.getJoueursAttente().remove(j);
+				}
+			}
+			/* Distribution initiale de 2 cartes a chaque joueur */
 			for (Joueur j : maTable.getJoueurs()) {
 				j.addCarte(maTable.getPaq().piocher());
 				j.addCarte(maTable.getPaq().piocher());
@@ -60,13 +95,15 @@ public class Cpartie {
 		Joueur gagnant = null;
 		AbstractCombinaison c = new MainHaute();// Main la plus pourrie
 
-		if (maTable.getNbJoueurs() == 1) // Si le joueur est assis tout seul a
-											// la table (si tous les autres se
-											// déco)
+		if (maTable.getJoueurs().size() == 1) // Si le joueur est assis tout
+												// seul a
+												// la table (si tous les autres
+												// se
+												// dï¿½co)
 			gagnant = maTable.getJoueurs().get(0); // le gagnant est le restant
 
-		if (maTable.getNbJoueursEnJeu() == 1) { // ou tous les autres sont
-												// couchés
+		if (maTable.getJoueursEnJeu().size() == 1) { // ou tous les autres sont
+			// couchï¿½s
 			for (Joueur j : maTable.getJoueurs()) {
 				if (!j.isDown())
 					gagnant = j;
@@ -89,7 +126,7 @@ public class Cpartie {
 		return gagnant;
 	}
 
-	public void tourSuivant() { // Pas une méthode de Table car on part du
+	public void tourSuivant() { // Pas une mï¿½thode de Table car on part du
 								// principe que c'est le controller qui cadence
 								// la partie
 		if (verifierGagnant() == null) {
@@ -111,16 +148,18 @@ public class Cpartie {
 				break;
 			}
 		}
-		maTable.tour = 1;
+		maTable.setTour(1);
 	}
 
 	public void relancerManche() {
 		distribuerGains();
-		maTable.resetCartes(); //Débarasse la table
+		maTable.resetCartes(); // Dï¿½barasse la table
 		maTable.setTour(0);
-		for(Joueur j : maTable.getJoueurs()){ //On vire tous ceux qui ont plus de sous ou sont passer spec ou on déco
-			if(!j.getEtat() || j.getCreditPartie() <= 0)
-				maTable.quitterTable(j);
+		for (Joueur j : maTable.getJoueurs()) { // On vire tous ceux qui ont
+												// plus de sous ou sont passer
+												// spec ou on dï¿½co
+			if (!j.getEtat() || j.getCreditPartie() <= maTable.getBigBlind())
+				maTable.quitter(j);
 		}
 		maTable.setPaq(new Paquet("Jeu de 52 cartes de la table " + maTable.getId()));
 	}
@@ -131,4 +170,10 @@ public class Cpartie {
 		maTable.setPot(0);
 	}
 
+	public void joueurSuivant() {
+		for (Joueur j : maTable.getJoueursEnJeu()) {
+			if(!j.getaSuivi())
+				
+		}
+	}
 }

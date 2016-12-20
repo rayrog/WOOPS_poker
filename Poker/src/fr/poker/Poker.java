@@ -1,29 +1,47 @@
 package fr.poker;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.poker.model.Carte;
-import fr.poker.model.Compte;
-import fr.poker.model.Joueur;
-import fr.poker.model.MainJoueur;
-import fr.poker.model.Paquet;
-import fr.poker.model.Salle;
-import fr.poker.model.Table;
+import fr.poker.controller.*;
+import fr.poker.model.*;
 
 public class Poker {
 
 	public static void main(String[] args) {
-		Compte c = new Compte(1, "Dididoo", "Dujardin", "Luka", "worldofkalu@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5, "Cherche pas t'es mort");
-		Compte c2 = new Compte(2, "Dadidoo", "Miky", "Bob", "toz@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5, "Cherche pas t'es mort");
-		Joueur j1 = new Joueur(1, c, 5, true, "Pseudo de merde");
-		Joueur j2 = new Joueur(2, c2, 5, true, "Dadidoo");
+		/* LANCEMENT DE L'INTERFACE GRAPHIQUE (VIEW) */
+		//Clanceur init = new Clanceur();
 		
-		Table t = new Table(7);
-		Salle s = new Salle("Salle 1", false, "F4uxH@shM@g€ul€", t);
+		/* SIMULATON DE CREATION DE COMPTE --> TODO: Use BDD fields*/
+		Compte c1 = new Compte(1, "Dididoo", "Dujardin", "Luka", "worldofkalu@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5);
+		Compte c2 = new Compte(2, "Dadidoo", "Flory", "Mike", "toz@gmail.com", "0667929511", "15#61ds064ez6!65$64", 5);
+		Compte c3 = new Compte(3, "Dododu", "Prima", "Corentin", "test@hotmail.fr", "0667951232", "hash", 0);
 		
-		Paquet paq = new Paquet("Jeu de 52 cartes");
-		MainJoueur m = new MainJoueur(j1, t);
+		/* SIMULATION REJOINDRE SALLE--> TODO: Crï¿½er un joueur lorsqu'on click sur rejoindre/creer partie */
+		c1.createJoueur(0);
+		c2.createJoueur(5);
+		c3.createJoueur(120);
+		
+		/* SIMULATION DE CREATION PARTIE --> TODO: A faire lors de la crï¿½ation d'une partie*/
+		Salle s1 = new Salle("Salle 1", false, "inutile"); //salle publique
+		//Salle s2 = new Salle("Salle 2", true, "F4uxH@shM@gâ‚¬ulâ‚¬"); //salle privee
+		
+		/* AJOUT DE SPECTATEUR */
+		s1.rejoindre(c1.getJoueur());
+		
+		/*AJOUT DE JOUEUR A LA TABLE*/
+		
+		//Quand c2 clique sur la chaise
+		c2.getJoueur().setEtat(true);		
+		s1.rejoindre(c2.getJoueur());
+		
+		//Quand c3 clique sur la chaise
+		c3.getJoueur().setEtat(true);
+		s1.rejoindre(c3.getJoueur());
+		
+		/*LANCEMENT DE LA PARTIE (CONTROLLER)*/
+		Cpartie partie = new Cpartie(s1.getTable()); 
+		partie.run();
+		
+//		Paquet paq = new Paquet("Jeu de 52 cartes");
+//		MainJoueur m = new MainJoueur(j1, t);
 		
 
 //		ArrayList<Joueur> mesJoueurs = new ArrayList<Joueur>();

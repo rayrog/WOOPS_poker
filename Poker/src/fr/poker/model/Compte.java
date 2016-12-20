@@ -12,8 +12,7 @@ public class Compte {
 	private String bio;
 	public Joueur joueur;
 
-	public Compte(int id, String pseudo, String nom, String prenom, String mail, String tel, String hash, int credit,
-			String bio) {
+	public Compte(int id, String pseudo, String nom, String prenom, String mail, String tel, String hash, int credit) {
 		this.id = id;
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -22,7 +21,6 @@ public class Compte {
 		this.tel = tel;
 		this.hash = hash;
 		this.credit = credit;
-		this.bio = bio;
 	}
 
 	public int getId() {
@@ -102,7 +100,7 @@ public class Compte {
 	}
 
 	public void createJoueur(float creditPartie) {
-		this.joueur = new Joueur(this.id, this, creditPartie, true);
+		this.joueur = new Joueur(this, creditPartie, this.pseudo);
 	}
 
 	@Override

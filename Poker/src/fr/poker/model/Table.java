@@ -7,19 +7,26 @@ public class Table {
 	private int placeMax;
 	private List<Carte> cartes;
 	private ArrayList<Joueur> joueurs;
+	private ArrayList<Joueur> joueursAttente;
+	private float smallBlind;
+	private float bigBlind;
 	private Paquet paq;
 	private float pot;
-	public int tour;		// tour 0: Mise initiale; tour 1: flop(3 cartes); tour 2: Turn(1carte); tour 3: River(1 Carte); tour 4: Pour check le gagnant
+	private int tour; // tour 0: Mise initiale; tour 1: flop(3 cartes); tour 2:
+						// Turn(1carte); tour 3: River(1 Carte); tour 4: Pour
+						// check le gagnant
 
-	public Table(int placeMax) {
-		this.id = 1;	// A gérer avec la base de données
-		this.placeMax = placeMax;
+	public Table() {
+		this.id = 1; // A gï¿½rer avec la base de donnï¿½es
+		this.placeMax = 7;
 		this.paq = new Paquet("Jeu de 52 cartes de la table " + id);
+		this.joueurs = new ArrayList<Joueur>();
 		this.pot = 0;
 		this.tour = 0;
+		this.smallBlind = (float) 0.5;
+		this.bigBlind = 1;
+		this.joueursAttente = new ArrayList<>();
 	}
-	
-	
 
 	public int getId() {
 		return id;
@@ -29,19 +36,13 @@ public class Table {
 		this.id = id;
 	}
 
-
-
 	public Paquet getPaq() {
 		return paq;
 	}
 
-
-
 	public void setPaq(Paquet paq) {
 		this.paq = paq;
 	}
-
-
 
 	public int getPlaceMax() {
 		return placeMax;
@@ -51,17 +52,13 @@ public class Table {
 		this.placeMax = placeMax;
 	}
 
-	public int getNbJoueurs() {
-		return joueurs.size();
-	}
-	
-	public int getNbJoueursEnJeu(){
-		int i = 0;
-		for(Joueur j : getJoueurs()){
-			if(!j.isDown())
-				i++;
+	public ArrayList<Joueur> getJoueursEnJeu() {
+		ArrayList<Joueur> list = new ArrayList<Joueur>();
+		for (Joueur j : getJoueurs()) {
+			if (!j.isDown())
+				list.add(j);
 		}
-		return i;
+		return list;
 	}
 
 	public List<Carte> getCartes() {
@@ -71,16 +68,16 @@ public class Table {
 	public void addCarte(Carte carte) {
 		this.cartes.add(carte);
 	}
-	
-	public void resetCartes(){
+
+	public void resetCartes() {
 		cartes.clear();
 	}
 
 	public ArrayList<Joueur> getJoueurs() {
 		ArrayList<Joueur> liste = new ArrayList<Joueur>();
-		
-		for(Joueur j : this.joueurs){
-			if(j.etat)	//en jeu
+
+		for (Joueur j : this.joueurs) {
+			if (j.etat) // en jeu
 				liste.add(j);
 		}
 		return liste;
@@ -88,9 +85,9 @@ public class Table {
 
 	public ArrayList<Joueur> getSpectateurs() {
 		ArrayList<Joueur> liste = new ArrayList<Joueur>();
-		
-		for(Joueur j : this.joueurs){
-			if(!j.etat)	//en jeu
+
+		for (Joueur j : this.joueurs) {
+			if (!j.etat) // en jeu
 				liste.add(j);
 		}
 		return liste;
@@ -99,8 +96,6 @@ public class Table {
 	public float getPot() {
 		return pot;
 	}
-
-
 
 	public void setPot(float pot) {
 		this.pot = pot;
@@ -114,19 +109,50 @@ public class Table {
 		this.tour = tour;
 	}
 
-	public void rejoindreTable(Joueur j) {
-		if (getNbJoueurs() <= placeMax && j.creditPartie > 0 && !j.etat && tour==0){
-			joueurs.add(j);
-			j.setEtat(true);
-		}			
-		else
-			System.out.println("Vous n'avez pas encore votre place a cette table");
+	public float getSmallBlind() {
+		return smallBlind;
 	}
 
-	public void quitterTable(Joueur j) {
+	public float getBigBlind() {
+		return bigBlind;
+	}
+
+	public ArrayList<Joueur> getJoueursAttente() {
+		return joueursAttente;
+	}
+
+	public void setJoueursAttente(ArrayList<Joueur> joueursAttente) {
+		this.joueursAttente = joueursAttente;
+	}
+
+	public void rejoindre(Joueur j) {
+		if (getJoueurs().size() <= placeMax) {
+			if (j.getEtat()!= true) { // Si un spectateur veut rejoindre la partie
+				joueurs.add(j);
+				j.setEtat(false);// Au cas ou etat=null
+				System.out.println(j.getPseudo() + " a rejoint la salle en spectateur");
+			} else {
+				if (j.getCreditPartie()> getBigBlind()) {
+					if (tour == 0) {
+						joueurs.add(j);
+						j.setEtat(true);
+						j.setTable(this);
+						System.out.println(j.getPseudo() + " a rejoint la table");
+					} else {
+						if (!joueursAttente.contains(j))
+							joueursAttente.add(j);
+						System.out.println("Attente du dÃ©but de la prochaine manche");
+					}
+				}else
+				System.out.println("Vous n'avez pas suffisament de credit pour cette partie");
+			}
+		} else
+			System.out.println("Il n'y a pas suffisament de place Ã  cette table");
+	}
+
+	public void quitter(Joueur j) {
 		j.etat = false;
 		joueurs.remove(j);
 	}
-	
-	
+
 }

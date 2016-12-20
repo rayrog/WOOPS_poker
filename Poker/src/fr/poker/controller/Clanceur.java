@@ -1,14 +1,8 @@
 package fr.poker.controller;
 
 public class Clanceur {
-	public Clanceur() {
-		// TODO Auto-generated constructor stub
-	}
-//	
-//	 * Lance la fenetre de connexion
-//	 * 
 	
-	public static void main(String[] args) {
+	public Clanceur() {
 		Cconnexion ccon = new Cconnexion();
 		try {
 			System.out.println("Ouverture page connexion");
@@ -21,5 +15,4 @@ public class Clanceur {
 		// FenetrePrincipale.getInstance();
 		// Partie.getInstance().start();
 	}
-
 }
