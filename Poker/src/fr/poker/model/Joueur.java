@@ -166,7 +166,10 @@ public class Joueur {
 		// TODO : a g�rer avec la base de donn�es pour �viter de supprimer
 		// toutes les infos du joueurs (stats)
 	}
-
+	
+	public void parler(){
+		//TODO: Timer + Listener miser suivre etc.
+	}
 	public void getInfos() {
 		System.out.println("Compte : " + compte);
 		System.out.println("Credit restants : " + creditPartie);
@@ -187,4 +190,6 @@ public class Joueur {
 	public void setCartes(List<Carte> listeCartes) {
 		this.cartes = listeCartes;
 	}
+	
+	
 }

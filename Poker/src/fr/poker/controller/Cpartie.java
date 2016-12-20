@@ -21,8 +21,8 @@ public class Cpartie {
 		if (maTable.getJoueurs().size() > 1) {
 			distribuerRole(maTable);
 			distribuerCartes();
-			while(miseEnAttente() == -1){
-				
+			while (miseEnAttente() == -1) {
+				joueurSuivant();
 			}
 
 		} else
@@ -175,14 +175,17 @@ public class Cpartie {
 
 	public void joueurSuivant() {
 		for (Joueur j : maTable.getJoueursEnJeu()) {
-			
-				
+			if (maTable.getTour() != 4) {
+				if (j.getRole() == "Petite blinde")
+					j.parler();
+			}
 		}
 	}
 	
-	public int miseEnAttente(){
+	/* Retourne -1 si tous les joueurs en jeu n'ont pas encore suivi */
+	public int miseEnAttente() {
 		for (Joueur j : maTable.getJoueursEnJeu()) {
-			if(!j.getaSuivi())
+			if (!j.getaSuivi())
 				return -1;
 		}
 		return 1;
