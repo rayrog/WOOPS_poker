@@ -430,6 +430,14 @@ public class Vjeu{
 		frame.getContentPane().add(lblBackground);
 	}
 
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
 	public JButton getBtnEnvoyer() {
 		return btnEnvoyer;
 	}
