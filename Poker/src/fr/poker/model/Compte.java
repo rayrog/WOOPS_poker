@@ -13,6 +13,7 @@ public class Compte {
 	public Joueur joueur;
 
 	public Compte(int id, String pseudo, String nom, String prenom, String mail, String tel, String hash, int credit) {
+		super();
 		this.id = id;
 		this.pseudo = pseudo;
 		this.nom = nom;

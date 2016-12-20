@@ -1,5 +1,7 @@
 package fr.poker.model;
 
+import java.util.Scanner;
+
 public class Salle {
 	private int id;
 	private String nom;
@@ -8,6 +10,7 @@ public class Salle {
 	public Table table;
 
 	public Salle(String nom, boolean privat, String hash) {
+		super();
 		this.nom = nom;
 		this.privat = privat;
 		if (privat)

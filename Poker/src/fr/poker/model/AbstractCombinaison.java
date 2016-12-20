@@ -4,21 +4,22 @@ import java.util.*;
 
 public abstract class AbstractCombinaison implements Comparable<AbstractCombinaison> {
 
-	/* Défini dans les classes filles */
+	/* Dï¿½fini dans les classes filles */
 	private String nom;
 	private Valeur valeurHaute;
 	private Valeur valeurBasse;
 	private List<Valeur> kikers;
-	private boolean combinaisonProche; // Permet de savoir si on doit vérifier
+	private boolean combinaisonProche; // Permet de savoir si on doit vï¿½rifier
 										// qu'il y a pas une combinaison avec
 										// des carte similaires (ex: brelan de 3
 										// et carre de 3)
 
 	protected AbstractCombinaison(String nom) {
+		super();
 		this.nom = nom;
 	}
 
-	/* Spécifique à chaque combinaison */
+	/* Spï¿½cifique ï¿½ chaque combinaison */
 	public abstract boolean verifier(List<Carte> cartes);
 
 	public abstract String getDescription();
@@ -30,7 +31,7 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 	public abstract int getValeur();
 
 	/*
-	 * Compte le nombre de fois qu'une valeur est présente dans une list de
+	 * Compte le nombre de fois qu'une valeur est prï¿½sente dans une list de
 	 * cartes
 	 */
 	public int compterValeur(Valeur v, List<Carte> cartes) {
@@ -44,8 +45,8 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 	}
 
 	/*
-	 * Compare les kikers de deux combinaisons; retourne 0 si kikers égaux;
-	 * retourne un negatif si les kikers sont inférieurs aux kikers de l'objet c
+	 * Compare les kikers de deux combinaisons; retourne 0 si kikers ï¿½gaux;
+	 * retourne un negatif si les kikers sont infï¿½rieurs aux kikers de l'objet c
 	 */
 	public int comparerKikers(AbstractCombinaison c) {
 		int res = 0;
@@ -63,7 +64,7 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 																													// de
 																													// chaque
 																													// combinaison
-																													// jusqu'à
+																													// jusqu'ï¿½
 																													// trouver
 				i++;
 			}
@@ -76,7 +77,7 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 	public int compareTo(AbstractCombinaison c) {
 		int res = getValeur() - c.getValeur(); // Compare le poids des
 												// combinaisons
-		if (res == 0) { // poids égaux
+		if (res == 0) { // poids ï¿½gaux
 			if (this instanceof Paire || this instanceof Brelan || this instanceof Carre || this instanceof Quinte
 					|| this instanceof QuinteFlush) {
 				res = getValeurHaute().compareTo(c.getValeurHaute());

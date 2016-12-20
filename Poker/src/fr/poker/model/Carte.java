@@ -10,6 +10,7 @@ public class Carte {
 	   super();
    }
    public Carte(Couleur couleur, Valeur valeur) {
+	  super();
       this.couleur = couleur;
       this.valeur = valeur;
    }

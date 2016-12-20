@@ -11,12 +11,13 @@ public class Paquet {
 
 
 	public Paquet(String nom) {
+		super();
 		this.nom = nom;
 		
 		for (Valeur v : Valeur.values()) {
 			for (Couleur c : Couleur.values()) {
 				p.add(new Carte(c,v));
-				//System.out.println("Carte ajoutée : " + v + " de " + c);
+				//System.out.println("Carte ajoutï¿½e : " + v + " de " + c);
 			}
 		}				
 	}

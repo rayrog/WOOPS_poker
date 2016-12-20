@@ -21,6 +21,9 @@ public class Cpartie {
 		if (maTable.getJoueurs().size() > 1) {
 			distribuerRole(maTable);
 			distribuerCartes();
+			while(miseEnAttente() == -1){
+				
+			}
 
 		} else
 			System.out.println("C'est dommage tu es tout seul");
@@ -29,17 +32,17 @@ public class Cpartie {
 	public void distribuerRole(Table table) {
 		for (int i = 0; i < maTable.getJoueurs().size(); i++) {
 
-			Joueur currentJ = maTable.getJoueurs().get(i);
+			Joueur j = maTable.getJoueurs().get(i);
 
 			if (maTable.getJoueurs().size() < 3) {
 				switch (i) {
 				case 0:
-					currentJ.setRole("Petite blinde");
-					currentJ.miser(maTable.getSmallBlind());
+					j.setRole("Petite blinde");
+					j.miser(maTable.getSmallBlind());
 					break;
 				case 1:
-					currentJ.setRole("Grosse blinde");
-					currentJ.miser(maTable.getBigBlind());
+					j.setRole("Grosse blinde");
+					j.miser(maTable.getBigBlind());
 					break;
 				default:
 					System.out.println("Erreur de role");
@@ -47,18 +50,18 @@ public class Cpartie {
 			} else {
 				switch (i) {
 				case 0:
-					currentJ.setRole("Dealer");
+					j.setRole("Dealer");
 					break;
 				case 1:
-					currentJ.setRole("Petite blinde");
-					currentJ.miser(maTable.getSmallBlind());
+					j.setRole("Petite blinde");
+					j.miser(maTable.getSmallBlind());
 					break;
 				case 2:
-					currentJ.setRole("Grosse blinde");
-					currentJ.miser(maTable.getBigBlind());
+					j.setRole("Grosse blinde");
+					j.miser(maTable.getBigBlind());
 					break;
 				default:
-					currentJ.setRole("Neutre");
+					j.setRole("Neutre");
 				}
 			}
 		}
@@ -172,8 +175,16 @@ public class Cpartie {
 
 	public void joueurSuivant() {
 		for (Joueur j : maTable.getJoueursEnJeu()) {
-			if(!j.getaSuivi())
+			
 				
 		}
+	}
+	
+	public int miseEnAttente(){
+		for (Joueur j : maTable.getJoueursEnJeu()) {
+			if(!j.getaSuivi())
+				return -1;
+		}
+		return 1;
 	}
 }
