@@ -29,6 +29,7 @@ public class Vinscription {
 	private JButton btnSignUp;
 	private JButton btnBack;
 	private JLabel lblErrorField;
+	private JLabel lblSuccess;
 
 public JLabel getLblErrorField() {
 		return lblErrorField;
@@ -51,6 +52,15 @@ public JLabel getLblErrorField() {
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		lblSuccess = new JLabel("Enregistrement effectué avec succès !");
+		lblSuccess.setBackground(new Color(0, 128, 0));
+		lblSuccess.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSuccess.setForeground(Color.RED);
+		lblSuccess.setFont(new Font("Tahoma", Font.BOLD, 32));
+		lblSuccess.setBounds(202, 129, 835, 63);
+		frame.getContentPane().add(lblSuccess);
+		lblSuccess.setVisible(false);
 		
 		pwdAccount = new JPasswordField();
 		pwdAccount.setText(textInitiaux[0]);
@@ -79,13 +89,6 @@ public JLabel getLblErrorField() {
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogo.setBounds(385, 20, 160, 154);
 		frame.getContentPane().add(lblLogo);
-		
-		JLabel lblTitle = new JLabel("WOOP");
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setForeground(Color.LIGHT_GRAY);
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 45));
-		lblTitle.setBounds(569, 30, 168, 63);
-		frame.getContentPane().add(lblTitle);
 		
 		JLabel lblSlogan = new JLabel("World Of Online Poker");
 		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
@@ -180,8 +183,23 @@ public JLabel getLblErrorField() {
 		lblInfoFields.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		lblInfoFields.setBounds(488, 673, 249, 16);
 		frame.getContentPane().add(lblInfoFields);
+		
+		JLabel label = new JLabel("WOOP");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.LIGHT_GRAY);
+		label.setFont(new Font("Tahoma", Font.BOLD, 45));
+		label.setBounds(544, 30, 168, 63);
+		frame.getContentPane().add(label);
 		lblErrorField.setVisible(false);
 		
+	}
+
+	public JLabel getLblSuccess() {
+		return lblSuccess;
+	}
+
+	public void setLblSuccess(JLabel lblSuccess) {
+		this.lblSuccess = lblSuccess;
 	}
 
 	public String[] getTextInitiaux() {

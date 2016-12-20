@@ -21,6 +21,7 @@ public class Cinscription extends JFrame {
 	private ArrayList<String> txtFields;
 	private CBconnect cbCon;
 	private CBcompte cbCompte;
+	private javax.swing.Timer timer;
 	public Cinscription(Cconnexion c) {
 		this.cCon = c;
 		this.vins = new Vinscription(this, cCon.getFenetreco().getFrame());
@@ -132,9 +133,14 @@ public class Cinscription extends JFrame {
 	}
 	
 	public void insertNewUserData() {
+		this.timer = new javax.swing.Timer(4000, null);
 		cbCon = new CBconnect();
 		cbCompte = new CBcompte(cbCon);
 		cbCompte.inscription(this);
+		this.vins.getLblSuccess().setVisible(true);
+		timer.start();
+		this.closeInscription();
+		this.cCon.displayConnexion();	
 	}
 	
 	public Vinscription getVins() {
