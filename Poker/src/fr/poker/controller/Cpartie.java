@@ -36,7 +36,7 @@ public class Cpartie {
 
 				while (miseEnAttente() == -1) {
 					joueurSuivant();
-					break; // to remove--> just for debug
+					break; // to remove--> just for debug waiting parler() implementation
 				}
 				tourSuivant();
 				distribuerCartes();

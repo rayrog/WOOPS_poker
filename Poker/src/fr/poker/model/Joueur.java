@@ -133,42 +133,41 @@ public class Joueur {
 			}
 		}
 
-		AbstractCombinaison combinaisonJoueur = null;
 		QuinteFlush qfJoueur = new QuinteFlush();
 		if (qfJoueur.verifier(allCartes)) {
-			combinaisonJoueur = qfJoueur;
+			m = qfJoueur;
 		} else {
 			Carre carreJoueur = new Carre();
 			if (carreJoueur.verifier(allCartes)) {
-				combinaisonJoueur = carreJoueur;
+				m = carreJoueur;
 			} else {
 				Full fullJoueur = new Full();
 				if (fullJoueur.verifier(allCartes)) {
-					combinaisonJoueur = fullJoueur;
+					m = fullJoueur;
 				} else {
 					Flush couleurJoueur = new Flush();
 					if (couleurJoueur.verifier(allCartes)) {
-						combinaisonJoueur = couleurJoueur;
+						m = couleurJoueur;
 					} else {
 						Quinte suiteJoueur = new Quinte();
 						if (suiteJoueur.verifier(allCartes)) {
-							combinaisonJoueur = suiteJoueur;
+							m = suiteJoueur;
 						} else {
 							Brelan brelanJoueur = new Brelan();
 							if (brelanJoueur.verifier(allCartes)) {
-								combinaisonJoueur = brelanJoueur;
+								m = brelanJoueur;
 							} else {
 								DoublePaire dpJoueur = new DoublePaire();
 								if (dpJoueur.verifier(allCartes)) {
-									combinaisonJoueur = dpJoueur;
+									m = dpJoueur;
 								} else {
 									Paire paireJoueur = new Paire();
 									if (paireJoueur.verifier(allCartes)) {
-										combinaisonJoueur = paireJoueur;
+										m = paireJoueur;
 									} else {
 										MainHaute rienJoueur = new MainHaute();
 										rienJoueur.verifier(allCartes);
-										combinaisonJoueur = rienJoueur;
+										m = rienJoueur;
 									}
 								}
 							}
