@@ -33,7 +33,7 @@ public class Carre extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Carré de " + getValeurHaute().getNom().toLowerCase();
 	}
 

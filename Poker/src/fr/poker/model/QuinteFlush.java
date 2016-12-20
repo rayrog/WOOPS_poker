@@ -37,7 +37,7 @@ public class QuinteFlush extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Quinte Flush";
 	}
 

@@ -40,7 +40,7 @@ public class DoublePaire extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Double paire : "+getValeurHaute().getNom().toLowerCase()+" et "+getValeurBasse().getNom().toLowerCase();
 	}
 

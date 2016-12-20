@@ -29,7 +29,7 @@ public class MainHaute extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Aucune combinaison";
 	}
 

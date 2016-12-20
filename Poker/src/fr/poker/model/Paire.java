@@ -38,7 +38,7 @@ public class Paire extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Paire de "+getValeurHaute().getNom().toLowerCase();
 	}
 

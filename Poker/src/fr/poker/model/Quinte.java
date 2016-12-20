@@ -54,7 +54,7 @@ public class Quinte extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Suite";
 	}
 

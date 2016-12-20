@@ -63,7 +63,7 @@ public class Flush extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Couleur  "+couleur;
 	}
 

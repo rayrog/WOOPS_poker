@@ -39,7 +39,7 @@ public class Brelan extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Brelan de " + getValeurHaute().getNom().toLowerCase();
 	}
 

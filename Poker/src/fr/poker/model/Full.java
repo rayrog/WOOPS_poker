@@ -39,7 +39,7 @@ public class Full extends AbstractCombinaison {
 	}
 
 	@Override
-	public String getDescription() {
+	public String toString() {
 		return "Full aux "+getValeurHaute().getNom().toLowerCase()+" par les "+getValeurBasse().getNom().toLowerCase();
 	}
 

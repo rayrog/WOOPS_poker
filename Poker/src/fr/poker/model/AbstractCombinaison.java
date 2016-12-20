@@ -18,8 +18,6 @@ public abstract class AbstractCombinaison implements Comparable<AbstractCombinai
 	/* Sp�cifique � chaque combinaison */
 	public abstract boolean verifier(List<Carte> cartes);
 
-	public abstract String getDescription();
-
 	/*
 	 * rien = 0 ; paire=1; double paire=2 ; brelan=3 ; quinte=4 ; flush=5 ;
 	 * full=6 ; carre=7 ; quinte flush=8 ; quinte flush royale=9
