@@ -62,11 +62,11 @@ public class Cpartie {
 
 		if (maTable.getNbJoueurs() == 1) // Si le joueur est assis tout seul a
 											// la table (si tous les autres se
-											// déco)
+											// dï¿½co)
 			gagnant = maTable.getJoueurs().get(0); // le gagnant est le restant
 
 		if (maTable.getNbJoueursEnJeu() == 1) { // ou tous les autres sont
-												// couchés
+												// couchï¿½s
 			for (Joueur j : maTable.getJoueurs()) {
 				if (!j.isDown())
 					gagnant = j;
@@ -89,7 +89,7 @@ public class Cpartie {
 		return gagnant;
 	}
 
-	public void tourSuivant() { // Pas une méthode de Table car on part du
+	public void tourSuivant() { // Pas une mï¿½thode de Table car on part du
 								// principe que c'est le controller qui cadence
 								// la partie
 		if (verifierGagnant() == null) {
@@ -116,9 +116,9 @@ public class Cpartie {
 
 	public void relancerManche() {
 		distribuerGains();
-		maTable.resetCartes(); //Débarasse la table
+		maTable.resetCartes(); //Dï¿½barasse la table
 		maTable.setTour(0);
-		for(Joueur j : maTable.getJoueurs()){ //On vire tous ceux qui ont plus de sous ou sont passer spec ou on déco
+		for(Joueur j : maTable.getJoueurs()){ //On vire tous ceux qui ont plus de sous ou sont passer spec ou on dï¿½co
 			if(!j.getEtat() || j.getCreditPartie() <= 0)
 				maTable.delJoueur(j);
 		}
