@@ -12,7 +12,6 @@ public enum Couleur {
 	Couleur(String nom, int id) {
 		this.nom = nom;
 		this.id = id;
-		
 	}
 
 	public int getId() {

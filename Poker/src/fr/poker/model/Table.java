@@ -17,6 +17,7 @@ public class Table {
 						// check le gagnant
 
 	public Table() {
+		super();
 		this.id = 1; // A g�rer avec la base de donn�es
 		this.placeMax = 7;
 		this.paq = new Paquet("Jeu de 52 cartes de la table " + id);
@@ -154,5 +155,14 @@ public class Table {
 		j.etat = false;
 		joueurs.remove(j);
 	}
+
+	@Override
+	public String toString() {
+		return "Table [placeMax=" + placeMax + ", cartes=" + cartes + ", joueurs=" + joueurs + ", joueursAttente="
+				+ joueursAttente + ", smallBlind=" + smallBlind + ", bigBlind=" + bigBlind + ", pot=" + pot + ", tour="
+				+ tour + "]";
+	}
+	
+	
 
 }
