@@ -8,7 +8,7 @@ import fr.poker.view.Vjeu;
 
 public class Emission implements Runnable {
 
-	private PrintWriter out;
+	private static PrintWriter out;
 	private String login = null, message = null;
 	private Scanner sc = null;
 	
@@ -18,17 +18,29 @@ public class Emission implements Runnable {
 	}
 
 	
-	public void run() {
+	public static void run(String message) {
 		
-		  sc = new Scanner(System.in);
-		  
-		  while(true){
+		  //sc = new Scanner(System.in);
+		  Boolean etat = true;
+		  while(etat){
 			    System.out.println("Votre message :");
-				message = sc.nextLine();
+			    //out.println();
+			    
+				//message = sc.nextLine();
+			    System.out.println(message);
+			    System.out.flush();
 				out.println(message);
 			    out.flush();
-			    Vjeu window = new Vjeu(message);
-			    window.frame.setVisible(true);
+			    //Vjeu window = new Vjeu(message);
+			    //window.frame.setVisible(true);
+			    etat=false;
 			  }
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

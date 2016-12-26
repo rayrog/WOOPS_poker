@@ -1,5 +1,6 @@
 package fr.poker.model.chat.Serveur;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
@@ -45,12 +46,14 @@ public class Authentification implements Runnable {
 		 }
 		//}
 			System.out.println("je vais lancer chat client-serveur");
-			t2 = new Thread(new Chat_ClientServeur(socket,login));
+			// Création de la liste
+			ArrayList<String> array_Liste=new ArrayList<String>();
+			t2 = new Thread(new Chat_ClientServeur(socket,login,array_Liste));
 			t2.start();
 			
 		} catch (IOException e) {
 			
-			System.err.println(login+" ne r�pond pas !");
+			System.err.println(login+" ne répond pas !");
 		}
 		
 	}

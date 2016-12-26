@@ -2,12 +2,14 @@ package fr.poker.view;
 
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-
+import java.io.*; 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Timer;
+
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cclient;
@@ -18,14 +20,16 @@ import fr.poker.controller.listener.JButtonListenerJeu;
 import fr.poker.controller.listener.JButtonListenerMiser;
 import fr.poker.controller.listener.JButtonListenerSeCoucher;
 import fr.poker.controller.listener.JButtonListenerSuivre;
+import fr.poker.model.chat.Serveur.Reception;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JLayeredPane;
 
 public class Vjeu{
 
-	public JFrame frame;
+	public static JFrame frame;
 	public static JTextField textFieldMise;
 	public static JTextField textFieldChat;
 	public static JPanel panelChat;
@@ -60,11 +64,21 @@ public class Vjeu{
 		//this.messageRecu=message;
 		initialize();	
 	}
-
+	public Vjeu() {
+		//this.messageRecu=message;
+		initialize();	
+	}
+	public Vjeu(String message) {
+		this.messageRecu=message;
+		initialize();	
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+
+		System.out.println("Début de l'affichage");
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 1300, 800);
@@ -387,6 +401,7 @@ public class Vjeu{
 		btnEnvoyer.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnvoyer.setBounds(319, 730, 89, 23);
 		frame.getContentPane().add(btnEnvoyer);
+		btnEnvoyer.addActionListener(new CjeuListener());
 		//btnEnvoyer.addActionListener(new JButtonListenerJeu());
 		
 		btnMiser = new JButton("Miser");
@@ -414,21 +429,47 @@ public class Vjeu{
 		btnSeCoucher.addActionListener(new JButtonListenerJeu(null));
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JPanel panelChat = new JPanel();
-		panelChat.setBounds(7, 608, 391, 110);
-		frame.getContentPane().add(panelChat);
-		// Modif Corentin PRIMA
-		panelChat.setLayout(new FlowLayout());
-		//JLabel label = new JLabel("Ici il faut afficher le resultat du chat");
-		JLabel label = new JLabel(messageRecu);
-		panelChat.add(label);
-		// Modif update
-		//panelChat.updateUI();
 		
+		
+		
+		
+		JLayeredPane LayerChat = new JLayeredPane();
+
+		
+		LayerChat.setBounds(0,0,1300,800);
+	//LayerChat.setBounds(7, 608, 391, 110);
+	
+
+		
+		JLayeredPane Background = new JLayeredPane();
+		Background.setBounds(0, 0, 1284, 761);
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/background.png")));
 		lblBackground.setBounds(0, 0, 1284, 761);
-		frame.getContentPane().add(lblBackground);
+		
+		LayerChat.add(lblBackground);
+		Background.setLayer(lblBackground, 0);
+		
+		frame.getContentPane().add(LayerChat);
+		//
+		JPanel panelChat = new JPanel();
+		panelChat.setBackground(Color.WHITE);
+		
+		panelChat.setBounds(7, 608, 391, 110);
+		System.out.println("On lance la boucle");
+		JTextField monTexte = new JTextField("test affichage");
+		panelChat.add(monTexte);
+		LayerChat.add(panelChat);
+		LayerChat.setLayer(panelChat, 1);
+		//
+		frame.getContentPane().add(LayerChat);
+		frame.setVisible(true);
+		
+		//Vjeu.showPanel(frame);
+		System.out.println("Affichage du panel");
+		
+		
+		
 	}
 
 	public JFrame getFrame() {
@@ -477,5 +518,36 @@ public class Vjeu{
 
 	public void setBtnSeCoucher(JButton btnSeCoucher) {
 		this.btnSeCoucher = btnSeCoucher;
+	}
+	
+	public static void showPanel(JFrame frame){
+		Boolean state = true;
+	
+				System.out.println("Panneau affiché");
+//				panelChat.setLayout(new FlowLayout());
+//				for(String elem: Reception.array_L)
+//			       {
+//			       	 System.out.println (elem);
+//			       	 JTextField monTexte = new JTextField(elem);
+//					 panelChat.add(monTexte);
+//					 panelChat.setVisible(true);
+//					 monTexte.setVisible(true);
+//			       }
+//				try {
+//					Thread.sleep(2000);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+				
+	//	}
+		
+		// Modif Corentin PRIMA
+		
+		
+		//JLabel label = new JLabel("Ici il faut afficher le resultat du chat");
+		//JLabel label = new JLabel(messageRecu);
+		//panelChat.add(label);
+		// Modif update
+		//panelChat.updateUI();
 	}
 }
