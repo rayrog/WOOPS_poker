@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import fr.poker.controller.Cclient;
 import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerCheck;
@@ -55,7 +56,7 @@ public class Vjeu{
 	/**
 	 * Create the application.
 	 */
-	public Vjeu() {
+	public Vjeu(Cclient c) {
 		//this.messageRecu=message;
 		initialize();	
 	}

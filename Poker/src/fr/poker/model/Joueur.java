@@ -2,12 +2,17 @@ package fr.poker.model;
 
 import java.util.*;
 
-public class Joueur {
+public class Joueur extends Observable {
 
 	private int id; // Pour identifier un joueur dans une partie
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
 	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de
 									// commencer la partie
+	private boolean jouer;
+	private boolean tourGagne;
+	private boolean tourFini;
+	private boolean partieGagne;
+	protected boolean partieFinie;
 	protected boolean etat; // True = en jeu ; False = Spectateur
 	private String role; // Dealer, Petite blinde, Grosse blinde, Neutre
 	private boolean isDown; // True = couch�; false = en jeu
@@ -18,7 +23,7 @@ public class Joueur {
 								// partie
 	private String pseudo;
 	private Table table; // Table sur laquelle le joueur joue
-
+	public ArrayList<Joueur> adversaires;
 	private AbstractCombinaison m; // Meilleure combinaison de 5 cartes de la
 									// table(3) et
 	// du joueur(2)
@@ -27,6 +32,7 @@ public class Joueur {
 
 	public Joueur() {
 		super();
+		adversaires = new ArrayList<Joueur>();
 	}
 
 	public Joueur(Compte compte, float creditPartie, String pseudo) {
@@ -35,6 +41,7 @@ public class Joueur {
 		this.compte = compte;
 		this.creditPartie = creditPartie;
 		etat = false;
+		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
 		cartes = new ArrayList<>();
 		aSuivi = false;
 	}
@@ -257,6 +264,11 @@ public class Joueur {
 		} else
 			System.out.println("Spectateur");
 	}
+	
+	public void setChangedView(){
+		setChanged();
+		notifyObservers();
+	}
 
 	@Override
 	public String toString() {
@@ -264,5 +276,6 @@ public class Joueur {
 				+ isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", pseudo=" + pseudo + " m=" + m + ", mise="
 				+ mise + "]";
 	}
+
 
 }
