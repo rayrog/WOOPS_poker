@@ -27,23 +27,16 @@ public class Reception implements Runnable {
 			System.out.println(login+" dit"+" : "+message);
 			MessageAfficher= login+" dit"+" : "+message;
 			array_L.add(MessageAfficher);
-			//listeMessage[i] = MessageAfficher;
 			
-			//System.out.println(listeMessage);
-			//Vjeu window = new Vjeu("message parametre du serveur");
-			//i++;
-			//System.out.println("i= "+ i);
 			System.out.println("Voici ma liste :");
 			 for(String elem: array_L)
 		       {
 		       	 System.out.println (elem);
 		       }
-//			System.out.println(listeMessage[i]);
-//			if(i!=0){
-//				for(int y=0; y<i; i++){
-//					System.out.println(listeMessage[i]);
-//				}
-			//}
+			 System.out.println("Je suis le serv et je vais lancer lance actualiser");
+			 Vjeu.actualiser(Vjeu.LayerChat,array_L);
+			 System.out.println("Je suis le serv et j'ai lancé lance actualiser");
+
 		    } catch (IOException e) {
 				
 				e.printStackTrace();

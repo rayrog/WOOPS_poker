@@ -8,6 +8,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
+import fr.poker.model.chat.Serveur.Reception;
 import fr.poker.model.chat.client.Emission;
 import fr.poker.view.Vjeu;
 
@@ -27,9 +28,7 @@ public class CjeuListener implements ActionListener{
 		//message = Vjeu.textFieldChat.getText();
 		Vjeu.messageRecu = Vjeu.textFieldChat.getText();
 		Emission.run(Vjeu.messageRecu);
-		System.out.println("Je vais actualiser");
-		Vjeu.actualiser(Vjeu.LayerChat);
-		
+		//Vjeu.actualiser(Vjeu.LayerChat);
 		//System.out.println(Vjeu.messageRecu);
 		//System.out.println("mdr");
 		//JLabel label = new JLabel(Vjeu.messageRecu);
