@@ -42,33 +42,42 @@ public class Cclient implements Runnable {
 		switch(type){
 		case ConstantesClient.POT :
 			//Mise à jour du pot
+			System.out.println("Mise à jour du pot");
 			break;
 		case ConstantesClient.TOURGAGNE :
+			System.out.println("Tour gagne");
 			break;
 		case ConstantesClient.GAINTOUR :
+			System.out.println("Tour gagne");
 			break;
 		case ConstantesClient.PERTETOUR :
+			System.out.println("Perte du tour");
 			break;
 		case ConstantesClient.CHOIX_ADVERSAIRE :
+			System.out.println("Coix adversaire");
 			break;
 		case ConstantesClient.GAINPARTIE :
+			System.out.println("Gain Partie");
 			break;
 		case ConstantesClient.PARTIE_GAGNEE :
+			System.out.println("PArtie Gangnee");
 			break;
 		case ConstantesClient.JOUE :
+			System.out.println("Nouvel adversaire");
 			//à toi de jouer
 			break;
 		case ConstantesClient.NOUVEL_ADVERSAIRE :
+			System.out.println("Nouvel adversaire");
 			break;
 		case ConstantesClient.ADVERSAIRE_OUT :
+			System.out.println("L'adversaire à quitter la partie");
 			break;
 		}
 		//On notifie à la vue les changements
 		j.setChangedView();
-		}
-		//TO DO Tous les cases (donc switchcase) à traiter : gangner perdu , choix adversaire
+	}
 
-		
+	
 	
 	@Override
 	public void run() {
@@ -84,7 +93,8 @@ public class Cclient implements Runnable {
 	}
 	public static void main(String[] args) throws Exception { // Cette méthode ne sera plus un main et sera appelée par l'action du bouton rejoindre salle
 		int portServeur = 4555; // Le port sera trasnmis par la méthode réécrite
-		Socket socket = new Socket("172.23,2,15", portServeur);
+		//TO DO adresse du serveur 
+		Socket socket = new Socket("127.0.0.1", portServeur);
 		Cclient c = new Cclient(socket);
 	}
 	

@@ -40,6 +40,7 @@ public class Joueur extends Observable {
 		this.pseudo = pseudo;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
+		this.partieFinie = false;
 		etat = false;
 		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
 		cartes = new ArrayList<>();
