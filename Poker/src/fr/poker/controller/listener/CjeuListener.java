@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
@@ -26,6 +27,9 @@ public class CjeuListener implements ActionListener{
 		//message = Vjeu.textFieldChat.getText();
 		Vjeu.messageRecu = Vjeu.textFieldChat.getText();
 		Emission.run(Vjeu.messageRecu);
+		System.out.println("Je vais actualiser");
+		Vjeu.actualiser(Vjeu.LayerChat);
+		
 		//System.out.println(Vjeu.messageRecu);
 		//System.out.println("mdr");
 		//JLabel label = new JLabel(Vjeu.messageRecu);
@@ -39,4 +43,5 @@ public class CjeuListener implements ActionListener{
 		//Vjeu window = new Vjeu(Vjeu.messageRecu);
 	    //window.frame.setVisible(true);
 	}
+
 }

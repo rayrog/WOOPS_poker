@@ -41,6 +41,9 @@ public class Vjeu{
 	public JButton btnSuivre;
 	public JButton btnCheck;
 	public JButton btnSeCoucher;
+	public static JLayeredPane LayerChat = new JLayeredPane();
+	static JLayeredPane Background = new JLayeredPane();
+	static JLabel lblBackground = new JLabel("");
 	/**
 	 * Launch the application.
 	 */
@@ -393,7 +396,7 @@ public class Vjeu{
 		textFieldChat.setBounds(7, 724, 305, 33);
 		frame.getContentPane().add(textFieldChat);
 		textFieldChat.setColumns(10);
-		textFieldChat.setText("Je suis dans la zone ou j'�cris");
+		textFieldChat.setText("Je suis dans la zone ou j'écris");
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////// ICI
@@ -433,7 +436,7 @@ public class Vjeu{
 		
 		
 		
-		JLayeredPane LayerChat = new JLayeredPane();
+		
 
 		
 		LayerChat.setBounds(0,0,1300,800);
@@ -441,9 +444,9 @@ public class Vjeu{
 	
 
 		
-		JLayeredPane Background = new JLayeredPane();
+		
 		Background.setBounds(0, 0, 1284, 761);
-		JLabel lblBackground = new JLabel("");
+		
 		lblBackground.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/background.png")));
 		lblBackground.setBounds(0, 0, 1284, 761);
 		
@@ -452,22 +455,7 @@ public class Vjeu{
 		
 		frame.getContentPane().add(LayerChat);
 		//
-		JPanel panelChat = new JPanel();
-		panelChat.setBackground(Color.WHITE);
-		
-		panelChat.setBounds(7, 608, 391, 110);
-		System.out.println("On lance la boucle");
-		JTextField monTexte = new JTextField("test affichage");
-		panelChat.add(monTexte);
-		LayerChat.add(panelChat);
-		LayerChat.setLayer(panelChat, 1);
-		//
-		frame.getContentPane().add(LayerChat);
-		frame.setVisible(true);
-		
-		//Vjeu.showPanel(frame);
-		System.out.println("Affichage du panel");
-		
+		showPanel(LayerChat);
 		
 		
 	}
@@ -520,34 +508,40 @@ public class Vjeu{
 		this.btnSeCoucher = btnSeCoucher;
 	}
 	
-	public static void showPanel(JFrame frame){
+	public static void showPanel(JLayeredPane LayerChat){
 		Boolean state = true;
+		JPanel panelChat = new JPanel();
+		panelChat.setBackground(Color.WHITE);
+		
+		panelChat.setBounds(7, 608, 391, 110);
+		System.out.println("On lance la boucle");
+		JTextField monTexte = new JTextField("test affichage");
+		panelChat.add(monTexte);
+		LayerChat.add(panelChat);
+		LayerChat.setLayer(panelChat, 1);
+		//
+		frame.getContentPane().add(LayerChat);
+		frame.setVisible(true);
+		//Vjeu.showPanel(frame);
+		System.out.println("Affichage du panel");	
+	}
 	
-				System.out.println("Panneau affiché");
-//				panelChat.setLayout(new FlowLayout());
-//				for(String elem: Reception.array_L)
-//			       {
-//			       	 System.out.println (elem);
-//			       	 JTextField monTexte = new JTextField(elem);
-//					 panelChat.add(monTexte);
-//					 panelChat.setVisible(true);
-//					 monTexte.setVisible(true);
-//			       }
-//				try {
-//					Thread.sleep(2000);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-				
-	//	}
-		
-		// Modif Corentin PRIMA
-		
-		
-		//JLabel label = new JLabel("Ici il faut afficher le resultat du chat");
-		//JLabel label = new JLabel(messageRecu);
-		//panelChat.add(label);
-		// Modif update
-		//panelChat.updateUI();
+	public static void actualiser(JLayeredPane LayerChat){
+		LayerChat.removeAll();
+		LayerChat.setBounds(0,0,1300,800);
+		LayerChat.add(lblBackground);
+		Background.setLayer(lblBackground, 0);
+		frame.getContentPane().add(LayerChat);
+		JPanel panelChat = new JPanel();
+		panelChat.setBackground(Color.WHITE);
+		panelChat.setBounds(7, 608, 391, 110);
+		JTextField monTexte = new JTextField("test actualisation");
+		panelChat.add(monTexte);
+		LayerChat.add(panelChat);
+		LayerChat.setLayer(panelChat, 1);
+		frame.getContentPane().add(LayerChat);
+		frame.setVisible(true);
+		LayerChat.revalidate();
+		LayerChat.repaint();	
 	}
 }
