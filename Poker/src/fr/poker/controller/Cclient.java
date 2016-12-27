@@ -18,6 +18,7 @@ public class Cclient implements Runnable {
 	private Vjeu vJeu;
 	protected BufferedReader in;
 	protected PrintStream out;
+	protected boolean partieTerminee;
 	public Cclient(Socket socket) throws Exception{
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -26,10 +27,12 @@ public class Cclient implements Runnable {
 		catch (Exception exc) {
 			exc.printStackTrace();
 		}
+		//On lance la communication
 		(new Thread(this)).start();
 		//adversaire = new Joueur(); // à voir
 		this.vJeu = new Vjeu(this);
 		this.j = new JoueurClient(socket);
+		this.partieTerminee = false;
 		
 	}
 	
@@ -37,25 +40,27 @@ public class Cclient implements Runnable {
 		Scanner scan = new Scanner(message);
 		int type = scan.nextInt();
 		switch(type){
-		case Constantes.POT :
+		case ConstantesClient.POT :
+			//Mise à jour du pot
 			break;
-		case Constantes.TOURGAGNE :
+		case ConstantesClient.TOURGAGNE :
 			break;
-		case Constantes.GAINTOUR :
+		case ConstantesClient.GAINTOUR :
 			break;
-		case Constantes.PERTETOUR :
+		case ConstantesClient.PERTETOUR :
 			break;
-		case Constantes.CHOIX_ADVERSAIRE :
+		case ConstantesClient.CHOIX_ADVERSAIRE :
 			break;
-		case Constantes.GAINPARTIE :
+		case ConstantesClient.GAINPARTIE :
 			break;
-		case Constantes.PARTIE_GAGNEE :
+		case ConstantesClient.PARTIE_GAGNEE :
 			break;
-		case Constantes.JOUE :
+		case ConstantesClient.JOUE :
+			//à toi de jouer
 			break;
-		case Constantes.NOUVEL_ADVERSAIRE :
+		case ConstantesClient.NOUVEL_ADVERSAIRE :
 			break;
-		case Constantes.ADVERSAIRE_OUT :
+		case ConstantesClient.ADVERSAIRE_OUT :
 			break;
 		}
 		//On notifie à la vue les changements
@@ -67,6 +72,14 @@ public class Cclient implements Runnable {
 	
 	@Override
 	public void run() {
+		while(!partieTerminee) {
+			try {
+				String message = in.readLine();
+				traiterMessage(message);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 	}
 	public static void main(String[] args) throws Exception { // Cette méthode ne sera plus un main et sera appelée par l'action du bouton rejoindre salle

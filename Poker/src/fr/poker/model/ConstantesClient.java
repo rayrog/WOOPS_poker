@@ -1,6 +1,6 @@
 package fr.poker.model;
 
-public class Constantes {
+public class ConstantesClient {
 	public static final int POT = 1;
 	public static final	int TOURGAGNE = 2;
 	public static final	int GAINTOUR = 3;

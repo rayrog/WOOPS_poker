@@ -42,7 +42,7 @@ public class Salle {
 		return table;
 	}
 
-	public void rejoindre(Joueur j) {
+	public void rejoindre(JoueurServeur j) {
 		if (this.isPrivat()) {
 			System.out.println("Cette partie est priv�e. Veuillez entrer le mot de passe : ");
 			Scanner sc = new Scanner(System.in);
@@ -58,7 +58,7 @@ public class Salle {
 	}
 
 	public void quitter(Joueur j) {
-		this.getTable().quitter(j);
+		this.quitter(j);
 	}
 
 	public void inviter() {

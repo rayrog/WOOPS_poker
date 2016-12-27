@@ -73,7 +73,7 @@ public class CpartieServeur {
 		if (maTable.getTour() == 0) {
 			/* Ajout des joueurs en attente */
 			if (!maTable.getJoueursAttente().isEmpty()) {
-				for (Joueur j : maTable.getJoueursAttente()) {
+				for (JoueurServeur j : maTable.getJoueursAttente()) {
 					maTable.rejoindre(j);
 					maTable.getJoueursAttente().remove(j);
 				}
@@ -175,12 +175,12 @@ public class CpartieServeur {
 		maTable.setPot(0);
 	}
 
-	public Joueur joueurSuivant() {
+	public JoueurServeur joueurSuivant() {
 
-		Joueur next = new Joueur();
+		JoueurServeur next = new JoueurServeur();
 		int nextIdx;
 
-		for (Joueur j : maTable.getJoueursEnJeu()) {
+		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
 			if (maTable.getTour() != 4 && j.getRole() == "Petite blinde" && !j.getaSuivi()) {
 				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
 				// enablebouton(Joueur j)
@@ -220,7 +220,7 @@ public class CpartieServeur {
 		return 1;
 	}
 	public static void main(String[] args) {
-		System.out.println("Début de la nouvelle partie");
+/*		System.out.println("Début de la nouvelle partie");
 		CpartieServeur cPartie = new CpartieServeur(t) 
 		maTable.setTour(0);
 		maTable.setPot(0);
@@ -232,19 +232,19 @@ public class CpartieServeur {
 			do {
 				winner=verifierGagnant();
 				
-				/*DEBUG*/
+				DEBUG
 				for(Joueur j:maTable.getJoueurs())
 					j.getInfos();
 				System.out.println(maTable);
-				/***/
+				*//***//*
 				
 				distribuerCartes();			
 				
-				/*DEBUG*/
+				DEBUG
 				System.out.println(maTable);
 				for(Joueur j:maTable.getJoueurs())
 					j.getInfos();
-				/**/
+				
 				
 				while (miseEnAttente() == -1) {
 					joueurSuivant();
@@ -254,5 +254,6 @@ public class CpartieServeur {
 			
 		} else
 			System.out.println("C'est dommage tu es tout seul");		
-	}
+	}*/
+}
 }

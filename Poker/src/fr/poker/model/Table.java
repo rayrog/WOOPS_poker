@@ -6,8 +6,8 @@ public class Table {
 	private int id;
 	private int placeMax;
 	private List<Carte> cartes;
-	private ArrayList<Joueur> joueurs;
-	private ArrayList<Joueur> joueursAttente;
+	private ArrayList<JoueurServeur> joueurs;
+	private ArrayList<JoueurServeur> joueursAttente;
 	private float smallBlind;
 	private float bigBlind;
 	private Paquet paq;
@@ -21,7 +21,7 @@ public class Table {
 		id = 1; // A g�rer avec la base de donn�es
 		placeMax = 7;
 		paq = new Paquet("Jeu de 52 cartes de la table " + id);
-		joueurs = new ArrayList<Joueur>();
+		joueurs = new ArrayList<JoueurServeur>();
 		pot = 0;
 		tour = 0;
 		smallBlind = (float) 0.5;
@@ -119,15 +119,15 @@ public class Table {
 		return bigBlind;
 	}
 
-	public ArrayList<Joueur> getJoueursAttente() {
+	public ArrayList<JoueurServeur> getJoueursAttente() {
 		return joueursAttente;
 	}
 
-	public void setJoueursAttente(ArrayList<Joueur> joueursAttente) {
+	public void setJoueursAttente(ArrayList<JoueurServeur> joueursAttente) {
 		this.joueursAttente = joueursAttente;
 	}
 
-	public void rejoindre(Joueur j) {
+	public void rejoindre(JoueurServeur j) {
 		if (getJoueurs().size() <= placeMax) {
 			if (j.getEtat()!= true) { // Si un spectateur veut rejoindre la partie
 				joueurs.add(j);
