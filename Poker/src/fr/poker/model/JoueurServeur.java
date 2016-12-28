@@ -6,11 +6,15 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import fr.poker.controller.CpartieServeur;
+
 public class JoueurServeur extends Joueur implements Runnable{
+	private CpartieServeur serveur;
 	protected BufferedReader in;
 	protected PrintStream out;
-	public JoueurServeur(Socket socket) throws Exception{
+	public JoueurServeur(Socket socket, CpartieServeur serveur) throws Exception{
 		super();
+		this.serveur = serveur;
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream());
@@ -26,27 +30,40 @@ public class JoueurServeur extends Joueur implements Runnable{
 		Scanner scan = new Scanner(message);
 		int type = scan.nextInt();
 		switch(type){
+		case ConstantesServeur.MONID:
+			int id = scan.nextInt();
+			System.out.println("Je renseigne le nouvel id "+id);
+			setId(id);
+			break;
 		case ConstantesServeur.MISER :
-			System.out.println("Je mise ");
-			miser(50); //TO DO
+			System.out.println("Je suis le joueur "+getId()+" et je mise ");
+			//miser(50); //TO DO
 			break;
 		case ConstantesServeur.SECOUCHER :
-			System.out.println("Je me couche ");
+			System.out.println("Je suis le joueur "+getId()+" et je me couche ");
 			break;
 		case ConstantesServeur.RELANCER :
 			System.out.println("Je relance ");
 			break;
 		case ConstantesServeur.QUITTERSALLE :
-			System.out.println("Je quitte la salle ");
+			System.out.println("Je suis le joueur "+getId()+" et je quitte la salle ");
 			break;
 		}
 	}
 	
 	@Override
 	public void run() {
-		while(!partieFinie) {
-			
+		String message;
+		try {
+			message = in.readLine();
+			while(!partieFinie) {
+				traiterMessage(message);
+				message = in.readLine();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+
 		
 	}
 }

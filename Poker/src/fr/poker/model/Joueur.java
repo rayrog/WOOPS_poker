@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Joueur extends Observable {
 
-	private int id; // Pour identifier un joueur dans une partie
+	protected int id; // Pour identifier un joueur dans une partie
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
 	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de
 									// commencer la partie

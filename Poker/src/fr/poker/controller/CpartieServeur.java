@@ -1,8 +1,9 @@
 package fr.poker.controller;
 
+import java.net.ServerSocket;
 import java.net.Socket;
 
-import fr.poker.controller.listener.JButtonListenerJeu;
+
 import fr.poker.model.*;
 import fr.poker.view.*;
 import fr.poker.model.*;
@@ -11,18 +12,15 @@ public class CpartieServeur {
 
 	public Table maTable;
 	private Vjeu vJeu;
-	private JButtonListenerJeu jBtnLJeu;
 	private JoueurServeur joueurCourant;
-	public CpartieServeur(Table t) {
+	public CpartieServeur() {
 
-		if (t.getJoueurs().size() > 1) // On cr�e une partie que s'il y a
-										// d�ja deux joueurs assis � la
-										// table
-			this.maTable = t;
+			this.maTable = new Table();
 
 	}
-	public void ajouterJoueur (Socket socket) {
-		
+	public void ajouterJoueur (Socket socket) throws Exception {
+		System.out.println("On ajoute un nouveau joueur");
+		new JoueurServeur(socket, this);			
 	}
 	
 	public void run() {
@@ -219,9 +217,21 @@ public class CpartieServeur {
 		}
 		return 1;
 	}
-	public static void main(String[] args) {
-/*		System.out.println("Début de la nouvelle partie");
-		CpartieServeur cPartie = new CpartieServeur(t) 
+	
+	
+	public static void main(String[] args) throws Exception{
+		System.out.println("Début de la nouvelle partie");
+		int portServeur = 4555;
+		ServerSocket  receptionniste =  new ServerSocket(portServeur);		
+		JoueurServeur[] lesJoueurs = new JoueurServeur[2];
+
+		CpartieServeur serveur = new CpartieServeur();
+		for (int i = 0; i < 2; i++)	serveur.ajouterJoueur(receptionniste.accept());
+
+		//new CpartieServeur();
+	
+	
+/*		CpartieServeur cPartie = new CpartieServeur(t) 
 		maTable.setTour(0);
 		maTable.setPot(0);
 		

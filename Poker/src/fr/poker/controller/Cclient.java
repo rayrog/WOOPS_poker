@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane; //TO DO à supprimer uniquement présent pour les test
 
 import fr.poker.model.*;
 import fr.poker.view.Vjeu;
@@ -19,7 +20,8 @@ public class Cclient implements Runnable {
 	protected BufferedReader in;
 	protected PrintStream out;
 	protected boolean partieTerminee;
-	public Cclient(Socket socket) throws Exception{
+	public Cclient(Socket socket, int idjoueur) throws Exception{
+		//On lance la communication
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream());
@@ -27,11 +29,9 @@ public class Cclient implements Runnable {
 		catch (Exception exc) {
 			exc.printStackTrace();
 		}
-		//On lance la communication
 		(new Thread(this)).start();
-		//adversaire = new Joueur(); // à voir
+		this.j = new JoueurClient(idjoueur);
 		this.vJeu = new Vjeu(this);
-		this.j = new JoueurClient(socket);
 		this.partieTerminee = false;
 		
 	}
@@ -60,7 +60,7 @@ public class Cclient implements Runnable {
 			System.out.println("Gain Partie");
 			break;
 		case ConstantesClient.PARTIE_GAGNEE :
-			System.out.println("PArtie Gangnee");
+			System.out.println("Partie Gangnee");
 			break;
 		case ConstantesClient.JOUE :
 			System.out.println("Nouvel adversaire");
@@ -91,11 +91,25 @@ public class Cclient implements Runnable {
 		}
 
 	}
+	
+	public void lancementClient() {
+		// TODO : cette fonction va remplacer le main plus bas
+	}
+	
 	public static void main(String[] args) throws Exception { // Cette méthode ne sera plus un main et sera appelée par l'action du bouton rejoindre salle
+		String monid = JOptionPane.showInputDialog
+		(null, "Donner l'id du nouveau joueur");
 		int portServeur = 4555; // Le port sera trasnmis par la méthode réécrite
-		//TO DO adresse du serveur 
+		//TODO : adresse du serveur 
 		Socket socket = new Socket("127.0.0.1", portServeur);
-		Cclient c = new Cclient(socket);
+		System.out.println(Integer.parseInt(monid));
+		Cclient c = new Cclient(socket, Integer.parseInt(monid));
+		//On envoie l'id du joueur
+		c.out.println(ConstantesServeur.MONID+" "+monid);
+	}
+
+	public PrintStream getOut() {
+		return out;
 	}
 	
 }

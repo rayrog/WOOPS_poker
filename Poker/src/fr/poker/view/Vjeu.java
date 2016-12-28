@@ -17,7 +17,7 @@ import fr.poker.controller.Cclient;
 import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerCheck;
-import fr.poker.controller.listener.JButtonListenerJeu;
+import fr.poker.controller.listener.JButtonListenerClient;
 import fr.poker.controller.listener.JButtonListenerMiser;
 import fr.poker.controller.listener.JButtonListenerSeCoucher;
 import fr.poker.controller.listener.JButtonListenerSuivre;
@@ -66,20 +66,17 @@ public class Vjeu{
 	 */
 	public Vjeu(Cclient c) {
 		//this.messageRecu=message;
-		initialize();	
+		initialize(c);	
 	}
-	public Vjeu() {
-		//this.messageRecu=message;
-		initialize();	
-	}
-	public Vjeu(String message) {
+
+/*	public Vjeu(String message) {
 		this.messageRecu=message;
-		initialize();	
-	}
+		initialize(c);	
+	}*/
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Cclient c) {
 		
 
 		System.out.println("Début de l'affichage");
@@ -114,101 +111,121 @@ public class Vjeu{
 		lblJ2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar2.png")));
 		lblJ2.setBounds(195, 220, 64, 70);
 		frame.getContentPane().add(lblJ2);
+		lblJ2.setVisible(false);
 		
 		JLabel lblJ3 = new JLabel("");
 		lblJ3.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar3.png")));
 		lblJ3.setBounds(361, 438, 64, 70);
 		frame.getContentPane().add(lblJ3);
+		lblJ3.setVisible(false);
 		
 		JLabel lblJ4 = new JLabel("");
 		lblJ4.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar4.png")));
 		lblJ4.setBounds(606, 442, 64, 70);
 		frame.getContentPane().add(lblJ4);
+		lblJ4.setVisible(false);
 		
 		JLabel lblJ5 = new JLabel("");
 		lblJ5.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar5.png")));
 		lblJ5.setBounds(878, 440, 64, 70);
 		frame.getContentPane().add(lblJ5);
+		lblJ5.setVisible(false);
 		
 		JLabel lblJ6 = new JLabel("");
 		lblJ6.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar6.png")));
 		lblJ6.setBounds(1064, 220, 64, 70);
 		frame.getContentPane().add(lblJ6);
+		lblJ6.setVisible(false);
 		
 		JLabel lblJ7 = new JLabel("");
 		lblJ7.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/avatar/Avatar7.png")));
 		lblJ7.setBounds(873, 48, 64, 70);
 		frame.getContentPane().add(lblJ7);
+		lblJ7.setVisible(false);
 		
 		JLabel lblJ1C1 = new JLabel("");
 		lblJ1C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ1C1.setBounds(424, 82, 64, 70);
 		frame.getContentPane().add(lblJ1C1);
+		lblJ1C1.setVisible(false);
 		
 		JLabel lblJ1C2 = new JLabel("");
 		lblJ1C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ1C2.setBounds(475, 82, 64, 70);
 		frame.getContentPane().add(lblJ1C2);
+		lblJ1C2.setVisible(false);
 		
 		JLabel lblJ2C2 = new JLabel("");
 		lblJ2C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ2C2.setBounds(320, 235, 64, 70);
 		frame.getContentPane().add(lblJ2C2);
+		lblJ2C2.setVisible(false);
 		
 		JLabel lblJ2C1 = new JLabel("");
 		lblJ2C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ2C1.setBounds(269, 235, 64, 70);
 		frame.getContentPane().add(lblJ2C1);
+		lblJ2C1.setVisible(false);
 		
 		JLabel lblJ3C2 = new JLabel("");
 		lblJ3C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ3C2.setBounds(475, 398, 64, 70);
 		frame.getContentPane().add(lblJ3C2);
+		lblJ3C2.setVisible(false);
 		
 		JLabel lblJ3C1 = new JLabel("");
 		lblJ3C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ3C1.setBounds(424, 398, 64, 70);
 		frame.getContentPane().add(lblJ3C1);
+		lblJ3C1.setVisible(false);
 		
 		JLabel lblJ4C2 = new JLabel("");
 		lblJ4C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ4C2.setBounds(634, 348, 64, 70);
 		frame.getContentPane().add(lblJ4C2);
+		lblJ4C2.setVisible(false);
 		
 		JLabel lblJ4C1 = new JLabel("");
 		lblJ4C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ4C1.setBounds(583, 348, 64, 70);
 		frame.getContentPane().add(lblJ4C1);
+		lblJ4C1.setVisible(false);
 		
 		JLabel lblJ5C2 = new JLabel("");
 		lblJ5C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ5C2.setBounds(811, 398, 64, 70);
 		frame.getContentPane().add(lblJ5C2);
+		lblJ5C2.setVisible(false);
 		
 		JLabel lblJ5C1 = new JLabel("");
 		lblJ5C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ5C1.setBounds(760, 398, 64, 70);
 		frame.getContentPane().add(lblJ5C1);
+		lblJ5C1.setVisible(false);
 		
 		JLabel lblJ6C2 = new JLabel("");
 		lblJ6C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ6C2.setBounds(979, 235, 64, 70);
 		frame.getContentPane().add(lblJ6C2);
+		lblJ6C2.setVisible(false);
 		
 		JLabel lblJ6C1 = new JLabel("");
 		lblJ6C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ6C1.setBounds(928, 235, 64, 70);
 		frame.getContentPane().add(lblJ6C1);
+		lblJ6C1.setVisible(false);
 		
 		JLabel lblJ7C1 = new JLabel("");
 		lblJ7C1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ7C1.setBounds(760, 82, 64, 70);
 		frame.getContentPane().add(lblJ7C1);
+		lblJ7C1.setVisible(false);
 		
 		JLabel lblJ7C2 = new JLabel("");
 		lblJ7C2.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ7C2.setBounds(811, 82, 64, 70);
 		frame.getContentPane().add(lblJ7C2);
+		lblJ7C2.setVisible(false);
 		
 		JLabel lblC1 = new JLabel("");
 		lblC1.setIcon(new ImageIcon(Vjeu.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
@@ -250,7 +267,7 @@ public class Vjeu{
 		lblMC2.setBounds(1159, 680, 64, 70);
 		frame.getContentPane().add(lblMC2);
 		
-		JLabel lblNameJ1 = new JLabel("NameJ1");
+		JLabel lblNameJ1 = new JLabel("MOI");
 		lblNameJ1.setBackground(Color.LIGHT_GRAY);
 		lblNameJ1.setForeground(new Color(128, 0, 0));
 		lblNameJ1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -265,6 +282,7 @@ public class Vjeu{
 		lblNameJ2.setBackground(Color.LIGHT_GRAY);
 		lblNameJ2.setBounds(126, 235, 59, 14);
 		frame.getContentPane().add(lblNameJ2);
+		lblNameJ2.setVisible(false);
 		
 		JLabel lblNameJ3 = new JLabel("NameJ3");
 		lblNameJ3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -273,6 +291,7 @@ public class Vjeu{
 		lblNameJ3.setBackground(Color.LIGHT_GRAY);
 		lblNameJ3.setBounds(365, 507, 59, 14);
 		frame.getContentPane().add(lblNameJ3);
+		lblNameJ3.setVisible(false);
 		
 		JLabel lblNameJ4 = new JLabel("NameJ4");
 		lblNameJ4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -281,6 +300,7 @@ public class Vjeu{
 		lblNameJ4.setBackground(Color.LIGHT_GRAY);
 		lblNameJ4.setBounds(611, 512, 59, 14);
 		frame.getContentPane().add(lblNameJ4);
+		lblNameJ4.setVisible(false);
 		
 		JLabel lblNameJ5 = new JLabel("NameJ5");
 		lblNameJ5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -289,6 +309,7 @@ public class Vjeu{
 		lblNameJ5.setBackground(Color.LIGHT_GRAY);
 		lblNameJ5.setBounds(880, 510, 59, 14);
 		frame.getContentPane().add(lblNameJ5);
+		lblNameJ5.setVisible(false);
 		
 		JLabel lblNameJ6 = new JLabel("NameJ6");
 		lblNameJ6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -297,6 +318,7 @@ public class Vjeu{
 		lblNameJ6.setBackground(Color.LIGHT_GRAY);
 		lblNameJ6.setBounds(1133, 235, 59, 14);
 		frame.getContentPane().add(lblNameJ6);
+		lblNameJ6.setVisible(false);
 		
 		JLabel lblNameJ7 = new JLabel("NameJ7");
 		lblNameJ7.setHorizontalAlignment(SwingConstants.CENTER);
@@ -305,8 +327,9 @@ public class Vjeu{
 		lblNameJ7.setBackground(Color.LIGHT_GRAY);
 		lblNameJ7.setBounds(878, 11, 59, 14);
 		frame.getContentPane().add(lblNameJ7);
+		lblNameJ7.setVisible(false);
 		
-		JLabel lblMiseJ1 = new JLabel("MiseJ1");
+		JLabel lblMiseJ1 = new JLabel(Float.toString(c.j.mise));
 		lblMiseJ1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ1.setForeground(new Color(128, 0, 0));
 		lblMiseJ1.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -321,6 +344,8 @@ public class Vjeu{
 		lblMiseJ2.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ2.setBounds(126, 253, 59, 14);
 		frame.getContentPane().add(lblMiseJ2);
+		lblMiseJ2.setVisible(false);
+		
 		
 		JLabel lblMiseJ3 = new JLabel("MiseJ3");
 		lblMiseJ3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -329,6 +354,7 @@ public class Vjeu{
 		lblMiseJ3.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ3.setBounds(366, 525, 59, 14);
 		frame.getContentPane().add(lblMiseJ3);
+		lblMiseJ3.setVisible(false);
 		
 		JLabel lblMiseJ4 = new JLabel("MiseJ4");
 		lblMiseJ4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -337,6 +363,7 @@ public class Vjeu{
 		lblMiseJ4.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ4.setBounds(612, 530, 59, 14);
 		frame.getContentPane().add(lblMiseJ4);
+		lblMiseJ4.setVisible(false);
 		
 		JLabel lblMiseJ5 = new JLabel("MiseJ5");
 		lblMiseJ5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -345,6 +372,7 @@ public class Vjeu{
 		lblMiseJ5.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ5.setBounds(882, 529, 59, 14);
 		frame.getContentPane().add(lblMiseJ5);
+		lblMiseJ5.setVisible(false);
 		
 		JLabel lblMiseJ6 = new JLabel("MiseJ6");
 		lblMiseJ6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -353,6 +381,7 @@ public class Vjeu{
 		lblMiseJ6.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ6.setBounds(1135, 253, 59, 14);
 		frame.getContentPane().add(lblMiseJ6);
+		lblMiseJ6.setVisible(false);
 		
 		JLabel lblMiseJ7 = new JLabel("MiseJ7");
 		lblMiseJ7.setHorizontalAlignment(SwingConstants.CENTER);
@@ -361,6 +390,7 @@ public class Vjeu{
 		lblMiseJ7.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ7.setBounds(879, 29, 59, 14);
 		frame.getContentPane().add(lblMiseJ7);
+		lblMiseJ7.setVisible(false);
 		
 		JLabel lblPotTotal = new JLabel("PotTotal");
 		lblPotTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -370,7 +400,7 @@ public class Vjeu{
 		lblPotTotal.setBounds(597, 187, 73, 14);
 		frame.getContentPane().add(lblPotTotal);
 		
-		JLabel lblPlayerName = new JLabel("NameCurrentPlayer");
+		JLabel lblPlayerName = new JLabel(c.j.getPseudo());
 		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerName.setForeground(Color.WHITE);
 		lblPlayerName.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -412,25 +442,25 @@ public class Vjeu{
 		btnMiser.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnMiser.setBounds(548, 729, 103, 28);
 		frame.getContentPane().add(btnMiser);
-		btnMiser.addActionListener(new JButtonListenerJeu(null));
+		btnMiser.addActionListener(new JButtonListenerClient(c));
 		
 		btnSuivre = new JButton("Suivre");
 		btnSuivre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuivre.setBounds(661, 729, 103, 28);
 		frame.getContentPane().add(btnSuivre);
-		btnSuivre.addActionListener(new JButtonListenerJeu(null));
+		btnSuivre.addActionListener(new JButtonListenerClient(c));
 		
 		btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCheck.setBounds(774, 729, 101, 28);
 		frame.getContentPane().add(btnCheck);
-		btnCheck.addActionListener(new JButtonListenerJeu(null));
+		btnCheck.addActionListener(new JButtonListenerClient(c));
 		
 		btnSeCoucher = new JButton("Se coucher");
 		btnSeCoucher.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
-		btnSeCoucher.addActionListener(new JButtonListenerJeu(null));
+		btnSeCoucher.addActionListener(new JButtonListenerClient(c));
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
