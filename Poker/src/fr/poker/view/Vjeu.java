@@ -528,24 +528,24 @@ public class Vjeu{
 	}
 	
 	public static void actualiser(JLayeredPane LayerChat,ArrayList<String> monArrayListe){
-		System.out.println("Je suis dans actualiser");
+		//System.out.println("Je suis dans actualiser");
 		LayerChat.removeAll();
-		System.out.println("J'ai tout supprimé");
-		System.out.println("Je crée ma liste c'est bon");
+		//System.out.println("J'ai tout supprimé");
+		//System.out.println("Je crée ma liste c'est bon");
 		LayerChat.setBounds(0,0,1300,800);
 		LayerChat.add(lblBackground);
 		Background.setLayer(lblBackground, 0);
-		System.out.println("Le background est ok");
+		//System.out.println("Le background est ok");
 		frame.getContentPane().add(LayerChat);
 		JPanel panelChat = new JPanel();
-		System.out.println("Je viens de créer panel chat");
+		//System.out.println("Je viens de créer panel chat");
 		panelChat.setBackground(Color.WHITE);
 		panelChat.setBounds(7, 608, 391, 110);
 		//Ja vais construire mon texte
-		System.out.println("J'ai bien récupéré ma liste");
+		//System.out.println("J'ai bien récupéré ma liste");
 		for(String elem: monArrayListe)
 	       {
-			System.out.println ("Je suis dans ma boucle");
+			//System.out.println ("Je suis dans ma boucle");
 			JTextField monTexte = new JTextField(elem);	       	 
 	       	panelChat.add(monTexte);
 	       }

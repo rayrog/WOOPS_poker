@@ -20,16 +20,19 @@ public class Chat_ClientServeur implements Runnable {
 		try {
 			System.out.println("je suis dans ChatClientServeur du client");
 			out = new PrintWriter(socket.getOutputStream());
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			//in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
+			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 			sc = new Scanner(System.in);
 			
+			Thread t3 = new Thread(new Reception(in));
+			t3.start();
 			Thread t4 = new Thread(new Emission(out));
 			t4.start();
 		
 		    
 		} catch (IOException e) {
-			System.err.println("Le serveur distant s'est déconnecté !");
+			System.err.println("Le serveur distant s'est dï¿½connectï¿½ !");
 		}
 	}
 

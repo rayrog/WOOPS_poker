@@ -33,9 +33,9 @@ public class Reception implements Runnable {
 		       {
 		       	 System.out.println (elem);
 		       }
-			 System.out.println("Je suis le serv et je vais lancer lance actualiser");
-			 Vjeu.actualiser(Vjeu.LayerChat,array_L);
-			 System.out.println("Je suis le serv et j'ai lancé lance actualiser");
+			 //System.out.println("Je suis le serv et je vais lancer lance actualiser");
+			 //Vjeu.actualiser(Vjeu.LayerChat,array_L);
+			// System.out.println("Je suis le serv et j'ai lancé lance actualiser");
 
 		    } catch (IOException e) {
 				
