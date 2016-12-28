@@ -28,6 +28,11 @@ public class CjeuListener implements ActionListener{
 		//message = Vjeu.textFieldChat.getText();
 		Vjeu.messageRecu = Vjeu.textFieldChat.getText();
 		Emission.run(Vjeu.messageRecu);
+		 for(String elem: Reception.array_L)
+	       {
+	       	 System.out.println (elem);
+	       }
+		//Vjeu.actualiser(Vjeu.LayerChat,Reception.array_L);
 		//Vjeu.actualiser(Vjeu.LayerChat);
 		//System.out.println(Vjeu.messageRecu);
 		//System.out.println("mdr");
