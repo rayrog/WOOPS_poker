@@ -13,14 +13,19 @@ public class CpartieServeur {
 	public Table maTable;
 	private Vjeu vJeu;
 	private JoueurServeur joueurCourant;
+	private int numSuivantJoueur = 0;
 	public CpartieServeur() {
 
 			this.maTable = new Table();
 
 	}
 	public void ajouterJoueur (Socket socket) throws Exception {
+		numSuivantJoueur++;
+		JoueurServeur newJoueur = new JoueurServeur(socket, this);
+		newJoueur.setNumeroJoueurTable(numSuivantJoueur);
+		newJoueur.getOut().println(ConstantesClient.MONIDTABLE+" "+numSuivantJoueur);
 		System.out.println("On ajoute un nouveau joueur");
-		new JoueurServeur(socket, this);			
+			
 	}
 	
 	public void run() {

@@ -7,5 +7,5 @@ public class ConstantesServeur {
 	public static final	int SUIVRE = 4;
 	public static final	int CHECK = 5;
 	public static final int QUITTERSALLE = 6;
-	public static final int MONID = 7;
+	public static final int MESINFORMATIONS = 7;
 }

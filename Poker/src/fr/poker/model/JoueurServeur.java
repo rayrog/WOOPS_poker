@@ -30,10 +30,15 @@ public class JoueurServeur extends Joueur implements Runnable{
 		Scanner scan = new Scanner(message);
 		int type = scan.nextInt();
 		switch(type){
-		case ConstantesServeur.MONID:
+		case ConstantesServeur.MESINFORMATIONS:
 			int id = scan.nextInt();
-			System.out.println("Je renseigne le nouvel id "+id);
 			setId(id);
+			String pseudo = scan.next();
+			setPseudo(pseudo);
+			int potJoueur = scan.nextInt();
+			System.out.println("Mon pot "+potJoueur);
+			setCreditPartie(potJoueur);
+			System.out.println("Je renseigne mon ID "+id+" mon PSEUDO "+pseudo+" mon CREDIT DE DEPART "+potJoueur);
 			break;
 		case ConstantesServeur.MISER :
 			System.out.println("Je suis le joueur "+getId()+" et je mise ");
@@ -51,6 +56,14 @@ public class JoueurServeur extends Joueur implements Runnable{
 		}
 	}
 	
+	public PrintStream getOut() {
+		return out;
+	}
+
+	public void setOut(PrintStream out) {
+		this.out = out;
+	}
+
 	@Override
 	public void run() {
 		String message;

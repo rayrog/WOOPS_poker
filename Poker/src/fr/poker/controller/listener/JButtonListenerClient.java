@@ -21,8 +21,7 @@ public class JButtonListenerClient implements ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Miser")) {
 			//System.out.println("Je mise");
-			cCli.getOut().println(ConstantesServeur.MISER);
-			
+			cCli.getOut().println(ConstantesServeur.MISER);		
 		}
 		if (e.getActionCommand().equals("Suivre")) {
 			//System.out.println("Je suis");

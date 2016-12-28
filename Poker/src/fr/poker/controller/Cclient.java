@@ -13,13 +13,18 @@ import javax.swing.JOptionPane; //TO DO à supprimer uniquement présent pour le
 
 import fr.poker.model.*;
 import fr.poker.view.Vjeu;
+import fr.poker.view.VjeuClient;
 
 public class Cclient implements Runnable {
 	public JoueurClient j;
-	private Vjeu vJeu;
+	private VjeuClient vJeu;
+	private Compte compte;
 	protected BufferedReader in;
 	protected PrintStream out;
 	protected boolean partieTerminee;
+	public Cclient(Compte c) {
+		this.compte = c;
+	}
 	public Cclient(Socket socket, int idjoueur) throws Exception{
 		//On lance la communication
 		try {
@@ -31,7 +36,7 @@ public class Cclient implements Runnable {
 		}
 		(new Thread(this)).start();
 		this.j = new JoueurClient(idjoueur);
-		this.vJeu = new Vjeu(this);
+		this.vJeu = new VjeuClient(this);
 		this.partieTerminee = false;
 		
 	}
@@ -77,8 +82,7 @@ public class Cclient implements Runnable {
 		j.setChangedView();
 	}
 
-	
-	
+		
 	@Override
 	public void run() {
 		while(!partieTerminee) {
@@ -99,13 +103,17 @@ public class Cclient implements Runnable {
 	public static void main(String[] args) throws Exception { // Cette méthode ne sera plus un main et sera appelée par l'action du bouton rejoindre salle
 		String monid = JOptionPane.showInputDialog
 		(null, "Donner l'id du nouveau joueur");
+		String pseudo = JOptionPane.showInputDialog
+		(null, "Votre pseudo");
+		int potJoueur = 50;
+
 		int portServeur = 4555; // Le port sera trasnmis par la méthode réécrite
 		//TODO : adresse du serveur 
 		Socket socket = new Socket("127.0.0.1", portServeur);
 		System.out.println(Integer.parseInt(monid));
 		Cclient c = new Cclient(socket, Integer.parseInt(monid));
 		//On envoie l'id du joueur
-		c.out.println(ConstantesServeur.MONID+" "+monid);
+		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+potJoueur);
 	}
 
 	public PrintStream getOut() {
