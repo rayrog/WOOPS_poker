@@ -45,6 +45,12 @@ public class Cclient implements Runnable {
 		Scanner scan = new Scanner(message);
 		int type = scan.nextInt();
 		switch(type){
+		case ConstantesClient.MONIDTABLE :
+			//Mise à jour du pot
+			int idTable = scan.nextInt();
+			j.setNumeroJoueurTable(idTable);
+			System.out.println("Mon IDTABLE est le "+idTable);
+			break;
 		case ConstantesClient.POT :
 			//Mise à jour du pot
 			System.out.println("Mise à jour du pot");
@@ -68,7 +74,7 @@ public class Cclient implements Runnable {
 			System.out.println("Partie Gangnee");
 			break;
 		case ConstantesClient.JOUE :
-			System.out.println("Nouvel adversaire");
+			System.out.println("Je joue");
 			//à toi de jouer
 			break;
 		case ConstantesClient.NOUVEL_ADVERSAIRE :
@@ -107,9 +113,9 @@ public class Cclient implements Runnable {
 		(null, "Votre pseudo");
 		int potJoueur = 50;
 
-		int portServeur = 4555; // Le port sera trasnmis par la méthode réécrite
+		int portSalle = 4555; // Le port sera trasnmis par la méthode réécrite
 		//TODO : adresse du serveur 
-		Socket socket = new Socket("127.0.0.1", portServeur);
+		Socket socket = new Socket("127.0.0.1", portSalle);
 		System.out.println(Integer.parseInt(monid));
 		Cclient c = new Cclient(socket, Integer.parseInt(monid));
 		//On envoie l'id du joueur

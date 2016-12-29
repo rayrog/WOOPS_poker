@@ -45,6 +45,8 @@ public class VjeuClient implements Observer{
 	public JButton btnSuivre;
 	public JButton btnCheck;
 	public JButton btnSeCoucher;
+	public JButton btnQuit;
+	public JButton btnJoinTable;
 	public static JLayeredPane LayerChat = new JLayeredPane();
 	static JLayeredPane Background = new JLayeredPane();
 	static JLabel lblBackground = new JLabel("");
@@ -536,24 +538,42 @@ public class VjeuClient implements Observer{
 		btnMiser.setBounds(548, 729, 103, 28);
 		frame.getContentPane().add(btnMiser);
 		btnMiser.addActionListener(new JButtonListenerClient(c));
+		btnMiser.setEnabled(false);
 		
 		btnSuivre = new JButton("Suivre");
 		btnSuivre.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSuivre.setBounds(661, 729, 103, 28);
 		frame.getContentPane().add(btnSuivre);
 		btnSuivre.addActionListener(new JButtonListenerClient(c));
+		btnSuivre.setEnabled(false);
 		
 		btnCheck = new JButton("Check");
 		btnCheck.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCheck.setBounds(774, 729, 101, 28);
 		frame.getContentPane().add(btnCheck);
 		btnCheck.addActionListener(new JButtonListenerClient(c));
+		btnCheck.setEnabled(false);
 		
 		btnSeCoucher = new JButton("Se coucher");
 		btnSeCoucher.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSeCoucher.setBounds(885, 729, 127, 28);
 		frame.getContentPane().add(btnSeCoucher);
 		btnSeCoucher.addActionListener(new JButtonListenerClient(c));
+		btnSeCoucher.setEnabled(false);
+		
+		btnQuit = new JButton("Quitter la salle");
+		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnQuit.setEnabled(false);
+		btnQuit.setBounds(794, 621, 166, 60);
+		frame.getContentPane().add(btnQuit);
+		btnQuit.addActionListener(new JButtonListenerClient(c));
+		
+		btnJoinTable = new JButton("Rejoindre la table");
+		btnJoinTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnJoinTable.setEnabled(false);
+		btnJoinTable.setBounds(478, 621, 166, 60);
+		frame.getContentPane().add(btnJoinTable);
+		btnJoinTable.addActionListener(new JButtonListenerClient(c));
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		

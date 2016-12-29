@@ -9,12 +9,12 @@ import java.util.Scanner;
 import fr.poker.controller.CpartieServeur;
 
 public class JoueurServeur extends Joueur implements Runnable{
-	private CpartieServeur serveur;
+	private Salle maSalle;
 	protected BufferedReader in;
 	protected PrintStream out;
-	public JoueurServeur(Socket socket, CpartieServeur serveur) throws Exception{
+	public JoueurServeur(Socket socket, Salle salle) throws Exception{
 		super();
-		this.serveur = serveur;
+		this.maSalle = salle;
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream());
@@ -24,6 +24,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 		}
 		//On lance la communication
 		(new Thread(this)).start();
+		this.setNumeroJoueurTable(-1); // on met l'id à -1
 	}
 	
 	public void traiterMessage(String message) { //message représente les informations envoyés par le controleur Cpartie
@@ -39,6 +40,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 			System.out.println("Mon pot "+potJoueur);
 			setCreditPartie(potJoueur);
 			System.out.println("Je renseigne mon ID "+id+" mon PSEUDO "+pseudo+" mon CREDIT DE DEPART "+potJoueur);
+			maSalle.setAjoutSuccess(true);
 			break;
 		case ConstantesServeur.MISER :
 			System.out.println("Je suis le joueur "+getId()+" et je mise ");
@@ -49,6 +51,10 @@ public class JoueurServeur extends Joueur implements Runnable{
 			break;
 		case ConstantesServeur.RELANCER :
 			System.out.println("Je relance ");
+			break;
+		case ConstantesServeur.REJOINDRETABLE :
+			System.out.println("Je rejoint la table de jeu");
+			maSalle.rejoindre(this);
 			break;
 		case ConstantesServeur.QUITTERSALLE :
 			System.out.println("Je suis le joueur "+getId()+" et je quitte la salle ");
@@ -76,7 +82,5 @@ public class JoueurServeur extends Joueur implements Runnable{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-
-		
 	}
 }
