@@ -2,10 +2,14 @@ package fr.poker.controller;
 
 import static java.lang.System.out;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -45,8 +49,7 @@ public class Caccueil {
 	 * "Input must be a number."); } }
 	 */
 	
-	
-	
+
 	private Vaccueil vacc;
 	private JFrame frameacc;
 	private Cconnexion ccon;
@@ -56,6 +59,7 @@ public class Caccueil {
 	private Vparametres fentrePara;
 	private CBconnect cbcon;
 	private CBsalle cSalle;
+	//private int IDSalle;
 	
 	public Caccueil(Cconnexion c,int ID) {
 		this.vacc = new Vaccueil(this);
@@ -83,6 +87,11 @@ public class Caccueil {
 
 	public int getIDplayer() {
 		return IDplayer;
+	}
+	
+
+	public String getIDSalle() {
+		return vacc.getiDChoisie(); 
 	}
 
 
@@ -130,20 +139,46 @@ public class Caccueil {
 	}
 	
 	public void listeSalles() {
-		int nbSalle=0;
-		System.out.println("fct liste salle");
+		System.out.println("fct liste salle : ");
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
-		nbSalle=cSalle.listeSalles();
-		System.out.println("Nombre de salle : " + nbSalle);
+		
+		Vector<String> listSalles = new Vector();
+		listSalles=cSalle.listeSalles();
+		
+		Vector<String> listId = new Vector();
+		listId=cSalle.getListId();
+		
+		// Compte nb de salles
+		int nbSalles = 0;
+		for (Object o : listSalles) {
+			nbSalles++;
+		}
+		//Créer la liste contenant les infos des salles
+		String[] data = new String [nbSalles+1];
+		nbSalles=0;
+		for (Object o : listSalles) {
+			nbSalles++;
+			//System.out.println(nbSalles);
+			data[nbSalles]=new String (o.toString());
+		}
+		
+		String[] dataId = new String [nbSalles+1];
+		nbSalles=0;
+		for (Object o : listId) {
+			nbSalles++;
+			dataId[nbSalles]=new String (o.toString());
+		}
+        //Update le Scroll pane contenant la liste des parties + celui lui donne les ID des parties
+		vacc.setScrollPane_1DataList(data,dataId);
 	}
 
 	public void reloadData() {
-		int nbSalle=0;
-		System.out.println("fct liste salle");
-		cbcon = new CBconnect();
-		cSalle = new CBsalle(cbcon);
-		nbSalle=cSalle.listeSalles();
-		System.out.println("Nombre de salle : " + nbSalle);
+		listeSalles();
+	}
+
+	public void rejoindrePartie(int iDplayer2, String idSalle) {
+		System.out.println("Tentative de connexion du joueur "+ iDplayer2 +" a la partie " + idSalle);
+		System.out.println("TO DO : Ajout du joueur a la salle : ");
 	}
 }

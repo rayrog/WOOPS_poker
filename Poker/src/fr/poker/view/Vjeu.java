@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ListIterator;
 import java.util.Timer;
 
 import javax.swing.SwingConstants;
@@ -561,26 +562,56 @@ public class Vjeu implements Observer{
 	
 	public static void actualiser(JLayeredPane LayerChat,ArrayList<String> monArrayListe){
 		//System.out.println("Je suis dans actualiser");
+		//showPanel();
 		LayerChat.removeAll();
+		LayerChat.updateUI();
 		//System.out.println("J'ai tout supprimé");
 		//System.out.println("Je crée ma liste c'est bon");
 		LayerChat.setBounds(0,0,1300,800);
 		LayerChat.add(lblBackground);
 		Background.setLayer(lblBackground, 0);
 		//System.out.println("Le background est ok");
-		frame.getContentPane().add(LayerChat);
+		//frame.getContentPane().add(LayerChat);
 		JPanel panelChat = new JPanel();
 		//System.out.println("Je viens de créer panel chat");
 		panelChat.setBackground(Color.WHITE);
 		panelChat.setBounds(7, 608, 391, 110);
 		//Ja vais construire mon texte
 		//System.out.println("J'ai bien récupéré ma liste");
-		for(String elem: monArrayListe)
-	       {
+		// Je vais clean mon JPanel
+		panelChat.removeAll();
+		panelChat.revalidate();
+		panelChat.updateUI();
+		if(monArrayListe.size()!=0){
+			ListIterator<String> iterator = monArrayListe.listIterator(monArrayListe.size()); // On précise la position initiale de l'iterator. Ici on le place à la fin de la liste
+			int i=0;		
+			while(iterator.hasPrevious() && i<5){
+				String elem = iterator.previous();
+				JTextField monTexte = new JTextField(elem);	       	 
+				panelChat.add(monTexte);
+				i++;
+			} 
+		
+		}
+//		for(String elem: monArrayListe)
+//	       {
+//				
+//	       }
+////		if (monArrayListe.size()<5){
+//
+//			
+//		}
+//		else{
+//			int i = 4;
+//				while(i>=0){
+//					String elem= monArrayListe.get(monArrayListe.size()-i);
+//							JTextField monTexte = new JTextField(elem);	       	 
+//			       	panelChat.add(monTexte);
+//			       	i--;
+//			}
 			//System.out.println ("Je suis dans ma boucle");
-			JTextField monTexte = new JTextField(elem);	       	 
-	       	panelChat.add(monTexte);
-	       }
+				       
+	     //  }
 		
 		//JTextField monTexte = new JTextField("test actualisation");
 		System.out.println ("Je viens de sortir de ma boucle");

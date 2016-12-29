@@ -9,8 +9,10 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 import javax.accessibility.Accessible;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -24,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import javax.swing.Scrollable;
 import javax.swing.table.DefaultTableModel;
 
@@ -42,15 +45,20 @@ public class Vaccueil{
 		private JButton btnJoin;
 		private JButton btnRefresh;
 		private JTable table;
-		private JScrollPane listeSalle;
-		private JList<String> list;
-		private String[] data2 = {"one", "two", "three", "four","5","6","7", "three", "four","5","6","7","one", "two", "three", "four","5","6","7", "three", "four","5","6","7"};	
-		
+		// Variables pour display liste des salles 
+		private JScrollPane pannelSalle;
+		private JList listSalle;
+		private JScrollPane scrollPane_1;
+		private String[] dataList = {"Aucune Partie"};  // en cas d'erreur avec la connection bdd
+		private String iDChoisie="-1"; // Contient l'Id choisie par le joueur quand il clique sur la liste des parties.
+
 		public Vaccueil(Caccueil cacc){
 			frame = new JFrame();
 			frame.setResizable(false);
 			frame.getContentPane().setBackground(new Color(39, 78, 19));
 			frame.getContentPane().setLayout(null);
+			frame.setBounds(100, 100, 1300, 800);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 			JLabel lblLogo = new JLabel("");
 			lblLogo.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/logo.png")));
@@ -101,40 +109,57 @@ public class Vaccueil{
 			frame.getContentPane().add(btnRefresh);
 			
 			
-			this.btnJoin = new JButton("Rejoindre une partie");
+			this.btnJoin = new JButton("Rejoindre salle");
 			btnJoin.addActionListener(new JButtonListenerAccueil(cacc));
 			btnJoin.setEnabled(false);
 			btnJoin.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnJoin.setBounds(519, 619, 215, 51);
 			frame.getContentPane().add(btnJoin);
-	
 			
 	
-			 
+			// Mis a jour lors d'un clique sur une salle dans la liste, avec l'id de la salle en question
+			this.iDChoisie="-1";
+			
 			//Affiche liste remplie par le controleur avec les noms des parties et guette quand on clique
 			
-			String[] data = data2;	
-			list = new JList<String>(data);
-			list.setEnabled(true);
-			list.setBounds(397, 394, 454, 136);
-		
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setViewportView(list);
+			
+			String[] menuItem = dataList;	
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(446, 384, 364, 154);
+			frame.getContentPane().add(scrollPane_1);
+			final JList listSalle = new JList(menuItem);
+			scrollPane_1.setViewportView(listSalle);
 			// Ajout les mous listener
-			MouseListener mouseListener = new MouseAdapter() {
-			     public void mouseClicked(MouseEvent e) {
-			         if (e.getClickCount() == 1) {
-			             int index = list.locationToIndex(e.getPoint());
-			             System.out.println("clicked on Item " + index);
-			          }
-			     }
-			 };
-			 list.addMouseListener(mouseListener);
-			frame.getContentPane().add(list);
-			frame.setBounds(100, 100, 1300, 800);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
 		
+		
+		
+	public JScrollPane getScrollPane_1() {
+			return scrollPane_1;
+		}
+
+	public void setScrollPane_1DataList(final String[] data, final String[] dataId) {
+		/* Sert a updater la liste des salles. cette fct est appelée au lancement d'accueil et au clique sur refresh*/
+		String[] menuItem=data;  	
+		final JList listSalle = new JList(menuItem);
+		scrollPane_1.setViewportView(listSalle);
+		this.scrollPane_1 = scrollPane_1;
+		MouseListener mouseListener = new MouseAdapter() {
+		     public void mouseClicked(MouseEvent e) {
+		         if (e.getClickCount() == 1){
+		             int index = listSalle.locationToIndex(e.getPoint());
+		          // debug    System.out.println("clicked on Item wi" + index + "  "+ data[index] );s
+		             btnJoin.setEnabled(true);
+		            // btnJoin.addActionListener(new JButtonListenerAccueil(cacc));
+		             setiDChoisie(dataId[index]);
+		             System.out.println("Click on salle ID : " + getiDChoisie());
+		          }
+		   }
+		};
+		listSalle.addMouseListener(mouseListener);
+		
+	}
+
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -162,4 +187,29 @@ public class Vaccueil{
 	public JButton getBtnJoin() {
 		return btnJoin;
 	}
+	public String[] getDataList() {
+		return dataList;
+	}
+	public void setDataList(String[] dataList) {
+		this.dataList = dataList;
+	}
+
+
+
+	public String getiDChoisie() {
+		return iDChoisie;
+	}
+
+
+
+	public void setiDChoisie(String iDChoisie) {
+		this.iDChoisie = iDChoisie;
+	}
+
+
+
+
+
+
+	
 }

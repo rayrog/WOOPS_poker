@@ -39,10 +39,18 @@ public class Emission implements Runnable {
 //				       }
 		        	 System.out.println("Voici mon arraylist: "+Reception.array_L);
 					 System.out.println("Je vais transmettre mon arraylist");
-					 ByteArrayOutputStream bao = new ByteArrayOutputStream();
-					 ObjectOutputStream oos = new ObjectOutputStream(bao);
-					 oos.writeObject(Reception.array_L);
-					 System.out.println("Je viens de transmettre mon arraylist");
+					 // Créer un tableau de même taille que le nombre d'objet de ArrayList
+					 String tab[] = new String[Reception.array_L.size()];
+					 
+					 // Transformer Le ArrayList en Tableau
+					 tab = Reception.array_L.toArray(tab);
+					 
+					 
+					 //ByteArrayOutputStream bao = new ByteArrayOutputStream();
+					 //ObjectOutputStream oos = new ObjectOutputStream(bao);
+					 //oos.writeObject(Reception.array_L);
+					 out.writeObject(tab);
+					 System.out.println("Je viens de transmettre mon tableau");
 					 Thread.sleep(2000);
 			       	 //out.flush();
 					

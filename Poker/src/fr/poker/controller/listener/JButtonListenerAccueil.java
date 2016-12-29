@@ -7,7 +7,7 @@ import fr.poker.controller.Caccueil;
 import fr.poker.controller.Cconnexion;
 import fr.poker.controller.Cparametre;
 
-public class JButtonListenerAccueil implements ActionListener {
+public class JButtonListenerAccueil implements ActionListener{
 	private Cconnexion cCon;
 	private Caccueil CAcc;
 	private Cparametre CPara;
@@ -15,7 +15,7 @@ public class JButtonListenerAccueil implements ActionListener {
 	public JButtonListenerAccueil(Caccueil c) {
 		this.CAcc=c;
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand() == "Deconnexion") {
 			System.out.println("Deconnexion");	
@@ -32,12 +32,14 @@ public class JButtonListenerAccueil implements ActionListener {
 			CAcc.runCreation();
 			
 		}
-		if (e.getActionCommand() == "Rejoindre une partie"){
-			System.out.println("Rejoindre une partie");
+		if (e.getActionCommand() == "Rejoindre salle"){
+			System.out.println("Rejoindre salle");
+			CAcc.rejoindrePartie(CAcc.getIDplayer(),CAcc.getIDSalle());
 		}
 		if (e.getActionCommand() == "Raffraichir"){
 			System.out.println("Raffraichir");
 			CAcc.reloadData();
+			
 		}
 		
 	}
