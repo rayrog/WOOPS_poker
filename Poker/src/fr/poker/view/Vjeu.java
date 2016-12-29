@@ -547,7 +547,7 @@ public class Vjeu{
 	       {
 			//System.out.println ("Je suis dans ma boucle");
 			JTextField monTexte = new JTextField(elem);	       	 
-	       	panelChat.add(monTexte);
+	       	panelChat.add(monTexte);	       
 	       }
 		
 		//JTextField monTexte = new JTextField("test actualisation");

@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import fr.poker.view.Vjeu;
 
@@ -22,13 +23,22 @@ public class Reception implements Runnable {
 	public void run() {
 		
 		while(true){
+				System.out.println("Je suis dans le while true");
 	        try {
+	        	System.out.println("Je suis dans le try");
 	        	Object objetRecu = in.readObject();
-	            //int[] tableauRecu = (int[]) objetRecu;
-	        	System.out.println("Voici mon in : " + objetRecu.toString());
+	            String[] tableauRecu = (String[]) objetRecu;
+	            System.out.println("J'ai mon tableau");
+	            //List<List<String>> stuff = new ArrayList<List<String>>();
+	            List<String> tabList = Arrays.asList(tableauRecu);
+	        	for(String elem: tabList)
+			       {
+	        		array_Liste.add(elem);
+			       }
+	        	//System.out.println("Voici mon in : " + objetRecu.toString());
 	        	//array_Liste = (ArrayList<String>) objetRecu;	
 	            //System.out.println("Client recoit: " + Arrays.toString(array_Liste));
-				for(String elem: array_Liste)
+				for(String elem: tabList)
 			       {
 			       	 System.out.println ("Voici mon élément:" + elem);
 			       }
