@@ -59,6 +59,7 @@ public class Caccueil {
 	private Vparametres fentrePara;
 	private CBconnect cbcon;
 	private CBsalle cSalle;
+	//private int IDSalle;
 	
 	public Caccueil(Cconnexion c,int ID) {
 		this.vacc = new Vaccueil(this);
@@ -86,6 +87,11 @@ public class Caccueil {
 
 	public int getIDplayer() {
 		return IDplayer;
+	}
+	
+
+	public String getIDSalle() {
+		return vacc.getiDChoisie(); 
 	}
 
 
@@ -131,17 +137,24 @@ public class Caccueil {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public void listeSalles() {
 		System.out.println("fct liste salle : ");
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
+		
 		Vector<String> listSalles = new Vector();
 		listSalles=cSalle.listeSalles();
 		
+		Vector<String> listId = new Vector();
+		listId=cSalle.getListId();
+		
+		// Compte nb de salles
 		int nbSalles = 0;
 		for (Object o : listSalles) {
 			nbSalles++;
 		}
+		//Créer la liste contenant les infos des salles
 		String[] data = new String [nbSalles+1];
 		nbSalles=0;
 		for (Object o : listSalles) {
@@ -149,12 +162,23 @@ public class Caccueil {
 			//System.out.println(nbSalles);
 			data[nbSalles]=new String (o.toString());
 		}
-        //Update le Scroll pane contenant la liste des parties.
-
-		vacc.setScrollPane_1DataList(data);
+		
+		String[] dataId = new String [nbSalles+1];
+		nbSalles=0;
+		for (Object o : listId) {
+			nbSalles++;
+			dataId[nbSalles]=new String (o.toString());
+		}
+        //Update le Scroll pane contenant la liste des parties + celui lui donne les ID des parties
+		vacc.setScrollPane_1DataList(data,dataId);
 	}
 
 	public void reloadData() {
 		listeSalles();
+	}
+
+	public void rejoindrePartie(int iDplayer2, String idSalle) {
+		System.out.println("Tentative de connexion du joueur "+ iDplayer2 +" a la partie " + idSalle);
+		System.out.println("TO DO : Ajout du joueur a la salle : ");
 	}
 }

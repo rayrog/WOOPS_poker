@@ -13,6 +13,7 @@ import javax.swing.Spring;
 public class CBsalle {
 	private CBconnect cbCo;
 	private Statement st;
+	private Vector<String> listId= new Vector();// liste contenant les ID des parties existantes. elle permet de faire la liaison de 
 	
 	public CBsalle(CBconnect c) {
 		this.cbCo = c;
@@ -33,6 +34,7 @@ public class CBsalle {
 			//Connexion � la BDD 
 			cbCo.connexion();
 			this.st=cbCo.getSt();
+		
 			String sql = "SELECT * FROM `Salle`";
 			
 			// debug : affichage requete 
@@ -43,15 +45,18 @@ public class CBsalle {
 			ResultSetMetaData resultMeta = rs.getMetaData();
 
 			resultat=0;
+			this.listId.clear(); // C
+			
 			while(rs.next())
 			{	
 				String name = rs.getString(2); // recupere champ correspondant a 2 valeur dans bdd = nom de la salle
-				String Id = rs.getString(1);			
+				String Id = rs.getString(1);
 				String nbJoueurs=nbJoueurSalle(Id);
 				String lineToDisplay="Salle ID : " + Id + " // nom : " + name + " // " + nbJoueurs + " Joueurs";
 				System.out.println(lineToDisplay);
 				listSalles.addElement(lineToDisplay);
 				resultat++;			
+				this.listId.addElement(Id);
 			}
 			System.out.println("Nombre de salles : " + resultat);
 			cbCo.fermerConnexion();
@@ -92,6 +97,15 @@ public class CBsalle {
 		}
 		return Integer.toString(i);
 	}
+
+	public Vector<String> getListId() {
+		return listId;
+	}
+
+	public void setListId(Vector<String> listId) {
+		this.listId = listId;
+	}
+	
 }
 	
 	

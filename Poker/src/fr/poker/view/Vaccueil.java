@@ -49,7 +49,8 @@ public class Vaccueil{
 		private JScrollPane pannelSalle;
 		private JList listSalle;
 		private JScrollPane scrollPane_1;
-		private String[] dataList = {"Aucune Partie"};  
+		private String[] dataList = {"Aucune Partie"};  // en cas d'erreur avec la connection bdd
+		private String iDChoisie="-1"; // Contient l'Id choisie par le joueur quand il clique sur la liste des parties.
 
 		public Vaccueil(Caccueil cacc){
 			frame = new JFrame();
@@ -108,7 +109,7 @@ public class Vaccueil{
 			frame.getContentPane().add(btnRefresh);
 			
 			
-			this.btnJoin = new JButton("Rejoindre une partie");
+			this.btnJoin = new JButton("Rejoindre salle");
 			btnJoin.addActionListener(new JButtonListenerAccueil(cacc));
 			btnJoin.setEnabled(false);
 			btnJoin.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -116,6 +117,9 @@ public class Vaccueil{
 			frame.getContentPane().add(btnJoin);
 			
 	
+			// Mis a jour lors d'un clique sur une salle dans la liste, avec l'id de la salle en question
+			this.iDChoisie="-1";
+			
 			//Affiche liste remplie par le controleur avec les noms des parties et guette quand on clique
 			
 			
@@ -126,15 +130,6 @@ public class Vaccueil{
 			final JList listSalle = new JList(menuItem);
 			scrollPane_1.setViewportView(listSalle);
 			// Ajout les mous listener
-			MouseListener mouseListener = new MouseAdapter() {
-			     public void mouseClicked(MouseEvent e) {
-			         if (e.getClickCount() == 1){
-			             int index = listSalle.locationToIndex(e.getPoint());
-			             System.out.println("clicked on Item " + index);
-			          }
-			   }
-			};
-			listSalle.addMouseListener(mouseListener);
 		}
 		
 		
@@ -143,7 +138,8 @@ public class Vaccueil{
 			return scrollPane_1;
 		}
 
-	public void setScrollPane_1DataList(String[] data) {
+	public void setScrollPane_1DataList(final String[] data, final String[] dataId) {
+		/* Sert a updater la liste des salles. cette fct est appelée au lancement d'accueil et au clique sur refresh*/
 		String[] menuItem=data;  	
 		final JList listSalle = new JList(menuItem);
 		scrollPane_1.setViewportView(listSalle);
@@ -152,12 +148,17 @@ public class Vaccueil{
 		     public void mouseClicked(MouseEvent e) {
 		         if (e.getClickCount() == 1){
 		             int index = listSalle.locationToIndex(e.getPoint());
-		             System.out.println("clicked on Item " + index);
+		          // debug    System.out.println("clicked on Item wi" + index + "  "+ data[index] );s
+		             btnJoin.setEnabled(true);
+		            // btnJoin.addActionListener(new JButtonListenerAccueil(cacc));
+		             setiDChoisie(dataId[index]);
+		             System.out.println("Click on salle ID : " + getiDChoisie());
 		          }
 		   }
 		};
 		listSalle.addMouseListener(mouseListener);
-		}
+		
+	}
 
 	public JFrame getFrame() {
 		return frame;
@@ -192,6 +193,23 @@ public class Vaccueil{
 	public void setDataList(String[] dataList) {
 		this.dataList = dataList;
 	}
-	
+
+
+
+	public String getiDChoisie() {
+		return iDChoisie;
+	}
+
+
+
+	public void setiDChoisie(String iDChoisie) {
+		this.iDChoisie = iDChoisie;
+	}
+
+
+
+
+
+
 	
 }
