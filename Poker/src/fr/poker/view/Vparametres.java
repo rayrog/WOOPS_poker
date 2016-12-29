@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import fr.poker.controller.Cparametre;
 import fr.poker.controller.listener.JButtonListenerAccueil;
 import fr.poker.controller.listener.JButtonListenerParametres;
+import fr.poker.controller.listener.JTextFieldListenerInscription;
+import fr.poker.controller.listener.JTextFieldListenerParametre;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -28,10 +30,13 @@ public class Vparametres {
 	private JTextField txtEmail;
 	private JTextField txtPhoneNumber;
 	private JTextField txtMoney;
+	private String [] textInitiaux;
 	private JButton btnTakeMoney;
 	private JButton btnAddMoney;
 	private JButton btnCancel;
 	private JButton btnRegister;
+	private JLabel lblErrorField;
+	private JLabel lblSuccess;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +58,9 @@ public class Vparametres {
 	 * Create the application.
 	 * @param cparametre 
 	 */
-	public Vparametres(Cparametre cparametre) {
+	public Vparametres(Cparametre cPara) {
+		String[] texts = {"Mot de passe","Confirmer   ", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone","Argent \u00E0 d\u00E9poser"};
+		textInitiaux = texts;
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
@@ -79,6 +86,15 @@ public class Vparametres {
 		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
 		frame.getContentPane().add(lblSlogan);
 		
+		lblSuccess = new JLabel("Enregistrement effectué avec succès !");
+		lblSuccess.setBackground(new Color(0, 128, 0));
+		lblSuccess.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSuccess.setForeground(Color.RED);
+		lblSuccess.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblSuccess.setBounds(239, 102, 835, 63);
+		frame.getContentPane().add(lblSuccess);
+		lblSuccess.setVisible(false);
+		
 		JLabel lblAvatar = new JLabel("");
 		lblAvatar.setIcon(new ImageIcon(Vparametres.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
 		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,94 +103,125 @@ public class Vparametres {
 		
 		txtLastName = new JTextField();
 		txtLastName.setBounds(466, 148, 176, 51);
-		txtLastName.setText("Nom");
+		txtLastName.setText(textInitiaux[2]);
+		txtLastName.setName("txtLastName");
 		txtLastName.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtLastName.setColumns(10);
 		txtLastName.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtLastName);
+		txtLastName.addMouseListener(new JTextFieldListenerParametre(cPara, txtLastName));
+		txtLastName.addFocusListener(new JTextFieldListenerParametre(cPara, txtLastName));
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setBounds(656, 149, 176, 51);
-		txtFirstName.setText("Pr\u00E9nom");
+		txtFirstName.setText(textInitiaux[3]);
+		txtFirstName.setName("txtFirstName");
 		txtFirstName.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtFirstName.setColumns(10);
 		txtFirstName.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtFirstName);
+		txtFirstName.addMouseListener(new JTextFieldListenerParametre(cPara, txtFirstName));
+		txtFirstName.addFocusListener(new JTextFieldListenerParametre(cPara, txtFirstName));
 		
 		txtPseudo = new JTextField();
 		txtPseudo.setBounds(466, 208, 367, 51);
-		txtPseudo.setText("Pseudo");
+		txtPseudo.setText(textInitiaux[4]);
+		txtPseudo.setName("txtPseudo");
 		txtPseudo.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtPseudo.setColumns(10);
 		txtPseudo.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtPseudo);
+		txtPseudo.addMouseListener(new JTextFieldListenerParametre(cPara, txtPseudo));
+		txtPseudo.addFocusListener(new JTextFieldListenerParametre(cPara, txtPseudo));
 		
 		pwdAccount = new JPasswordField();
 		pwdAccount.setBounds(466, 267, 367, 51);
-		pwdAccount.setText("Mot de passe");
+		pwdAccount.setText(textInitiaux[0]);
+		pwdAccount.setName("pwdAccount");
 		pwdAccount.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		pwdAccount.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(pwdAccount);
+		pwdAccount.addMouseListener(new JTextFieldListenerParametre(cPara, pwdAccount));
+		pwdAccount.addFocusListener(new JTextFieldListenerParametre(cPara, pwdAccount));
+		
 		
 		pwdConfirm = new JPasswordField();
 		pwdConfirm.setBounds(466, 327, 367, 51);
-		pwdConfirm.setText("Confirmer   ");
+		pwdConfirm.setText(textInitiaux[1]);
+		pwdConfirm.setName("pwdConfirm");
 		pwdConfirm.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		pwdConfirm.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(pwdConfirm);
+		pwdConfirm.addMouseListener(new JTextFieldListenerParametre(cPara, pwdConfirm));
+		pwdConfirm.addFocusListener(new JTextFieldListenerParametre(cPara, pwdConfirm));
+		
 		
 		txtEmail = new JTextField();
 		txtEmail.setBounds(466, 385, 367, 51);
-		txtEmail.setText("E-mail");
+		txtEmail.setText(textInitiaux[5]);
+		txtEmail.setName("txtEmail");
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtEmail);
+		txtEmail.addMouseListener(new JTextFieldListenerParametre(cPara, txtEmail));
+		txtEmail.addFocusListener(new JTextFieldListenerParametre(cPara, txtEmail));
 		
 		txtPhoneNumber = new JTextField();
 		txtPhoneNumber.setBounds(466, 444, 367, 51);
-		txtPhoneNumber.setText("N\u00B0 T\u00E9l\u00E9phone");
+		txtPhoneNumber.setText(textInitiaux[6]);
+		txtPhoneNumber.setName("txtPhoneNumber");
 		txtPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtPhoneNumber.setColumns(10);
 		txtPhoneNumber.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtPhoneNumber);
+		txtPhoneNumber.addMouseListener(new JTextFieldListenerParametre(cPara, txtPhoneNumber));
+		txtPhoneNumber.addFocusListener(new JTextFieldListenerParametre(cPara, txtPhoneNumber));
 		
 		this.btnRegister = new JButton("Enregistrer");
 		btnRegister.setBounds(465, 506, 367, 51);
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnRegister);
-		btnRegister.addActionListener(new JButtonListenerParametres(cparametre));
+		btnRegister.addActionListener(new JButtonListenerParametres(cPara));
 		
 		this.btnCancel = new JButton("Annuler");
 		btnCancel.setBounds(466, 692, 366, 51);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCancel);
-		btnCancel.addActionListener(new JButtonListenerParametres(cparametre));
+		btnCancel.addActionListener(new JButtonListenerParametres(cPara));
 		
 		txtMoney = new JTextField();
-		txtMoney.setText("Argent \u00E0 d\u00E9poser");
+		txtMoney.setText(textInitiaux[7]);
+		txtMoney.setName("txtMoney");
 		txtMoney.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtMoney.setColumns(10);
 		txtMoney.setBackground(Color.LIGHT_GRAY);
 		txtMoney.setBounds(466, 568, 367, 51);
 		frame.getContentPane().add(txtMoney);
+		txtMoney.addMouseListener(new JTextFieldListenerParametre(cPara, txtMoney));
+		txtMoney.addFocusListener(new JTextFieldListenerParametre(cPara, txtMoney));
 		
 		this.btnAddMoney = new JButton("Crediter");
 		btnAddMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAddMoney.setBounds(466, 630, 177, 51);
 		frame.getContentPane().add(btnAddMoney);
-		btnAddMoney.addActionListener(new JButtonListenerParametres(cparametre));
+		btnAddMoney.addActionListener(new JButtonListenerParametres(cPara));
 		
 		this.btnTakeMoney = new JButton("Retirer");
 		btnTakeMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnTakeMoney.setBounds(656, 630, 177, 51);
 		frame.getContentPane().add(btnTakeMoney);
 		frame.setBounds(100, 100, 1300, 800);
-		btnTakeMoney.addActionListener(new JButtonListenerParametres(cparametre));
+		btnTakeMoney.addActionListener(new JButtonListenerParametres(cPara));
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
+	
+	public String[] getTextInitiaux() {
+		return textInitiaux;
+	}
+	
+	
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -203,6 +250,7 @@ public class Vparametres {
 		return txtLastName;
 	}
 
+	
 	public void setTxtLastName(JTextField txtLastName) {
 		this.txtLastName = txtLastName;
 	}

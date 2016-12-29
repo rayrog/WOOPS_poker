@@ -128,22 +128,16 @@ public class Caccueil {
 		// TODO Auto-generated method stub
 		
 	}
-	
 	public void listeSalles() {
+		
 		int nbSalle=0;
-		System.out.println("fct liste salle");
+		System.out.println("fct liste salle : ");
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
 		nbSalle=cSalle.listeSalles();
-		System.out.println("Nombre de salle : " + nbSalle);
 	}
 
 	public void reloadData() {
-		int nbSalle=0;
-		System.out.println("fct liste salle");
-		cbcon = new CBconnect();
-		cSalle = new CBsalle(cbcon);
-		nbSalle=cSalle.listeSalles();
-		System.out.println("Nombre de salle : " + nbSalle);
+		listeSalles();
 	}
 }

@@ -48,7 +48,8 @@ public class Vaccueil{
 		private JScrollPane pannelSalle;
 		private JList listSalle;
 		private JScrollPane scrollPane_1;
-		
+		private String[] dataList = {"one", "two", "three", "four","5","6","7", "three", "four","5","6","7","one", "two", "three", "four","5","6","7", "three", "four","5","6","7"};  
+
 		public Vaccueil(Caccueil cacc){
 			frame = new JFrame();
 			frame.setResizable(false);
@@ -119,7 +120,7 @@ public class Vaccueil{
 			//Affiche liste remplie par le controleur avec les noms des parties et guette quand on clique
 			
 			
-			String[] menuItem = {"aucune partie"};	
+			String[] menuItem = dataList;	
 			scrollPane_1 = new JScrollPane();
 			scrollPane_1.setBounds(446, 384, 364, 154);
 			frame.getContentPane().add(scrollPane_1);

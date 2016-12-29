@@ -9,7 +9,6 @@ public class JButtonListenerParametres implements ActionListener
 {
 	private Cparametre cPara;
 	public JButtonListenerParametres(Cparametre c) {
-		// TODO Auto-generated constructor stub
 		this.cPara = c;
 	}
 	
