@@ -2,10 +2,14 @@ package fr.poker.controller;
 
 import static java.lang.System.out;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -45,8 +49,7 @@ public class Caccueil {
 	 * "Input must be a number."); } }
 	 */
 	
-	
-	
+
 	private Vaccueil vacc;
 	private JFrame frameacc;
 	private Cconnexion ccon;
@@ -129,12 +132,26 @@ public class Caccueil {
 		
 	}
 	public void listeSalles() {
-		
-		int nbSalle=0;
 		System.out.println("fct liste salle : ");
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
-		nbSalle=cSalle.listeSalles();
+		Vector<String> listSalles = new Vector();
+		listSalles=cSalle.listeSalles();
+		
+		int nbSalles = 0;
+		for (Object o : listSalles) {
+			nbSalles++;
+		}
+		String[] data = new String [nbSalles+1];
+		nbSalles=0;
+		for (Object o : listSalles) {
+			nbSalles++;
+			//System.out.println(nbSalles);
+			data[nbSalles]=new String (o.toString());
+		}
+        //Update le Scroll pane contenant la liste des parties.
+
+		vacc.setScrollPane_1DataList(data);
 	}
 
 	public void reloadData() {

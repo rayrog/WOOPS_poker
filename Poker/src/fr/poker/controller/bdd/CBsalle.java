@@ -13,7 +13,6 @@ import javax.swing.Spring;
 public class CBsalle {
 	private CBconnect cbCo;
 	private Statement st;
-	private Vector listSalle;
 	
 	public CBsalle(CBconnect c) {
 		this.cbCo = c;
@@ -21,15 +20,15 @@ public class CBsalle {
 	
 	/*Partie traitement des salles*/
 
-	public int listeSalles(){
+	@SuppressWarnings("null")
+	public Vector<String> listeSalles(){
 		
 		/*
 		 * Cette fct sert a lister les salles existantes 
 		 * et return leur nombre (-1 si aucune)
 		 */
 		int resultat = -1;
-		int i=0;
-		
+		Vector<String> listSalles = new Vector();
 		try{
 			//Connexion � la BDD 
 			cbCo.connexion();
@@ -42,14 +41,16 @@ public class CBsalle {
 			//exécution requête
 			ResultSet rs = st.executeQuery(sql);
 			ResultSetMetaData resultMeta = rs.getMetaData();
-			//test si le mail existe, si oui, change la valeur de resultat par -1
+
 			resultat=0;
 			while(rs.next())
 			{	
 				String name = rs.getString(2); // recupere champ correspondant a 2 valeur dans bdd = nom de la salle
 				String Id = rs.getString(1);			
 				String nbJoueurs=nbJoueurSalle(Id);
-				System.out.println("Salle " + Id + " : " + name + " : " + nbJoueurs + " Joueurs");	
+				String lineToDisplay="Salle ID : " + Id + " // nom : " + name + " // " + nbJoueurs + " Joueurs";
+				System.out.println(lineToDisplay);
+				listSalles.addElement(lineToDisplay);
 				resultat++;			
 			}
 			System.out.println("Nombre de salles : " + resultat);
@@ -57,7 +58,7 @@ public class CBsalle {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return resultat;
+		return listSalles;
 	}
 
 	
@@ -91,14 +92,6 @@ public class CBsalle {
 		}
 		return Integer.toString(i);
 	}
-
-	public Vector getListSalle() {
-		return listSalle;
-	}
-
-	public void setListSalle(Vector listSalle) {
-		this.listSalle = listSalle;
-	}	
 }
 	
 	

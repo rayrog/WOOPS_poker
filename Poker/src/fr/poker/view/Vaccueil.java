@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
 import javax.accessibility.Accessible;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -48,7 +49,7 @@ public class Vaccueil{
 		private JScrollPane pannelSalle;
 		private JList listSalle;
 		private JScrollPane scrollPane_1;
-		private String[] dataList = {"one", "two", "three", "four","5","6","7", "three", "four","5","6","7","one", "two", "three", "four","5","6","7", "three", "four","5","6","7"};  
+		private String[] dataList = {"Aucune Partie"};  
 
 		public Vaccueil(Caccueil cacc){
 			frame = new JFrame();
@@ -114,9 +115,7 @@ public class Vaccueil{
 			btnJoin.setBounds(519, 619, 215, 51);
 			frame.getContentPane().add(btnJoin);
 			
-			
-
-			 
+	
 			//Affiche liste remplie par le controleur avec les noms des parties et guette quand on clique
 			
 			
@@ -126,7 +125,6 @@ public class Vaccueil{
 			frame.getContentPane().add(scrollPane_1);
 			final JList listSalle = new JList(menuItem);
 			scrollPane_1.setViewportView(listSalle);
-			
 			// Ajout les mous listener
 			MouseListener mouseListener = new MouseAdapter() {
 			     public void mouseClicked(MouseEvent e) {
@@ -138,6 +136,29 @@ public class Vaccueil{
 			};
 			listSalle.addMouseListener(mouseListener);
 		}
+		
+		
+		
+	public JScrollPane getScrollPane_1() {
+			return scrollPane_1;
+		}
+
+	public void setScrollPane_1DataList(String[] data) {
+		String[] menuItem=data;  	
+		final JList listSalle = new JList(menuItem);
+		scrollPane_1.setViewportView(listSalle);
+		this.scrollPane_1 = scrollPane_1;
+		MouseListener mouseListener = new MouseAdapter() {
+		     public void mouseClicked(MouseEvent e) {
+		         if (e.getClickCount() == 1){
+		             int index = listSalle.locationToIndex(e.getPoint());
+		             System.out.println("clicked on Item " + index);
+		          }
+		   }
+		};
+		listSalle.addMouseListener(mouseListener);
+		}
+
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -165,4 +186,12 @@ public class Vaccueil{
 	public JButton getBtnJoin() {
 		return btnJoin;
 	}
+	public String[] getDataList() {
+		return dataList;
+	}
+	public void setDataList(String[] dataList) {
+		this.dataList = dataList;
+	}
+	
+	
 }
