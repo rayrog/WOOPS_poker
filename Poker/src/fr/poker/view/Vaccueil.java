@@ -34,7 +34,8 @@ import fr.poker.controller.Caccueil;
 import fr.poker.controller.Cconnexion;
 import fr.poker.controller.listener.JButtonListenerAccueil;
 import fr.poker.controller.listener.JButtonListenerConnexion;
-import javax.swing.JList;;
+import javax.swing.JList;
+import javax.swing.JTextPane;;
 
 public class Vaccueil{
 		private JFrame frame;
@@ -51,6 +52,9 @@ public class Vaccueil{
 		private JScrollPane scrollPane_1;
 		private String[] dataList = {"Aucune Partie"};  // en cas d'erreur avec la connection bdd
 		private String iDChoisie="-1"; // Contient l'Id choisie par le joueur quand il clique sur la liste des parties.
+		private JTextField txtCredit;
+		private JLabel label;
+		private JTextField textPseudo;
 
 		public Vaccueil(Caccueil cacc){
 			frame = new JFrame();
@@ -92,7 +96,7 @@ public class Vaccueil{
 			btnParameters.addActionListener(new JButtonListenerAccueil(cacc));
 			btnParameters.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/settings.png")));
 			btnParameters.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			btnParameters.setBounds(1093, 11, 191, 51);
+			btnParameters.setBounds(1056, 204, 226, 51);
 			frame.getContentPane().add(btnParameters);
 			
 			
@@ -129,6 +133,30 @@ public class Vaccueil{
 			frame.getContentPane().add(scrollPane_1);
 			final JList listSalle = new JList(menuItem);
 			scrollPane_1.setViewportView(listSalle);
+			
+			txtCredit = new JTextField();
+			txtCredit.setEditable(false);
+			txtCredit.setName("txtMoney");
+			txtCredit.setFont(new Font("Tahoma", Font.PLAIN, 25));
+			txtCredit.setColumns(10);
+			txtCredit.setBackground(Color.LIGHT_GRAY);
+			txtCredit.setBounds(1056, 154, 226, 37);
+			frame.getContentPane().add(txtCredit);
+			
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(Vaccueil.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setBounds(1113, 0, 123, 113);
+			frame.getContentPane().add(label);
+			
+			textPseudo = new JTextField();
+			textPseudo.setName("txtName");
+			textPseudo.setFont(new Font("Tahoma", Font.PLAIN, 25));
+			textPseudo.setEditable(false);
+			textPseudo.setColumns(10);
+			textPseudo.setBackground(Color.LIGHT_GRAY);
+			textPseudo.setBounds(1056, 107, 226, 37);
+			frame.getContentPane().add(textPseudo);
 			// Ajout les mous listener
 		}
 		
@@ -195,21 +223,23 @@ public class Vaccueil{
 	}
 
 
-
 	public String getiDChoisie() {
 		return iDChoisie;
 	}
-
-
 
 	public void setiDChoisie(String iDChoisie) {
 		this.iDChoisie = iDChoisie;
 	}
 
-
-
-
-
-
+	public void setCredit(String c) {
+		String Credit=c;  	
+		txtCredit.setText(Credit + " €");
+		this.txtCredit = txtCredit;
+	}
 	
+	public void setPseudo(String c) {
+		String Name=c;  	
+		textPseudo.setText(Name);
+		this.textPseudo = textPseudo;
+	}
 }

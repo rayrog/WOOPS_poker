@@ -59,6 +59,8 @@ public class Caccueil {
 	private Vparametres fentrePara;
 	private CBconnect cbcon;
 	private CBsalle cSalle;
+	private CBcompte cbcpt;
+
 	//private int IDSalle;
 	
 	public Caccueil(Cconnexion c,int ID) {
@@ -66,7 +68,7 @@ public class Caccueil {
 		this.ccon = c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
-		listeSalles();
+		init();
 	}
 	
 	public Caccueil(Cparametre c, int ID){
@@ -74,7 +76,7 @@ public class Caccueil {
 		this.cParam=c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
-		listeSalles();
+		init();
 	}
 	
 	public Caccueil(Ccreation c, int ID) {
@@ -82,7 +84,29 @@ public class Caccueil {
 		this.cCrea=c;
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
+		init();
+		
+	}
+	
+	private void init(){
 		listeSalles();
+		displayCredit();
+		displayPseudo();
+	}
+	
+	private void displayPseudo(){	
+		cbcon = new CBconnect();
+		cbcpt = new CBcompte(cbcon);
+		//cbcpt.getCredit(getIDplayer()); // recupere le credit du joueur 
+		vacc.setPseudo(cbcpt.getPseudo(getIDplayer()));
+	}
+
+	private void displayCredit(){
+		cbcon = new CBconnect();
+		cbcpt = new CBcompte(cbcon);
+		//cbcpt.getCredit(getIDplayer()); // recupere le credit du joueur 
+		vacc.setCredit(cbcpt.getCredit(getIDplayer()));
+	
 	}
 
 	public int getIDplayer() {
