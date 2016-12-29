@@ -30,8 +30,7 @@ public class Vparametres {
 	private JTextField txtEmail;
 	private JTextField txtPhoneNumber;
 	private JTextField txtMoney;
-	private String [] textInitiaux;
-	private JButton btnTakeMoney;
+	private String [] textInitiaux = {"Mot de passe","Confirmer   ", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone","Credit"};
 	private JButton btnAddMoney;
 	private JButton btnCancel;
 	private JButton btnRegister;
@@ -59,8 +58,6 @@ public class Vparametres {
 	 * @param cparametre 
 	 */
 	public Vparametres(Cparametre cPara) {
-		String[] texts = {"Mot de passe","Confirmer   ", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone","Argent \u00E0 d\u00E9poser"};
-		textInitiaux = texts;
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
@@ -169,7 +166,7 @@ public class Vparametres {
 		
 		txtPhoneNumber = new JTextField();
 		txtPhoneNumber.setBounds(466, 444, 367, 51);
-		txtPhoneNumber.setText(textInitiaux[6]);
+		//txtPhoneNumber.setText(textInitiaux[6]);
 		txtPhoneNumber.setName("txtPhoneNumber");
 		txtPhoneNumber.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtPhoneNumber.setColumns(10);
@@ -191,6 +188,7 @@ public class Vparametres {
 		btnCancel.addActionListener(new JButtonListenerParametres(cPara));
 		
 		txtMoney = new JTextField();
+		txtMoney.setEditable(false);
 		txtMoney.setText(textInitiaux[7]);
 		txtMoney.setName("txtMoney");
 		txtMoney.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -201,18 +199,12 @@ public class Vparametres {
 		txtMoney.addMouseListener(new JTextFieldListenerParametre(cPara, txtMoney));
 		txtMoney.addFocusListener(new JTextFieldListenerParametre(cPara, txtMoney));
 		
-		this.btnAddMoney = new JButton("Crediter");
+		this.btnAddMoney = new JButton("Crediter/Retirer");
 		btnAddMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAddMoney.setBounds(466, 630, 177, 51);
+		btnAddMoney.setBounds(466, 630, 366, 51);
 		frame.getContentPane().add(btnAddMoney);
 		btnAddMoney.addActionListener(new JButtonListenerParametres(cPara));
-		
-		this.btnTakeMoney = new JButton("Retirer");
-		btnTakeMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnTakeMoney.setBounds(656, 630, 177, 51);
-		frame.getContentPane().add(btnTakeMoney);
 		frame.setBounds(100, 100, 1300, 800);
-		btnTakeMoney.addActionListener(new JButtonListenerParametres(cPara));
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -295,6 +287,17 @@ public class Vparametres {
 		this.txtMoney = txtMoney;
 	}
 
-	
+	public void setInfoToDisplay(String[] infos) {
+		//String[] Name=c;  	
+		/*
+		txtPseudo.setText(Name[2]);
+		txtLastName.setText(Name[1]);
+		txtFirstName.setText(Name[3]);
+		txtEmail.setText(Name[4]);
+		txtPhoneNumber.setText(Name[5]);
+		txtMoney.setText(Name[6]);*/
+		String [] text = {"Mot de passe","Confirmer   ", infos[1], infos[3],infos[2],infos[4],infos[5],infos[6]};
+		textInitiaux=text;
+	}
 	
 }

@@ -85,7 +85,6 @@ public class Caccueil {
 		this.IDplayer=ID;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
 		init();
-		
 	}
 	
 	private void init(){
