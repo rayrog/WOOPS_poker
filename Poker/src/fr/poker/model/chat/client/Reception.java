@@ -44,7 +44,7 @@ public class Reception implements Runnable {
 			       }
 				System.out.println("Je vais lancer actualiser");
 				Vjeu.actualiser(Vjeu.LayerChat, array_Liste);
-				Thread.sleep(2000);
+				Thread.sleep(500);
 	            //System.out.println("Client recoit: " + Arrays.deepToString(array_Liste));
 			//message = in.readLine();
 			//System.out.println("Le serveur vous dit :" +message);
