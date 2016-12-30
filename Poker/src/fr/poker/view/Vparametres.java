@@ -63,6 +63,8 @@ public class Vparametres {
 		frame.getContentPane().setBackground(new Color(39, 78, 19));
 		frame.getContentPane().setLayout(null);
 		
+		//setInfoToDisplay(this.getTextInitiaux());
+		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Vparametres.class.getResource("/fr/poker/view/pictures/logo.png")));
 		lblLogo.setBounds(10, 11, 160, 154);
@@ -83,15 +85,7 @@ public class Vparametres {
 		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
 		frame.getContentPane().add(lblSlogan);
 		
-		lblSuccess = new JLabel("Enregistrement effectué avec succès !");
-		lblSuccess.setBackground(new Color(0, 128, 0));
-		lblSuccess.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSuccess.setForeground(Color.RED);
-		lblSuccess.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblSuccess.setBounds(239, 102, 835, 63);
-		frame.getContentPane().add(lblSuccess);
-		lblSuccess.setVisible(false);
-		
+	
 		JLabel lblAvatar = new JLabel("");
 		lblAvatar.setIcon(new ImageIcon(Vparametres.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
 		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,7 +94,7 @@ public class Vparametres {
 		
 		txtLastName = new JTextField();
 		txtLastName.setBounds(466, 148, 176, 51);
-		txtLastName.setText(textInitiaux[2]);
+		//txtLastName.setText(textInitiaux[2]);
 		txtLastName.setName("txtLastName");
 		txtLastName.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtLastName.setColumns(10);
@@ -111,7 +105,7 @@ public class Vparametres {
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setBounds(656, 149, 176, 51);
-		txtFirstName.setText(textInitiaux[3]);
+		//txtFirstName.setText(textInitiaux[3]);
 		txtFirstName.setName("txtFirstName");
 		txtFirstName.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtFirstName.setColumns(10);
@@ -122,7 +116,7 @@ public class Vparametres {
 		
 		txtPseudo = new JTextField();
 		txtPseudo.setBounds(466, 208, 367, 51);
-		txtPseudo.setText(textInitiaux[4]);
+		//txtPseudo.setText(textInitiaux[4]);
 		txtPseudo.setName("txtPseudo");
 		txtPseudo.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtPseudo.setColumns(10);
@@ -155,7 +149,7 @@ public class Vparametres {
 		
 		txtEmail = new JTextField();
 		txtEmail.setBounds(466, 385, 367, 51);
-		txtEmail.setText(textInitiaux[5]);
+		//txtEmail.setText(textInitiaux[5]);
 		txtEmail.setName("txtEmail");
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtEmail.setColumns(10);
@@ -189,15 +183,13 @@ public class Vparametres {
 		
 		txtMoney = new JTextField();
 		txtMoney.setEditable(false);
-		txtMoney.setText(textInitiaux[7]);
+		//txtMoney.setText(textInitiaux[7]);
 		txtMoney.setName("txtMoney");
 		txtMoney.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtMoney.setColumns(10);
 		txtMoney.setBackground(Color.LIGHT_GRAY);
 		txtMoney.setBounds(466, 568, 367, 51);
 		frame.getContentPane().add(txtMoney);
-		txtMoney.addMouseListener(new JTextFieldListenerParametre(cPara, txtMoney));
-		txtMoney.addFocusListener(new JTextFieldListenerParametre(cPara, txtMoney));
 		
 		this.btnAddMoney = new JButton("Crediter/Retirer");
 		btnAddMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -205,15 +197,43 @@ public class Vparametres {
 		frame.getContentPane().add(btnAddMoney);
 		btnAddMoney.addActionListener(new JButtonListenerParametres(cPara));
 		frame.setBounds(100, 100, 1300, 800);
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		// Partie Label d'erreur ou de success : 
+		lblErrorField = new JLabel("");
+		lblErrorField.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		lblErrorField.setForeground(Color.RED);
+		lblErrorField.setBounds(360, 162, 486, 16);
+		frame.getContentPane().add(lblErrorField);
+		lblErrorField.setVisible(false);
+				
+		
+		
 	}
 	
 	public String[] getTextInitiaux() {
 		return textInitiaux;
 	}
+		
 	
-	
+	public JLabel getLblErrorField() {
+		return lblErrorField;
+	}
+
+	public void setLblErrorField(JLabel lblErrorField) {
+		this.lblErrorField = lblErrorField;
+	}
+
+	public JLabel getLblSuccess() {
+		return lblSuccess;
+	}
+
+	public void setLblSuccess(JLabel lblSuccess) {
+		this.lblSuccess = lblSuccess;
+	}
+
 	public JFrame getFrame() {
 		return frame;
 	}
@@ -288,15 +308,19 @@ public class Vparametres {
 	}
 
 	public void setInfoToDisplay(String[] infos) {
-		//String[] Name=c;  	
-		/*
-		txtPseudo.setText(Name[2]);
-		txtLastName.setText(Name[1]);
-		txtFirstName.setText(Name[3]);
-		txtEmail.setText(Name[4]);
-		txtPhoneNumber.setText(Name[5]);
-		txtMoney.setText(Name[6]);*/
-		String [] text = {"Mot de passe","Confirmer   ", infos[1], infos[3],infos[2],infos[4],infos[5],infos[6]};
+		//Permet d'initialiser les valeurses a pre-remplir dans les différents champs.
+		//System.out.println(infos);
+		// Utilisé pour le premier remplissage : 
+		
+		txtPseudo.setText(infos[2]);
+		txtLastName.setText(infos[1]);
+		txtFirstName.setText(infos[3]);
+		txtEmail.setText(infos[4]);
+		txtPhoneNumber.setText(infos[5]);
+		txtMoney.setText("Credit : " + infos[6] + " €");
+		
+		// Enregistre aussi ces valeurs dans la variable servant a l'auo remplissage.
+		String [] text = {"Mot de passe","Confirmer   ", infos[1], infos[3],infos[2],infos[4],infos[5],"Credit : " + infos[6] + " €"};
 		textInitiaux=text;
 	}
 	

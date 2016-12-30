@@ -16,15 +16,18 @@ public class JButtonListenerParametres implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Enregistrer")) {
-			System.out.println("Enregistrer");
-
+			System.out.println("Tentative d'Enregistrement");
+			if(cPara.verifyBdd()){
+				System.out.println("verif BDD OK");
+				if(cPara.verifyFields()) {
+					System.out.println("verif fields");
+					cPara.insertNewUserData();
+					System.out.println("infos enregistrée");
+				}
+			}
 		}
-		if (e.getActionCommand().equals("Crediter")) {
-			System.out.println("Crediter");
-
-		}
-		if (e.getActionCommand().equals("Retirer")) {
-			System.out.println("Retirer");
+		if (e.getActionCommand().equals("Crediter/Retirer")) {
+			System.out.println("Crediter/Retirer");
 
 		}
 		if (e.getActionCommand().equals("Annuler")) {

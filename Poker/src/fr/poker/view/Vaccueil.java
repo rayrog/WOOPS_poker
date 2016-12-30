@@ -171,7 +171,6 @@ public class Vaccueil{
 		String[] menuItem=data;  	
 		final JList listSalle = new JList(menuItem);
 		scrollPane_1.setViewportView(listSalle);
-		this.scrollPane_1 = scrollPane_1;
 		MouseListener mouseListener = new MouseAdapter() {
 		     public void mouseClicked(MouseEvent e) {
 		         if (e.getClickCount() == 1){
@@ -234,12 +233,12 @@ public class Vaccueil{
 	public void setCredit(String c) {
 		String Credit=c;  	
 		txtCredit.setText(Credit + " €");
-		this.txtCredit = txtCredit;
+
 	}
 	
 	public void setPseudo(String c) {
 		String Name=c;  	
 		textPseudo.setText(Name);
-		this.textPseudo = textPseudo;
+
 	}
 }

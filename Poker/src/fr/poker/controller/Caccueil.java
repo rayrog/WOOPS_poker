@@ -202,6 +202,6 @@ public class Caccueil {
 
 	public void rejoindrePartie(int iDplayer2, String idSalle) {
 		System.out.println("Tentative de connexion du joueur "+ iDplayer2 +" a la partie " + idSalle);
-		System.out.println("TO DO : Ajout du joueur a la salle : ");
+		System.out.println("TO DO  Ajout du joueur a la salle ");
 	}
 }
