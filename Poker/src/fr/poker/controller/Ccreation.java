@@ -113,24 +113,27 @@ public class Ccreation{
 		}
 		//Essaye de récupérer un port disponnible dans la Base de donnée pour le Chat et un port pour la salle
 		
-		portSalle=cbSalle.getPortSalle();
-		portChat=cbSalle.getPortChat();
+		portSalle=cbSalle.getAvailablePort("salle");
+		portChat=cbSalle.getAvailablePort("chat");
+		
+		System.out.println("portSalle obtenue : "+ portSalle);
+		System.out.println("portChat obtenue : " + portChat);
+		
 		
 		// Creation de la salle : 
-		if ((nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1)==false ){
+		if ((nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1)==false){
 			//créer la salle 
 			
 			/* 
 			 * Test Value : 
 			 */
-			/*isPrivate=false;
+			isPrivate=false;
 			pwdSalle="";
 			nomSalle= "SallePublique1";
-			portSalle=4565;//4555-4565 
-			portChat=4580;//4570 */
+			//portSalle=4565;//4555-4565 
+			//portChat=4580;//4570 */
 			
 			cbSalle.creeSalle(isPrivate,pwdSalle, nomSalle, portSalle, portChat);
-			System.out.println("partie crée : "+ nomSalle);
 			runAccueil();
 		}
 		else if(nomOK==false){
