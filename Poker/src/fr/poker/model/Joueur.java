@@ -4,11 +4,12 @@ import java.util.*;
 
 public class Joueur extends Observable {
 
-	private int id; // Pour identifier un joueur dans une partie
+	protected int id; // Pour identifier un joueur dans une partie
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
 	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de
 									// commencer la partie
-	private boolean jouer;
+	private int numeroJoueurTable;
+	private boolean jouer;  //a la fonction de token
 	private boolean tourGagne;
 	private boolean tourFini;
 	private boolean partieGagne;
@@ -40,6 +41,8 @@ public class Joueur extends Observable {
 		this.pseudo = pseudo;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
+		this.partieFinie = false;
+		this.adversaires = new ArrayList<Joueur>();
 		etat = false;
 		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
 		cartes = new ArrayList<>();
@@ -268,6 +271,14 @@ public class Joueur extends Observable {
 	public void setChangedView(){
 		setChanged();
 		notifyObservers();
+	}
+	
+	public int getNumeroJoueurTable() {
+		return numeroJoueurTable;
+	}
+
+	public void setNumeroJoueurTable(int numeroJoueurTable) {
+		this.numeroJoueurTable = numeroJoueurTable;
 	}
 
 	@Override

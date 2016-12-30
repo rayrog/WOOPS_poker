@@ -1,6 +1,10 @@
 package fr.poker.model;
 
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Scanner;
+
+import fr.poker.controller.CpartieServeur;
 
 public class Salle {
 	private int id;
@@ -8,14 +12,22 @@ public class Salle {
 	private boolean privat; // 1: salle privee ; 0: salle publique
 	private String hash;
 	public Table table;
+	private int numSuivantJoueur = 0;
+	private boolean ajoutSuccess;
+	private CpartieServeur maPartie;
+	private int monPort;
+	private boolean finPartie;
 
-	public Salle(String nom, boolean privat, String hash) {
+	public Salle(String nom, boolean privat, String hash, int port) {
 		super();
 		this.nom = nom;
 		this.privat = privat;
 		if (privat)
 			this.hash = hash;
 		this.table = new Table();
+		this.monPort = port;
+		this.maPartie = new CpartieServeur(table);
+		this.finPartie = false;
 	}
 
 	public String getNom() {
@@ -41,6 +53,37 @@ public class Salle {
 	public Table getTable() {
 		return table;
 	}
+	
+	public void ajouterJoueur (Socket socket) throws Exception {
+		//Process ajout nouveau joueur à la salle
+		numSuivantJoueur++;
+		JoueurServeur newJoueur = new JoueurServeur(socket, this);
+		while(!ajoutSuccess){
+			System.out.println("On attend la réponse du joueur pour sa création");
+		}
+		ajoutSuccess = false;
+		System.out.println("Nouveau joueur ajouter avec succès!!!");	
+	}
+
+	public int getNumSuivantJoueur() {
+		return numSuivantJoueur;
+	}
+
+	public void setNumSuivantJoueur(int numSuivantJoueur) {
+		this.numSuivantJoueur = numSuivantJoueur;
+	}
+
+	public boolean isAjoutSuccess() {
+		return ajoutSuccess;
+	}
+
+	public void setAjoutSuccess(boolean ajoutSuccess) {
+		this.ajoutSuccess = ajoutSuccess;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
 
 	public void rejoindre(JoueurServeur j) {
 		if (this.isPrivat()) {
@@ -63,6 +106,42 @@ public class Salle {
 
 	public void inviter() {
 		// TODO: implement
+	}
+	
+	public static void main(String[] args) throws Exception{
+		System.out.println("Ouverture de la salle");
+		//Port sera trasnmis lors de la création
+		int portSalle = 4555;
+		ServerSocket  receptionniste =  new ServerSocket(portSalle);
+		//Maximum 10 joueurs dans la salle
+		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
+		Salle newSalle = new Salle("Test", false, "", portSalle);
+		//Je lance ma Partie
+		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
+	}
+
+	public CpartieServeur getMaPartie() {
+		return maPartie;
+	}
+
+	public void setMaPartie(CpartieServeur maPartie) {
+		this.maPartie = maPartie;
+	}
+
+	public int getMonPort() {
+		return monPort;
+	}
+
+	public void setMonPort(int monPort) {
+		this.monPort = monPort;
+	}
+
+	public boolean isFinPartie() {
+		return finPartie;
+	}
+
+	public void setFinPartie(boolean finPartie) {
+		this.finPartie = finPartie;
 	}
 
 }

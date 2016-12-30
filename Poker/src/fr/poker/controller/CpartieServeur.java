@@ -1,32 +1,18 @@
 package fr.poker.controller;
 
-import java.net.Socket;
 
-import fr.poker.controller.listener.JButtonListenerJeu;
 import fr.poker.model.*;
 import fr.poker.view.*;
-import fr.poker.model.*;
+
 
 public class CpartieServeur {
-
+	public Salle maSalle;
 	public Table maTable;
-	private Vjeu vJeu;
-	private JButtonListenerJeu jBtnLJeu;
 	private JoueurServeur joueurCourant;
 	public CpartieServeur(Table t) {
 
-		if (t.getJoueurs().size() > 1) // On cr�e une partie que s'il y a
-										// d�ja deux joueurs assis � la
-										// table
 			this.maTable = t;
 
-	}
-	public void ajouterJoueur (Socket socket) {
-		
-	}
-	
-	public void run() {
-		//TO DO 
 	}
 
 	public void distribuerRole(Table table) {
@@ -175,32 +161,23 @@ public class CpartieServeur {
 		maTable.setPot(0);
 	}
 
-	public JoueurServeur joueurSuivant() {
+	public Joueur joueurSuivant() {
 
-		JoueurServeur next = new JoueurServeur();
+		Joueur next = new Joueur();
 		int nextIdx;
 
-		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
+		for (Joueur j : maTable.getJoueursEnJeu()) {
 			if (maTable.getTour() != 4 && j.getRole() == "Petite blinde" && !j.getaSuivi()) {
 				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
-				// enablebouton(Joueur j)
-				
-				
+				// enablebouton(Joueur j)			
 				// parler(j);		
-				 joueurCourant = j;
+				 //joueurCourant = j;
 				// disableBouton(Joueur j)
 				next = maTable.getJoueursEnJeu().get(nextIdx);
 			}
 		}
 
 		return next;
-	}
-	
-	public void btnsEnable (){
-		vJeu.getBtnCheck().setEnabled(true);
-		vJeu.getBtnMiser().setEnabled(true);
-		vJeu.getBtnSeCoucher().setEnabled(true);
-		vJeu.getBtnSuivre().setEnabled(true);
 	}
 	
 	public void parler(Joueur j){
@@ -219,9 +196,9 @@ public class CpartieServeur {
 		}
 		return 1;
 	}
-	public static void main(String[] args) {
-/*		System.out.println("Début de la nouvelle partie");
-		CpartieServeur cPartie = new CpartieServeur(t) 
+	
+	public void lancementPartie() {
+		System.out.println("Début de la nouvelle partie");
 		maTable.setTour(0);
 		maTable.setPot(0);
 		
@@ -232,15 +209,15 @@ public class CpartieServeur {
 			do {
 				winner=verifierGagnant();
 				
-				DEBUG
+				//DEBUG
 				for(Joueur j:maTable.getJoueurs())
 					j.getInfos();
 				System.out.println(maTable);
-				*//***//*
+				//*//***//*
 				
 				distribuerCartes();			
 				
-				DEBUG
+				//DEBUG
 				System.out.println(maTable);
 				for(Joueur j:maTable.getJoueurs())
 					j.getInfos();
@@ -254,6 +231,8 @@ public class CpartieServeur {
 			
 		} else
 			System.out.println("C'est dommage tu es tout seul");		
-	}*/
+	}
+
+	
 }
-}
+

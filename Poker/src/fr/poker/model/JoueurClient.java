@@ -1,13 +1,10 @@
 package fr.poker.model;
 
-import java.net.Socket;
 import java.util.Set;
 
 public class JoueurClient extends Joueur {
-	public JoueurClient(Socket socket) {
+	public JoueurClient(int id) {
 		super();
-
+		this.id = id;
 	}
-
-
 }
