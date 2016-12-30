@@ -8,6 +8,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import fr.poker.controller.Cinscription;
 
@@ -183,7 +184,6 @@ public class CBcompte {
 	//Ecriture des données du nouvel utilisateur dans la BDD
 	public void inscription(Cinscription c){
 		
-
 		try{
 			cIns = c;
 			cbCo.connexion();
@@ -201,7 +201,127 @@ public class CBcompte {
 			e.printStackTrace();
 		}		
 	}
+	
+	public String getCredit(int iDplayer){
+		/*
+			 * Cette fct sert a recuperer le credit d'un joueur passé en parametre.
+			 */
+			String resultat="Erreur credit";
+			try{
+				//Connexion � la BDD 
+				cbCo.connexion();
+				this.st=cbCo.getSt();
+				
+				String sql = "SELECT credit FROM `Compte` WHERE `id` LIKE '";
+				sql = new StringBuilder(sql).insert(sql.length(),iDplayer).toString();
+				sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+				
+				// debug : affichage requete 
+				//	System.out.println(sql);
+	
+				ResultSet rs = st.executeQuery(sql);
+				ResultSetMetaData resultMeta = rs.getMetaData();
+				//test si le mail existe, si oui, change la valeur de resultat par -1
+				if (rs.next())
+				{	
+					resultat = rs.getString(1);
+					//debug : 
+					//System.out.println("Credit for " + iDplayer + " is " + resultat);
+					
+				}
+				else {
+					System.out.println("Erreur dans fct get credit");
+				}
+		
+				cbCo.fermerConnexion();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return resultat;
+	}
 
+	
+	
+	public String getPseudo(int iDplayer){
+		/*
+			 * Cette fct sert a recuperer le credit d'un joueur passé en parametre.
+			 */
+			String resultat="Erreur Pseudo";
+			try{
+				//Connexion � la BDD 
+				cbCo.connexion();
+				this.st=cbCo.getSt();
+				
+				String sql = "SELECT pseudo FROM `Compte` WHERE `id` LIKE '";
+				sql = new StringBuilder(sql).insert(sql.length(),iDplayer).toString();
+				sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+				
+				// debug : affichage requete 
+				//	System.out.println(sql);
+	
+				ResultSet rs = st.executeQuery(sql);
+				ResultSetMetaData resultMeta = rs.getMetaData();
+				//test si le mail existe, si oui, change la valeur de resultat par -1
+				if (rs.next())
+				{	
+					resultat = rs.getString(1);
+					//debug : 
+					//System.out.println("Credit for " + iDplayer + " is " + resultat);
+					
+				}
+				else {
+					System.out.println("Erreur dans fct get pseudo");
+				}
+		
+				cbCo.fermerConnexion();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return resultat;
+			
+			
+	}
+			public Vector<String> getPlayerInfo(int iDplayer){
+				/*
+					 * Cette fct sert a recuperer le credit d'un joueur passé en parametre.
+					 */
+
+					Vector<String> infos = new Vector();
+					try{
+						//Connexion � la BDD 
+						cbCo.connexion();
+						this.st=cbCo.getSt();
+						String sql = "SELECT nom,pseudo,prenom,mail,tel,credit FROM `Compte` WHERE `id` LIKE '";
+						sql = new StringBuilder(sql).insert(sql.length(),iDplayer).toString();
+						sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+						
+						// debug : affichage requete 
+						//	System.out.println(sql);
+			
+						ResultSet rs = st.executeQuery(sql);
+						ResultSetMetaData resultMeta = rs.getMetaData();
+						//test si le mail existe, si oui, change la valeur de resultat par -1
+						
+						if (rs.next())
+						{	
+							infos.add(rs.getString(1));
+							infos.add(rs.getString(2));
+							infos.add(rs.getString(3));
+							infos.add(rs.getString(4));
+							infos.add(rs.getString(5));
+							infos.add(rs.getString(6));
+						}
+						else {
+							System.out.println("Erreur dans fct get list parametre // CBcompte");
+						}
+						//debug : 
+						//System.out.println(infos);
+						cbCo.fermerConnexion();
+					} catch(SQLException e) {
+						e.printStackTrace();
+					}
+					return infos;
+	}
 /**/
 
 	

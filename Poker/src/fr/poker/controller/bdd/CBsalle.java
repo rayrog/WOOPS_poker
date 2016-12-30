@@ -105,6 +105,24 @@ public class CBsalle {
 	public void setListId(Vector<String> listId) {
 		this.listId = listId;
 	}
+
+	public boolean verifDataSalle(String string) {
+		
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String creeSalle(boolean isPrivate, String string, String string2) {
+		
+		
+		
+		return string2;
+		// creer une salle et retourne son ID 
+		
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
 	
