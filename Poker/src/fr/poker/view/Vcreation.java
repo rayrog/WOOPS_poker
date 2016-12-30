@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.JMenu;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
@@ -29,8 +31,10 @@ public class Vcreation {
 	private JTextField txtNameSalle;
 	private JButton btnBack;
 	private JButton btnCreationSalle;
-	private JLabel lblMotDePasse;
-	private JLabel lblConfirmationMotDe;
+	private JRadioButton rdbtnPrivate;
+	private JRadioButton rdbtnPublique ;
+	private JLabel lblMdpPwd;
+	private JLabel lblConfirPwd;
 
 	
 	
@@ -99,30 +103,46 @@ public class Vcreation {
 		btnBack.addActionListener(new JButtonListenerCreation(ccreation));	
 		
 		
-		JRadioButton rdbtnPrivate = new JRadioButton("Privée");
+		
+		
+		this.rdbtnPrivate = new JRadioButton("Privée");
+		//jrbNumbers.setMnemonic(KeyEvent.VK_N);
+		rdbtnPrivate.setActionCommand("Privée");
 		rdbtnPrivate.setFont(new Font("Tahoma", Font.BOLD, 16));
 		rdbtnPrivate.setBounds(586, 211, 141, 23);
-		frame.getContentPane().add(rdbtnPrivate);
+		rdbtnPrivate.addActionListener(new JButtonListenerCreation(ccreation));	
 		
-		JRadioButton rdbtnPublique = new JRadioButton("Publique");
+		this.rdbtnPublique = new JRadioButton("Publique");
+		//jrbAlphabets.setMnemonic(KeyEvent.VK_A);
+		rdbtnPublique.setActionCommand("Publique");
 		rdbtnPublique.setFont(new Font("Tahoma", Font.BOLD, 16));
 		rdbtnPublique.setBounds(586, 247, 141, 23);
+		rdbtnPublique.setSelected(true);
+		rdbtnPublique.addActionListener(new JButtonListenerCreation(ccreation));	
+
+		// Group the radio buttons.
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnPrivate);
+		group.add(rdbtnPublique);	
+		frame.getContentPane().add(rdbtnPrivate);
 		frame.getContentPane().add(rdbtnPublique);
 		
-		lblMotDePasse = new JLabel("Mot de passe");
-		lblMotDePasse.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblMotDePasse.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMotDePasse.setBounds(466, 282, 367, 16);
-		frame.getContentPane().add(lblMotDePasse);
-		lblMotDePasse.setEnabled(false);
 		
 		
-		lblConfirmationMotDe = new JLabel("Confirmation mot de passe");
-		lblConfirmationMotDe.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConfirmationMotDe.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblConfirmationMotDe.setBounds(466, 351, 367, 16);
-		frame.getContentPane().add(lblConfirmationMotDe);
-		lblConfirmationMotDe.setEnabled(false);
+		lblMdpPwd = new JLabel("Mot de passe");
+		lblMdpPwd.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblMdpPwd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMdpPwd.setBounds(466, 282, 367, 16);
+		frame.getContentPane().add(lblMdpPwd);
+		lblMdpPwd.setEnabled(false);
+		
+		
+		lblConfirPwd = new JLabel("Confirmation mot de passe");
+		lblConfirPwd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConfirPwd.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblConfirPwd.setBounds(466, 351, 367, 16);
+		frame.getContentPane().add(lblConfirPwd);
+		lblConfirPwd.setEnabled(false);
 		
 		JLabel labelPresentation = new JLabel("Création de partie");
 		labelPresentation.setHorizontalAlignment(SwingConstants.CENTER);
@@ -149,21 +169,41 @@ public class Vcreation {
 	public void setPwdSalleConfirm(JPasswordField pwdSalleConfirm) {
 		this.pwdSalleConfirm = pwdSalleConfirm;
 	}
-
-	public JLabel getLblMotDePasse() {
-		return lblMotDePasse;
+	
+	
+	public String getStringTxtNameSalle() {
+		return txtNameSalle.getText();
 	}
 
-	public void setLblMotDePasse(JLabel lblMotDePasse) {
-		this.lblMotDePasse = lblMotDePasse;
+	public void setTxtNameSalle(JTextField txtNameSalle) {
+		this.txtNameSalle = txtNameSalle;
 	}
 
-	public JLabel getLblConfirmationMotDe() {
-		return lblConfirmationMotDe;
+	public JLabel getLblMdpPwd() {
+		return lblMdpPwd;
+	}
+	
+
+	public String getStringPwdSalleConfirm() {
+		return pwdSalleConfirm.getText();
+	}
+	
+	public String getStringPwdSalle() {
+		return pwdSalle.getText();
 	}
 
-	public void setLblConfirmationMotDe(JLabel lblConfirmationMotDe) {
-		this.lblConfirmationMotDe = lblConfirmationMotDe;
+	// Change le statut des champs de mot de passe : true : actif
+	public void activePassword(boolean actif) {
+			pwdSalle.setEnabled(actif);
+			pwdSalleConfirm.setEnabled(actif);
+	}
+
+	public JLabel getLblConfirPwd() {
+		return lblConfirPwd;
+	}
+
+	public void setLblConfirPwd(JLabel lblConfirPwd) {
+		this.lblConfirPwd = lblConfirPwd;
 	}
 
 	public JFrame getFrame() {
@@ -173,4 +213,10 @@ public class Vcreation {
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
+
+	public void joindreSalle(int iDplayer) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
