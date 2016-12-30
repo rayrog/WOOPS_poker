@@ -104,7 +104,6 @@ public class Vcreation {
 		
 		
 		
-		
 		this.rdbtnPrivate = new JRadioButton("Privée");
 		//jrbNumbers.setMnemonic(KeyEvent.VK_N);
 		rdbtnPrivate.setActionCommand("Privée");
