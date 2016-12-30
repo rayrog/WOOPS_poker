@@ -9,4 +9,5 @@ public class ConstantesServeur {
 	public static final int REJOINDRETABLE = 6;
 	public static final int QUITTERSALLE = 7;
 	public static final int MESINFORMATIONS = 8;
+	public static final int CREERSALLE = 9;
 }

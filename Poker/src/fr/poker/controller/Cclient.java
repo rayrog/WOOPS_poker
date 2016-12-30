@@ -99,7 +99,6 @@ public class Cclient implements Runnable {
 				e.printStackTrace();
 			}
 		}
-
 	}
 	
 	public void lancementClient() {
@@ -111,7 +110,7 @@ public class Cclient implements Runnable {
 		(null, "Donner l'id du nouveau joueur");
 		String pseudo = JOptionPane.showInputDialog
 		(null, "Votre pseudo");
-		int potJoueur = 50;
+		int cagnotte = 50;
 
 		int portSalle = 4555; // Le port sera trasnmis par la méthode réécrite
 		//TODO : adresse du serveur 
@@ -119,7 +118,7 @@ public class Cclient implements Runnable {
 		System.out.println(Integer.parseInt(monid));
 		Cclient c = new Cclient(socket, Integer.parseInt(monid));
 		//On envoie l'id du joueur
-		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+potJoueur);
+		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+cagnotte);
 	}
 
 	public PrintStream getOut() {
