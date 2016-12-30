@@ -5,13 +5,14 @@ import fr.poker.model.*;
 import fr.poker.view.*;
 
 
-public class CpartieServeur {
+public class CpartieServeur implements Runnable {
 	public Salle maSalle;
 	public Table maTable;
 	private JoueurServeur joueurCourant;
 	public CpartieServeur(Table t) {
 
 			this.maTable = t;
+			(new Thread(this)).start();
 
 	}
 
@@ -196,15 +197,17 @@ public class CpartieServeur {
 		}
 		return 1;
 	}
-	
-	public void lancementPartie() {
+
+	@Override
+	public void run() {
 		System.out.println("Début de la nouvelle partie");
 		maTable.setTour(0);
 		maTable.setPot(0);
 		
 		Joueur winner = new Joueur();
+		do {} while (true);
 		
-		if (maTable.getJoueurs().size() > 1) {
+/*		if (maTable.getJoueurs().size() > 1) {
 			distribuerRole(maTable);
 			do {
 				winner=verifierGagnant();
@@ -230,7 +233,8 @@ public class CpartieServeur {
 			} while (winner == null);
 			
 		} else
-			System.out.println("C'est dommage tu es tout seul");		
+			System.out.println("C'est dommage tu es tout seul");	*/	
+		
 	}
 
 	

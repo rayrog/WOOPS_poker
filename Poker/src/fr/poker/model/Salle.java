@@ -1,5 +1,6 @@
 package fr.poker.model;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -28,6 +29,17 @@ public class Salle {
 		this.monPort = port;
 		this.maPartie = new CpartieServeur(table);
 		this.finPartie = false;
+	}
+	
+	//TODO : POUR TESTS A SUPPRIMER
+	public static void main(String[] args) throws Exception {
+		int port = 4555;
+		Salle newSalle = new Salle("salleTest", false, "", port);
+		ServerSocket  receptionniste =  new ServerSocket(port);
+		//Maximum 10 joueurs dans la salle
+		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
+		System.out.println(newSalle.finPartie);
+		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
 	}
 	
 	public void ajouterJoueur (Socket socket) throws Exception {

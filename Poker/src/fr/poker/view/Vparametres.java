@@ -4,8 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -17,6 +22,8 @@ import fr.poker.controller.listener.JTextFieldListenerParametre;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Vparametres {
@@ -36,6 +43,7 @@ public class Vparametres {
 	private JButton btnRegister;
 	private JLabel lblErrorField;
 	private JLabel lblSuccess;
+	private JLabel lblAvatar;
 	/**
 	 * Launch the application.
 	 */
@@ -86,7 +94,7 @@ public class Vparametres {
 		frame.getContentPane().add(lblSlogan);
 		
 	
-		JLabel lblAvatar = new JLabel("");
+		lblAvatar = new JLabel("");
 		lblAvatar.setIcon(new ImageIcon(Vparametres.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
 		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAvatar.setBounds(594, 17, 111, 111);
@@ -209,7 +217,30 @@ public class Vparametres {
 		frame.getContentPane().add(lblErrorField);
 		lblErrorField.setVisible(false);
 				
-		
+        Object[] items =
+        {	
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar2.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar3.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar4.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar5.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar6.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar7.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar8.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar9.png"))
+        };
+        JComboBox comboBoxAvatar = new JComboBox( items );
+        comboBoxAvatar.setSize(new Dimension(100, 100));
+        comboBoxAvatar.setBounds(620, 11, 35, 154);
+        frame.getContentPane().add( comboBoxAvatar);
+        comboBoxAvatar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        JComboBox cb = (JComboBox)e.getSource();
+		        lblAvatar.setIcon((Icon) cb.getSelectedItem());				
+			}
+		});
 		
 	}
 	
@@ -307,6 +338,14 @@ public class Vparametres {
 		this.txtMoney = txtMoney;
 	}
 
+	public JLabel getLblAvatar() {
+		return lblAvatar;
+	}
+
+	public void setLblAvatar(JLabel lblAvatar) {
+		this.lblAvatar = lblAvatar;
+	}
+	
 	public void setInfoToDisplay(String[] infos) {
 		//Permet d'initialiser les valeurses a pre-remplir dans les différents champs.
 		//System.out.println(infos);

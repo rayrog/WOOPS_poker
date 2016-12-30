@@ -170,7 +170,7 @@ public class VjeuClient implements Observer{
 		lblValeurPotTotal.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(lblValeurPotTotal);
 		
-		lblNotifications = new JLabel("...");
+		lblNotifications = new JLabel("BIENVENUE !!!");
 		lblNotifications.setSize(390, 30);
 		lblNotifications.setLocation(450, 25);
 		lblNotifications.setHorizontalAlignment(SwingConstants.CENTER);
