@@ -57,13 +57,19 @@ public class Ccreation{
 		
 		cbCon = new CBconnect();
 		cbSalle = new CBsalle(cbCon);
+		String pwdSalle;
+		String pwdConf;
 		boolean pwdOK=false;
 		boolean nomOK=false;
 		
 		//verifie si les Pwd entrés sont identique si if isPrivate=true
-
+		
 		if (isPrivate==true){
-			if (vCrea.getStringPwdSalle()==vCrea.getStringPwdSalleConfirm())
+			
+			pwdSalle=vCrea.getStringPwdSalle();
+			pwdConf=vCrea.getStringPwdSalleConfirm();
+			System.out.println(pwdSalle + pwdConf);
+			if (pwdSalle.equals(pwdConf)==true)
 			{	
 				System.out.println("Champs pwd identiques");
 				pwdOK=true;
@@ -71,9 +77,12 @@ public class Ccreation{
 			else
 			{
 				System.out.println("Champs pwd différents");
+				//to do : Affichage message d'erreur : Mot de passe entrée différent 
 			}
 		}
 		if (isPrivate==false){
+			pwdSalle="";
+			pwdConf="";
 			pwdOK=true;
 		}
 		
