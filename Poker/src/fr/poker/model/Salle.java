@@ -29,30 +29,6 @@ public class Salle {
 		this.maPartie = new CpartieServeur(table);
 		this.finPartie = false;
 	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public boolean isPrivat() {
-		return privat;
-	}
-
-	public void setPrivat(boolean privat) {
-		this.privat = privat;
-	}
-
-	public String getHash() {
-		return hash;
-	}
-
-	public Table getTable() {
-		return table;
-	}
 	
 	public void ajouterJoueur (Socket socket) throws Exception {
 		//Process ajout nouveau joueur à la salle
@@ -65,25 +41,10 @@ public class Salle {
 		System.out.println("Nouveau joueur ajouter avec succès!!!");	
 	}
 
-	public int getNumSuivantJoueur() {
-		return numSuivantJoueur;
-	}
-
-	public void setNumSuivantJoueur(int numSuivantJoueur) {
-		this.numSuivantJoueur = numSuivantJoueur;
-	}
-
 	public boolean isAjoutSuccess() {
 		return ajoutSuccess;
 	}
 
-	public void setAjoutSuccess(boolean ajoutSuccess) {
-		this.ajoutSuccess = ajoutSuccess;
-	}
-
-	public void setTable(Table table) {
-		this.table = table;
-	}
 
 	public void rejoindre(JoueurServeur j) {
 		if (this.isPrivat()) {
@@ -108,16 +69,11 @@ public class Salle {
 		// TODO: implement
 	}
 	
-	public static void main(String[] args) throws Exception{
-		System.out.println("Ouverture de la salle");
-		//Port sera trasnmis lors de la création
-		int portSalle = 4555;
-		ServerSocket  receptionniste =  new ServerSocket(portSalle);
+	public void lancement() throws Exception{
+		ServerSocket  receptionniste =  new ServerSocket(monPort);
 		//Maximum 10 joueurs dans la salle
 		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
-		Salle newSalle = new Salle("Test", false, "", portSalle);
-		//Je lance ma Partie
-		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
+		while(!this.finPartie ) this.ajouterJoueur(receptionniste.accept());
 	}
 
 	public CpartieServeur getMaPartie() {
@@ -143,5 +99,44 @@ public class Salle {
 	public void setFinPartie(boolean finPartie) {
 		this.finPartie = finPartie;
 	}
+	
+	public String getNom() {
+		return nom;
+	}
 
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public boolean isPrivat() {
+		return privat;
+	}
+
+	public void setPrivat(boolean privat) {
+		this.privat = privat;
+	}
+
+	public String getHash() {
+		return hash;
+	}
+
+	public Table getTable() {
+		return table;
+	}
+
+	public void setAjoutSuccess(boolean ajoutSuccess) {
+		this.ajoutSuccess = ajoutSuccess;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+	
+	public int getNumSuivantJoueur() {
+		return numSuivantJoueur;
+	}
+
+	public void setNumSuivantJoueur(int numSuivantJoueur) {
+		this.numSuivantJoueur = numSuivantJoueur;
+	}
 }

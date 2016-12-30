@@ -80,7 +80,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 				message = in.readLine();
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 }
