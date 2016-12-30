@@ -58,7 +58,7 @@ public class CBsalle {
 				resultat++;			
 				this.listId.addElement(Id);
 			}
-			System.out.println("Nombre de salles : " + resultat);
+			//System.out.println("Nombre de salles : " + resultat);
 			cbCo.fermerConnexion();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -117,7 +117,6 @@ public class CBsalle {
 		
 		//Envois une requete de création de salle à la Bdd , avec un mot de passe haché si isPrivate a true.
 		try{
-			System.out.println("Creation de la salle : Privée="+ isPrivate + " nomSalle=" + nomSalle + " portSalle=" + portSalle + " portChat=" + portChat);
 			String sql = "";
 			cbCo.connexion();
 			this.st=cbCo.getSt();
@@ -136,7 +135,7 @@ public class CBsalle {
 			}
 			//System.out.println("requete : "+ sql);
 			int rs = st.executeUpdate(sql);
-			System.out.println("Salle "+ nomSalle+ " crée");
+			System.out.println("Creation de la salle : " + nomSalle + " Privée="+ isPrivate +  " portSalle=" + portSalle + " portChat=" + portChat);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}		
@@ -158,19 +157,21 @@ public class CBsalle {
 				this.st=cbCo.getSt();
 				String sql = "SELECT max(id) FROM `Poker`."+table;
 				ResultSet rs = st.executeQuery(sql);
-				if (rs!=null){
-					resultat=0;
-				}
-				else if (rs.next())
+				while (rs.next())
 				{	
 						String id = rs.getString(1);
-						resultat=Integer.parseInt(id);
+						if (id!=null){
+							resultat=Integer.parseInt(id);
+						}
+						else return 0;
+							
 				}
 			} catch(SQLException e) {
 				e.printStackTrace();
+				
 			}	
-			
-			return resultat+1;
+			//System.out.println("return" + resultat);
+			return resultat;
 			
 		}
 	
@@ -205,12 +206,15 @@ public class CBsalle {
 			this.st=cbCo.getSt();
 			ResultSet rs = st.executeQuery(sql);
 			Vector<Integer> listPort = new Vector();
-			count =0;
+			count=0;
 			while(rs.next()){
 				String portUsed = rs.getString(1);
-				listPort.addElement(Integer.parseInt(portUsed));
-				//System.out.println("portUsed "+ portUsed);
-				count++;
+				if (portUsed!=null){
+					listPort.addElement(Integer.parseInt(portUsed));
+					//System.out.println("portUsed "+ portUsed);
+					count++;
+				}
+		
 				}		
 			//System.out.println(count);
 			System.out.println("Port utilisiés : " + count +"/10 : " + string + listPort.toString());
@@ -224,14 +228,15 @@ public class CBsalle {
 				
 				//min prend la valeur minimum exi
 				for (int p : listPort) {
-					if(p>min){
-						min=p+1;
+					if(p>=min){
+						min=p;
+						min++;
 					}
 				}
-				//System.out.println("min" + min);
+				System.out.println("min" + min);
 				if(min<=max){
-					port=min+1;
-					System.out.println(port);
+					port=min;
+					System.out.println("port"+port);
 				}
 				else
 					System.out.println("Port Maximal deja utilisé supprimer des parties");

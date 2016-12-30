@@ -24,20 +24,20 @@ public class JButtonListenerAccueil implements ActionListener{
 			cCon.displayConnexion();
 		}
 		if (e.getActionCommand() == "Parametres") {
-			System.out.println("Parametres");
+			//System.out.println("Parametres");
 			CAcc.runParametres();
 		}
 		if (e.getActionCommand() == "Cr\u00E9er une partie") {
-			System.out.println("Creer une partie");
+			//System.out.println("Creer une partie");
 			CAcc.runCreation();
 			
 		}
 		if (e.getActionCommand() == "Rejoindre salle"){
-			System.out.println("Rejoindre salle");
+		//	System.out.println("Rejoindre salle");
 			CAcc.rejoindrePartie(CAcc.getIDplayer(),CAcc.getIDSalle());
 		}
 		if (e.getActionCommand() == "Raffraichir"){
-			System.out.println("Raffraichir");
+			//System.out.println("Raffraichir");
 			CAcc.reloadData();
 			
 		}

@@ -28,7 +28,6 @@ public class Ccreation{
 		this.vCrea=new Vcreation(this);
 		this.IDplayer = Id;
 		this.cAcc= a;
-		
 		System.out.println("Creation Ouvert pour joueur : " + IDplayer);
 	}
 
