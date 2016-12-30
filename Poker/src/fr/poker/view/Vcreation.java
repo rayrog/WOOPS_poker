@@ -4,24 +4,26 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+
 import java.awt.Font;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Ccreation;
-import fr.poker.controller.listener.JButtonListenerConnexion;
+import fr.poker.controller.Cparametre;
+import fr.poker.controller.listener.JButtonListenerAccueil;
 import fr.poker.controller.listener.JButtonListenerCreation;
+import fr.poker.controller.listener.JButtonListenerParametres;
+import fr.poker.controller.listener.JTextFieldListenerCreation;
+import fr.poker.controller.listener.JTextFieldListenerInscription;
+import fr.poker.controller.listener.JTextFieldListenerParametre;
 
 import javax.swing.JTextField;
-import javax.swing.JMenu;
 import javax.swing.JButton;
-import javax.swing.JPasswordField;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JRadioButton;
 
 public class Vcreation {
 
@@ -35,6 +37,8 @@ public class Vcreation {
 	private JRadioButton rdbtnPublique ;
 	private JLabel lblMdpPwd;
 	private JLabel lblConfirPwd;
+	private String [] textInitiaux = {"Nom de salle","Password ", "Confirmer"};
+	private ButtonGroup btnGroup;
 
 	
 	
@@ -66,27 +70,38 @@ public class Vcreation {
 		
 		txtNameSalle = new JTextField();
 		txtNameSalle.setBounds(466, 148, 367, 51);
-		txtNameSalle.setText("Nom de salle");
+		txtNameSalle.setText(textInitiaux[0]);
+		txtNameSalle.setName("txtNameSalle");
 		txtNameSalle.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtNameSalle.setColumns(10);
 		txtNameSalle.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(txtNameSalle);
+		txtNameSalle.addMouseListener(new JTextFieldListenerCreation(ccreation, txtNameSalle));
+		txtNameSalle.addFocusListener(new JTextFieldListenerCreation(ccreation, txtNameSalle));
+		
+
 		
 		pwdSalle = new JPasswordField();
 		pwdSalle.setBounds(466, 298, 367, 51);
-		pwdSalle.setText("Mot de passe");
+		pwdSalle.setText(textInitiaux[1]);
+		pwdSalle.setName("pwdSalle");
 		pwdSalle.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		pwdSalle.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(pwdSalle);
 		pwdSalle.setEnabled(false);
+		pwdSalle.addMouseListener(new JTextFieldListenerCreation(ccreation, pwdSalle));
+		pwdSalle.addFocusListener(new JTextFieldListenerCreation(ccreation, pwdSalle));
 		
 		pwdSalleConfirm = new JPasswordField();
 		pwdSalleConfirm.setBounds(466, 367, 367, 51);
-		pwdSalleConfirm.setText("Confirmer   ");
+		pwdSalleConfirm.setText(textInitiaux[2]);
+		pwdSalleConfirm.setName("pwdSalleConfirm");
 		pwdSalleConfirm.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		pwdSalleConfirm.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(pwdSalleConfirm);
 		pwdSalleConfirm.setEnabled(false);
+		pwdSalleConfirm.addMouseListener(new JTextFieldListenerCreation(ccreation, pwdSalleConfirm));
+		pwdSalleConfirm.addFocusListener(new JTextFieldListenerCreation(ccreation, pwdSalleConfirm));
 		
 		this.btnCreationSalle = new JButton("Créer la salle");
 
@@ -120,9 +135,9 @@ public class Vcreation {
 		rdbtnPublique.addActionListener(new JButtonListenerCreation(ccreation));	
 
 		// Group the radio buttons.
-		ButtonGroup group = new ButtonGroup();
-		group.add(rdbtnPrivate);
-		group.add(rdbtnPublique);	
+		this.btnGroup = new ButtonGroup();
+		btnGroup.add(rdbtnPrivate);
+		btnGroup.add(rdbtnPublique);	
 		frame.getContentPane().add(rdbtnPrivate);
 		frame.getContentPane().add(rdbtnPublique);
 		
@@ -216,6 +231,10 @@ public class Vcreation {
 	public void joindreSalle(int iDplayer) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String[] getTextInitiaux() {
+		return textInitiaux;
 	}
 
 }
