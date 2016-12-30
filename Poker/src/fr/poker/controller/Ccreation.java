@@ -1,6 +1,9 @@
 package fr.poker.controller;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 import fr.poker.controller.bdd.CBcompte;
 import fr.poker.controller.bdd.CBconnect;
@@ -13,6 +16,7 @@ public class Ccreation{
 	private Vcreation vCrea;
 	private JFrame frameCrea;
 	private Caccueil cAcc;
+	private ArrayList<String> txtFields;
 	private int IDplayer;
 	private boolean isPrivate=false;
 	
@@ -26,6 +30,16 @@ public class Ccreation{
 		this.cAcc= a;
 		
 		System.out.println("Creation Ouvert pour joueur : " + IDplayer);
+	}
+
+
+	public Vcreation getvCrea() {
+		return vCrea;
+	}
+
+
+	public void setvCrea(Vcreation vCrea) {
+		this.vCrea = vCrea;
 	}
 
 
@@ -54,11 +68,15 @@ public class Ccreation{
 
 
 	public void runSalle() {
+		// Sert au clique sur le bouton de lancement de la salle, fait differentes verification, recupère un ID disponnible et l'assigne à la salle
 		
 		cbCon = new CBconnect();
 		cbSalle = new CBsalle(cbCon);
-		String pwdSalle;
-		String pwdConf;
+		String pwdSalle = "";
+		String pwdConf = "";
+		String nomSalle = "";
+		int portSalle;
+		int portChat;
 		boolean pwdOK=false;
 		boolean nomOK=false;
 		
@@ -86,17 +104,48 @@ public class Ccreation{
 			pwdOK=true;
 		}
 		
-		//Verfie que le nom donnée à la salle  n'existe pas
+		//Verfie que le nom donnée à la salle  n'existe pas.
+		
 		nomOK=cbSalle.verifDataSalle(vCrea.getStringTxtNameSalle().toString());
 		
+		if (nomOK==true){
+			nomSalle=vCrea.getStringTxtNameSalle().toString();
+		}
+		//Essaye de récupérer un port disponnible dans la Base de donnée pour le Chat et un port pour la salle
+		
+		portSalle=cbSalle.getPortSalle();
+		portChat=cbSalle.getPortChat();
+		
 		// Creation de la salle : 
-		if (nomOK==true && pwdOK==true){
-			cbSalle.creeSalle(isPrivate,vCrea.getStringPwdSalleConfirm(),vCrea.getStringTxtNameSalle());
-			//Ferme Interface de création et retour a l'ecran d'accueil 
-			System.out.println(vCrea.getStringPwdSalleConfirm());
-			System.out.println("partie crée : "+ vCrea.getStringTxtNameSalle());
+		if ((nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1)==false ){
+			//créer la salle 
+			
+			/* 
+			 * Test Value : 
+			 */
+			/*isPrivate=false;
+			pwdSalle="";
+			nomSalle= "SallePublique1";
+			portSalle=4565;//4555-4565 
+			portChat=4580;//4570 */
+			
+			cbSalle.creeSalle(isPrivate,pwdSalle, nomSalle, portSalle, portChat);
+			System.out.println("partie crée : "+ nomSalle);
 			runAccueil();
 		}
+		else if(nomOK==false){
+			System.out.println("le nom de la salle existe deja");
+		}
+		else if(pwdOK==false){
+			System.out.println("Erreure Mot de passe");
+		}
+		else if(portChat==-1){
+			System.out.println("Problème port Chat");
+		}
+		else if(portSalle==-1){
+			System.out.println("Problème port Salle");
+		}
+		
 		
 	}
 
@@ -110,6 +159,12 @@ public class Ccreation{
 	public void displayPwd() {
 		vCrea.activePassword(true);
 		isPrivate=true;
+	}
+
+
+	public void deleteTxtInField(JTextField txtFields) {
+		txtFields.setText("");
+		
 	}
 	
 	

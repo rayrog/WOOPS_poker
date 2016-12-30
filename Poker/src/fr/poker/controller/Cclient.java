@@ -103,6 +103,9 @@ public class Cclient implements Runnable {
 	}
 	
 	public void lancementClient() {
+		
+		
+		
 		// TODO : cette fonction va remplacer le main plus bas
 	}
 	

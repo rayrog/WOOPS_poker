@@ -13,7 +13,7 @@ import javax.swing.Spring;
 public class CBsalle {
 	private CBconnect cbCo;
 	private Statement st;
-	private Vector<String> listId= new Vector();// liste contenant les ID des parties existantes. elle permet de faire la liaison de 
+	private Vector<String> listId= new Vector();// liste contenant les ID des parties existantes. 
 	
 	public CBsalle(CBconnect c) {
 		this.cbCo = c;
@@ -113,16 +113,73 @@ public class CBsalle {
 		
 	}
 
-	public String creeSalle(boolean isPrivate, String string, String string2) {
-		
-		
-		
-		return string2;
-		// creer une salle et retourne son ID 
-		
+
+	public int getPortSalle() {
 		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	public int getPortChat() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	public void creeSalle(boolean isPrivate, String password, String nomSalle, int portSalle, int portChat) {
+		try{
+			System.out.println("Creation de la salle : Privée= "+ isPrivate + " nomSalle :" + nomSalle + " portSalle : " + portSalle + " portChat " + portChat);
+			String sql = "";
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			// Recupération d'un Id de Salle :
+			int lastId = 0;
+			lastId=lastInsertId("Salle");
+			lastId = lastId + 1;
+			//Requête sql
+			if (isPrivate==true){
+				String pwdHashed = cbCo.hashage(password);
+				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`) VALUES ('"+lastId+"', '"+nomSalle+"', '1', '"+pwdHashed+"', '"+portSalle+"', '"+portChat+"')";
+	
+			}
+			else {
+				
+				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`) VALUES ('"+lastId+"', '"+nomSalle+"', '0', '', '"+portSalle+"', '"+portChat+"')";	
+			}
+			System.out.println("requete : "+ sql);
+			int rs = st.executeUpdate(sql);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}		
 		
 	}
+	
+		
+	public int lastInsertId (String table) {
+			
+			/*
+			 * Cette fct permet de récupérer l' id du dernier compte inséré dans 
+			 * la BDD
+			 * 
+			 */
+			int resultat = -1;
+			try{
+				
+				cbCo.connexion();
+				this.st=cbCo.getSt();
+				String sql = "SELECT max(id) FROM `Poker`."+table;
+				ResultSet rs = st.executeQuery(sql);
+				if (rs.next())
+				{	
+					String id = rs.getString(1);
+					resultat=Integer.parseInt(id);
+				}			
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}	
+			
+			return resultat;
+			
+		}
 	
 }
 	
