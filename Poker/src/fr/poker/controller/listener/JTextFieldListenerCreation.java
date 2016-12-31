@@ -60,6 +60,9 @@ public class JTextFieldListenerCreation implements MouseListener, FocusListener{
 			case "pwdSalleConfirm":
 				textField.setText(texts[2]);
 				break;
+			case "txtMise":
+				textField.setText(texts[3]);
+				break;
 			default:
 				break;
 			}

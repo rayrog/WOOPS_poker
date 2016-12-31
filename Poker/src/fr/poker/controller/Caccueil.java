@@ -162,7 +162,7 @@ public class Caccueil {
 	}
 	
 	public void listeSalles() {
-		System.out.println("fct liste salle : ");
+		//System.out.println("fct liste salle : ");
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
 		
@@ -200,8 +200,13 @@ public class Caccueil {
 		listeSalles();
 	}
 
-	public void rejoindrePartie(int iDplayer2, String idSalle) {
-		System.out.println("Tentative de connexion du joueur "+ iDplayer2 +" a la partie " + idSalle);
+	public void rejoindrePartie(int iDplayer, String iDSalle) {
+		System.out.println("Tentative de connexion du joueur "+ iDplayer +" a la partie " + iDSalle);
+		
+		
+		// Ceck si partie private et recuper son ID.
+		// Si partie private demander password
+		
 		System.out.println("TO DO  Ajout du joueur a la salle ");
 	}
 }

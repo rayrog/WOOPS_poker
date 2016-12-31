@@ -1,6 +1,7 @@
 package fr.poker.controller.bdd;
 
 import java.sql.ResultSet;
+import java.util.Collections;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,13 +53,20 @@ public class CBsalle {
 				String name = rs.getString(2); // recupere champ correspondant a 2 valeur dans bdd = nom de la salle
 				String Id = rs.getString(1);
 				String nbJoueurs=nbJoueurSalle(Id);
-				String lineToDisplay="Salle ID : " + Id + " // nom : " + name + " // " + nbJoueurs + " Joueurs";
+				String mise = rs.getString(7);
+				String prive="";
+				if(rs.getInt(3)==1){
+					prive="Privée";
+				}else {
+					prive="Publique";
+				}
+				String lineToDisplay= name + " | " + nbJoueurs + " Joueurs | " + prive + " | MiseMini : " + mise;
 				System.out.println(lineToDisplay);
 				listSalles.addElement(lineToDisplay);
 				resultat++;			
 				this.listId.addElement(Id);
 			}
-			System.out.println("Nombre de salles : " + resultat);
+			//System.out.println("Nombre de salles : " + resultat);
 			cbCo.fermerConnexion();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -106,18 +114,40 @@ public class CBsalle {
 		this.listId = listId;
 	}
 
-	public boolean verifDataSalle(String string) {
-		
-		return false;
-		// TODO Auto-generated method stub
-		
+	public boolean verifNomSalle(String string) {
+		//renvois true si la salle n'existe pas 
+		boolean res=true;
+		try{
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			
+			String sql = "SELECT nom FROM `Salle`";
+			// debug : affichage requete 
+			//System.out.println(string);
+			//exécution requête
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			while(rs.next())
+			{	
+				String name = rs.getString(1);
+				//System.out.println(name);
+				if (string.equals(name)){
+					res=false;
+					//System.out.println("res a false");
+				}
+				
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}	
+	//System.out.println("verif nom = "+ res);
+	return res;	
 	}
 
-	public void creeSalle(boolean isPrivate, String password, String nomSalle, int portSalle, int portChat) {
+	public void creeSalle(boolean isPrivate, String password, String nomSalle, int portSalle, int portChat, int mise) {
 		
 		//Envois une requete de création de salle à la Bdd , avec un mot de passe haché si isPrivate a true.
 		try{
-			System.out.println("Creation de la salle : Privée="+ isPrivate + " nomSalle=" + nomSalle + " portSalle=" + portSalle + " portChat=" + portChat);
 			String sql = "";
 			cbCo.connexion();
 			this.st=cbCo.getSt();
@@ -125,18 +155,18 @@ public class CBsalle {
 			int lastId = 0;
 			lastId=lastInsertId("Salle");
 			lastId = lastId + 1;
-			System.out.println("lastid"+ lastId);
+			//System.out.println("lastid"+ lastId);
 			//Requête sql
 			if (isPrivate==true){
 				String pwdHashed = cbCo.hashage(password);
-				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`) VALUES ('"+lastId+"', '"+nomSalle+"', '1', '"+pwdHashed+"', '"+portSalle+"', '"+portChat+"')";
+				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`, `mise`) VALUES ('"+lastId+"', '"+nomSalle+"', '1', '"+pwdHashed+"', '"+portSalle+"', '"+portChat+"', '"+mise+"')";
 			}
 			else {
-				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`) VALUES ('"+lastId+"', '"+nomSalle+"', '0', '', '"+portSalle+"', '"+portChat+"')";	
+				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`, `mise`) VALUES ('"+lastId+"', '"+nomSalle+"', '0', '', '"+portSalle+"', '"+portChat+"', '"+mise+"')";	
 			}
 			//System.out.println("requete : "+ sql);
 			int rs = st.executeUpdate(sql);
-			System.out.println("Salle "+ nomSalle+ " crée");
+			System.out.println("Creation de la salle : " + nomSalle + " Privée="+ isPrivate +  " portSalle=" + portSalle + " portChat=" + portChat + " mise=" + mise);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}		
@@ -158,19 +188,21 @@ public class CBsalle {
 				this.st=cbCo.getSt();
 				String sql = "SELECT max(id) FROM `Poker`."+table;
 				ResultSet rs = st.executeQuery(sql);
-				if (rs!=null){
-					resultat=0;
-				}
-				else if (rs.next())
+				while (rs.next())
 				{	
 						String id = rs.getString(1);
-						resultat=Integer.parseInt(id);
+						if (id!=null){
+							resultat=Integer.parseInt(id);
+						}
+						else return 0;
+							
 				}
 			} catch(SQLException e) {
 				e.printStackTrace();
+				
 			}	
-			
-			return resultat+1;
+			//System.out.println("return" + resultat);
+			return resultat;
 			
 		}
 	
@@ -184,6 +216,7 @@ public class CBsalle {
 		int min=0;
 		int max=0;
 		int count;
+		boolean res=false;
 		String sql="";
 		
 		if (string=="salle"){
@@ -205,15 +238,19 @@ public class CBsalle {
 			this.st=cbCo.getSt();
 			ResultSet rs = st.executeQuery(sql);
 			Vector<Integer> listPort = new Vector();
-			count =0;
+			count=0;
 			while(rs.next()){
 				String portUsed = rs.getString(1);
-				listPort.addElement(Integer.parseInt(portUsed));
-				//System.out.println("portUsed "+ portUsed);
-				count++;
-				}		
+				if (portUsed!=null){
+					listPort.addElement(Integer.parseInt(portUsed));
+					//System.out.println("portUsed "+ portUsed);
+					count++;
+				}
+			}		
+			Collections.sort(listPort);
+			
 			//System.out.println(count);
-			System.out.println("Port utilisiés : " + count +"/10 : " + string + listPort.toString());
+			//System.out.println("Port utilisiés : " + count +"/10 : " + string + listPort.toString());
 			// Verifie si la limite de Salle n'est pas atteinte
 			
 			if (count==10){
@@ -221,23 +258,26 @@ public class CBsalle {
 				return port;
 			}
 			else {
-				
-				//min prend la valeur minimum exi
-				for (int p : listPort) {
-					if(p>min){
-						min=p+1;
+				if (count==0){
+					//Si aucun port met le port au minimum.
+					port=min;
+				}
+				else{
+					//sinon : donne la première valeure de port non utilisée
+					
+						for(int p : listPort) {
+							if(min==p){
+							min++;
+							port=min;
+							}
+							else if (min<p){
+								port=min;
+							}	
+						}
 					}
 				}
-				//System.out.println("min" + min);
-				if(min<=max){
-					port=min+1;
-					System.out.println(port);
-				}
-				else
-					System.out.println("Port Maximal deja utilisé supprimer des parties");
-			}
 
-		} catch(SQLException e) {
+			} catch(SQLException e) {
 			e.printStackTrace();
 		}	
 		return port;

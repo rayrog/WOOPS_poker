@@ -31,14 +31,16 @@ public class Vcreation {
 	private JPasswordField pwdSalle;
 	private JPasswordField pwdSalleConfirm;
 	private JTextField txtNameSalle;
+	private JTextField txtMise;
 	private JButton btnBack;
 	private JButton btnCreationSalle;
 	private JRadioButton rdbtnPrivate;
 	private JRadioButton rdbtnPublique ;
 	private JLabel lblMdpPwd;
 	private JLabel lblConfirPwd;
-	private String [] textInitiaux = {"Nom de salle","Password ", "Confirmer"};
+	private String [] textInitiaux = {"Nom de salle","Password ", "Confirmer", "50"};
 	private ButtonGroup btnGroup;
+	private JTextField textField;
 
 	
 	
@@ -105,14 +107,14 @@ public class Vcreation {
 		
 		this.btnCreationSalle = new JButton("Créer la salle");
 
-		btnCreationSalle.setBounds(466, 419, 367, 51);
+		btnCreationSalle.setBounds(466, 503, 367, 51);
 		btnCreationSalle.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCreationSalle);
 		btnCreationSalle.addActionListener(new JButtonListenerCreation(ccreation));	
 		
 		
 		this.btnBack = new JButton("Retour");
-		btnBack.setBounds(467, 470, 366, 51);
+		btnBack.setBounds(466, 554, 367, 51);
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnBack);
 		btnBack.addActionListener(new JButtonListenerCreation(ccreation));	
@@ -164,6 +166,25 @@ public class Vcreation {
 		labelPresentation.setFont(new Font("Tahoma", Font.BOLD, 40));
 		labelPresentation.setBounds(426, 65, 446, 83);
 		frame.getContentPane().add(labelPresentation);
+		
+		txtMise = new JTextField();
+		txtMise.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMise.setText(textInitiaux[3]);
+		txtMise.setName("txtMise");
+		txtMise.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtMise.setColumns(10);
+		txtMise.setBackground(Color.LIGHT_GRAY);
+		txtMise.setBounds(466, 439, 367, 51);
+		frame.getContentPane().add(txtMise);
+		txtMise.addMouseListener(new JTextFieldListenerCreation(ccreation, txtMise));
+		txtMise.addFocusListener(new JTextFieldListenerCreation(ccreation, txtMise));
+		
+		JLabel lblMiseMinimum = new JLabel("Mise minimum (en €)");
+		lblMiseMinimum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMiseMinimum.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblMiseMinimum.setEnabled(false);
+		lblMiseMinimum.setBounds(466, 424, 367, 16);
+		frame.getContentPane().add(lblMiseMinimum);
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -233,8 +254,15 @@ public class Vcreation {
 		
 	}
 
+	public JTextField getTxtMise() {
+		return txtMise;
+	}
+
+	public void setTxtMise(JTextField txtMise) {
+		this.txtMise = txtMise;
+	}
+
 	public String[] getTextInitiaux() {
 		return textInitiaux;
 	}
-
 }
