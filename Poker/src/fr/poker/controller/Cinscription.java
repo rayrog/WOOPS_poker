@@ -28,35 +28,6 @@ public class Cinscription extends JFrame {
 		this.txtFields = new ArrayList<>();
 	}
 	
-	public Cconnexion getCcon() {
-		return cCon;
-	}
-
-	public void setCcon(Cconnexion ccon) {
-		this.cCon = ccon;
-	}
-
-	public void displayInscription(){
-		vins.getFrame().setVisible(true);
-	}
-	
-	public void closeInscription(){
-		vins.getFrame().dispose();
-	}
-	
-	public void deleteTxtInField(JTextField txtField) {
-		txtField.setText("");
-	}
-	
-	public void fillField(JTextField txtField, String txt) {
-		txtField.setText(txt);
-	}
-	
-	public void runInscription(){
-		displayInscription();
-	}
-	
-	
 	public boolean verifyFields(){
 		//Expression régulière pour les caractèress spéciaux
 		Pattern p_special_charac = Pattern.compile("[^ \\w]");
@@ -149,6 +120,34 @@ public class Cinscription extends JFrame {
 
 	public void setVins(Vinscription vins) {
 		this.vins = vins;
+	}
+
+	public Cconnexion getCcon() {
+		return cCon;
+	}
+
+	public void setCcon(Cconnexion ccon) {
+		this.cCon = ccon;
+	}
+
+	public void displayInscription(){
+		vins.getFrame().setVisible(true);
+	}
+	
+	public void closeInscription(){
+		vins.getFrame().dispose();
+	}
+	
+	public void deleteTxtInField(JTextField txtField) {
+		txtField.setText("");
+	}
+	
+	public void fillField(JTextField txtField, String txt) {
+		txtField.setText(txt);
+	}
+	
+	public void runInscription(){
+		displayInscription();
 	}
 	
 }

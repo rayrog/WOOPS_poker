@@ -37,7 +37,6 @@ public class JoueurServeur extends Joueur implements Runnable{
 			String pseudo = scan.next();
 			setPseudo(pseudo);
 			int potJoueur = scan.nextInt();
-			System.out.println("Mon pot "+potJoueur);
 			setCreditPartie(potJoueur);
 			System.out.println("Je renseigne mon ID "+id+" mon PSEUDO "+pseudo+" mon CREDIT DE DEPART "+potJoueur);
 			maSalle.setAjoutSuccess(true);
@@ -50,11 +49,11 @@ public class JoueurServeur extends Joueur implements Runnable{
 			System.out.println("Je suis le joueur "+getId()+" et je me couche ");
 			break;
 		case ConstantesServeur.RELANCER :
-			System.out.println("Je relance ");
+			System.out.println("Je relance de");
 			break;
 		case ConstantesServeur.REJOINDRETABLE :
 			System.out.println("Je rejoint la table de jeu");
-			maSalle.rejoindre(this);
+			//maSalle.rejoindre(this);
 			break;
 		case ConstantesServeur.QUITTERSALLE :
 			System.out.println("Je suis le joueur "+getId()+" et je quitte la salle ");
@@ -80,6 +79,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 				message = in.readLine();
 			}
 		} catch (Exception e) {
+			System.out.println("Joueur déconnecter");
 			e.printStackTrace();
 		}
 	}

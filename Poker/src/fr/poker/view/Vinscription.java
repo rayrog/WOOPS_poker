@@ -47,15 +47,7 @@ public class Vinscription {
 	private JLabel lblErrorField;
 	private JLabel lblSuccess;
 	private JLabel lblAvatar;
-
-
-	public JLabel getLblAvatar() {
-		return lblAvatar;
-	}
-
-	public void setLblAvatar(JLabel lblAvatar) {
-		this.lblAvatar = lblAvatar;
-	}
+	private String pathImage;
 
 	/*
 	 * Create the application.
@@ -97,6 +89,7 @@ public class Vinscription {
 		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAvatar.setBounds(541, 35, 111, 111);
 		frame.getContentPane().add(lblAvatar);
+		pathImage = "/fr/poker/view/pictures/avatar/Avatar1.png";
 		
 		lblSuccess = new JLabel("Enregistrement effectué avec succès !");
 		lblSuccess.setBackground(new Color(0, 128, 0));
@@ -237,7 +230,9 @@ public class Vinscription {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		        JComboBox cb = (JComboBox)e.getSource();
-		        lblAvatar.setIcon((Icon) cb.getSelectedItem());	
+		        lblAvatar.setIcon((Icon) cb.getSelectedItem());
+		        pathImage = "/fr/poker/view/pictures/avatar/Avatar"+cb.getSelectedIndex()+".png";
+		        System.out.println(pathImage);
 			}
 		});
 		
@@ -363,6 +358,22 @@ public class Vinscription {
 
 	public void setLblErrorField(JLabel lblErrorField) {
 		this.lblErrorField = lblErrorField;
+	}
+
+	public JLabel getLblAvatar() {
+		return lblAvatar;
+	}
+
+	public void setLblAvatar(JLabel lblAvatar) {
+		this.lblAvatar = lblAvatar;
+	}
+
+	public String getPathImage() {
+		return pathImage;
+	}
+
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
 	}
 	
 }

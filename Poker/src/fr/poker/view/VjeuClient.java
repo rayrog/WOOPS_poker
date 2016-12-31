@@ -557,18 +557,18 @@ public class VjeuClient implements Observer{
 		btnSeCoucher.setEnabled(false);
 		
 		btnQuit = new JButton("Quitter la salle");
+		btnQuit.setBounds(1106, 16, 166, 60);
 		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnQuit.setEnabled(false);
-		btnQuit.setBounds(794, 621, 166, 60);
 		frame.getContentPane().add(btnQuit);
 		btnQuit.addActionListener(new JButtonListenerClient(c));
+		btnQuit.setEnabled(false);
 		
-		btnJoinTable = new JButton("Rejoindre la table");
+		btnJoinTable = new JButton("Rejoindre Table");
+		btnJoinTable.setBounds(1106, 116, 166, 60);
 		btnJoinTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnJoinTable.setEnabled(false);
-		btnJoinTable.setBounds(478, 621, 166, 60);
 		frame.getContentPane().add(btnJoinTable);
 		btnJoinTable.addActionListener(new JButtonListenerClient(c));
+		btnJoinTable.setEnabled(true);
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		

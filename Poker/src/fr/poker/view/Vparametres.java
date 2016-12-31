@@ -44,6 +44,7 @@ public class Vparametres {
 	private JLabel lblErrorField;
 	private JLabel lblSuccess;
 	private JLabel lblAvatar;
+	private String pathImage;
 	/**
 	 * Launch the application.
 	 */
@@ -238,7 +239,9 @@ public class Vparametres {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 		        JComboBox cb = (JComboBox)e.getSource();
-		        lblAvatar.setIcon((Icon) cb.getSelectedItem());				
+		        lblAvatar.setIcon((Icon) cb.getSelectedItem());
+		        pathImage = "/fr/poker/view/pictures/avatar/Avatar"+cb.getSelectedIndex()+".png";
+		        System.out.println(pathImage);
 			}
 		});
 		
@@ -344,6 +347,14 @@ public class Vparametres {
 
 	public void setLblAvatar(JLabel lblAvatar) {
 		this.lblAvatar = lblAvatar;
+	}
+
+	public String getPathImage() {
+		return pathImage;
+	}
+
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
 	}
 	
 	public void setInfoToDisplay(String[] infos) {
