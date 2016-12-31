@@ -162,7 +162,7 @@ public class Caccueil {
 	}
 	
 	public void listeSalles() {
-		System.out.println("fct liste salle : ");
+		//System.out.println("fct liste salle : ");
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
 		

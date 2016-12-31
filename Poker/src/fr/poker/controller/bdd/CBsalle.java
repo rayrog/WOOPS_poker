@@ -1,6 +1,7 @@
 package fr.poker.controller.bdd;
 
 import java.sql.ResultSet;
+import java.util.Collections;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -106,11 +107,37 @@ public class CBsalle {
 		this.listId = listId;
 	}
 
-	public boolean verifDataSalle(String string) {
+	public boolean verifNomSalle(String string) {
+		//renvois true si la salle n'existe pas 
+		boolean res=true;
+		try{
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			
+			String sql = "SELECT nom FROM `Salle`";
+			// debug : affichage requete 
+			System.out.println(string);
+			//exécution requête
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			
+			//test si le mail existe, si oui, change la valeur de resultat par -1
+			while(rs.next())
+			{	
+				String name = rs.getString(1);
+				System.out.println(name);
+				if (name==string){
+					res=false;
+				}
+				
+			}
+			//System.out.println("requete : "+ sql);
 		
-		return false;
-		// TODO Auto-generated method stub
-		
+			} catch(SQLException e) {
+			e.printStackTrace();
+		}	
+	System.out.println("verif nom = "+ res);
+	return res;	
 	}
 
 	public void creeSalle(boolean isPrivate, String password, String nomSalle, int portSalle, int portChat) {
@@ -124,7 +151,7 @@ public class CBsalle {
 			int lastId = 0;
 			lastId=lastInsertId("Salle");
 			lastId = lastId + 1;
-			System.out.println("lastid"+ lastId);
+			//System.out.println("lastid"+ lastId);
 			//Requête sql
 			if (isPrivate==true){
 				String pwdHashed = cbCo.hashage(password);
@@ -185,6 +212,7 @@ public class CBsalle {
 		int min=0;
 		int max=0;
 		int count;
+		boolean res=false;
 		String sql="";
 		
 		if (string=="salle"){
@@ -214,10 +242,11 @@ public class CBsalle {
 					//System.out.println("portUsed "+ portUsed);
 					count++;
 				}
-		
-				}		
+			}		
+			Collections.sort(listPort);
+			
 			//System.out.println(count);
-			System.out.println("Port utilisiés : " + count +"/10 : " + string + listPort.toString());
+			//System.out.println("Port utilisiés : " + count +"/10 : " + string + listPort.toString());
 			// Verifie si la limite de Salle n'est pas atteinte
 			
 			if (count==10){
@@ -225,24 +254,26 @@ public class CBsalle {
 				return port;
 			}
 			else {
-				
-				//min prend la valeur minimum exi
-				for (int p : listPort) {
-					if(p>=min){
-						min=p;
-						min++;
+				if (count==0){
+					//Si aucun port met le port au minimum.
+					port=min;
+				}
+				else{
+					//sinon : donne la première valeure de port non utilisée
+					
+						for(int p : listPort) {
+							if(min==p){
+							min++;
+							port=min;
+							}
+							else if (min<p){
+								port=min;
+							}	
+						}
 					}
 				}
-				System.out.println("min" + min);
-				if(min<=max){
-					port=min;
-					System.out.println("port"+port);
-				}
-				else
-					System.out.println("Port Maximal deja utilisé supprimer des parties");
-			}
 
-		} catch(SQLException e) {
+			} catch(SQLException e) {
 			e.printStackTrace();
 		}	
 		return port;

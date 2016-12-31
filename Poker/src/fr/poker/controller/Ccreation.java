@@ -104,8 +104,9 @@ public class Ccreation{
 		}
 		
 		//Verfie que le nom donnée à la salle  n'existe pas.
+		//System.out.println(vCrea.getStringTxtNameSalle().toString());
 		
-		nomOK=cbSalle.verifDataSalle(vCrea.getStringTxtNameSalle().toString());
+		nomOK=cbSalle.verifNomSalle(vCrea.getStringTxtNameSalle().toString());
 		
 		if (nomOK==true){
 			nomSalle=vCrea.getStringTxtNameSalle().toString();
@@ -120,7 +121,7 @@ public class Ccreation{
 		
 		
 		// Creation de la salle : 
-		if ((nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1)==false){
+		if (nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1){
 			//créer la salle 
 			
 			/* 
@@ -128,7 +129,7 @@ public class Ccreation{
 			 */
 			isPrivate=false;
 			pwdSalle="";
-			nomSalle= "SallePublique1";
+			//nomSalle= "SallePublique1";
 			//portSalle=4565;//4555-4565 
 			//portChat=4580;//4570 */
 			
