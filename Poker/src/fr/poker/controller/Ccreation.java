@@ -1,6 +1,8 @@
 package fr.poker.controller;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -74,10 +76,12 @@ public class Ccreation{
 		String pwdSalle = "";
 		String pwdConf = "";
 		String nomSalle = "";
+		int mise=0;
 		int portSalle;
 		int portChat;
 		boolean pwdOK=false;
 		boolean nomOK=false;
+		boolean miseOK=false;
 		
 		//verifie si les Pwd entrés sont identique si if isPrivate=true
 		
@@ -85,16 +89,11 @@ public class Ccreation{
 			
 			pwdSalle=vCrea.getStringPwdSalle();
 			pwdConf=vCrea.getStringPwdSalleConfirm();
-			System.out.println(pwdSalle + pwdConf);
+			//System.out.println(pwdSalle + pwdConf);
 			if (pwdSalle.equals(pwdConf)==true)
 			{	
-				System.out.println("Champs pwd identiques");
+				//System.out.println("Champs pwd identiques");
 				pwdOK=true;
-			}
-			else
-			{
-				System.out.println("Champs pwd différents");
-				//to do : Affichage message d'erreur : Mot de passe entrée différent 
 			}
 		}
 		if (isPrivate==false){
@@ -116,24 +115,44 @@ public class Ccreation{
 		portSalle=cbSalle.getAvailablePort("salle");
 		portChat=cbSalle.getAvailablePort("chat");
 		
-		System.out.println("portSalle obtenue : "+ portSalle);
-		System.out.println("portChat obtenue : " + portChat);
+		//System.out.println("portSalle obtenue : "+ portSalle);
+		//System.out.println("portChat obtenue : " + portChat);
 		
+		//Verifie si la mise entrée est correcte : 
+		
+		//Expression pour les nombre : 
+		Pattern p_num = Pattern.compile(".*[^0-9].*");
+		//System.out.println(vCrea.getTxtMise().getText());
+		//System.out.println( "does " + vCrea.getTxtMise().getText() + " is number : " + !p_num.matcher(vCrea.getTxtMise().getText()).matches());
+		if(!p_num.matcher(vCrea.getTxtMise().getText()).matches()) {
+			
+			mise=Integer.parseInt(vCrea.getTxtMise().getText());
+			miseOK=true;
+			//System.out.println("mise Ok " + mise );
+		}
 		
 		// Creation de la salle : 
-		if (nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1){
+		if (nomOK==true && pwdOK==true && portChat !=-1 && portSalle !=-1 && miseOK==true){
 			//créer la salle 
 			
 			/* 
-			 * Test Value : 
+			 * Valeur de test  : 
 			 */
-			isPrivate=false;
-			pwdSalle="";
+			//isPrivate=false;
+			///pwdSalle="";
 			//nomSalle= "SallePublique1";
 			//portSalle=4565;//4555-4565 
 			//portChat=4580;//4570 */
 			
-			cbSalle.creeSalle(isPrivate,pwdSalle, nomSalle, portSalle, portChat);
+			cbSalle.creeSalle(isPrivate,pwdSalle, nomSalle, portSalle, portChat, mise);
+						
+			// ICI CODE MIKE : Envoi message a gestionSalle
+			// utiliser isPrivate,pwdSalle, nomSalle, portSalle, portChat, mise 
+			
+			//	Lancement de la partide pour le joueur 
+			// Cclient cClient=new Cclient(IDplayer,);
+			
+			// A commanter quand lancement Partie Ok pour Joueur !		
 			runAccueil();
 		}
 		else if(nomOK==false){
@@ -147,6 +166,9 @@ public class Ccreation{
 		}
 		else if(portSalle==-1){
 			System.out.println("Problème port Salle");
+		}
+		else if(miseOK==false){
+			System.out.println("Problème mise");
 		}
 		
 		

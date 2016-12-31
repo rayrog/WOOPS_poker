@@ -53,7 +53,14 @@ public class CBsalle {
 				String name = rs.getString(2); // recupere champ correspondant a 2 valeur dans bdd = nom de la salle
 				String Id = rs.getString(1);
 				String nbJoueurs=nbJoueurSalle(Id);
-				String lineToDisplay="Salle ID : " + Id + " // nom : " + name + " // " + nbJoueurs + " Joueurs";
+				String mise = rs.getString(7);
+				String prive="";
+				if(rs.getInt(3)==1){
+					prive="Privée";
+				}else {
+					prive="Publique";
+				}
+				String lineToDisplay= name + " | " + nbJoueurs + " Joueurs | " + prive + " | MiseMini : " + mise;
 				System.out.println(lineToDisplay);
 				listSalles.addElement(lineToDisplay);
 				resultat++;			
@@ -116,31 +123,28 @@ public class CBsalle {
 			
 			String sql = "SELECT nom FROM `Salle`";
 			// debug : affichage requete 
-			System.out.println(string);
+			//System.out.println(string);
 			//exécution requête
 			ResultSet rs = st.executeQuery(sql);
 			ResultSetMetaData resultMeta = rs.getMetaData();
-			
-			//test si le mail existe, si oui, change la valeur de resultat par -1
 			while(rs.next())
 			{	
 				String name = rs.getString(1);
-				System.out.println(name);
-				if (name==string){
+				//System.out.println(name);
+				if (string.equals(name)){
 					res=false;
+					//System.out.println("res a false");
 				}
 				
 			}
-			//System.out.println("requete : "+ sql);
-		
-			} catch(SQLException e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
 		}	
-	System.out.println("verif nom = "+ res);
+	//System.out.println("verif nom = "+ res);
 	return res;	
 	}
 
-	public void creeSalle(boolean isPrivate, String password, String nomSalle, int portSalle, int portChat) {
+	public void creeSalle(boolean isPrivate, String password, String nomSalle, int portSalle, int portChat, int mise) {
 		
 		//Envois une requete de création de salle à la Bdd , avec un mot de passe haché si isPrivate a true.
 		try{
@@ -155,14 +159,14 @@ public class CBsalle {
 			//Requête sql
 			if (isPrivate==true){
 				String pwdHashed = cbCo.hashage(password);
-				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`) VALUES ('"+lastId+"', '"+nomSalle+"', '1', '"+pwdHashed+"', '"+portSalle+"', '"+portChat+"')";
+				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`, `mise`) VALUES ('"+lastId+"', '"+nomSalle+"', '1', '"+pwdHashed+"', '"+portSalle+"', '"+portChat+"', '"+mise+"')";
 			}
 			else {
-				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`) VALUES ('"+lastId+"', '"+nomSalle+"', '0', '', '"+portSalle+"', '"+portChat+"')";	
+				sql = "INSERT INTO `Poker`.`Salle` (`id`, `nom`, `privat`, `hash`, `portSalle`, `portChat`, `mise`) VALUES ('"+lastId+"', '"+nomSalle+"', '0', '', '"+portSalle+"', '"+portChat+"', '"+mise+"')";	
 			}
 			//System.out.println("requete : "+ sql);
 			int rs = st.executeUpdate(sql);
-			System.out.println("Creation de la salle : " + nomSalle + " Privée="+ isPrivate +  " portSalle=" + portSalle + " portChat=" + portChat);
+			System.out.println("Creation de la salle : " + nomSalle + " Privée="+ isPrivate +  " portSalle=" + portSalle + " portChat=" + portChat + " mise=" + mise);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}		
