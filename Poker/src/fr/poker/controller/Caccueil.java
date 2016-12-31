@@ -200,13 +200,30 @@ public class Caccueil {
 		listeSalles();
 	}
 
-	public void rejoindrePartie(int iDplayer, String iDSalle) {
+	public void rejoindrePartie(int iDplayer, String iDSalle, int Cagnotte) {
 		System.out.println("Tentative de connexion du joueur "+ iDplayer +" a la partie " + iDSalle);
 		
+		cbcon = new CBconnect();
+		cSalle = new CBsalle(cbcon);
+		
+		cSalle.isPrivate();
 		
 		// Ceck si partie private et recuper son ID.
 		// Si partie private demander password
 		
-		System.out.println("TO DO  Ajout du joueur a la salle ");
+		
+		
+		//		
+//		port salle.
+//		○ ID du joueur
+//		○ Pseudo
+//		○ Argent cagnotte Sans avoir retiré !
+//		○ Ca lui lance le contrleur Cclient 
+
+		
+		
+		
+		
+		
 	}
 }
