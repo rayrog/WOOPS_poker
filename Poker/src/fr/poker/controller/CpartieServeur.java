@@ -4,22 +4,29 @@ package fr.poker.controller;
 import fr.poker.model.*;
 import fr.poker.view.*;
 
-
+/**
+ * 
+ * @author mflorycelini
+ *
+ */
 public class CpartieServeur implements Runnable {
 	public Salle maSalle;
 	public Table maTable;
 	private JoueurServeur joueurCourant;
-	public CpartieServeur(Table t) {
+	private boolean joueurCourantParle;
+	public CpartieServeur(Table t, Salle salle) {
 
 			this.maTable = t;
+			this.maSalle = salle;
 			(new Thread(this)).start();
+			this.joueurCourantParle = false;
 
 	}
 
 	public void distribuerRole(Table table) {
 		for (int i = 0; i < maTable.getJoueurs().size(); i++) {
 
-			Joueur j = maTable.getJoueurs().get(i);
+			JoueurServeur j = maTable.getJoueurs().get(i);
 
 			if (maTable.getJoueurs().size() < 3) {
 				switch (i) {
@@ -66,20 +73,33 @@ public class CpartieServeur implements Runnable {
 				}
 			}
 			/* Distribution initiale de 2 cartes a chaque joueur */
-			for (Joueur j : maTable.getJoueurs()) {
+			for (JoueurServeur j : maTable.getJoueurs()) {
 				j.addCarte(maTable.getPaq().piocher());
 				j.addCarte(maTable.getPaq().piocher());
+				for(Carte carte : j.getCartes()) System.out.println(j.getPseudo()+" pioche le "+carte.toString());
 			}
 		}
 		if (maTable.getTour() == 1) { // FLOP --> 3 Cartes
+			for(JoueurServeur j : maTable.getJoueurs()){
+				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"FLOP!!!!!!!!!!!!!!!!!!!!!!");
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+"FLOP!!!!!!!!!");
+			}
 			for (int i = 1; i < 4; i++) {
 				maTable.addCarte(maTable.getPaq().piocher());
 			}
 		}
 		if (maTable.getTour() == 2) // TURN --> 1 Carte
+			for(JoueurServeur j : maTable.getJoueurs()){
+				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"TURN!!!!!!!!!!!!!!!!!!!!!!");
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+"TURN!!!!!!!!!");
+			}
 			maTable.addCarte(maTable.getPaq().piocher());
 
 		if (maTable.getTour() == 3) // RIVER --> 1 Carte
+			for(JoueurServeur j : maTable.getJoueurs()){
+				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"FLOP!!!!!!!!!!!!!!!!!!!!!!");
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+"RIVER!!!!!!!!!");
+			}
 			maTable.addCarte(maTable.getPaq().piocher());
 	}
 
@@ -159,7 +179,7 @@ public class CpartieServeur implements Runnable {
 	public void distribuerGains() {
 		Joueur gagnant = verifierGagnant();
 		gagnant.setCreditPartie(gagnant.getCreditPartie() + maTable.getPot());
-		maTable.setPot(0);
+		maTable.setPot(0.0);
 	}
 
 	public Joueur joueurSuivant() {
@@ -167,24 +187,38 @@ public class CpartieServeur implements Runnable {
 		Joueur next = new Joueur();
 		int nextIdx;
 
-		for (Joueur j : maTable.getJoueursEnJeu()) {
-			if (maTable.getTour() != 4 && j.getRole() == "Petite blinde" && !j.getaSuivi()) {
+		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
+			if (maTable.getTour() != 4 || j.getRole() == "Petite blinde" && !j.getaSuivi()) {
 				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
-				// enablebouton(Joueur j)			
-				// parler(j);		
-				 //joueurCourant = j;
-				// disableBouton(Joueur j)
-				next = maTable.getJoueursEnJeu().get(nextIdx);
+				joueurCourantParle = true;
+				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+j.getPseudo()+"%parle...");
+				maSalle.notifierLesJoueurs(ConstantesClient.NOTIFICATIONSPARTIE+" "+j.getPseudo()+"%parle...");
+				while(isJoueurCourantParle()!=false) {parler(j);} // En attente de la décision du joueur
+				if(maTable.getJoueursEnJeu().size()!=0) next = maTable.getJoueursEnJeu().get(nextIdx);			
 			}
 		}
-
+		System.out.println("efhezoifhzeiofhzoehf");
 		return next;
 	}
 	
-	public void parler(Joueur j){
-		//TODO: enableBuutton + action listener + action + disablebutton
+	public JoueurServeur getJoueurCourant() {
+		return joueurCourant;
+	}
 
-		
+	public void setJoueurCourant(JoueurServeur joueurCourant) {
+		this.joueurCourant = joueurCourant;
+	}
+
+	public boolean isJoueurCourantParle() {
+		return joueurCourantParle;
+	}
+
+	public void setJoueurCourantParle(boolean joueurCourantParle) {
+		this.joueurCourantParle = joueurCourantParle;
+	}
+
+	public void parler(JoueurServeur j){
+		j.getOut().println(ConstantesClient.JOUE);
 	}
 
 	/* Retourne -1 si tous les joueurs en jeu n'ont pas encore suivi */
@@ -198,32 +232,43 @@ public class CpartieServeur implements Runnable {
 		return 1;
 	}
 
+	public void attendre() {
+		try {
+			Thread.sleep(3000);
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+	}
 	@Override
 	public void run() {
-		System.out.println("Début de la nouvelle partie");
+		
 		maTable.setTour(0);
-		maTable.setPot(0);
+		maTable.setPot(0.0);
 		
 		Joueur winner = new Joueur();
-		do {} while (true);
+		//On attend les joueurs
+		//TODO : changer le nombre dans la boucle 
 		
-/*		if (maTable.getJoueurs().size() > 1) {
+		do {
+			System.out.println("EN attente");
+			System.out.println(maTable.getJoueurs().size());
+			attendre();
+		} while (maTable.getJoueurs().size() < 3);
+		
+		System.out.println("Début de la nouvelle partie");
+		for(JoueurServeur j : maTable.getJoueurs()){
+			j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+" Début%de%la%nouvelle%partie");
+		}
+		
+		if (maTable.getJoueurs().size() > 1) {
 			distribuerRole(maTable);
 			do {
+				maSalle.notifierLesJoueurs(ConstantesClient.POT+" "+Double.toString(maTable.getPot()));
 				winner=verifierGagnant();
 				
-				//DEBUG
-				for(Joueur j:maTable.getJoueurs())
-					j.getInfos();
-				System.out.println(maTable);
-				//*//***//*
-				
+
 				distribuerCartes();			
-				
-				//DEBUG
-				System.out.println(maTable);
-				for(Joueur j:maTable.getJoueurs())
-					j.getInfos();
 				
 				
 				while (miseEnAttente() == -1) {
@@ -233,7 +278,7 @@ public class CpartieServeur implements Runnable {
 			} while (winner == null);
 			
 		} else
-			System.out.println("C'est dommage tu es tout seul");	*/	
+			System.out.println("C'est dommage tu es tout seul");
 		
 	}
 

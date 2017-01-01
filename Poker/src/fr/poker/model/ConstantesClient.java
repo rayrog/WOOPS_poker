@@ -1,5 +1,9 @@
 package fr.poker.model;
-
+/**
+ * 
+ * @author mflorycelini
+ *
+ */
 public class ConstantesClient {
 	public static final	int MONIDTABLE = 0;
 	public static final int POT = 1;
@@ -12,4 +16,9 @@ public class ConstantesClient {
 	public static final	int JOUE = 8;
 	public static final	int NOUVEL_ADVERSAIRE = 9;
 	public static final	int ADVERSAIRE_OUT = 10;
+	public static final int NOTIFICATIONSSALLE = 11;
+	public static final int NOTIFICATIONSPARTIE = 12;
+	public static final int ENJEU = 13;
+	public static final int CARTEJOUEUR = 14;
+	public static final int CARTETABLE = 15;
 }
