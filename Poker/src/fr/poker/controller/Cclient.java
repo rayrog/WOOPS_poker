@@ -38,12 +38,14 @@ public class Cclient extends Observable implements Runnable {
 	protected boolean jouer;
 	protected boolean enJeu;
 	protected Thread t;
+	protected ArrayList<Integer> idAdversaires;
 	protected boolean newAdversaire;
 	protected boolean adversaireOut;
 	protected String infosAdversaire [] = {"","",""};
 	private Timer timerDecision;
 	private int tempsDecision;
 	private String potTable;
+	protected boolean distribution;
 	
 	public Cclient(Compte c) {
 		this.compte = c;
@@ -69,6 +71,8 @@ public class Cclient extends Observable implements Runnable {
 		this.newAdversaire = false;
 		this.adversaireOut = false;
 		this.partieTerminee = false;
+		this.idAdversaires = new ArrayList<Integer>();
+		this.distribution = false;
 		this.vJeu = new VjeuClient(this);
 		this.tempsDecision = 10000;
 		ActionListener taskPerformer = new taskPerformed(this);
@@ -96,7 +100,7 @@ public class Cclient extends Observable implements Runnable {
 			//Mise à jour du pot
 			int idTable = scan.nextInt();
 			j.setNumeroJoueurTable(idTable);
-			System.out.println("Mon IDTABLE est le "+idTable);
+			j.setEtat(true);
 			break;
 		case ConstantesClient.POT :
 			//Mise à jour du pot
@@ -110,12 +114,6 @@ public class Cclient extends Observable implements Runnable {
 		case ConstantesClient.GAINTOUR :
 			System.out.println("Tour gagne");
 			break;
-		case ConstantesClient.PERTETOUR :
-			System.out.println("Perte du tour");
-			break;
-		case ConstantesClient.CHOIX_ADVERSAIRE :
-			System.out.println("Choix adversaire");
-			break;
 		case ConstantesClient.GAINPARTIE :
 			System.out.println("Gain Partie");
 			break;
@@ -128,9 +126,7 @@ public class Cclient extends Observable implements Runnable {
 			//this.timerDecision.start();
 			break;
 		case ConstantesClient.SILENCE :
-			System.out.println("fzeiufgzifgizf");
 			jouer = false;
-			//this.timerDecision.start();
 			break;
 		case ConstantesClient.ENJEU :
 			this.enJeu = true;
@@ -140,6 +136,7 @@ public class Cclient extends Observable implements Runnable {
 			int idAdversaire = scan.nextInt();
 			String pseudoAdversaire = scan.next();
 			String potAdversaire = scan.next();
+			idAdversaires.add(idAdversaire);
 			infosAdversaire[0] = Integer.toString(idAdversaire);
 			infosAdversaire[1] = pseudoAdversaire;
 			infosAdversaire[2] = potAdversaire;
@@ -150,6 +147,7 @@ public class Cclient extends Observable implements Runnable {
 			int idAdversaireOut = scan.nextInt();
 			String pseudoAdversaireOut = scan.next();
 			String potAdversaireOut = scan.next();
+			idAdversaires.remove(idAdversaireOut);
 			infosAdversaire[0] = Integer.toString(idAdversaireOut);
 			infosAdversaire[1] = pseudoAdversaireOut;
 			infosAdversaire[2] = potAdversaireOut;
@@ -162,14 +160,18 @@ public class Cclient extends Observable implements Runnable {
 			break;
 		case ConstantesClient.NOTIFICATIONSPARTIE :
 			String newNotificationPartie = scan.next();
-			System.out.println(newNotificationPartie);;
 			newNotificationPartie = newNotificationPartie.replace("%", " ");
 			notificationsPartie = newNotificationPartie;
 			break;
-		case ConstantesClient.CARTEJOUEUR :
+		case ConstantesClient.DISTRIBUTION :
+			this.distribution = true;
+			break;
+		case ConstantesClient.CARTESJOUEURS :
+			//String nouvelleCarte = scan.next();
 
 			break;
 		case ConstantesClient.CARTETABLE :
+			//String nouvelleCarteTable = scan.next();
 
 			break;
 		}
@@ -178,6 +180,18 @@ public class Cclient extends Observable implements Runnable {
 	}
 
 
+	public ArrayList<Integer> getIdAdversaires() {
+		return idAdversaires;
+	}
+	public void setIdAdversaires(ArrayList<Integer> idAdversaires) {
+		this.idAdversaires = idAdversaires;
+	}
+	public boolean isDistribution() {
+		return distribution;
+	}
+	public void setDistribution(boolean distribution) {
+		this.distribution = distribution;
+	}
 	public String getPotTable() {
 		return potTable;
 	}

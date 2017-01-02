@@ -16,7 +16,6 @@ import java.util.Timer;
 
 import javax.swing.SwingConstants;
 import fr.poker.controller.Cclient;
-import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerClient;
 import fr.poker.model.chat.Serveur.Reception;
@@ -55,7 +54,8 @@ public class VjeuClient extends JPanel implements Observer{
 	private JLabel lblNotificationsPartie = new JLabel("Vous ne n'êtes pas assis à la table pour l'instant !");
 	private Cclient client;
 	private JTextField textField;
-
+	private JLabel cartesJoueurs [][];
+	private JLabel cartesTables [][];
 	/**
 	 * Create the application.
 	 */
@@ -230,7 +230,7 @@ public class VjeuClient extends JPanel implements Observer{
 		frame.getContentPane().add(lblJ3C2);
 		lblJ3C2.setVisible(false);
 		
-		JLabel lblJ3C1 = new JLabel("");
+		JLabel lblJ3C1 = new JLabel("rfgzrggrgerg");
 		lblJ3C1.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ3C1.setBounds(424, 398, 64, 70);
 		frame.getContentPane().add(lblJ3C1);
@@ -540,6 +540,8 @@ public class VjeuClient extends JPanel implements Observer{
 		misesJoueurs = tabMises;
 		JLabel[] tabPotJoueurs = {lblPotJ1, lblPotJ2, lblPotJ3, lblPotJ4, lblPotJ5, lblPotJ6, lblPotJ7};
 		potsJoueurs = tabPotJoueurs;
+		JLabel cartesJ [][] = {{lblJ1C1, lblJ2C1, lblJ3C1, lblJ4C1, lblJ5C1, lblJ6C1, lblJ7C1},{lblJ1C2, lblJ2C2, lblJ3C2, lblJ4C2, lblJ5C2, lblJ6C2}};
+		cartesJoueurs = cartesJ;
 		
 		textFieldMise = new JTextField();
 		textFieldMise.setBounds(430, 729, 108, 28);
@@ -719,8 +721,7 @@ public class VjeuClient extends JPanel implements Observer{
 		lblNotificationsSalle.setText(client.getNotificationsSalle());
 		lblNotificationsPartie.setText(client.getNotificationsPartie());
 		lblValeurPotTotal.setText(client.getPotTable());
-		if(client.isEnJeu()){
-			this.btnQuit.setEnabled(false);
+		if(client.j.getEtat()){
 			this.btnJoinTable.setEnabled(false);
 		}
 		if(client.isNewAdversaire()){
@@ -739,12 +740,17 @@ public class VjeuClient extends JPanel implements Observer{
 			this.btnCheck.setEnabled(true);
 			this.btnSuivre.setEnabled(true);
 		} else{
-			System.out.println("LE joueur qui vient tout juste de jouer : "+client.j.getPseudo());
 			this.btnCheck.setEnabled(false);
 			this.btnMiser.setEnabled(false);
 			this.btnSeCoucher.setEnabled(false);
 			this.btnCheck.setEnabled(false);
 			this.btnSuivre.setEnabled(false);
+		}
+		if(client.isDistribution()){
+			for(int id : client.getIdAdversaires()){
+				cartesJoueurs[0][id].setVisible(true);
+				cartesJoueurs[1][id].setVisible(true);
+			}
 		}
 		
 		if(client.isAdversaireOut()){

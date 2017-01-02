@@ -13,6 +13,7 @@ public class Carte implements Comparable<Carte>{
 	  super();
       this.couleur = couleur;
       this.valeur = valeur;
+      active=false;
    }
    
 

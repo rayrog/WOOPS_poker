@@ -202,7 +202,6 @@ public class Joueur {
 	}
 
 	public void addCarte(Carte c) {
-		System.out.println(c.toString());
 		cartes.add(c);
 	}
 

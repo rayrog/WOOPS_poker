@@ -19,7 +19,8 @@ public class ConstantesClient {
 	public static final int NOTIFICATIONSSALLE = 11;
 	public static final int NOTIFICATIONSPARTIE = 12;
 	public static final int ENJEU = 13;
-	public static final int CARTEJOUEUR = 14;
+	public static final int CARTESJOUEURS = 14;
 	public static final int CARTETABLE = 15;
 	public static final int SILENCE = 16;
+	public static final int DISTRIBUTION = 17;
 }
