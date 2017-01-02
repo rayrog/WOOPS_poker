@@ -286,6 +286,7 @@ public class CpartieServeur implements Runnable {
 			do {
 				maSalle.notifierLesJoueurs(ConstantesClient.POT + " " + Double.toString(maTable.getPot()));
 				distribuerCartes();
+				
 
 				while (miseEnAttente() == -1) {
 					joueurSuivant();

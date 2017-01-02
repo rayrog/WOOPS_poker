@@ -17,7 +17,6 @@ import java.util.Timer;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cclient;
-import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerClient;
 import fr.poker.model.chat.Serveur.Reception;
@@ -399,7 +398,7 @@ public class Vjeu implements Observer{
 		lblPotTotal.setBounds(597, 187, 73, 14);
 		frame.getContentPane().add(lblPotTotal);
 		
-		JLabel lblPlayerName = new JLabel(c.j.getPseudo());
+		JLabel lblPlayerName = new JLabel("");
 		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerName.setForeground(Color.WHITE);
 		lblPlayerName.setFont(new Font("Tahoma", Font.PLAIN, 15));
