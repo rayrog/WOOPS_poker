@@ -44,10 +44,11 @@ public class CgestionSalle implements Runnable{
 			int nouveauPortChat = scan.nextInt();
 			String nomSalle = scan.next();
 			String hash = scan.next();
-			System.out.println(scan.nextInt());
-			int privat = scan.nextInt();
+			//System.out.println(scan.nextInt());
+			String privat = scan.next();
+			//int privat = 0;
 			System.out.println("Je cree une nouvelle salle avec le port :"+nouveauPortSalle);
-			lancementNouvelleSalle(nomSalle, privat, hash, nouveauPortSalle);
+			lancementNouvelleSalle(nomSalle, Integer.parseInt(privat), hash, nouveauPortSalle);
 			break;
 		}
 	}
