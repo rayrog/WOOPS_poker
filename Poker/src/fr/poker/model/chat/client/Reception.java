@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fr.poker.view.Vjeu;
+import fr.poker.view.VjeuClient;
 
 
 public class Reception implements Runnable {
@@ -43,7 +44,7 @@ public class Reception implements Runnable {
 			       	 System.out.println ("Voici mon élément:" + elem);
 			       }
 				System.out.println("Je vais lancer actualiser");
-				Vjeu.actualiser(Vjeu.LayerChat, array_Liste);
+				VjeuClient.actualiser(VjeuClient.LayerChat, array_Liste);
 				Thread.sleep(500);
 	            //System.out.println("Client recoit: " + Arrays.deepToString(array_Liste));
 			//message = in.readLine();

@@ -10,7 +10,7 @@ import fr.poker.controller.CpartieServeur;
 public class Salle {
 	private int id;
 	private String nom;
-	private boolean privat; // 1: salle privee ; 0: salle publique
+	private int privat; // 1: salle privee ; 0: salle publique
 	private String hash;
 	public Table table;
 	private int numSuivantJoueur = 0;
@@ -20,11 +20,11 @@ public class Salle {
 	private boolean finPartie;
 	private ArrayList<JoueurServeur> joueurs;
 
-	public Salle(String nom, boolean privat, String hash, int port) {
+	public Salle(String nom, int privat, String hash, int port) {
 		super();
 		this.nom = nom;
 		this.privat = privat;
-		if (privat)
+		if (privat==1)
 			this.hash = hash;
 		this.table = new Table(this);
 		this.monPort = port;
@@ -36,7 +36,7 @@ public class Salle {
 	//TODO : POUR TESTS A SUPPRIMER
 	public static void main(String[] args) throws Exception {
 		int port = 4555;
-		Salle newSalle = new Salle("salleTest", false, "", port);
+		Salle newSalle = new Salle("salleTest", 0, "", port);
 		ServerSocket  receptionniste =  new ServerSocket(port);
 		//Maximum 10 joueurs dans la salle
 		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
@@ -67,7 +67,7 @@ public class Salle {
 
 
 	public void rejoindre(JoueurServeur j) {
-		if (this.isPrivat()) {
+		if (this.privat == 1) {
 			System.out.println("Cette partie est priv�e. Veuillez entrer le mot de passe : ");
 			Scanner sc = new Scanner(System.in);
 			String h = sc.nextLine();
@@ -137,11 +137,11 @@ public class Salle {
 		this.nom = nom;
 	}
 
-	public boolean isPrivat() {
+	public int isPrivat() {
 		return privat;
 	}
 
-	public void setPrivat(boolean privat) {
+	public void setPrivat(int privat) {
 		this.privat = privat;
 	}
 

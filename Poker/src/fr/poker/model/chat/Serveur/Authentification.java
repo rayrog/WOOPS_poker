@@ -28,7 +28,7 @@ public class Authentification implements Runnable {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintWriter(socket.getOutputStream());
 			
-		while(!authentifier){
+
 //			out.println("Entrez votre login :");
 //			out.flush();
 //			login = in.readLine();
@@ -37,17 +37,9 @@ public class Authentification implements Runnable {
 //			out.println("Entrez votre mot de passe :");
 //			out.flush();
 //			pass = in.readLine();
-			login = j.getPseudo();
+			login = "giugieug";
 			//if(isValid(login, pass)){
-			if(isValid(login)){	
-				out.println("connecte");
-				System.out.println(login +" vient de se connecter ");
-				out.flush();
-				authentifier = true;	
-			}
-			else {out.println("erreur"); out.flush();}
-		 }
-		//}
+
 			System.out.println("je vais lancer chat client-serveur");
 			// Création de la liste
 			ArrayList<String> array_Liste=new ArrayList<String>();
