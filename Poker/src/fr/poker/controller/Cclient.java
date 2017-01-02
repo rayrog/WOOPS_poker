@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane; //TO DO à supprimer uniquement présent pour les test
 import javax.swing.Timer;
 
+import com.mysql.fabric.xmlrpc.Client;
+
 import fr.poker.controller.listener.taskPerformed;
 import fr.poker.model.*;
 import fr.poker.view.Vjeu;
@@ -50,6 +52,7 @@ public class Cclient extends Observable implements Runnable {
 	private String potTable;
 	protected boolean distribution;
 	protected ArrayList<String> mesCartes;
+	private Client clientChat;
 	
 	public Cclient(Compte c) {
 		this.compte = c;
@@ -81,6 +84,8 @@ public class Cclient extends Observable implements Runnable {
 		this.distribution = false;
 		this.vJeu = new VjeuClient(this);
 		this.tempsDecision = 10000;
+		Socket socketChat = new Socket("172.23.2.15", 5009);
+		//his.clientChat = new Client(socket);
 		ActionListener taskPerformer = new taskPerformed(this);
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);

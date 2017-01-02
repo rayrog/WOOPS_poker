@@ -73,13 +73,12 @@ public class JoueurServeur extends Joueur implements Runnable{
 			break;
 			
 		case ConstantesServeur.SUIVRE :
-			System.out.println("Je suis");
 			misePlusHaute = maSalle.getTable().getBestMise();
 			System.out.println("Je suis de "+Double.toString(misePlusHaute-this.getMise()));
 			this.miser(misePlusHaute-this.getMise());
 			break;
 		case ConstantesServeur.CHECK :
-			System.out.println("Je check");
+			System.out.println(this.getPseudo() + " check");
 			this.miser(0.0);
 			maSalle.getMaPartie().setJoueurCourantParle(false);
 			break;
