@@ -398,7 +398,7 @@ public class Vjeu implements Observer{
 		lblPotTotal.setBounds(597, 187, 73, 14);
 		frame.getContentPane().add(lblPotTotal);
 		
-		JLabel lblPlayerName = new JLabel(c.j.getPseudo());
+		JLabel lblPlayerName = new JLabel();
 		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerName.setForeground(Color.WHITE);
 		lblPlayerName.setFont(new Font("Tahoma", Font.PLAIN, 15));

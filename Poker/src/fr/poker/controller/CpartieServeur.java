@@ -162,15 +162,19 @@ public class CpartieServeur implements Runnable {
 			switch (maTable.getTour()) {
 			case 0:
 				maTable.setTour(1);
+				maTable.setBestMise(0);
 				break;
 			case 1:
 				maTable.setTour(2);
+				maTable.setBestMise(0);
 				break;
 			case 2:
 				maTable.setTour(3);
+				maTable.setBestMise(0);
 				break;
 			case 3:
 				maTable.setTour(4);
+				maTable.setBestMise(0);
 				break;
 			case 4:
 				relancerManche();
@@ -202,9 +206,10 @@ public class CpartieServeur implements Runnable {
 
 		Joueur next = new Joueur();
 		int nextIdx;
+		System.out.println("TAMEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
 			if (maTable.getTour() != 4) {
-				if (j.getRole() == "Petite blinde")
+				if (j.getRole() == "Petite blinde" && maSalle.getTable().getTour() == 0)
 					parler(j);
 				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
 				joueurCourantParle = true;
@@ -245,8 +250,10 @@ public class CpartieServeur implements Runnable {
 	/*Retourne -1 si un joueur n'a pas encore suivi*/
 	public int miseEnAttente() {
 		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
-			if (j.getMise() < maTable.getBestMise())
+			if (j.getMise() <= maTable.getBestMise()){
 				return -1;
+			}
+				
 		}
 		return 1;
 	}
@@ -276,25 +283,28 @@ public class CpartieServeur implements Runnable {
 			attendre(3000);
 		} while (maTable.getJoueurs().size() < 3);
 
-		System.out.println("Début de la nouvelle partie");
-		for (JoueurServeur j : maTable.getJoueurs()) {
-			j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE + " Début%de%la%nouvelle%partie");
+		if(maTable.getTour() == 0){
+			System.out.println("Début de la nouvelle partie");
+			for (JoueurServeur j : maTable.getJoueurs()) {
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE + " Début%de%la%nouvelle%partie");
+			}
+			if (maTable.getJoueurs().size() > 1)
+				distribuerRole(maTable);
 		}
 
 		if (maTable.getJoueurs().size() > 1) {
-			distribuerRole(maTable);
 			do {
 				maSalle.notifierLesJoueurs(ConstantesClient.POT + " " + Double.toString(maTable.getPot()));
 				distribuerCartes();
-
-				while (miseEnAttente() == -1) {
-					joueurSuivant();
-					try {
-						Thread.sleep(1000);
-					} catch (Exception exc) {
-						exc.printStackTrace();
-					}
+				
+				for(JoueurServeur j : maSalle.getTable().getJoueursEnJeu()){
+					System.out.println(j);
+					j.setMise(0.0);
+					System.out.println(j);
 				}
+					
+				while (miseEnAttente() == -1)
+					joueurSuivant();
 				winner = verifierGagnant();
 				tourSuivant();
 			} while (winner == null);
