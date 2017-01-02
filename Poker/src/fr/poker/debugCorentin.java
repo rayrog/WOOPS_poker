@@ -15,7 +15,7 @@ public class debugCorentin {
 			
 			Client.runClient();
 			System.out.println("Connexion OK");
-			Vjeu window = new Vjeu();
+			Vjeu window = new Vjeu(null);
 
 			System.out.println("Affichage OK");
 			
