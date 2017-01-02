@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import fr.poker.controller.Cclient;
-import fr.poker.controller.Cpartie;
+
 import fr.poker.model.ConstantesServeur;
 import fr.poker.model.Joueur;
 
