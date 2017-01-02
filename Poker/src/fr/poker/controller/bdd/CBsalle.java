@@ -317,7 +317,7 @@ public class CBsalle {
 	
 	
 	
-	public String getIDSalle(String iDSalle){
+	public String getIDSalle(String nomSalle){
 		
 		
 		
@@ -328,7 +328,9 @@ public class CBsalle {
 				//Connexion � la BDD 
 				cbCo.connexion();
 				this.st=cbCo.getSt();
-				String sql = "SELECT nom FROM `Salle` WHERE `id` = "+iDSalle;			
+				String sql = "SELECT id FROM `Salle` WHERE `nom` LIKE '";
+				sql = new StringBuilder(sql).insert(sql.length(),nomSalle).toString();
+				sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
 				
 				// debug System.out.println(sql);
 				

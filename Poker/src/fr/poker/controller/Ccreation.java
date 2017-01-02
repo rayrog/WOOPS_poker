@@ -189,22 +189,8 @@ public class Ccreation implements Runnable{
 //			System.out.println(cbCpt.getPseudo(IDplayer));
 //			System.out.println(portSalle);
 //			System.out.println(portChat);
-<<<<<<< HEAD
-
-			cAcc.rejoindrePartie(IDplayer, iDSalle);
-=======
-//			
 			
-			
-			Socket socketClient = new Socket("172.23.2.15",portSalle);
-						
-			double credit=Double.parseDouble(cbCpt.getCredit(IDplayer));
-			String pseudo=cbCpt.getPseudo(IDplayer);
-			
-			
-			
-			Cclient c = new Cclient(socketClient,IDplayer,credit,pseudo,portSalle, portChat, cAcc);	
->>>>>>> master
+			cAcc.rejoindrePartie(IDplayer, cbSalle.getIDSalle(nomSalle));
 			
 			//On lance la communication
 	
