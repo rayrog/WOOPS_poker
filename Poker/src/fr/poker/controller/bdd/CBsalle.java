@@ -318,11 +318,7 @@ public class CBsalle {
 	
 	
 	public String getIDSalle(String nomSalle){
-		
-		
-		
-		
-		 
+			 
 			String i="";
 			try{
 				//Connexion � la BDD 

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import fr.poker.controller.CpartieServeur;
 
-public class Salle {
+public class Salle implements Runnable{
 	private int id;
 	private String nom;
 	private int privat; // 1: salle privee ; 0: salle publique
@@ -31,6 +31,7 @@ public class Salle {
 		this.joueurs = new ArrayList<JoueurServeur>();
 		this.maPartie = new CpartieServeur(table, this);
 		this.finPartie = false;
+		(new Thread(this)).start();
 	}
 	
 	//TODO : POUR TESTS A SUPPRIMER
@@ -175,5 +176,11 @@ public class Salle {
 
 	public void setJoueurs(ArrayList<JoueurServeur> joueurs) {
 		this.joueurs = joueurs;
+	}
+
+	@Override
+	public void run() {
+		while (finPartie==false) {
+		}	
 	}
 }
