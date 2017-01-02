@@ -35,19 +35,17 @@ public class JButtonListenerClient implements ActionListener {
 		if (e.getActionCommand().equals("Relancer")) {
 			cCli.getOut().println(ConstantesServeur.RELANCER+" "+cCli.getvJeu().getTextFieldMise().getText());
 			cCli.traiterMessage(ConstantesClient.SILENCE+" ");
-			
+
 			cCli.getTimerDecision().stop();
 		}
 		if (e.getActionCommand().equals("Check")) {
 			cCli.getOut().println(ConstantesServeur.CHECK);
 			cCli.traiterMessage(ConstantesClient.SILENCE+" ");
-			
 			cCli.getTimerDecision().stop();
 		}
 		if (e.getActionCommand().equals("Se coucher")) {
 			cCli.getOut().println(ConstantesServeur.SECOUCHER);
 			cCli.traiterMessage(ConstantesClient.SILENCE+" ");
-			
 			cCli.getTimerDecision().stop();
 		}
 		if (e.getActionCommand().equals("Rejoindre Table")) {

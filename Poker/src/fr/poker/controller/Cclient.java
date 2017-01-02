@@ -33,6 +33,8 @@ public class Cclient extends Observable implements Runnable {
 	private Compte compte;
 	protected BufferedReader in;
 	protected PrintStream out;
+	protected Socket socket;
+	
 	protected boolean partieTerminee;
 	protected String notificationsSalle;
 	protected String notificationsPartie;
@@ -238,12 +240,13 @@ public class Cclient extends Observable implements Runnable {
 		}
 	}
 	
+
 	/*public void lancementClient() throws Exception {			
 		Socket socket = new Socket("172.23.2.15", portSalle);
 		System.out.println(monId);
 		Cclient c = new Cclient(socket, monId, cagnotte, pseudo, cAcc);	
 		//On envoie l'id du joueur
-		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(monId)+" "+pseudo+" "+Double.toString(cagnotte));
+		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(monId)+" "+pseudo+" "+Double.toString(cagnotte));
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monId+" "+pseudo+" "+Double.toString(cagnotte));
 	}*/
 	
@@ -264,7 +267,7 @@ public class Cclient extends Observable implements Runnable {
 		//TODO : adresse du serveur 
 		Socket socket = new Socket("127.0.0.1", portSalle);
 		System.out.println(Integer.parseInt(monid));
-		Cclient c = new Cclient(socket, Integer.parseInt(monid), cagnotte, pseudo, null);	
+		Cclient c = new Cclient(socket, Integer.parseInt(monid), cagnotte, pseudo, portSalle, portSalle, null);	
 		//On envoie l'id du joueur
 		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+cagnotte);
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+Double.toString(cagnotte));
