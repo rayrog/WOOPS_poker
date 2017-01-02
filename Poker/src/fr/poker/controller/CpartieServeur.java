@@ -296,22 +296,11 @@ public class CpartieServeur implements Runnable {
 			do {
 				maSalle.notifierLesJoueurs(ConstantesClient.POT + " " + Double.toString(maTable.getPot()));
 				distribuerCartes();
-				
-<<<<<<< HEAD
 
-				while (miseEnAttente() == -1) {
-					joueurSuivant();
-					try {
-						Thread.sleep(1000);
-					} catch (Exception exc) {
-						exc.printStackTrace();
-					}
-=======
+
+
 				for(JoueurServeur j : maSalle.getTable().getJoueursEnJeu()){
-					System.out.println(j);
 					j.setMise(0.0);
-					System.out.println(j);
->>>>>>> master
 				}
 					
 				while (miseEnAttente() == -1)
