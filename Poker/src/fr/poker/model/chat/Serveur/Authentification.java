@@ -3,14 +3,18 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import fr.poker.model.Joueur;
+import fr.poker.model.JoueurClient;
+
 import java.io.*;
 
 public class Authentification implements Runnable {
-
+	public JoueurClient j;
 	private Socket socket;
 	private PrintWriter out = null;
 	private BufferedReader in = null;
-	private String login = "zero", pass =  null;
+	private String login = "toto", pass =  null;
 	public boolean authentifier = false;
 	public Thread t2;
 	
@@ -25,18 +29,17 @@ public class Authentification implements Runnable {
 			out = new PrintWriter(socket.getOutputStream());
 			
 		while(!authentifier){
+//			out.println("Entrez votre login :");
+//			out.flush();
+//			login = in.readLine();
+//			
+//			
+//			out.println("Entrez votre mot de passe :");
+//			out.flush();
+//			pass = in.readLine();
+			login = j.getPseudo();
 			//if(isValid(login, pass)){
-			out.println("Entrez votre login :");
-			out.flush();
-			login = in.readLine();
-			
-			
-			out.println("Entrez votre mot de passe :");
-			out.flush();
-			pass = in.readLine();
-
-			if(isValid(login, pass)){
-				
+			if(isValid(login)){	
 				out.println("connecte");
 				System.out.println(login +" vient de se connecter ");
 				out.flush();
@@ -58,17 +61,19 @@ public class Authentification implements Runnable {
 		
 	}
 	
-private static boolean isValid(String login, String pass) {
-		
-		boolean connexion = false;
-		if ("user".equals(login) && "user".equals(pass) || "user2".equals(login) && "user2".equals(pass)){
-			connexion=true;
-			return connexion;
-		}
-		else{
-			return connexion;
-		}	
-		
+//private static boolean isValid(String login, String pass) {
+//		boolean connexion = false;
+////		if ("user".equals(login) && "user".equals(pass) || "user2".equals(login) && "user2".equals(pass)){
+////			connexion=true;
+////			return connexion;
+////		}
+////		else{
+////			return connexion;
+////		}	
+//		
+//	}
+	private static boolean isValid(String login) {
+		return true;
 	}
 
 }

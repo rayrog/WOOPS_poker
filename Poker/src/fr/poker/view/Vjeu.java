@@ -67,10 +67,10 @@ public class Vjeu implements Observer{
 		initialize(c);	
 	}
 
-/*	public Vjeu(String message) {
-		this.messageRecu=message;
-		initialize(c);	
-	}*/
+//	public Vjeu(null) {
+//		this.messageRecu=message;
+//		initialize(c);	
+//	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -397,8 +397,13 @@ public class Vjeu implements Observer{
 		lblPotTotal.setBackground(Color.LIGHT_GRAY);
 		lblPotTotal.setBounds(597, 187, 73, 14);
 		frame.getContentPane().add(lblPotTotal);
+<<<<<<< HEAD
+		
+		JLabel lblPlayerName = new JLabel();
+=======
 		
 		JLabel lblPlayerName = new JLabel("");
+>>>>>>> branch 'master' of https://github.com/rayrog/WOOPS_poker
 		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerName.setForeground(Color.WHITE);
 		lblPlayerName.setFont(new Font("Tahoma", Font.PLAIN, 15));
