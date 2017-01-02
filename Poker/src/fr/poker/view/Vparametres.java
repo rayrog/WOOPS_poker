@@ -186,7 +186,7 @@ public class Vparametres {
 		frame.getContentPane().add(btnRegister);
 		btnRegister.addActionListener(new JButtonListenerParametres(cPara));
 		
-		this.btnCancel = new JButton("Annuler");
+		this.btnCancel = new JButton("Retour");
 		btnCancel.setBounds(466, 692, 366, 51);
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(btnCancel);
