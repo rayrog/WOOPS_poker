@@ -71,11 +71,13 @@ public class CpartieServeur implements Runnable {
 			/* Distribution initiale de 2 cartes a chaque joueur */
 			maSalle.notifierLesJoueurs(ConstantesClient.NOTIFICATIONSPARTIE+" "+"Distribution%des%cartes");
 			for (JoueurServeur j : maTable.getJoueurs()) {
-				j.addCarte(maTable.getPaq().piocher());				
 				j.addCarte(maTable.getPaq().piocher());
+				j.getOut().println(ConstantesClient.MESCARTES+" "+j.getCartes().get(0).toString());
+				j.addCarte(maTable.getPaq().piocher());
+				j.getOut().println(ConstantesClient.MESCARTES+" "+j.getCartes().get(1).toString());
 				maSalle.notifierLesJoueurs(ConstantesClient.CARTESJOUEURS+" "+j.getCartes().get(0).toString());
 				attendre(1000);
-				maSalle.notifierLesJoueurs(ConstantesClient.CARTESJOUEURS+" "+j.getCartes().get(0).toString());
+				maSalle.notifierLesJoueurs(ConstantesClient.CARTESJOUEURS+" "+j.getCartes().get(1).toString());
 				System.out.println(j.getPseudo()+" pioche le "+j.getCartes().get(0).toString()+" et le "+j.getCartes().get(1).toString());
 			}
 			maSalle.notifierLesJoueurs(ConstantesClient.DISTRIBUTION+" ");

@@ -29,6 +29,7 @@ import fr.poker.view.VjeuClient;
 public class Cclient extends Observable implements Runnable {
 	public JoueurClient j;
 	private VjeuClient vJeu;
+	private Caccueil cAcc;
 	private Compte compte;
 	protected BufferedReader in;
 	protected PrintStream out;
@@ -46,11 +47,12 @@ public class Cclient extends Observable implements Runnable {
 	private int tempsDecision;
 	private String potTable;
 	protected boolean distribution;
+	protected ArrayList<String> mesCartes;
 	
 	public Cclient(Compte c) {
 		this.compte = c;
 	}
-	public Cclient(Socket socket, int idjoueur, Double creditJoueur, String pseudo) throws Exception{
+	public Cclient(Socket socket, int idjoueur, Double creditJoueur, String pseudo, int portSalle, int portChat, Caccueil c) throws Exception{
 		//On lance la communication
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -64,6 +66,7 @@ public class Cclient extends Observable implements Runnable {
 		this.j = new JoueurClient(idjoueur);
 		j.setCreditPartie(creditJoueur);
 		j.setPseudo(pseudo);
+		this.cAcc = c;
 		this.notificationsSalle = "";
 		this.notificationsPartie = "";
 		this.jouer = false;
@@ -72,6 +75,7 @@ public class Cclient extends Observable implements Runnable {
 		this.adversaireOut = false;
 		this.partieTerminee = false;
 		this.idAdversaires = new ArrayList<Integer>();
+		this.mesCartes = new ArrayList<String>();
 		this.distribution = false;
 		this.vJeu = new VjeuClient(this);
 		this.tempsDecision = 10000;
@@ -174,12 +178,23 @@ public class Cclient extends Observable implements Runnable {
 			//String nouvelleCarteTable = scan.next();
 
 			break;
+		case ConstantesClient.MESCARTES :
+			this.distribution = true;
+			String laCarte = scan.next();
+			mesCartes.add(laCarte);
+			break;
 		}
 		//On notifie à la vue les changements
 		vJeu.update(this, null);
 	}
 
 
+	public ArrayList<String> getMesCartes() {
+		return mesCartes;
+	}
+	public void setMesCartes(ArrayList<String> mesCartes) {
+		this.mesCartes = mesCartes;
+	}
 	public ArrayList<Integer> getIdAdversaires() {
 		return idAdversaires;
 	}
@@ -223,12 +238,19 @@ public class Cclient extends Observable implements Runnable {
 		}
 	}
 	
-	public void lancementClient() {			
-		// TODO : cette fonction va remplacer le main plus bas
+	public void lancementClient() throws Exception {			
+		Socket socket = new Socket("172.23.2.15", portSalle);
+		System.out.println(monId);
+		Cclient c = new Cclient(socket, monId, cagnotte, pseudo, cAcc);	
+		//On envoie l'id du joueur
+		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(monId)+" "+pseudo+" "+Double.toString(cagnotte));
+		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monId+" "+pseudo+" "+Double.toString(cagnotte));
 	}
 	
 	public void fermerClient() {
 		vJeu.getFrame().dispose();
+		cAcc.getVacc().getFrame().setVisible(true);
+		t.stop();
 	}
 	
 	public static void main(String[] args) throws Exception { // Cette méthode ne sera plus un main et sera appelée par l'action du bouton rejoindre salle
@@ -242,22 +264,10 @@ public class Cclient extends Observable implements Runnable {
 		//TODO : adresse du serveur 
 		Socket socket = new Socket("127.0.0.1", portSalle);
 		System.out.println(Integer.parseInt(monid));
-		Cclient c = new Cclient(socket, Integer.parseInt(monid), cagnotte, pseudo);	
+		Cclient c = new Cclient(socket, Integer.parseInt(monid), cagnotte, pseudo, null);	
 		//On envoie l'id du joueur
 		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+cagnotte);
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+Double.toString(cagnotte));
-	}
-	
-	public void btnDisable() {
-		jouer = false;
-		vJeu.getBtnSeCoucher().setEnabled(false);;
-		vJeu.getBtnMiser().setEnabled(false);
-		vJeu.getBtnSeCoucher().setEnabled(false);
-		vJeu.getBtnCheck().setEnabled(false);
-		vJeu.getBtnSuivre().setEnabled(false);
-		vJeu.getFrame().revalidate();
-		vJeu.getFrame().repaint();
-		vJeu.update(this, null);
 	}
 
 	public PrintStream getOut() {

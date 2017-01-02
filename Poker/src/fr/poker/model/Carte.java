@@ -60,7 +60,7 @@ public class Carte implements Comparable<Carte>{
    
    @Override
    public String toString() {
-   	return couleur.toString()+"_"+valeur.toString();
+   	return couleur.getNom()+"_"+valeur.getNom();
    }
    
 }
