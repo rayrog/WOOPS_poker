@@ -25,11 +25,13 @@ public class CpartieServeur implements Runnable {
 				switch (i) {
 				case 0:
 					j.setRole("Petite blinde");
+					System.out.println(j.getPseudo() + " est petite blinde");
 					j.miser(maTable.getSmallBlind());
 					parler(j);
 					break;
 				case 1:
 					j.setRole("Grosse blinde");
+					System.out.println(j.getPseudo() + " est grosse blinde");
 					j.miser(maTable.getBigBlind());
 					parler(j);
 					break;
@@ -40,13 +42,16 @@ public class CpartieServeur implements Runnable {
 				switch (i) {
 				case 0:
 					j.setRole("Dealer");
+					System.out.println(j.getPseudo() + " est dealer");
 					break;
 				case 1:
 					j.setRole("Petite blinde");
+					System.out.println(j.getPseudo() + " est petite blinde");
 					j.miser(maTable.getSmallBlind());
 					break;
 				case 2:
 					j.setRole("Grosse blinde");
+					System.out.println(j.getPseudo() + " est grosse blinde");
 					j.miser(maTable.getBigBlind());
 					break;
 				default:
@@ -201,7 +206,7 @@ public class CpartieServeur implements Runnable {
 					parler(j);
 				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
 				joueurCourantParle = true;
-				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE + " " + j.getPseudo() + "%parle...");
+				System.out.println(j.getPseudo() + " parle...");
 				maSalle.notifierLesJoueurs(ConstantesClient.NOTIFICATIONSPARTIE + " " + j.getPseudo() + "%parle...");
 				while (isJoueurCourantParle() != false) {
 					parler(j);

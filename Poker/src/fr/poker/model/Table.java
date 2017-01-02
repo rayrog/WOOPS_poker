@@ -37,7 +37,7 @@ public class Table {
 		joueursAttente = new ArrayList<>();
 		cartes = new ArrayList<>();
 		this.maSalle = salle;
-		bestMise = bigBlind;
+		bestMise = 0;
 	}
 
 	public int getId() {

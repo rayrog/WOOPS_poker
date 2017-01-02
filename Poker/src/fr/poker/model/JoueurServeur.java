@@ -37,6 +37,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 		this.mise = 0.0;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void traiterMessage(String message) throws Exception { //message représente les informations envoyés par le controleur Cpartie
 		Scanner scan = new Scanner(message);
 		int type = scan.nextInt();
@@ -52,15 +53,17 @@ public class JoueurServeur extends Joueur implements Runnable{
 			maSalle.setAjoutSuccess(true);
 			break;
 		case ConstantesServeur.MISER :
-			System.out.println("Je suis le joueur "+getPseudo()+" et je mise ");
 			String mise = scan.next();
+			System.out.println(this.getPseudo()+" mise " + mise);
 			this.miser(Double.parseDouble(mise));
 			break;
+			
 		case ConstantesServeur.SECOUCHER :
-			System.out.println("Je suis le joueur "+getPseudo()+" et je me couche ");
+			System.out.println(this.getPseudo()+" se couche ");
 			this.coucher();
 			maSalle.getMaPartie().setJoueurCourantParle(false);
 			break;
+			
 		case ConstantesServeur.RELANCER :
 			for(JoueurServeur j : maSalle.getTable().getJoueursEnJeu()){
 				if(misePlusHaute < j.getMise()) misePlusHaute = j.getMise();		
@@ -68,17 +71,16 @@ public class JoueurServeur extends Joueur implements Runnable{
 			System.out.println("Je relance de "+Double.toString(this.getMise()-misePlusHaute));
 			this.relancer(this.getMise()-misePlusHaute);
 			break;
+			
 		case ConstantesServeur.SUIVRE :
 			System.out.println("Je suis");
-			misePlusHaute = 0.0;
-			for(JoueurServeur joueur : maSalle.getTable().getJoueursEnJeu()){
-				if(misePlusHaute < joueur.getMise()) misePlusHaute = joueur.getMise();		
-			}
+			misePlusHaute = maSalle.getTable().getBestMise();
 			System.out.println("Je suis de "+Double.toString(misePlusHaute-this.getMise()));
-			this.suivre(misePlusHaute-this.getMise());
+			this.miser(misePlusHaute-this.getMise());
 			break;
 		case ConstantesServeur.CHECK :
 			System.out.println("Je check");
+			this.miser(0.0);
 			maSalle.getMaPartie().setJoueurCourantParle(false);
 			break;
 		case ConstantesServeur.REJOINDRETABLE :
@@ -97,41 +99,21 @@ public class JoueurServeur extends Joueur implements Runnable{
 
 	public void miser(Double montant) {
 		if (creditPartie - montant >= 0) {
-			creditPartie -= montant;
-			mise = montant;
-			maSalle.getTable().setPot(maSalle.getTable().getPot() + mise);
-			maSalle.getMaPartie().setJoueurCourantParle(false);
+			if(montant + mise >= maSalle.getTable().getBestMise()){ //On vérifie qu'on mise au moins pour suivre
+				creditPartie -= montant;
+				mise += montant;
+				maSalle.getTable().setPot(maSalle.getTable().getPot() + mise);
+				
+				if(montant > maSalle.getTable().getBestMise()) //En cas de relance
+					maSalle.getTable().setBestMise(mise);		//update la mise a suivre
+				
+				maSalle.getMaPartie().setJoueurCourantParle(false);
+			}else
+				this.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"Mise%insuffisante");			
 		}
 		else{
 			System.out.println("Credit insuffisant pour miser " + montant);
 			this.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"Credit%insuffisant%pour%miser%ce%montant");
-		}
-	}
-
-	public void relancer(Double montant) {
-		if (creditPartie - montant >= 0) {
-			creditPartie -= montant;
-			mise += montant;
-			maSalle.getTable().setPot(maSalle.getTable().getPot() + mise);
-			maSalle.getMaPartie().setJoueurCourantParle(false);
-		} else {
-			System.out.println("Credit insuffisant");
-			this.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"Credit%insuffisant%pour%miser%ce%montant");
-		}
-	}
-
-	public void suivre(Double montantPrecedent) {// Pour utiliser cette
-													// fonction il faut faire un
-													// getMise()
-		if (creditPartie - montantPrecedent >= 0) { // sur le joueur précedent
-			// et le proposer en
-			// parametre.
-			mise += montantPrecedent;
-			maSalle.getTable().setPot(maSalle.getTable().getPot() + mise);
-			maSalle.getMaPartie().setJoueurCourantParle(false);
-		} else {
-			System.out.println("Credit insuffisant");
-			this.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"Credit%insuffisant%pour%suivre");
 		}
 	}
 
