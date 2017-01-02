@@ -29,17 +29,18 @@ public class Connexion implements Runnable {
 		
 		while(!connect ){
 		
-		System.out.println(in.readLine());
-		login = sc.nextLine();
-		out.println(login);
-		out.flush();
-		
-		System.out.println(in.readLine());
-		pass = sc.nextLine();
-		out.println(pass);
-		out.flush();
-		
-		if(in.readLine().equals("connecte")){
+//		System.out.println(in.readLine());
+//		login = sc.nextLine();
+//		out.println(login);
+//		out.flush();
+//		
+//		System.out.println(in.readLine());
+//		pass = sc.nextLine();
+//		out.println(pass);
+//		out.flush();
+		Boolean etat = true;
+		//if(in.readLine().equals("connecte")){
+			if(etat){
 			
 		System.out.println("Je suis connecté "); 
 		connect = true;

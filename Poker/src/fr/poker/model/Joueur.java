@@ -114,6 +114,11 @@ public class Joueur {
 		this.role = role;
 	}
 
+	
+	public void setMise(Double mise) {
+		this.mise = mise;
+	}
+
 	public void setTable(Table table) {
 		this.table = table;
 	}
@@ -239,7 +244,6 @@ public class Joueur {
 	}
 
 	public void getInfos() {
-		System.out.println("Compte : " + compte.getNom());
 		System.out.println("Credit restants : " + creditPartie);
 		if (etat == true) {
 			System.out.println("En jeu");
