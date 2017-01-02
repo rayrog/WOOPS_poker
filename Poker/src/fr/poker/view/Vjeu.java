@@ -328,7 +328,7 @@ public class Vjeu implements Observer{
 		frame.getContentPane().add(lblNameJ7);
 		lblNameJ7.setVisible(false);
 		
-		JLabel lblMiseJ1 = new JLabel(Float.toString(c.j.mise));
+		JLabel lblMiseJ1 = new JLabel("");
 		lblMiseJ1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ1.setForeground(new Color(128, 0, 0));
 		lblMiseJ1.setFont(new Font("Tahoma", Font.BOLD, 15));

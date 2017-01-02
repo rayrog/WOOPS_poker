@@ -124,7 +124,12 @@ public class Cclient extends Observable implements Runnable {
 			partieTerminee = true;
 			break;
 		case ConstantesClient.JOUE :
-			this.jouer = true;
+			jouer = true;
+			//this.timerDecision.start();
+			break;
+		case ConstantesClient.SILENCE :
+			System.out.println("fzeiufgzifgizf");
+			jouer = false;
 			//this.timerDecision.start();
 			break;
 		case ConstantesClient.ENJEU :
@@ -227,6 +232,18 @@ public class Cclient extends Observable implements Runnable {
 		//On envoie l'id du joueur
 		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+cagnotte);
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+Double.toString(cagnotte));
+	}
+	
+	public void btnDisable() {
+		jouer = false;
+		vJeu.getBtnSeCoucher().setEnabled(false);;
+		vJeu.getBtnMiser().setEnabled(false);
+		vJeu.getBtnSeCoucher().setEnabled(false);
+		vJeu.getBtnCheck().setEnabled(false);
+		vJeu.getBtnSuivre().setEnabled(false);
+		vJeu.getFrame().revalidate();
+		vJeu.getFrame().repaint();
+		vJeu.update(this, null);
 	}
 
 	public PrintStream getOut() {

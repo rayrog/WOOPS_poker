@@ -14,12 +14,14 @@ public class CpartieServeur implements Runnable {
 	public Table maTable;
 	private JoueurServeur joueurCourant;
 	private boolean joueurCourantParle;
+	private boolean personneAParle;
 	public CpartieServeur(Table t, Salle salle) {
 
 			this.maTable = t;
 			this.maSalle = salle;
 			(new Thread(this)).start();
 			this.joueurCourantParle = false;
+			personneAParle = true;
 
 	}
 
@@ -82,7 +84,7 @@ public class CpartieServeur implements Runnable {
 		if (maTable.getTour() == 1) { // FLOP --> 3 Cartes
 			for(JoueurServeur j : maTable.getJoueurs()){
 				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"FLOP!!!!!!!!!!!!!!!!!!!!!!");
-				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+"FLOP!!!!!!!!!");
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"FLOP");
 			}
 			for (int i = 1; i < 4; i++) {
 				maTable.addCarte(maTable.getPaq().piocher());
@@ -91,14 +93,14 @@ public class CpartieServeur implements Runnable {
 		if (maTable.getTour() == 2) // TURN --> 1 Carte
 			for(JoueurServeur j : maTable.getJoueurs()){
 				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"TURN!!!!!!!!!!!!!!!!!!!!!!");
-				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+"TURN!!!!!!!!!");
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"TURN");
 			}
 			maTable.addCarte(maTable.getPaq().piocher());
 
 		if (maTable.getTour() == 3) // RIVER --> 1 Carte
 			for(JoueurServeur j : maTable.getJoueurs()){
-				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"FLOP!!!!!!!!!!!!!!!!!!!!!!");
-				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+"RIVER!!!!!!!!!");
+				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+"RIVER!!!!!!!!!!!!!!!!!!!!!!");
+				j.getOut().println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"RIVER");
 			}
 			maTable.addCarte(maTable.getPaq().piocher());
 	}
@@ -142,7 +144,7 @@ public class CpartieServeur implements Runnable {
 	public void tourSuivant() { // Pas une m�thode de Table car on part du
 								// principe que c'est le controller qui cadence
 								// la partie
-		if (verifierGagnant() == null && miseEnAttente()==-1) {
+		if (verifierGagnant() == null && miseEnAttente()==1) {
 			switch (maTable.getTour()) {
 			case 0:
 				maTable.setTour(1);
@@ -186,18 +188,24 @@ public class CpartieServeur implements Runnable {
 
 		Joueur next = new Joueur();
 		int nextIdx;
-
+		for(JoueurServeur j : maTable.getJoueursEnJeu()){
+			if(j.getaSuivi()){
+				personneAParle=false;
+			}
+		}
 		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
-			if (maTable.getTour() != 4 || j.getRole() == "Petite blinde" && !j.getaSuivi()) {
+			if (maTable.getTour() != 4) {
+				if(j.getRole() == "Petite blinde") parler(j); 
 				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
 				joueurCourantParle = true;
 				System.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+j.getPseudo()+"%parle...");
 				maSalle.notifierLesJoueurs(ConstantesClient.NOTIFICATIONSPARTIE+" "+j.getPseudo()+"%parle...");
 				while(isJoueurCourantParle()!=false) {parler(j);} // En attente de la décision du joueur
-				if(maTable.getJoueursEnJeu().size()!=0) next = maTable.getJoueursEnJeu().get(nextIdx);			
+				j.getOut().println(ConstantesClient.SILENCE+" ");
+				attendre();
+				if(maTable.getJoueursEnJeu().size()!=0 && nextIdx!=maTable.getJoueursEnJeu().size()) next = maTable.getJoueursEnJeu().get(nextIdx);			
 			}
 		}
-		System.out.println("efhezoifhzeiofhzoehf");
 		return next;
 	}
 	
@@ -223,8 +231,9 @@ public class CpartieServeur implements Runnable {
 
 	/* Retourne -1 si tous les joueurs en jeu n'ont pas encore suivi */
 	public int miseEnAttente() {
-		for (Joueur j : maTable.getJoueursEnJeu()) {
-
+		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
+			System.out.println(j.getPseudo());
+			System.out.println(j.getaSuivi());
 			if (!j.getaSuivi())
 				return -1;
 
@@ -265,18 +274,25 @@ public class CpartieServeur implements Runnable {
 			distribuerRole(maTable);
 			do {
 				maSalle.notifierLesJoueurs(ConstantesClient.POT+" "+Double.toString(maTable.getPot()));
-				winner=verifierGagnant();
 				
-
+				for(JoueurServeur j : maTable.getJoueursEnJeu()) j.setaSuivi(false);
 				distribuerCartes();			
 				
 				
 				while (miseEnAttente() == -1) {
 					joueurSuivant();
+					try {
+						Thread.sleep(1000);
+					}
+					catch (Exception exc) {
+						exc.printStackTrace();
+					}
 				}
+				winner=verifierGagnant();
 				tourSuivant();
 			} while (winner == null);
-			
+			System.out.println("GAGNANT : "+winner.getPseudo());
+			maSalle.setFinPartie(true);
 		} else
 			System.out.println("C'est dommage tu es tout seul");
 		

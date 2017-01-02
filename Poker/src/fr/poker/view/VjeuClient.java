@@ -720,8 +720,8 @@ public class VjeuClient extends JPanel implements Observer{
 		lblNotificationsPartie.setText(client.getNotificationsPartie());
 		lblValeurPotTotal.setText(client.getPotTable());
 		if(client.isEnJeu()){
-			btnQuit.setEnabled(false);
-			btnJoinTable.setEnabled(false);
+			this.btnQuit.setEnabled(false);
+			this.btnJoinTable.setEnabled(false);
 		}
 		if(client.isNewAdversaire()){
 			imagesJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(true);
@@ -733,17 +733,18 @@ public class VjeuClient extends JPanel implements Observer{
 			client.setNewAdversaire(false);
 		}
 		if(client.isJouer()){
-			btnCheck.setEnabled(true);
-			btnMiser.setEnabled(true);
-			btnSeCoucher.setEnabled(true);
-			btnCheck.setEnabled(true);
-		}
-		
-		if(!client.isJouer()){
-			btnCheck.setEnabled(false);
-			btnMiser.setEnabled(false);
-			btnSeCoucher.setEnabled(false);
-			btnCheck.setEnabled(false);
+			this.btnCheck.setEnabled(true);
+			this.btnMiser.setEnabled(true);
+			this.btnSeCoucher.setEnabled(true);
+			this.btnCheck.setEnabled(true);
+			this.btnSuivre.setEnabled(true);
+		} else{
+			System.out.println("LE joueur qui vient tout juste de jouer : "+client.j.getPseudo());
+			this.btnCheck.setEnabled(false);
+			this.btnMiser.setEnabled(false);
+			this.btnSeCoucher.setEnabled(false);
+			this.btnCheck.setEnabled(false);
+			this.btnSuivre.setEnabled(false);
 		}
 		
 		if(client.isAdversaireOut()){

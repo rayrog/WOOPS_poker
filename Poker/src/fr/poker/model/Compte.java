@@ -101,7 +101,7 @@ public class Compte {
 	}
 
 	public void createJoueur(float creditPartie) {
-		this.joueur = new Joueur(this, creditPartie, this.pseudo);
+		//this.joueur = new Joueur(this, creditPartie, this.pseudo);
 	}
 
 	@Override

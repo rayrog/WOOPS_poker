@@ -103,6 +103,7 @@ public class Salle {
 		for(JoueurServeur j : joueurs){
 			System.out.println(message);
 			j.getOut().println(message);
+			
 		}
 	}
 	
