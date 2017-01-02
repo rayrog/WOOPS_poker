@@ -15,6 +15,7 @@ public class Table {
 	private Paquet paq;
 	private Double pot;
 	private Salle maSalle;
+	private double bestMise;
 	private int tour; // tour 0: Mise initiale; tour 1: flop(3 cartes); tour 2:
 						// Turn(1carte); tour 3: River(1 Carte); tour 4: Pour
 						// check le gagnant
@@ -36,6 +37,7 @@ public class Table {
 		joueursAttente = new ArrayList<>();
 		cartes = new ArrayList<>();
 		this.maSalle = salle;
+		bestMise = 0;
 	}
 
 	public int getId() {
@@ -69,6 +71,16 @@ public class Table {
 				list.add(j);
 		}
 		return list;
+	}
+	
+	
+
+	public double getBestMise() {
+		return bestMise;
+	}
+
+	public void setBestMise(double bestMise) {
+		this.bestMise = bestMise;
 	}
 
 	public List<Carte> getCartes() {

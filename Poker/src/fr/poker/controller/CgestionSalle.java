@@ -40,12 +40,13 @@ public class CgestionSalle implements Runnable{
 		int type = scan.nextInt();
 		switch(type){
 		case ConstantesServeur.CREERSALLE :
-			int nouveauPort = scan.nextInt();
+			int nouveauPortSalle = scan.nextInt();
+			int nouveauPortChat = scan.nextInt();
 			String nomSalle = scan.next();
 			String hash = scan.next();
-			boolean privat = scan.nextBoolean();
-			System.out.println("Je cree une nouvelle salle avec le port :"+nouveauPort);
-			lancementNouvelleSalle(nomSalle, privat, hash, nouveauPort);
+			String privat = scan.next();
+			System.out.println("Je cree une nouvelle salle avec le port :"+nouveauPortSalle);
+			lancementNouvelleSalle(nomSalle, Boolean.parseBoolean(privat), hash, nouveauPortSalle);
 			break;
 		}
 	}

@@ -15,31 +15,31 @@ public class Poker {
 		Compte c3 = new Compte(3, "Dododu", "Prima", "Corentin", "test@hotmail.fr", "0667951232", "hash", 0);
 		
 		/* SIMULATION REJOINDRE SALLE--> TODO: Cr�er un joueur lorsqu'on click sur rejoindre/creer partie */
-		c1.createJoueur(0);
-		c2.createJoueur(5);
-		c3.createJoueur(120);
+//		c1.createJoueur(0);
+//		c2.createJoueur(5);
+//		c3.createJoueur(120);
 		
 		/* SIMULATION DE CREATION PARTIE --> TODO: A faire lors de la cr�ation d'une partie*/
-		Salle s1 = new Salle("Salle 1", false, "inutile"); //salle publique
+		//Salle s1 = new Salle("Salle 1", false, "inutile"); //salle publique
 		//Salle s2 = new Salle("Salle 2", true, "F4uxH@shM@g€ul€"); //salle privee
 		
 		/* AJOUT DE SPECTATEUR */
-		s1.rejoindre(c1.getJoueur());
+		//s1.rejoindre(c1.getJoueur());
 		
 		/*AJOUT DE JOUEUR A LA TABLE*/
 		
 		//Quand c2 clique sur la chaise
-		c2.getJoueur().setEtat(true);		
-		s1.rejoindre(c2.getJoueur());
-		
-		//Quand c3 clique sur la chaise
-		c3.getJoueur().setEtat(true);
-		s1.rejoindre(c3.getJoueur());
-		
-		/*LANCEMENT DE LA PARTIE (CONTROLLER)*/
-		Cpartie partie = new Cpartie(s1.getTable()); 
-		partie.run();
-		
+//		c2.getJoueur().setEtat(true);		
+//		s1.rejoindre(c2.getJoueur());
+//		
+//		//Quand c3 clique sur la chaise
+//		c3.getJoueur().setEtat(true);
+//		s1.rejoindre(c3.getJoueur());
+//		
+//		/*LANCEMENT DE LA PARTIE (CONTROLLER)*/
+//		Cpartie partie = new Cpartie(s1.getTable()); 
+//		partie.run();
+//		
 //		Paquet paq = new Paquet("Jeu de 52 cartes");
 //		MainJoueur m = new MainJoueur(j1, t);
 		

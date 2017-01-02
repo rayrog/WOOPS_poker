@@ -17,7 +17,6 @@ import java.util.Timer;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cclient;
-import fr.poker.controller.Cpartie;
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerClient;
 import fr.poker.model.chat.Serveur.Reception;
