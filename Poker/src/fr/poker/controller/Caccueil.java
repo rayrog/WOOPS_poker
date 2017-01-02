@@ -181,7 +181,9 @@ public class Caccueil {
 		Socket socket = new Socket("172.23.2.15",4554);
 		this.cCrea = new Ccreation(this, IDplayer,socket);
 		vacc.getFrame().setVisible(false);
-		cCrea.displayCrea();
+		cCrea.displayCrea();		
+		
+		System.out.println("here");
 		// TODO Auto-generated method stub
 		
 	}
@@ -238,24 +240,21 @@ public class Caccueil {
 		
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
-		
+
 		//cSalle.isPrivate();
 		
 		// Ceck si partie private et recuper son ID.
 		// Si partie private demander password
 		
-		
-		
 		//		
+		
+		
 //		port salle.
 //		○ ID du joueur
 //		○ Pseudo
 //		○ Argent cagnotte Sans avoir retiré !
-//		○ Ca lui lance le contrleur Cclient 
 
-		
-		
-		
+//		○ Ca lui lance le contrleur Cclient 		
 		
 	}
 }

@@ -45,7 +45,6 @@ public class Ccreation implements Runnable{
 		this.socket=socket;
 		System.out.println("Creation Ouvert pour joueur : " + IDplayer);
 		
-		
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream());
@@ -55,8 +54,7 @@ public class Ccreation implements Runnable{
 		}
 		this.t = new Thread(this);
 		t.start();
-					
-		
+
 	}
 
 
@@ -108,7 +106,7 @@ public class Ccreation implements Runnable{
 		boolean pwdOK=false;
 		boolean nomOK=false;
 		boolean miseOK=false;
-		
+		int tempPrivate=0;
 		
 		//verifie si les Pwd entrés sont identique si if isPrivate=true
 		
@@ -121,12 +119,15 @@ public class Ccreation implements Runnable{
 			{	
 				//System.out.println("Champs pwd identiques");
 				pwdOK=true;
+				tempPrivate=1;
+				
 			}
 		}
 		if (isPrivate==false){
 			pwdSalle="";
 			pwdConf="";
 			pwdOK=true;
+			tempPrivate=0;
 		}
 		
 		//Verfie que le nom donnée à la salle  n'existe pas.
@@ -176,12 +177,13 @@ public class Ccreation implements Runnable{
 			
 			/// mettre tout en string + mettre le hash  // Verifier la misre de la salle
 			
-			// Creation socket serveu
-			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+portChat+" "+nomSalle+" "+pwdSalle+" "+Boolean.toString(isPrivate));
+			// Creation socket serveur
+			
+			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+portChat+" "+nomSalle+" "+pwdSalle+" "+tempPrivate+" ");
 			
 			
-			//recup cagnotte !! / Recup pseudo // 			Cclient c = new Cclient(socket, Integer.parseInt(IDplayer), 1000, "jackie");	
-			Cclient c = new Cclient(socket, IDplayer,Double.parseDouble("1000"), "jackie",portSalle, portChat, cAcc);	
+			
+			Cclient c = new Cclient(socket, IDplayer,Double.parseDouble(cbCpt.getCredit(IDplayer)),cbCpt.getPseudo(IDplayer),portSalle, portChat, cAcc);	
 			
 			//On lance la communication
 	
@@ -189,8 +191,7 @@ public class Ccreation implements Runnable{
 			
 			//	Lancement de la partide pour le joueur 
 				
-			//c.lancementClient();
-		}
+			}
 		else if(nomOK==false){
 			System.out.println("le nom de la salle existe deja");
 		}

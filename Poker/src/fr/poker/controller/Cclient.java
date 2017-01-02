@@ -85,8 +85,8 @@ public class Cclient extends Observable implements Runnable {
 		this.distribution = false;
 		this.vJeu = new VjeuClient(this);
 		this.tempsDecision = 10000;
-		Socket socketChat = new Socket("172.23.2.15", 5009);
-		this.clientChat = new ClientChat(5009);
+		//Socket socketChat = new Socket("172.23.2.15", 5009);
+		//this.clientChat = new ClientChat(5009);
 		ActionListener taskPerformer = new taskPerformed(this);
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);
