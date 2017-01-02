@@ -27,7 +27,7 @@ public class CgestionSalle implements Runnable{
 			exc.printStackTrace();
 		}
 		//On lance la communication
-		(new Thread(this)).start();;
+		(new Thread(this)).start();
 	}
 	
 	public void lancementNouvelleSalle (String nom, boolean privat, String hash, int nouveauPort) throws Exception{

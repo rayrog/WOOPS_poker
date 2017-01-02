@@ -23,4 +23,5 @@ public class ConstantesClient {
 	public static final int CARTETABLE = 15;
 	public static final int SILENCE = 16;
 	public static final int DISTRIBUTION = 17;
+	public static final int MESCARTES = 18;
 }
