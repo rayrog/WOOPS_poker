@@ -174,8 +174,10 @@ public class Ccreation implements Runnable{
 			cbSalle.creeSalle(isPrivate,pwdSalle, nomSalle, portSalle, portChat, mise);
 			
 			
-			/// mettre tout en string + mettre le hash 
-			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+nomSalle+" "+pwdSalle+" "+isPrivate);
+			/// mettre tout en string + mettre le hash  // Verifier la misre de la salle
+			
+			// Creation socket serveu
+			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+portChat+" "+nomSalle+" "+pwdSalle+" "+Boolean.toString(isPrivate));
 			
 			
 			//recup cagnotte !! / Recup pseudo // 			Cclient c = new Cclient(socket, Integer.parseInt(IDplayer), 1000, "jackie");	
@@ -183,14 +185,11 @@ public class Ccreation implements Runnable{
 			
 			//On lance la communication
 	
-			// ICI CODE MIKE : Envoi message a gestionSalle
 			// utiliser isPrivate,pwdSalle, nomSalle, portSalle, portChat, mise 
 			
 			//	Lancement de la partide pour le joueur 
-			// Cclient cClient=new Cclient(IDplayer,);
-			
-			// A commanter quand lancement Partie Ok pour Joueur !		
-			c.lancementClient();
+				
+			//c.lancementClient();
 		}
 		else if(nomOK==false){
 			System.out.println("le nom de la salle existe deja");

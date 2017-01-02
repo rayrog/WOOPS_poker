@@ -26,9 +26,22 @@ public class JButtonListenerParametres implements ActionListener
 				}
 			}
 		}
-		if (e.getActionCommand().equals("Crediter/Retirer")) {
-			System.out.println("Crediter/Retirer");
+		if (e.getActionCommand().equals("Crediter")) {
+			int credit;
+			credit = cPara.getvParam().displayCrediter();
+			System.out.println("Crediter");
+			cPara.crediterDe(credit);
 
+			
+		}
+		
+		if (e.getActionCommand().equals("Retirer")) {
+			int retrait;
+			retrait = cPara.getvParam().displayRetirer();
+			System.out.println("Retirer");
+			cPara.retirerDe(retrait);
+
+			
 		}
 		if (e.getActionCommand().equals("Annuler")) {
 			cPara.closePara();

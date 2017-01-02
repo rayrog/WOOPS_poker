@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import fr.poker.controller.Cparametre;
@@ -39,6 +40,7 @@ public class Vparametres {
 	private JTextField txtMoney;
 	private String [] textInitiaux = {"Mot de passe","Confirmer   ", "Nom", "Pr\u00E9nom",  "Pseudo", "E-mail", "N\u00B0 T\u00E9l\u00E9phone","Credit"};
 	private JButton btnAddMoney;
+	private JButton btnRetirer;
 	private JButton btnCancel;
 	private JButton btnRegister;
 	private JLabel lblErrorField;
@@ -200,24 +202,30 @@ public class Vparametres {
 		txtMoney.setBounds(466, 568, 367, 51);
 		frame.getContentPane().add(txtMoney);
 		
-		this.btnAddMoney = new JButton("Crediter/Retirer");
+		this.btnAddMoney = new JButton("Crediter");
 		btnAddMoney.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnAddMoney.setBounds(466, 630, 366, 51);
+		btnAddMoney.setBounds(466, 630, 183, 51);
 		frame.getContentPane().add(btnAddMoney);
 		btnAddMoney.addActionListener(new JButtonListenerParametres(cPara));
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
+		btnRetirer = new JButton("Retirer");
+		btnRetirer.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnRetirer.setBounds(656, 630, 176, 51);
+		frame.getContentPane().add(btnRetirer);
+		btnRetirer.addActionListener(new JButtonListenerParametres(cPara));
 		
 		// Partie Label d'erreur ou de success : 
 		lblErrorField = new JLabel("");
 		lblErrorField.setHorizontalAlignment(SwingConstants.CENTER);
 		lblErrorField.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
 		lblErrorField.setForeground(Color.RED);
-		lblErrorField.setBounds(360, 162, 486, 16);
+		lblErrorField.setBounds(407, 128, 486, 16);
 		frame.getContentPane().add(lblErrorField);
 		lblErrorField.setVisible(false);
-				
+		
         Object[] items =
         {	
         	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")),
@@ -230,22 +238,27 @@ public class Vparametres {
         	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar8.png")),
         	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar9.png"))
         };
-        JComboBox comboBoxAvatar = new JComboBox( items );
-        comboBoxAvatar.setSize(new Dimension(100, 100));
-        comboBoxAvatar.setBounds(620, 11, 35, 154);
-        frame.getContentPane().add( comboBoxAvatar);
-        comboBoxAvatar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-		        JComboBox cb = (JComboBox)e.getSource();
-		        lblAvatar.setIcon((Icon) cb.getSelectedItem());
-		        pathImage = "/fr/poker/view/pictures/avatar/Avatar"+cb.getSelectedIndex()+".png";
-		        System.out.println(pathImage);
-			}
-		});
 		
 	}
+	
+
+	public int displayCrediter() {
+		JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
+		String nom = jop.showInputDialog(null, "Montant à credtier", JOptionPane.QUESTION_MESSAGE);
+		jop2.showMessageDialog(null, "Credité de " + nom, "Credité", JOptionPane.INFORMATION_MESSAGE);
+		return (Integer.parseInt(nom));
+	}
+
+	
+	
+	public int displayRetirer() {
+		JOptionPane jop3 = new JOptionPane(), jop4 = new JOptionPane();
+		String nom = jop3.showInputDialog(null, "Montant à retirer", JOptionPane.QUESTION_MESSAGE);
+		jop4.showMessageDialog(null, "Retiré de" + nom, "Retiré", JOptionPane.INFORMATION_MESSAGE);
+		return Integer.parseInt(nom);
+	}
+
+	
 	
 	public String[] getTextInitiaux() {
 		return textInitiaux;
@@ -373,5 +386,4 @@ public class Vparametres {
 		String [] text = {"Mot de passe","Confirmer   ", infos[1], infos[3],infos[2],infos[4],infos[5],"Credit : " + infos[6] + " €"};
 		textInitiaux=text;
 	}
-	
 }

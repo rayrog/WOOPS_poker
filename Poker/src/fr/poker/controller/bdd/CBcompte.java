@@ -334,10 +334,70 @@ public class CBcompte {
 					}
 					return infos;
 	}
-/**/
 
+
+			public int crediter(int iDplayer, int credit) {
+				//Sert a crediter le compte du joueur
+				
+				int resultat=-1;
+				String string="";
+				string = getCredit(iDplayer);
+				resultat=(credit+Integer.parseInt(string));
+				setCredit(iDplayer,resultat);
+				System.out.println("Nouveau Credit : "+ resultat);
+				return resultat;
+				
 	
+			}
+			
+		
+			
+			
+			public int retirer(int iDplayer, int credit) {
+				//Sert a crediter le compte du joueur
+				
+				int resultat=-1;
+				String string="";
+				string = getCredit(iDplayer);
+				resultat=(credit-Integer.parseInt(string));
+				setCredit(iDplayer,resultat);
+				System.out.println("Nouveau credit : "+ resultat);
+				return resultat;
+			}
+			
+			
+			
+			
+			
 
+			
+
+			public  void setCredit(int iDplayer, int credit){
+				/*
+					 * Cette fct sert a mettre la valeur du credit a credit.
+					 */
+					String resultat="Erreur modification credit";
+					try{
+						//Connexion � la BDD 
+						cbCo.connexion();
+						this.st=cbCo.getSt();
+						String sql = "UPDATE `Poker`.`Compte` SET `credit` = '"+credit+"' WHERE `Compte`.`id` = '"+iDplayer+"'";						
+						// debug : affichage requete 
+						System.out.println(sql);
+						int rs = st.executeUpdate(sql);
+						//						ResultSetMetaData resultMeta = rs.getMetaData();
+						//test si le mail existe, si oui, change la valeur de resultat par -1
+		
+						cbCo.fermerConnexion();
+					} catch(SQLException e) {
+						e.printStackTrace();
+					}
+			}
+
+			
+			
+			
+			
 }
 
 

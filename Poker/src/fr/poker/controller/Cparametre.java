@@ -91,24 +91,54 @@ public class Cparametre {
 	}
 
 	public boolean verifyBdd() {
+		boolean resultatMail=false;
+		boolean resultatPseudo=false;
+		boolean allOK=false;
+		
 		cbcon = new CBconnect();
 		cbcpt = new CBcompte(cbcon);
 		//Vérifie si le pseudo existe déjà en BDD
 		if(cbcpt.checkPseudo(vParam.getTxtPseudo().getText()) != -1) {
-			System.out.println("Le pseudo existe déjà en Bdd !");
-			vParam.getLblErrorField().setText("Le pseudo existe déjà !");
-			vParam.getLblErrorField().setVisible(true);
-			return false;
+			if 	(cbcpt.checkPseudo(vParam.getTxtPseudo().getText()) == IDplayer)
+			{
+				System.out.println("Pseudo inchangé");
+				resultatPseudo=true;
+			}
+			else {
+				System.out.println("Erreur sur pseudo : il existe deja");
+				vParam.getLblErrorField().setVisible(true);
+				resultatPseudo=false;
+			}	
 		}
-		//Vérifie si le mail existe déjà en BDD
-		if(cbcpt.checkMail(vParam.getTxtEmail().getText()) != -1) {
-			System.out.println("Le mail existe déjà en BDD");
-			vParam.getLblErrorField().setText(" Le mail est déjà enregistré avec un autre compte !");
-			vParam.getLblErrorField().setVisible(true);
-			return false;
+		else {
+			System.out.println("Modification pseudo");
+			resultatPseudo=true;
 		}
 		
-		return true;
+		//Vérifie si le mail existe déjà en BDD
+		if(cbcpt.checkMail(vParam.getTxtEmail().getText()) != -1) {
+			if 	(cbcpt.checkMail(vParam.getTxtEmail().getText()) == IDplayer)
+			{
+				System.out.println("Mail inchangé");
+				resultatMail=true;
+			}
+			else {
+				System.out.println("Erreur sur pseudo : il existe deja");
+				vParam.getLblErrorField().setVisible(true);
+				resultatPseudo=false;
+			}	
+		}
+		else {
+			System.out.println("Modification mail ok");
+			resultatPseudo=true;
+		}
+
+		if (resultatPseudo==true && resultatMail==true){
+			
+			allOK=true;
+			
+		}
+		return allOK;
 	}
 
 	public boolean verifyFields() {
@@ -128,9 +158,11 @@ public class Cparametre {
 		txtFields.add(vParam.getTxtPseudo().getText());
 		txtFields.add(vParam.getPwdAccount().getText());
 		txtFields.add(vParam.getPwdConfirm().getText());
-		//txtFields.add(vParam.getTxtEmail().getText());
-		//txtFields.add(vParam.getTxtPhoneNumber().getText());
+		txtFields.add(vParam.getTxtEmail().getText());
+		txtFields.add(vParam.getTxtPhoneNumber().getText());
 		
+		
+
 		for(String s : txtFields){
 			//Vérifie si l'utilisateur à renseigner tous les champs : useless ici 
 					/*if(compare.contains(s)){
@@ -168,6 +200,30 @@ public class Cparametre {
 				}
 				return true;
 	}
+
+	public void retirerDe(int retrait) {
+		cbcon = new CBconnect();
+		cbcpt = new CBcompte(cbcon);
+		//Credite le compt
+		
+		if(cbcpt.retirer(IDplayer,retrait)==-1) {
+			System.out.println("Erreur credit");
+			vParam.getLblErrorField().setText("Erreur credit");
+			vParam.getLblErrorField().setVisible(true);
+		}
+	}
+
+	public void crediterDe(int credit) {
+		cbcon = new CBconnect();
+		cbcpt = new CBcompte(cbcon);
+		//Credite le compte
+		
+		if(cbcpt.crediter(IDplayer,credit)==-1) {
+			System.out.println("Erreur credit");
+			vParam.getLblErrorField().setText("Erreur Retrait");
+			vParam.getLblErrorField().setVisible(true);
+		}
+		
 	
-	
-}
+		}
+	}

@@ -29,7 +29,12 @@ public class JButtonListenerAccueil implements ActionListener{
 		}
 		if (e.getActionCommand() == "Cr\u00E9er une partie") {
 			//System.out.println("Creer une partie");
-			CAcc.runCreation();
+			try {
+				CAcc.runCreation();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}
 		if (e.getActionCommand() == "Rejoindre salle"){

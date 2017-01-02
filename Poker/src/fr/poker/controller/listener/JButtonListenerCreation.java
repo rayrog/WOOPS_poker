@@ -19,7 +19,12 @@ public class JButtonListenerCreation implements ActionListener{
 		}
 		if (e.getActionCommand().equals("Créer la salle")){
 			//System.out.println("Créer la salle");
-			cCre.runSalle();
+			try {
+				cCre.runSalle();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		if (e.getActionCommand().equals("Publique")){
 			System.out.println("Publique");
