@@ -29,7 +29,7 @@ public class Salle {
 		this.table = new Table(this);
 		this.monPort = port;
 		this.joueurs = new ArrayList<JoueurServeur>();
-		this.maPartie = new CpartieServeur(table, this);
+		this.maPartie = new CpartieServeur(this);
 		this.finPartie = false;
 	}
 	

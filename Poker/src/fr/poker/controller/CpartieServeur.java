@@ -8,10 +8,10 @@ public class CpartieServeur implements Runnable {
 	private JoueurServeur joueurCourant;
 	private boolean joueurCourantParle;
 
-	public CpartieServeur(Table t, Salle salle) {
+	public CpartieServeur(Salle salle) {
 		super();
-		maTable = t;
 		maSalle = salle;
+		maTable = salle.getTable();
 		(new Thread(this)).start();
 		joueurCourantParle = false;
 	}
@@ -83,7 +83,7 @@ public class CpartieServeur implements Runnable {
 				System.out.println(j.getPseudo()+" pioche le "+j.getCartes().get(0).toString()+" et le "+j.getCartes().get(1).toString());
 
 			}
-			maSalle.notifierLesJoueurs(ConstantesClient.DISTRIBUTION + " ");
+			//maSalle.notifierLesJoueurs(ConstantesClient.DISTRIBUTION + " ");
 		}
 		if (maTable.getTour() == 1) { // FLOP --> 3 Cartes
 			for (JoueurServeur j : maTable.getJoueurs()) {
@@ -162,19 +162,19 @@ public class CpartieServeur implements Runnable {
 			switch (maTable.getTour()) {
 			case 0:
 				maTable.setTour(1);
-				maTable.setBestMise(0);
+				maTable.setBestMise(0.0);
 				break;
 			case 1:
 				maTable.setTour(2);
-				maTable.setBestMise(0);
+				maTable.setBestMise(0.0);
 				break;
 			case 2:
 				maTable.setTour(3);
-				maTable.setBestMise(0);
+				maTable.setBestMise(0.0);
 				break;
 			case 3:
 				maTable.setTour(4);
-				maTable.setBestMise(0);
+				maTable.setBestMise(0.0);
 				break;
 			case 4:
 				relancerManche();
@@ -206,22 +206,18 @@ public class CpartieServeur implements Runnable {
 
 		Joueur next = new Joueur();
 		int nextIdx;
-		System.out.println("TAMEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+		
 		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
 			if (maTable.getTour() != 4) {
-				if (j.getRole() == "Petite blinde" && maSalle.getTable().getTour() == 0)
-					parler(j);
-				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
 				joueurCourantParle = true;
 				System.out.println(j.getPseudo() + " parle...");
 				maSalle.notifierLesJoueurs(ConstantesClient.NOTIFICATIONSPARTIE + " " + j.getPseudo() + "%parle...");
-				while (isJoueurCourantParle() != false) {
+				nextIdx = maTable.getJoueursEnJeu().indexOf(j);
+				next = maTable.getJoueursEnJeu().get(nextIdx);
+				while (isJoueurCourantParle() != false && maTable.getJoueursEnJeu().size() > 0) {
 					parler(j);
 				} // En attente de la décision du joueur
 				j.getOut().println(ConstantesClient.SILENCE + " ");
-				attendre(3000);
-				if (maTable.getJoueursEnJeu().size() != 0 && nextIdx != maTable.getJoueursEnJeu().size())
-					next = maTable.getJoueursEnJeu().get(nextIdx);
 			}
 		}
 		return next;
@@ -250,8 +246,11 @@ public class CpartieServeur implements Runnable {
 	/*Retourne -1 si un joueur n'a pas encore suivi*/
 	public int miseEnAttente() {
 		for (JoueurServeur j : maTable.getJoueursEnJeu()) {
-			if (j.getMise() <= maTable.getBestMise()){
-				return -1;
+			if (j.getMise() < maTable.getBestMise()){
+				 if(maTable.getBestMise()!=0)
+					 return 1;
+				 else
+					 return -1;
 			}
 				
 		}
@@ -292,26 +291,24 @@ public class CpartieServeur implements Runnable {
 				distribuerRole(maTable);
 		}
 
-		if (maTable.getJoueurs().size() > 1) {
-			do {
+		do {
 				maSalle.notifierLesJoueurs(ConstantesClient.POT + " " + Double.toString(maTable.getPot()));
 				distribuerCartes();
-
-
-
-				for(JoueurServeur j : maSalle.getTable().getJoueursEnJeu()){
-					j.setMise(0.0);
+				System.out.println(maTable.getCartes());
+				for(JoueurServeur j : maTable.getJoueursEnJeu()){
+					if(maTable.getTour() != 0)
+						j.setMise(0.0);
 				}
-					
-				while (miseEnAttente() == -1)
-					joueurSuivant();
+				
+				do{
+					System.out.println(joueurSuivant());	
+				}
+				while (miseEnAttente() == -1);
 				winner = verifierGagnant();
 				tourSuivant();
-			} while (winner == null);
+			} while (winner == null && maTable.getJoueurs().size() > 1);
 			System.out.println("GAGNANT : " + winner.getPseudo());
 			maSalle.setFinPartie(true);
-		} else
-			System.out.println("C'est dommage tu es tout seul");
 
 	}
 
