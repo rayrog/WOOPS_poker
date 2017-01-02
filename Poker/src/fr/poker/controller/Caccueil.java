@@ -70,6 +70,7 @@ public class Caccueil {
 	protected PrintStream out;
 	protected String adresseServeurPoker;
 	protected int portServeur;
+	
 
 	//private int IDSalle;
 	
@@ -168,8 +169,9 @@ public class Caccueil {
 	}
 
 
-	public void runCreation() {
-		this.cCrea = new Ccreation(this, IDplayer);
+	public void runCreation() throws Exception {
+		Socket socket = new Socket("172.23.2.15",4554);
+		this.cCrea = new Ccreation(this, IDplayer,socket);
 		vacc.getFrame().setVisible(false);
 		cCrea.displayCrea();
 		// TODO Auto-generated method stub
@@ -229,7 +231,7 @@ public class Caccueil {
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
 		
-		cSalle.isPrivate();
+		//cSalle.isPrivate();
 		
 		// Ceck si partie private et recuper son ID.
 		// Si partie private demander password
