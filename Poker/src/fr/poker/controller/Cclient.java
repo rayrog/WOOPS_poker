@@ -90,6 +90,7 @@ public class Cclient extends Observable implements Runnable {
 		ActionListener taskPerformer = new taskPerformed(this);
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);
+		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
 	}
 	
 	public Timer getTimerDecision() {
