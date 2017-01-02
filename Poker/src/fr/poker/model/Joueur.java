@@ -2,11 +2,11 @@ package fr.poker.model;
 
 import java.util.*;
 
-public class Joueur extends Observable {
+public class Joueur {
 
 	protected int id; // Pour identifier un joueur dans une partie
 	protected Compte compte; // Pour d�finir sur quel compte le joueur joue
-	protected float creditPartie; // Cagnotte avec laquelle le joueur d�cide de
+	protected Double creditPartie; // Cagnotte avec laquelle le joueur d�cide de
 									// commencer la partie
 	private int numeroJoueurTable;
 	private boolean jouer;  //a la fonction de token
@@ -29,20 +29,27 @@ public class Joueur extends Observable {
 									// table(3) et
 	// du joueur(2)
 
-	public float mise;
+	public Double mise;
 
 	public Joueur() {
 		super();
+		this.partieFinie = false;
 		adversaires = new ArrayList<Joueur>();
+		this.cartes = new ArrayList<Carte>();
+		etat = false;
+		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
+		cartes = new ArrayList<>();
+		aSuivi = false;
 	}
 
-	public Joueur(Compte compte, float creditPartie, String pseudo) {
+	public Joueur(Compte compte, Double creditPartie, String pseudo) {
 		super();
 		this.pseudo = pseudo;
 		this.compte = compte;
 		this.creditPartie = creditPartie;
 		this.partieFinie = false;
 		this.adversaires = new ArrayList<Joueur>();
+		this.cartes = new ArrayList<Carte>();
 		etat = false;
 		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
 		cartes = new ArrayList<>();
@@ -57,7 +64,7 @@ public class Joueur extends Observable {
 		return compte;
 	}
 
-	public float getCreditPartie() {
+	public Double getCreditPartie() {
 		return creditPartie;
 	}
 
@@ -85,7 +92,7 @@ public class Joueur extends Observable {
 		return aSuivi;
 	}
 
-	public float getMise() {
+	public Double getMise() {
 		return mise;
 	}
 
@@ -97,7 +104,7 @@ public class Joueur extends Observable {
 		this.id = id;
 	}
 
-	public void setCreditPartie(float creditPartie) {
+	public void setCreditPartie(Double creditPartie) {
 		this.creditPartie = creditPartie;
 	}
 
@@ -198,21 +205,20 @@ public class Joueur extends Observable {
 		cartes.add(c);
 	}
 
-	public void miser(float montant) { // Float pour pouvoir miser des petites
+	public void miser(Double montant) { // Double pour pouvoir miser des petites
 										// somme (Ex: 0.5euro)
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			mise = montant;
-			table.setPot(table.getPot() + mise);
-		} else {
-			System.out.println("Credit insuffisant pour miser " + montant);
+			this.mise = montant;
+			table.setPot(table.getPot() + this.mise);
 		}
+		System.out.println("Credit insuffisant pour miser " + montant);
 	}
 
-	public void relancer(float montant) {
+	public void relancer(Double montant) {
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			mise += montant;
+			this.mise += montant;
 			table.setPot(table.getPot() + mise);
 			for (Joueur j : table.getJoueursEnJeu()) { // On réinitialise le
 														// flag aSuivi en cas de
@@ -225,7 +231,7 @@ public class Joueur extends Observable {
 		}
 	}
 
-	public float suivre(float montantPrecedent) { // Pour utiliser cette
+	public void suivre(Double montantPrecedent) { // Pour utiliser cette
 													// fonction il faut faire un
 													// getMise()
 		if (creditPartie - montantPrecedent >= 0) { // sur le joueur précedent
@@ -234,11 +240,9 @@ public class Joueur extends Observable {
 			mise += montantPrecedent;
 			table.setPot(table.getPot() + mise);
 			setaSuivi(true);
-			return 1;
 		} else {
 			System.out.println("Credit insuffisant");
 			setaSuivi(false);
-			return -1;
 		}
 	}
 
@@ -266,11 +270,6 @@ public class Joueur extends Observable {
 			System.out.println();
 		} else
 			System.out.println("Spectateur");
-	}
-	
-	public void setChangedView(){
-		setChanged();
-		notifyObservers();
 	}
 	
 	public int getNumeroJoueurTable() {

@@ -2,18 +2,34 @@ package fr.poker.view;
 
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 import fr.poker.controller.Cinscription;
 import fr.poker.controller.listener.JButtonListenerInscription;
 import fr.poker.controller.listener.JTextFieldListenerInscription;
 
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.JPanel;
 
 public class Vinscription {
 
@@ -30,14 +46,8 @@ public class Vinscription {
 	private JButton btnBack;
 	private JLabel lblErrorField;
 	private JLabel lblSuccess;
-
-public JLabel getLblErrorField() {
-		return lblErrorField;
-	}
-
-	public void setLblErrorField(JLabel lblErrorField) {
-		this.lblErrorField = lblErrorField;
-	}
+	private JLabel lblAvatar;
+	private String pathImage;
 
 	/*
 	 * Create the application.
@@ -52,6 +62,34 @@ public JLabel getLblErrorField() {
 		frame.setBounds(100, 100, 1300, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/logo.png")));
+		lblLogo.setBounds(10, 11, 160, 154);
+		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(lblLogo);
+		
+		JLabel lblTitle = new JLabel("WOOP");
+		lblTitle.setBounds(214, 29, 168, 63);
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setForeground(Color.LIGHT_GRAY);
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 45));
+		frame.getContentPane().add(lblTitle);
+		
+		JLabel lblSlogan = new JLabel("World Of Online Poker");
+		lblSlogan.setBounds(180, 83, 234, 63);
+		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSlogan.setForeground(Color.LIGHT_GRAY);
+		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
+		frame.getContentPane().add(lblSlogan);
+		
+	
+		lblAvatar = new JLabel("");
+		lblAvatar.setIcon(new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
+		lblAvatar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAvatar.setBounds(541, 35, 111, 111);
+		frame.getContentPane().add(lblAvatar);
+		pathImage = "/fr/poker/view/pictures/avatar/Avatar1.png";
 		
 		lblSuccess = new JLabel("Enregistrement effectué avec succès !");
 		lblSuccess.setBackground(new Color(0, 128, 0));
@@ -83,19 +121,6 @@ public JLabel getLblErrorField() {
 		pwdConfirm.addMouseListener(new JTextFieldListenerInscription(cins, pwdConfirm));
 		pwdConfirm.addFocusListener(new JTextFieldListenerInscription(cins, pwdConfirm));
 		//pwdConfirm.addActionListener(new CinscriptionListener(pwdConfirm));
-		
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/logo.png")));
-		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogo.setBounds(385, 20, 160, 154);
-		frame.getContentPane().add(lblLogo);
-		
-		JLabel lblSlogan = new JLabel("World Of Online Poker");
-		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSlogan.setForeground(Color.LIGHT_GRAY);
-		lblSlogan.setFont(new Font("Tahoma", Font.ITALIC, 20));
-		lblSlogan.setBounds(532, 87, 234, 63);
-		frame.getContentPane().add(lblSlogan);
 		
 		txtLastName = new JTextField();
 		txtLastName.setText(textInitiaux[2]);
@@ -184,14 +209,67 @@ public JLabel getLblErrorField() {
 		lblInfoFields.setBounds(488, 673, 249, 16);
 		frame.getContentPane().add(lblInfoFields);
 		
-		JLabel label = new JLabel("WOOP");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.LIGHT_GRAY);
-		label.setFont(new Font("Tahoma", Font.BOLD, 45));
-		label.setBounds(544, 30, 168, 63);
-		frame.getContentPane().add(label);
-		lblErrorField.setVisible(false);
+        Object[] items =
+        {	
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar2.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar3.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar4.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar5.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar6.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar7.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar8.png")),
+        	new ImageIcon(Vinscription.class.getResource("/fr/poker/view/pictures/avatar/Avatar9.png"))
+        };
+        JComboBox comboBoxAvatar = new JComboBox( items );
+        comboBoxAvatar.setSize(new Dimension(100, 100));
+        comboBoxAvatar.setBounds(620, 11, 35, 154);
+        frame.getContentPane().add( comboBoxAvatar);
+        comboBoxAvatar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+		        JComboBox cb = (JComboBox)e.getSource();
+		        lblAvatar.setIcon((Icon) cb.getSelectedItem());
+		        pathImage = "/fr/poker/view/pictures/avatar/Avatar"+cb.getSelectedIndex()+".png";
+		        System.out.println(pathImage);
+			}
+		});
 		
+	}
+
+	static class CustomComboBox extends JLabel implements ListCellRenderer {
+
+        @Override
+        public Component getListCellRendererComponent(
+                JList list, 
+                Object value, 
+                int index, 
+                boolean isSelected, 
+                boolean cellHasFocus) {
+
+            JLabel label = new JLabel(){
+                public Dimension getPreferredSize(){
+                    return new Dimension(200, 100);
+                }
+            };
+            label.setText(String.valueOf(value));
+
+            return label;
+        }
+    }  
+    
+	public static void main(String[] args) {
+	EventQueue.invokeLater(new Runnable() {
+		public void run() {
+			try {
+				Vinscription window = new Vinscription(null, new JFrame());
+				window.frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	});
 	}
 
 	public JLabel getLblSuccess() {
@@ -273,4 +351,29 @@ public JLabel getLblErrorField() {
 	public void setTxtPhoneNumber(JTextField txtPhoneNumber) {
 		this.txtPhoneNumber = txtPhoneNumber;
 	}
+	
+	public JLabel getLblErrorField() {
+		return lblErrorField;
+	}
+
+	public void setLblErrorField(JLabel lblErrorField) {
+		this.lblErrorField = lblErrorField;
+	}
+
+	public JLabel getLblAvatar() {
+		return lblAvatar;
+	}
+
+	public void setLblAvatar(JLabel lblAvatar) {
+		this.lblAvatar = lblAvatar;
+	}
+
+	public String getPathImage() {
+		return pathImage;
+	}
+
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
+	}
+	
 }

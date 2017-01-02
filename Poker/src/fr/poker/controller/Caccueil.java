@@ -3,6 +3,12 @@ package fr.poker.controller;
 import static java.lang.System.out;
 
 import java.awt.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.Vector;
@@ -60,6 +66,10 @@ public class Caccueil {
 	private CBconnect cbcon;
 	private CBsalle cSalle;
 	private CBcompte cbcpt;
+	protected BufferedReader in;
+	protected PrintStream out;
+	protected String adresseServeurPoker;
+	protected int portServeur;
 
 	//private int IDSalle;
 	
@@ -67,6 +77,8 @@ public class Caccueil {
 		this.vacc = new Vaccueil(this);
 		this.ccon = c;
 		this.IDplayer=ID;
+		this.adresseServeurPoker = "172.23.2.15";
+		this.portServeur = 4554;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
 		init();
 	}
@@ -75,6 +87,8 @@ public class Caccueil {
 		this.vacc = new Vaccueil(this);
 		this.cParam=c;
 		this.IDplayer=ID;
+		this.adresseServeurPoker = "172.23.2.15";
+		this.portServeur = 4554;
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
 		init();
 	}
@@ -83,6 +97,7 @@ public class Caccueil {
 		this.vacc = new Vaccueil(this);
 		this.cCrea=c;
 		this.IDplayer=ID;
+		this.adresseServeurPoker = "172.23.2.15";
 		System.out.println("Accueil ouvert pour joueur : " + IDplayer);
 		init();
 	}
@@ -199,8 +214,16 @@ public class Caccueil {
 	public void reloadData() {
 		listeSalles();
 	}
-
-	public void rejoindrePartie(int iDplayer, String iDSalle, int Cagnotte) {
+	
+	public void rejoindrePartie(int iDplayer, String iDSalle) throws Exception {
+		Socket socket = new Socket(adresseServeurPoker, portServeur);
+		try {
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new PrintStream(socket.getOutputStream());
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
 		System.out.println("Tentative de connexion du joueur "+ iDplayer +" a la partie " + iDSalle);
 		
 		cbcon = new CBconnect();

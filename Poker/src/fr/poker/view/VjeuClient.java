@@ -16,17 +16,21 @@ import java.util.Timer;
 
 import javax.swing.SwingConstants;
 import fr.poker.controller.Cclient;
-import fr.poker.controller.Cpartie;
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/rayrog/WOOPS_poker.git
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerClient;
-import fr.poker.model.chat.Serveur.Reception;
+
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLayeredPane;
+import javax.swing.border.LineBorder;
 
-public class VjeuClient implements Observer{
+public class VjeuClient extends JPanel implements Observer{
 
 	public static JFrame frame;
 	public static JTextField textFieldMise;
@@ -50,54 +54,19 @@ public class VjeuClient implements Observer{
 	private JLabel [] misesJoueurs;
 	private JLabel [] potsJoueurs;
 	private JLabel lblValeurPotTotal;
-	private JLabel lblNotifications;
-
-	public JLabel[] getImagesJoueurs() {
-		return imagesJoueurs;
-	}
-
-	public void setImagesJoueurs(JLabel[] imagesJoueurs) {
-		this.imagesJoueurs = imagesJoueurs;
-	}
-
-	public JLabel[] getPseudosJoueurs() {
-		return pseudosJoueurs;
-	}
-
-	public void setPseudosJoueurs(JLabel[] pseudosJoueurs) {
-		this.pseudosJoueurs = pseudosJoueurs;
-	}
-
-	public JLabel[] getMisesJoueurs() {
-		return misesJoueurs;
-	}
-
-	public void setMisesJoueurs(JLabel[] misesJoueurs) {
-		this.misesJoueurs = misesJoueurs;
-	}
-
-	public JLabel[] getPotsJoueurs() {
-		return potsJoueurs;
-	}
-
-	public void setPotsJoueurs(JLabel[] potsJoueurs) {
-		this.potsJoueurs = potsJoueurs;
-	}
-
-	public JLabel getLblNotifications() {
-		return lblNotifications;
-	}
-
-	public void setLblNotifications(JLabel lblNotifications) {
-		this.lblNotifications = lblNotifications;
-	}
-
+	private JLabel lblNotificationsSalle = new JLabel("BIENVENUE !");
+	private JLabel lblNotificationsPartie = new JLabel("Vous ne n'êtes pas assis à la table pour l'instant !");
+	private Cclient client;
+	private JTextField textField;
+	private JLabel cartesJoueurs [][];
+	private JLabel cartesTables [][];
 	/**
 	 * Create the application.
 	 */
 	public VjeuClient(Cclient c) {
 		//this.messageRecu=message;
-		initialize(c);	
+		this.client = c;
+		initialize(client);	
 	}
 
 /*	public Vjeu(String message) {
@@ -108,8 +77,6 @@ public class VjeuClient implements Observer{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Cclient c) {
-		
-
 		System.out.println("Début de l'affichage");
 		frame = new JFrame();
 		frame.setResizable(false);
@@ -117,30 +84,55 @@ public class VjeuClient implements Observer{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JPanel pnlNotificationsPartie = new JPanel();
+		pnlNotificationsPartie.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pnlNotificationsPartie.setBackground(Color.WHITE);
+		pnlNotificationsPartie.setBounds(526, 608, 391, 110);
+		frame.getContentPane().add(pnlNotificationsPartie);
+		pnlNotificationsPartie.add(lblNotificationsPartie);
+		lblNotificationsPartie.setText("Vous ne n'êtes pas assis à la table pour l'instant !");
+		lblNotificationsPartie.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNotificationsPartie.setForeground(new Color(128, 120, 120));
+		lblNotificationsPartie.setBounds(526, 608, 120, 60);
+		lblNotificationsPartie.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNotificationsPartie.setBackground(new Color(255, 255, 255));
+		
+		JPanel pnlNotificationsSalle = new JPanel();
+		pnlNotificationsSalle.setBounds(467, 18, 369, 43);
+		frame.getContentPane().add(pnlNotificationsSalle);
+		pnlNotificationsSalle.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pnlNotificationsSalle.setBackground(Color.WHITE);
+		pnlNotificationsSalle.add(lblNotificationsSalle);
+		lblNotificationsSalle.setText("BIENVENUE !");
+		lblNotificationsSalle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNotificationsSalle.setBounds(434, 18, 120, 35);
+		lblNotificationsSalle.setForeground(new Color(128, 0, 0));
+		lblNotificationsSalle.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNotificationsSalle.setBackground(new Color(255, 255, 255));
+		
 		JLabel lblChat = new JLabel("Chat");
 		lblChat.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChat.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblChat.setForeground(Color.LIGHT_GRAY);
 		lblChat.setBounds(33, 563, 73, 19);
 		frame.getContentPane().add(lblChat);
-		// Modif
-		//lblChat.setText("mdrrr!!!!!!test");
+
 		
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(Vparametres.class.getResource("/fr/poker/view/pictures/logo.png")));
-		lblLogo.setBounds(10, 11, 127, 121);
+		lblLogo.setBounds(6, 11, 125, 130);
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblLogo);
 		
 		JLabel lblTitle = new JLabel("WOOP");
-		lblTitle.setBounds(124, 24, 168, 63);
+		lblTitle.setBounds(124, 33, 144, 54);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setForeground(new Color(0, 0, 0));
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 35));
 		frame.getContentPane().add(lblTitle);
 		
 		JLabel lblSlogan = new JLabel("World Of Online Poker");
-		lblSlogan.setBounds(120, 56, 185, 63);
+		lblSlogan.setBounds(120, 65, 166, 54);
 		lblSlogan.setBackground(new Color(0, 0, 0));
 		lblSlogan.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSlogan.setForeground(new Color(0, 0, 0));
@@ -161,7 +153,7 @@ public class VjeuClient implements Observer{
 		lblPotTotal.setFont(new Font("Tahoma", Font.BOLD, 15));
 		frame.getContentPane().add(lblPotTotal);
 		
-		lblValeurPotTotal = new JLabel("...");
+		lblValeurPotTotal = new JLabel(".");
 		lblValeurPotTotal.setSize(88, 14);
 		lblValeurPotTotal.setLocation(595, 185);
 		lblValeurPotTotal.setHorizontalAlignment(SwingConstants.CENTER);
@@ -169,16 +161,6 @@ public class VjeuClient implements Observer{
 		lblValeurPotTotal.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblValeurPotTotal.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(lblValeurPotTotal);
-		
-		lblNotifications = new JLabel("...");
-		lblNotifications.setSize(390, 30);
-		lblNotifications.setLocation(450, 25);
-		lblNotifications.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNotifications.setForeground(new Color(128, 0, 0));
-		lblNotifications.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNotifications.setBackground(new Color(255, 255, 255));
-		lblNotifications.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		frame.getContentPane().add(lblNotifications);
 		
 		JLabel lblJ1 = new JLabel("");
 		lblJ1.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/avatar/Avatar1.png")));
@@ -252,7 +234,7 @@ public class VjeuClient implements Observer{
 		frame.getContentPane().add(lblJ3C2);
 		lblJ3C2.setVisible(false);
 		
-		JLabel lblJ3C1 = new JLabel("");
+		JLabel lblJ3C1 = new JLabel("rfgzrggrgerg");
 		lblJ3C1.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblJ3C1.setBounds(424, 398, 64, 70);
 		frame.getContentPane().add(lblJ3C1);
@@ -345,131 +327,194 @@ public class VjeuClient implements Observer{
 		lblMC2.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblMC2.setBounds(1159, 680, 64, 70);
 		frame.getContentPane().add(lblMC2);
+
 		
-		JLabel lblNameJ1 = new JLabel("");
+		JLabel lblNameJ1 = new JLabel("Myname");
+		lblNameJ1.setBounds(286, 27, 59, 14);
+		frame.getContentPane().add(lblNameJ1);
 		lblNameJ1.setBackground(Color.LIGHT_GRAY);
 		lblNameJ1.setForeground(new Color(128, 0, 0));
-		lblNameJ1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNameJ1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNameJ1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ1.setBounds(360, 11, 59, 14);
-		frame.getContentPane().add(lblNameJ1);
 		lblNameJ1.setVisible(false);
 		
-		JLabel lblNameJ2 = new JLabel("");
+		JLabel lblPotJ1 = new JLabel("Pot :");
+		lblPotJ1.setBounds(286, 60, 59, 14);
+		frame.getContentPane().add(lblPotJ1);
+		lblPotJ1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ1.setForeground(new Color(128, 0, 0));
+		lblPotJ1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ1.setBackground(Color.LIGHT_GRAY);
+		lblPotJ1.setVisible(false);
+		
+		JLabel lblMiseJ1 = new JLabel("Mise :");
+		lblMiseJ1.setBounds(286, 45, 59, 14);
+		frame.getContentPane().add(lblMiseJ1);
+		lblMiseJ1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMiseJ1.setForeground(new Color(128, 0, 0));
+		lblMiseJ1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblMiseJ1.setBackground(Color.LIGHT_GRAY);
+		lblMiseJ1.setVisible(false);
+		
+		JLabel lblNameJ2 = new JLabel("Myname");
 		lblNameJ2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNameJ2.setForeground(new Color(128, 0, 0));
-		lblNameJ2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNameJ2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNameJ2.setBackground(Color.LIGHT_GRAY);
 		lblNameJ2.setBounds(126, 235, 59, 14);
 		frame.getContentPane().add(lblNameJ2);
 		lblNameJ2.setVisible(false);
+
+		JLabel lblPotJ2 = new JLabel("Pot :");
+		lblPotJ2.setBounds(126, 268, 59, 14);
+		frame.getContentPane().add(lblPotJ2);
+		lblPotJ2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ2.setForeground(new Color(128, 0, 0));
+		lblPotJ2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ2.setBackground(Color.LIGHT_GRAY);
+		lblPotJ2.setVisible(false);
 		
-		JLabel lblNameJ3 = new JLabel("");
-		lblNameJ3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ3.setForeground(new Color(128, 0, 0));
-		lblNameJ3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNameJ3.setBackground(Color.LIGHT_GRAY);
-		lblNameJ3.setBounds(365, 507, 59, 14);
-		frame.getContentPane().add(lblNameJ3);
-		lblNameJ3.setVisible(false);
-		
-		JLabel lblNameJ4 = new JLabel("");
-		lblNameJ4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ4.setForeground(new Color(128, 0, 0));
-		lblNameJ4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNameJ4.setBackground(Color.LIGHT_GRAY);
-		lblNameJ4.setBounds(611, 512, 59, 14);
-		frame.getContentPane().add(lblNameJ4);
-		lblNameJ4.setVisible(false);
-		
-		JLabel lblNameJ5 = new JLabel("");
-		lblNameJ5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ5.setForeground(new Color(128, 0, 0));
-		lblNameJ5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNameJ5.setBackground(Color.LIGHT_GRAY);
-		lblNameJ5.setBounds(880, 510, 59, 14);
-		frame.getContentPane().add(lblNameJ5);
-		lblNameJ5.setVisible(false);
-		
-		JLabel lblNameJ6 = new JLabel("");
-		lblNameJ6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ6.setForeground(new Color(128, 0, 0));
-		lblNameJ6.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNameJ6.setBackground(Color.LIGHT_GRAY);
-		lblNameJ6.setBounds(1133, 235, 59, 14);
-		frame.getContentPane().add(lblNameJ6);
-		lblNameJ6.setVisible(false);
-		
-		JLabel lblNameJ7 = new JLabel("");
-		lblNameJ7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNameJ7.setForeground(new Color(128, 0, 0));
-		lblNameJ7.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNameJ7.setBackground(Color.LIGHT_GRAY);
-		lblNameJ7.setBounds(878, 11, 59, 14);
-		frame.getContentPane().add(lblNameJ7);
-		lblNameJ7.setVisible(false);
-		
-		JLabel lblMiseJ1 = new JLabel("");
-		lblMiseJ1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMiseJ1.setForeground(new Color(128, 0, 0));
-		lblMiseJ1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblMiseJ1.setBackground(Color.LIGHT_GRAY);
-		lblMiseJ1.setBounds(359, 29, 59, 14);
-		frame.getContentPane().add(lblMiseJ1);
-		lblMiseJ1.setVisible(false);
-		
-		JLabel lblMiseJ2 = new JLabel("");
+		JLabel lblMiseJ2 = new JLabel("Mise :");
 		lblMiseJ2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ2.setForeground(new Color(128, 0, 0));
-		lblMiseJ2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMiseJ2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMiseJ2.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ2.setBounds(126, 253, 59, 14);
 		frame.getContentPane().add(lblMiseJ2);
 		lblMiseJ2.setVisible(false);
 		
+		JLabel lblNameJ3 = new JLabel("MyName");
+		lblNameJ3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameJ3.setForeground(new Color(128, 0, 0));
+		lblNameJ3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNameJ3.setBackground(Color.LIGHT_GRAY);
+		lblNameJ3.setBounds(365, 507, 59, 14);
+		frame.getContentPane().add(lblNameJ3);
+		lblNameJ3.setVisible(false);
 		
-		JLabel lblMiseJ3 = new JLabel("");
+		JLabel lblPotJ3 = new JLabel("Pot :");
+		lblPotJ3.setBounds(366, 540, 59, 14);
+		frame.getContentPane().add(lblPotJ3);
+		lblPotJ3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ3.setForeground(new Color(128, 0, 0));
+		lblPotJ3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ3.setBackground(Color.LIGHT_GRAY);
+		lblPotJ3.setVisible(false);
+		
+		JLabel lblMiseJ3 = new JLabel("Mise :");
 		lblMiseJ3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ3.setForeground(new Color(128, 0, 0));
-		lblMiseJ3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMiseJ3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMiseJ3.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ3.setBounds(366, 525, 59, 14);
 		frame.getContentPane().add(lblMiseJ3);
 		lblMiseJ3.setVisible(false);
 		
-		JLabel lblMiseJ4 = new JLabel("");
+		JLabel lblNameJ4 = new JLabel("MyName");
+		lblNameJ4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameJ4.setForeground(new Color(128, 0, 0));
+		lblNameJ4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNameJ4.setBackground(Color.LIGHT_GRAY);
+		lblNameJ4.setBounds(611, 512, 59, 14);
+		frame.getContentPane().add(lblNameJ4);
+		lblNameJ4.setVisible(false);
+		
+		JLabel lblPotJ4 = new JLabel("Pot :");
+		lblPotJ4.setBounds(612, 545, 59, 14);
+		frame.getContentPane().add(lblPotJ4);
+		lblPotJ4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ4.setForeground(new Color(128, 0, 0));
+		lblPotJ4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ4.setBackground(Color.LIGHT_GRAY);
+		lblPotJ4.setVisible(false);
+		
+		JLabel lblMiseJ4 = new JLabel("Mise :");
 		lblMiseJ4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ4.setForeground(new Color(128, 0, 0));
-		lblMiseJ4.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMiseJ4.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMiseJ4.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ4.setBounds(612, 530, 59, 14);
 		frame.getContentPane().add(lblMiseJ4);
 		lblMiseJ4.setVisible(false);
 		
-		JLabel lblMiseJ5 = new JLabel("");
+		JLabel lblNameJ5 = new JLabel("MyName");
+		lblNameJ5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameJ5.setForeground(new Color(128, 0, 0));
+		lblNameJ5.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNameJ5.setBackground(Color.LIGHT_GRAY);
+		lblNameJ5.setBounds(880, 510, 59, 14);
+		frame.getContentPane().add(lblNameJ5);
+		lblNameJ5.setVisible(false);
+		
+		JLabel lblPotJ5 = new JLabel("Pot :");
+		lblPotJ5.setBounds(882, 544, 59, 14);
+		frame.getContentPane().add(lblPotJ5);
+		lblPotJ5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ5.setForeground(new Color(128, 0, 0));
+		lblPotJ5.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ5.setBackground(Color.LIGHT_GRAY);
+		lblPotJ5.setVisible(false);
+		
+		JLabel lblMiseJ5 = new JLabel("Mise :");
 		lblMiseJ5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ5.setForeground(new Color(128, 0, 0));
-		lblMiseJ5.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMiseJ5.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMiseJ5.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ5.setBounds(882, 529, 59, 14);
 		frame.getContentPane().add(lblMiseJ5);
 		lblMiseJ5.setVisible(false);
 		
-		JLabel lblMiseJ6 = new JLabel("");
+		JLabel lblNameJ6 = new JLabel("MyName");
+		lblNameJ6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameJ6.setForeground(new Color(128, 0, 0));
+		lblNameJ6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNameJ6.setBackground(Color.LIGHT_GRAY);
+		lblNameJ6.setBounds(1133, 235, 59, 14);
+		frame.getContentPane().add(lblNameJ6);
+		lblNameJ6.setVisible(false);
+		
+		JLabel lblPotJ6 = new JLabel("Pot :");
+		lblPotJ6.setBounds(1135, 268, 59, 14);
+		frame.getContentPane().add(lblPotJ6);
+		lblPotJ6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ6.setForeground(new Color(128, 0, 0));
+		lblPotJ6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ6.setBackground(Color.LIGHT_GRAY);
+		lblPotJ6.setVisible(false);
+		
+		JLabel lblMiseJ6 = new JLabel("Mise :");
 		lblMiseJ6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ6.setForeground(new Color(128, 0, 0));
-		lblMiseJ6.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMiseJ6.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMiseJ6.setBackground(Color.LIGHT_GRAY);
 		lblMiseJ6.setBounds(1135, 253, 59, 14);
 		frame.getContentPane().add(lblMiseJ6);
 		lblMiseJ6.setVisible(false);
 		
-		JLabel lblMiseJ7 = new JLabel("");
+		JLabel lblNameJ7 = new JLabel("MyName");
+		lblNameJ7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameJ7.setForeground(new Color(128, 0, 0));
+		lblNameJ7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNameJ7.setBackground(Color.LIGHT_GRAY);
+		lblNameJ7.setBounds(930, 27, 59, 14);
+		frame.getContentPane().add(lblNameJ7);
+		lblNameJ7.setVisible(false);
+		
+		JLabel lblPotJ7 = new JLabel("Pot :");
+		lblPotJ7.setBounds(930, 60, 59, 14);
+		frame.getContentPane().add(lblPotJ7);
+		lblPotJ7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPotJ7.setForeground(new Color(128, 0, 0));
+		lblPotJ7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPotJ7.setBackground(Color.LIGHT_GRAY);
+		lblPotJ7.setVisible(false);
+		
+		JLabel lblMiseJ7 = new JLabel("Mise :");
 		lblMiseJ7.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMiseJ7.setForeground(new Color(128, 0, 0));
-		lblMiseJ7.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblMiseJ7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMiseJ7.setBackground(Color.LIGHT_GRAY);
-		lblMiseJ7.setBounds(879, 29, 59, 14);
+		lblMiseJ7.setBounds(930, 45, 59, 14);
 		frame.getContentPane().add(lblMiseJ7);
 		lblMiseJ7.setVisible(false);
 		
@@ -481,7 +526,7 @@ public class VjeuClient implements Observer{
 		lblPlayerName.setBounds(1039, 632, 134, 14);
 		frame.getContentPane().add(lblPlayerName);
 		
-		JLabel lblPotJoueur = new JLabel("PotJoueur");
+		JLabel lblPotJoueur = new JLabel(Double.toString(c.j.getCreditPartie()));
 		lblPotJoueur.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPotJoueur.setForeground(Color.WHITE);
 		lblPotJoueur.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -497,18 +542,19 @@ public class VjeuClient implements Observer{
 		pseudosJoueurs = tabPseudos;
 		JLabel[] tabMises = {lblMiseJ1, lblMiseJ2, lblMiseJ3, lblMiseJ4, lblMiseJ5, lblMiseJ6, lblMiseJ7};
 		misesJoueurs = tabMises;
-		JLabel[] tabPotJoueurs = {};
+		JLabel[] tabPotJoueurs = {lblPotJ1, lblPotJ2, lblPotJ3, lblPotJ4, lblPotJ5, lblPotJ6, lblPotJ7};
 		potsJoueurs = tabPotJoueurs;
-		
-		////////////////////////////////////////////////////////////////////////////////////////
+		JLabel cartesJ [][] = {{lblJ1C1, lblJ2C1, lblJ3C1, lblJ4C1, lblJ5C1, lblJ6C1, lblJ7C1},{lblJ1C2, lblJ2C2, lblJ3C2, lblJ4C2, lblJ5C2, lblJ6C2}};
+		cartesJoueurs = cartesJ;
 		
 		textFieldMise = new JTextField();
 		textFieldMise.setBounds(430, 729, 108, 28);
 		frame.getContentPane().add(textFieldMise);
 		textFieldMise.setColumns(10);
 		textFieldMise.setText("0.0");
+
+		//CHAT
 		////////////////////////////////////////////////////////////////////////////////////////
-		//ICI
 		textFieldChat = new JTextField();
 		textFieldChat.setBounds(7, 724, 305, 33);
 		frame.getContentPane().add(textFieldChat);
@@ -557,18 +603,18 @@ public class VjeuClient implements Observer{
 		btnSeCoucher.setEnabled(false);
 		
 		btnQuit = new JButton("Quitter la salle");
+		btnQuit.setBounds(1106, 16, 166, 60);
 		btnQuit.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnQuit.setEnabled(false);
-		btnQuit.setBounds(794, 621, 166, 60);
 		frame.getContentPane().add(btnQuit);
 		btnQuit.addActionListener(new JButtonListenerClient(c));
+		btnQuit.setEnabled(true);
 		
-		btnJoinTable = new JButton("Rejoindre la table");
+		btnJoinTable = new JButton("Rejoindre Table");
+		btnJoinTable.setBounds(1106, 81, 166, 60);
 		btnJoinTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnJoinTable.setEnabled(false);
-		btnJoinTable.setBounds(478, 621, 166, 60);
 		frame.getContentPane().add(btnJoinTable);
 		btnJoinTable.addActionListener(new JButtonListenerClient(c));
+		btnJoinTable.setEnabled(true);
 		
 		//ICI///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
@@ -596,6 +642,128 @@ public class VjeuClient implements Observer{
 		//
 		showPanel(LayerChat);				
 		
+	}
+	
+	public JLabel getLblNotificationsSalle() {
+		return lblNotificationsSalle;
+	}
+
+	public void setLblNotificationsSalle(JLabel lblNotificationsSalle) {
+		this.lblNotificationsSalle = lblNotificationsSalle;
+	}
+
+	public JLabel getLblNotificationsPartie() {
+		return lblNotificationsPartie;
+	}
+
+	public void setLblNotificationsPartie(JLabel lblNotificationsPartie) {
+		this.lblNotificationsPartie = lblNotificationsPartie;
+	}
+
+	public static JTextField getTextFieldMise() {
+		return textFieldMise;
+	}
+
+	public static void setTextFieldMise(JTextField textFieldMise) {
+		VjeuClient.textFieldMise = textFieldMise;
+	}
+
+	public static void showPanel(JLayeredPane LayerChat){
+		Boolean state = true;
+		JPanel panelChat = new JPanel();
+		panelChat.setBackground(Color.WHITE);
+		
+		panelChat.setBounds(7, 608, 391, 110);
+		System.out.println("On lance la boucle");
+		JTextField monTexte = new JTextField("test affichage");
+		panelChat.add(monTexte);
+		LayerChat.add(panelChat);
+		LayerChat.setLayer(panelChat, 1);
+		//
+		frame.getContentPane().add(LayerChat);
+		frame.setVisible(true);
+		//Vjeu.showPanel(frame);
+		System.out.println("Affichage du panel");	
+	}
+	
+	public static void actualiser(JLayeredPane LayerChat,ArrayList<String> monArrayListe){
+		System.out.println("Je suis dans actualiser");
+		LayerChat.removeAll();
+		System.out.println("J'ai tout supprimé");
+		System.out.println("Je crée ma liste c'est bon");
+		LayerChat.setBounds(0,0,1300,800);
+		LayerChat.add(lblBackground);
+		Background.setLayer(lblBackground, 0);
+		System.out.println("Le background est ok");
+		frame.getContentPane().add(LayerChat);
+		JPanel panelChat = new JPanel();
+		System.out.println("Je viens de créer panel chat");
+		panelChat.setBackground(Color.WHITE);
+		panelChat.setBounds(7, 608, 391, 110);
+		//Ja vais construire mon texte
+		System.out.println("J'ai bien récupéré ma liste");
+		for(String elem: monArrayListe)
+	       {
+			System.out.println ("Je suis dans ma boucle");
+			JTextField monTexte = new JTextField(elem);	       	 
+	       	panelChat.add(monTexte);
+	       }
+		
+		//JTextField monTexte = new JTextField("test actualisation");
+		System.out.println ("Je viens de sortir de ma boucle");
+		LayerChat.add(panelChat);
+		LayerChat.setLayer(panelChat, 1);
+		frame.getContentPane().add(LayerChat);
+		frame.setVisible(true);
+		LayerChat.revalidate();
+		LayerChat.repaint();	
+	}
+
+	
+	public void update(Observable o, Object arg) {
+		
+		lblNotificationsSalle.setText(client.getNotificationsSalle());
+		lblNotificationsPartie.setText(client.getNotificationsPartie());
+		lblValeurPotTotal.setText(client.getPotTable());
+		if(client.j.getEtat()){
+			this.btnJoinTable.setEnabled(false);
+		}
+		if(client.isNewAdversaire()){
+			imagesJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(true);
+			pseudosJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(true);
+			pseudosJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setText(client.getInfosAdversaire()[1]);
+			misesJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(true);
+			potsJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(true);
+			potsJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setText("Pot : "+client.getInfosAdversaire()[2]);;
+			client.setNewAdversaire(false);
+		}
+		if(client.isJouer()){
+			this.btnCheck.setEnabled(true);
+			this.btnMiser.setEnabled(true);
+			this.btnSeCoucher.setEnabled(true);
+			this.btnCheck.setEnabled(true);
+			this.btnSuivre.setEnabled(true);
+		} else{
+			this.btnCheck.setEnabled(false);
+			this.btnMiser.setEnabled(false);
+			this.btnSeCoucher.setEnabled(false);
+			this.btnCheck.setEnabled(false);
+			this.btnSuivre.setEnabled(false);
+		}
+		if(client.isDistribution()){
+			for(int id : client.getIdAdversaires()){
+				cartesJoueurs[0][id].setVisible(true);
+				cartesJoueurs[1][id].setVisible(true);
+			}
+		}
+		
+		if(client.isAdversaireOut()){
+			imagesJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(false);
+			pseudosJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(false);
+			misesJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(false);
+			potsJoueurs[Integer.parseInt(client.getInfosAdversaire()[0])].setVisible(false);
+			client.setAdversaireOut(false);
+		}
 	}
 
 	public JLabel getLblValeurPotTotal() {
@@ -654,60 +822,43 @@ public class VjeuClient implements Observer{
 		this.btnSeCoucher = btnSeCoucher;
 	}
 	
-	public static void showPanel(JLayeredPane LayerChat){
-		Boolean state = true;
-		JPanel panelChat = new JPanel();
-		panelChat.setBackground(Color.WHITE);
-		
-		panelChat.setBounds(7, 608, 391, 110);
-		System.out.println("On lance la boucle");
-		JTextField monTexte = new JTextField("test affichage");
-		panelChat.add(monTexte);
-		LayerChat.add(panelChat);
-		LayerChat.setLayer(panelChat, 1);
-		//
-		frame.getContentPane().add(LayerChat);
-		frame.setVisible(true);
-		//Vjeu.showPanel(frame);
-		System.out.println("Affichage du panel");	
-	}
-	
-	public static void actualiser(JLayeredPane LayerChat,ArrayList<String> monArrayListe){
-		System.out.println("Je suis dans actualiser");
-		LayerChat.removeAll();
-		System.out.println("J'ai tout supprimé");
-		System.out.println("Je crée ma liste c'est bon");
-		LayerChat.setBounds(0,0,1300,800);
-		LayerChat.add(lblBackground);
-		Background.setLayer(lblBackground, 0);
-		System.out.println("Le background est ok");
-		frame.getContentPane().add(LayerChat);
-		JPanel panelChat = new JPanel();
-		System.out.println("Je viens de créer panel chat");
-		panelChat.setBackground(Color.WHITE);
-		panelChat.setBounds(7, 608, 391, 110);
-		//Ja vais construire mon texte
-		System.out.println("J'ai bien récupéré ma liste");
-		for(String elem: monArrayListe)
-	       {
-			System.out.println ("Je suis dans ma boucle");
-			JTextField monTexte = new JTextField(elem);	       	 
-	       	panelChat.add(monTexte);
-	       }
-		
-		//JTextField monTexte = new JTextField("test actualisation");
-		System.out.println ("Je viens de sortir de ma boucle");
-		LayerChat.add(panelChat);
-		LayerChat.setLayer(panelChat, 1);
-		frame.getContentPane().add(LayerChat);
-		frame.setVisible(true);
-		LayerChat.revalidate();
-		LayerChat.repaint();	
+	public JLabel[] getImagesJoueurs() {
+		return imagesJoueurs;
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	public void setImagesJoueurs(JLabel[] imagesJoueurs) {
+		this.imagesJoueurs = imagesJoueurs;
+	}
+
+	public JLabel[] getPseudosJoueurs() {
+		return pseudosJoueurs;
+	}
+
+	public void setPseudosJoueurs(JLabel[] pseudosJoueurs) {
+		this.pseudosJoueurs = pseudosJoueurs;
+	}
+
+	public JLabel[] getMisesJoueurs() {
+		return misesJoueurs;
+	}
+
+	public void setMisesJoueurs(JLabel[] misesJoueurs) {
+		this.misesJoueurs = misesJoueurs;
+	}
+
+	public JLabel[] getPotsJoueurs() {
+		return potsJoueurs;
+	}
+
+	public void setPotsJoueurs(JLabel[] potsJoueurs) {
+		this.potsJoueurs = potsJoueurs;
+	}
+
+	public JLabel getlblNotificationsSalle() {
+		return lblNotificationsSalle;
+	}
+
+	public void setlblNotificationsSalle(JLabel lblNotificationsSalle) {
+		this.lblNotificationsSalle = lblNotificationsSalle;
 	}
 }

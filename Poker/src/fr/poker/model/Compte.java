@@ -10,7 +10,6 @@ public class Compte {
 	private String hash;
 	private int credit;
 	private String bio;
-	public Joueur joueur;
 
 	public Compte(int id, String pseudo, String nom, String prenom, String mail, String tel, String hash, int credit) {
 		super();
@@ -96,19 +95,10 @@ public class Compte {
 		this.bio = bio;
 	}
 
-	public Joueur getJoueur() {
-		return joueur;
-	}
-
-	public void createJoueur(float creditPartie) {
-		this.joueur = new Joueur(this, creditPartie, this.pseudo);
-	}
-
 	@Override
 	public String toString() {
 		return "Compte [id=" + id + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail
-				+ ", tel=" + tel + ", hash=" + hash + ", credit=" + credit + ", bio=" + bio + ", joueur=" + joueur
-				+ "]";
+				+ ", tel=" + tel + ", hash=" + hash + ", credit=" + credit + ", bio=" + bio + "]";
 	}
 
 }

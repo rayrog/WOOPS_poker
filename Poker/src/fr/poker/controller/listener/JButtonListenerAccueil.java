@@ -34,7 +34,7 @@ public class JButtonListenerAccueil implements ActionListener{
 		}
 		if (e.getActionCommand() == "Rejoindre salle"){
 		//	System.out.println("Rejoindre salle");
-			CAcc.rejoindrePartie(CAcc.getIDplayer(),CAcc.getIDSalle());
+			//CAcc.rejoindrePartie(CAcc.getIDplayer(),CAcc.getIDSalle());
 		}
 		if (e.getActionCommand() == "Raffraichir"){
 			//System.out.println("Raffraichir");

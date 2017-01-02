@@ -2,6 +2,7 @@ package fr.poker.model;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import fr.poker.controller.CpartieServeur;
@@ -17,6 +18,7 @@ public class Salle {
 	private CpartieServeur maPartie;
 	private int monPort;
 	private boolean finPartie;
+	private ArrayList<JoueurServeur> joueurs;
 
 	public Salle(String nom, boolean privat, String hash, int port) {
 		super();
@@ -24,10 +26,22 @@ public class Salle {
 		this.privat = privat;
 		if (privat)
 			this.hash = hash;
-		this.table = new Table();
+		this.table = new Table(this);
 		this.monPort = port;
-		this.maPartie = new CpartieServeur(table);
+		this.joueurs = new ArrayList<JoueurServeur>();
+		this.maPartie = new CpartieServeur(table, this);
 		this.finPartie = false;
+	}
+	
+	//TODO : POUR TESTS A SUPPRIMER
+	public static void main(String[] args) throws Exception {
+		int port = 4555;
+		Salle newSalle = new Salle("salleTest", false, "", port);
+		ServerSocket  receptionniste =  new ServerSocket(port);
+		//Maximum 10 joueurs dans la salle
+		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
+		System.out.println(newSalle.finPartie);
+		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
 	}
 	
 	public void ajouterJoueur (Socket socket) throws Exception {
@@ -37,8 +51,14 @@ public class Salle {
 		while(!ajoutSuccess){
 			System.out.println("On attend la réponse du joueur pour sa création");
 		}
+		joueurs.add(newJoueur);
+		//Envois des adversaires au nouvel arrivant
+		for(Joueur jenjeu : table.getJoueurs()){
+			newJoueur.getOut().println(ConstantesClient.NOUVEL_ADVERSAIRE+" "+jenjeu.getNumeroJoueurTable()+" "+jenjeu.getPseudo()+" "+jenjeu.creditPartie);
+		}
 		ajoutSuccess = false;
-		System.out.println("Nouveau joueur ajouter avec succès!!!");	
+		//System.out.println("Nouveau joueur ajouter avec succès!!!");
+		notifierLesJoueurs(ConstantesClient.NOTIFICATIONSSALLE+" "+newJoueur.getPseudo()+"%a%rejoint%la%salle");
 	}
 
 	public boolean isAjoutSuccess() {
@@ -61,8 +81,11 @@ public class Salle {
 		}
 	}
 
-	public void quitter(Joueur j) {
-		this.quitter(j);
+	public void quitter(JoueurServeur j) throws Exception {
+		j.out.close();
+		j.in.close();
+		notifierLesJoueurs(ConstantesClient.NOTIFICATIONSSALLE+" "+j.getPseudo()+"%a%quitter%la%salle");
+		joueurs.remove(j);
 	}
 
 	public void inviter() {
@@ -72,10 +95,17 @@ public class Salle {
 	public void lancement() throws Exception{
 		ServerSocket  receptionniste =  new ServerSocket(monPort);
 		//Maximum 10 joueurs dans la salle
-		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
 		while(!this.finPartie ) this.ajouterJoueur(receptionniste.accept());
 	}
-
+	
+	public void notifierLesJoueurs(String message){
+		for(JoueurServeur j : joueurs){
+			System.out.println(message);
+			j.getOut().println(message);
+			
+		}
+	}
+	
 	public CpartieServeur getMaPartie() {
 		return maPartie;
 	}
@@ -138,5 +168,13 @@ public class Salle {
 
 	public void setNumSuivantJoueur(int numSuivantJoueur) {
 		this.numSuivantJoueur = numSuivantJoueur;
+	}
+	
+	public ArrayList<JoueurServeur> getJoueurs() {
+		return joueurs;
+	}
+
+	public void setJoueurs(ArrayList<JoueurServeur> joueurs) {
+		this.joueurs = joueurs;
 	}
 }

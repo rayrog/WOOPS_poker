@@ -1,5 +1,9 @@
 package fr.poker.model;
-
+/**
+ * 
+ * @author mflorycelini
+ *
+ */
 public class ConstantesServeur {
 	public static final int MISER = 1;
 	public static final	int SECOUCHER = 2;
