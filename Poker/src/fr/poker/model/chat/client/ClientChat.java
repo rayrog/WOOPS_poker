@@ -30,7 +30,7 @@ public class ClientChat {
 //
 //	}
 	
-	public ClientChat(int portChat) {
+	public ClientChat(int portChat, String pseudo) {
 		try{
 			System.out.println("Demande de connexion");
 			//socket = new Socket("127.0.0.1",5009);

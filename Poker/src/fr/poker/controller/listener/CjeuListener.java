@@ -11,6 +11,7 @@ import javax.swing.text.JTextComponent;
 import fr.poker.model.chat.Serveur.Reception;
 import fr.poker.model.chat.client.Emission;
 import fr.poker.view.Vjeu;
+import fr.poker.view.VjeuClient;
 
 public class CjeuListener implements ActionListener{
 	
@@ -26,8 +27,8 @@ public class CjeuListener implements ActionListener{
 		// Je recupere mon texte:
 		//String message;
 		//message = Vjeu.textFieldChat.getText();
-		Vjeu.messageRecu = Vjeu.textFieldChat.getText();
-		Emission.run(Vjeu.messageRecu);
+		VjeuClient.messageRecu = VjeuClient.textFieldChat.getText();
+		Emission.run(VjeuClient.messageRecu);
 		 for(String elem: Reception.array_L)
 	       {
 	       	 System.out.println (elem);
