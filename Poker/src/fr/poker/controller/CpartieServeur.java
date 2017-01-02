@@ -2,13 +2,7 @@ package fr.poker.controller;
 
 
 import fr.poker.model.*;
-import fr.poker.view.*;
 
-/**
- * 
- * @author mflorycelini
- *
- */
 public class CpartieServeur implements Runnable {
 	public Salle maSalle;
 	public Table maTable;
