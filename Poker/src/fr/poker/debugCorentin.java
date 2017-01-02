@@ -11,16 +11,16 @@ public class debugCorentin {
 	
 	public static void main(String[] args) {
 		try {
-			System.out.println("Je lance VJeu");
-			
-			Client.runClient();
-			System.out.println("Connexion OK");
+			//System.out.println("Je lance VJeu");
+			int portChat=5009;
+			Client.runClient(portChat);
+			//System.out.println("Connexion OK");
 			Vjeu window = new Vjeu(null);
 
-			System.out.println("Affichage OK");
+			//System.out.println("Affichage OK");
 			
 			
-			System.out.println("Fini");
+			//System.out.println("Fini");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
