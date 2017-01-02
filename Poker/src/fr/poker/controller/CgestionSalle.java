@@ -30,7 +30,7 @@ public class CgestionSalle implements Runnable{
 		(new Thread(this)).start();
 	}
 	
-	public void lancementNouvelleSalle (String nom, boolean privat, String hash, int nouveauPort) throws Exception{
+	public void lancementNouvelleSalle (String nom, int privat, String hash, int nouveauPort) throws Exception{
 		nouvelleSalle = new Salle(nom, privat, hash, nouveauPort);
 		nouvelleSalle.lancement();
 	}
@@ -44,9 +44,10 @@ public class CgestionSalle implements Runnable{
 			int nouveauPortChat = scan.nextInt();
 			String nomSalle = scan.next();
 			String hash = scan.next();
-			String privat = scan.next();
+			System.out.println(scan.nextInt());
+			int privat = scan.nextInt();
 			System.out.println("Je cree une nouvelle salle avec le port :"+nouveauPortSalle);
-			lancementNouvelleSalle(nomSalle, Boolean.parseBoolean(privat), hash, nouveauPortSalle);
+			lancementNouvelleSalle(nomSalle, privat, hash, nouveauPortSalle);
 			break;
 		}
 	}
