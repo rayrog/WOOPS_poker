@@ -74,6 +74,7 @@ public class Caccueil {
 	private CBconnect cbcon;
 	private CBsalle cSalle;
 	private CBcompte cbcpt;
+	
 	protected BufferedReader in;
 	protected PrintStream out;
 	protected String adresseServeurPoker;
@@ -228,19 +229,35 @@ public class Caccueil {
 	}
 	
 	public void rejoindrePartie(int iDplayer, String iDSalle) throws Exception {
-		Socket socket = new Socket(adresseServeurPoker, portServeur);
+		/*
+		 * Socket socket = new Socket(adresseServeurPoker, portServeur);
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			out = new PrintStream(socket.getOutputStream());
 		}
 		catch (Exception exc) {
 			exc.printStackTrace();
-		}
+		}*/
+		
+		
 		System.out.println("Tentative de connexion du joueur "+ iDplayer +" a la partie " + iDSalle);
 		
 		cbcon = new CBconnect();
 		cSalle = new CBsalle(cbcon);
+		cbcpt = new CBcompte(cbcon);
 
+		
+
+		double credit=Double.parseDouble(cbcpt.getCredit(IDplayer));
+		String pseudo=cbcpt.getPseudo(iDplayer);
+		int portSalle=cSalle.getPortSalle(iDSalle);
+		int portChat=cSalle.getPortChat(iDSalle);
+		
+
+		
+		Socket socketClient = new Socket("172.23.2.15",portSalle);
+		Cclient c = new Cclient(socketClient,iDplayer,credit,pseudo,portSalle, portChat, this);	
+		
 		//cSalle.isPrivate();
 		
 		// Ceck si partie private et recuper son ID.

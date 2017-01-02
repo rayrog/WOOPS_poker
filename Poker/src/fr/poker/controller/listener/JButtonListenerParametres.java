@@ -43,7 +43,7 @@ public class JButtonListenerParametres implements ActionListener
 
 			
 		}
-		if (e.getActionCommand().equals("Annuler")) {
+		if (e.getActionCommand().equals("Retour")) {
 			cPara.closePara();
 		}
 	}

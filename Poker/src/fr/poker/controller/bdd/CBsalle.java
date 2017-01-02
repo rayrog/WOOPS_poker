@@ -283,6 +283,103 @@ public class CBsalle {
 		return port;
 	}
 
+	public int getPortSalle(String iDSalle) {	 
+		int i=-1;
+		try{
+			//Connexion � la BDD 
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			String sql = "SELECT portSalle FROM `Salle` WHERE `id` = "+iDSalle;			
+			
+			// debug System.out.println(sql);
+			
+			//exécution requête
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			while(rs.next())
+			{	
+				i=Integer.parseInt(rs.getString(1));
+				System.out.println("i: " + i);
+			}
+			System.out.println(i + " port Salle :"+ i);
+			cbCo.fermerConnexion();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getIDSalle(String nomSalle){
+			 
+			String i="";
+			try{
+				//Connexion � la BDD 
+				cbCo.connexion();
+				this.st=cbCo.getSt();
+				String sql = "SELECT id FROM `Salle` WHERE `nom` LIKE '";
+				sql = new StringBuilder(sql).insert(sql.length(),nomSalle).toString();
+				sql = new StringBuilder(sql).insert(sql.length(),"'").toString();
+				
+				// debug System.out.println(sql);
+				
+				//exécution requête
+				ResultSet rs = st.executeQuery(sql);
+				ResultSetMetaData resultMeta = rs.getMetaData();
+				while(rs.next())
+				{	
+					i=rs.getString(1);
+				}
+				System.out.println(" ID salle:"+ i);
+				cbCo.fermerConnexion();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return i;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	public int getPortChat(String iDSalle) {	 
+		int i=-1;
+		try{
+			//Connexion � la BDD 
+			cbCo.connexion();
+			this.st=cbCo.getSt();
+			String sql = "SELECT portChat FROM `Salle` WHERE `id` = "+iDSalle;			
+			
+			// debug System.out.println(sql);
+			
+			//exécution requête
+			ResultSet rs = st.executeQuery(sql);
+			ResultSetMetaData resultMeta = rs.getMetaData();
+			while(rs.next())
+			{	
+				i=Integer.parseInt(rs.getString(1));
+				System.out.println("i: " + i);
+			}
+			System.out.println(i + " port chat :"+ i);
+			cbCo.fermerConnexion();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
 
 
 }

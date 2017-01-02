@@ -49,7 +49,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 			setPseudo(pseudo);
 			String potJoueur = scan.next();
 			setCreditPartie(Double.parseDouble(potJoueur));
-			//System.out.println("Je renseigne mon ID "+id+" mon PSEUDO "+pseudo+" mon CREDIT DE DEPART "+potJoueur);
+			System.out.println("Je renseigne mon ID "+id+" mon PSEUDO "+pseudo+" mon CREDIT DE DEPART "+potJoueur);
 			maSalle.setAjoutSuccess(true);
 			break;
 		case ConstantesServeur.MISER :

@@ -49,6 +49,7 @@ public class JButtonListenerClient implements ActionListener {
 			cCli.getTimerDecision().stop();
 		}
 		if (e.getActionCommand().equals("Rejoindre Table")) {
+			System.out.println("fizeohfoizhfiozhfzh");
 			cCli.getOut().println(ConstantesServeur.REJOINDRETABLE);
 		}
 		if (e.getActionCommand().equals("Quitter la salle")) {
