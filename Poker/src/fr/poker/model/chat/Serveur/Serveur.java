@@ -6,11 +6,9 @@ public class Serveur {
  public static ServerSocket ss = null;
  public static Thread monthread;
 
- 
-	public static void main(String[] args) {
-		
+ public Serveur(int portChat) {
 		try {
-			ss = new ServerSocket(5009);
+			ss = new ServerSocket(portChat);
 			System.out.println("Le serveur est est à l'écoute du port"+ss.getLocalPort());
 			
 			monthread = new Thread(new Accepter_connexion(ss));
@@ -21,6 +19,6 @@ public class Serveur {
 		}
 	
 	}
+}
 
-	
-	}
+

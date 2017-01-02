@@ -20,6 +20,7 @@ import com.mysql.fabric.xmlrpc.Client;
 
 import fr.poker.controller.listener.taskPerformed;
 import fr.poker.model.*;
+import fr.poker.model.chat.client.ClientChat;
 import fr.poker.view.Vjeu;
 import fr.poker.view.VjeuClient;
 
@@ -52,7 +53,7 @@ public class Cclient extends Observable implements Runnable {
 	private String potTable;
 	protected boolean distribution;
 	protected ArrayList<String> mesCartes;
-	private Client clientChat;
+	private ClientChat clientChat;
 	
 	public Cclient(Compte c) {
 		this.compte = c;
@@ -85,7 +86,7 @@ public class Cclient extends Observable implements Runnable {
 		this.vJeu = new VjeuClient(this);
 		this.tempsDecision = 10000;
 		Socket socketChat = new Socket("172.23.2.15", 5009);
-		//his.clientChat = new Client(socket);
+		this.clientChat = new ClientChat(5009);
 		ActionListener taskPerformer = new taskPerformed(this);
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);
