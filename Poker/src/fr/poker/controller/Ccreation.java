@@ -97,6 +97,7 @@ public class Ccreation implements Runnable{
 		
 		cbCon = new CBconnect();
 		cbSalle = new CBsalle(cbCon);
+		cbCpt = new CBcompte(cbCon);
 		String pwdSalle = "";
 		String pwdConf = "";
 		String nomSalle = "";
@@ -179,11 +180,19 @@ public class Ccreation implements Runnable{
 			
 			// Creation socket serveur
 			
-			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+portChat+" "+nomSalle+" "+pwdSalle+" "+tempPrivate+" ");
+			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+portChat+" "+nomSalle+" "+pwdSalle+" "+Integer.toString(tempPrivate)+" ");
 			
+			//Double.parseDouble(cbCpt.getCredit(IDplayer)),),portSalle, portChat, cAcc);
+//			System.out.println(IDplayer);
+//			System.out.println(cbCpt.getCredit(IDplayer));
+//			System.out.println(cbCpt.getPseudo(IDplayer));
+//			System.out.println(portSalle);
+//			System.out.println(portChat);
+//			
+			double credit=Double.parseDouble(cbCpt.getCredit(IDplayer));
+			String pseudo=cbCpt.getPseudo(IDplayer);
 			
-			
-			Cclient c = new Cclient(socket, IDplayer,Double.parseDouble(cbCpt.getCredit(IDplayer)),cbCpt.getPseudo(IDplayer),portSalle, portChat, cAcc);	
+			Cclient c = new Cclient(socket,IDplayer,credit,pseudo,portSalle, portChat, cAcc);	
 			
 			//On lance la communication
 	
