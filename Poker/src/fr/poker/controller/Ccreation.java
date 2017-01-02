@@ -1,5 +1,9 @@
 package fr.poker.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,10 +14,11 @@ import javax.swing.JTextField;
 import fr.poker.controller.bdd.CBcompte;
 import fr.poker.controller.bdd.CBconnect;
 import fr.poker.controller.bdd.CBsalle;
+import fr.poker.model.ConstantesServeur;
 import fr.poker.view.Vcreation;
 import fr.poker.view.Vparametres;
 
-public class Ccreation{
+public class Ccreation implements Runnable{
 	
 	private Vcreation vCrea;
 	private JFrame frameCrea;
@@ -22,15 +27,36 @@ public class Ccreation{
 	private int IDplayer;
 	private boolean isPrivate=false;
 	
+
+	protected BufferedReader in;
+	protected PrintStream out;
+	protected Thread t; 
+	private Socket socket;
+	
 	private CBconnect cbCon;
 	private CBsalle cbSalle;
 	private CBcompte cbCpt;
 	
-	public Ccreation(Caccueil a,int Id) {
+	
+	public Ccreation(Caccueil a,int Id,Socket socket)throws Exception {
 		this.vCrea=new Vcreation(this);
 		this.IDplayer = Id;
 		this.cAcc= a;
+		this.socket=socket;
 		System.out.println("Creation Ouvert pour joueur : " + IDplayer);
+		
+		
+		try {
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new PrintStream(socket.getOutputStream());
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		this.t = new Thread(this);
+		t.start();
+					
+		
 	}
 
 
@@ -68,7 +94,7 @@ public class Ccreation{
 	}
 
 
-	public void runSalle() {
+	public void runSalle() throws Exception {
 		// Sert au clique sur le bouton de lancement de la salle, fait differentes verification, recupère un ID disponnible et l'assigne à la salle
 		
 		cbCon = new CBconnect();
@@ -82,6 +108,7 @@ public class Ccreation{
 		boolean pwdOK=false;
 		boolean nomOK=false;
 		boolean miseOK=false;
+		
 		
 		//verifie si les Pwd entrés sont identique si if isPrivate=true
 		
@@ -145,7 +172,17 @@ public class Ccreation{
 			//portChat=4580;//4570 */
 			
 			cbSalle.creeSalle(isPrivate,pwdSalle, nomSalle, portSalle, portChat, mise);
-						
+			
+			
+			/// mettre tout en string + mettre le hash 
+			this.out.println(ConstantesServeur.CREERSALLE+" "+portSalle+" "+nomSalle+" "+pwdSalle+" "+isPrivate);
+			
+			
+			//recup cagnotte !! / Recup pseudo // 			Cclient c = new Cclient(socket, Integer.parseInt(IDplayer), 1000, "jackie");	
+			Cclient c = new Cclient(socket, IDplayer,Double.parseDouble("1000"), "jackie",portSalle, portChat, cAcc);	
+			
+			//On lance la communication
+	
 			// ICI CODE MIKE : Envoi message a gestionSalle
 			// utiliser isPrivate,pwdSalle, nomSalle, portSalle, portChat, mise 
 			
@@ -153,7 +190,7 @@ public class Ccreation{
 			// Cclient cClient=new Cclient(IDplayer,);
 			
 			// A commanter quand lancement Partie Ok pour Joueur !		
-			runAccueil();
+			c.lancementClient();
 		}
 		else if(nomOK==false){
 			System.out.println("le nom de la salle existe deja");
@@ -189,6 +226,13 @@ public class Ccreation{
 
 	public void deleteTxtInField(JTextField txtFields) {
 		txtFields.setText("");
+		
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		
 	}
 	

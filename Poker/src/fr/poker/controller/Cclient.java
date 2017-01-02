@@ -245,7 +245,11 @@ public class Cclient extends Observable implements Runnable {
 		}
 	}
 	
-/*	public void lancementClient() throws Exception {			
+
+	/*public void lancementClient() throws Exception {			
+		Socket socket = new Socket("172.23.2.15", portSalle);
+		System.out.println(monId);
+		Cclient c = new Cclient(socket, monId, cagnotte, pseudo, cAcc);	
 		//On envoie l'id du joueur
 		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(monId)+" "+pseudo+" "+Double.toString(cagnotte));
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monId+" "+pseudo+" "+Double.toString(cagnotte));
