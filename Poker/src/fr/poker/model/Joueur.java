@@ -202,26 +202,23 @@ public class Joueur {
 	}
 
 	public void addCarte(Carte c) {
-		System.out.println(c.toString());
 		cartes.add(c);
 	}
 
-	public boolean miser(Double montant) { // Double pour pouvoir miser des petites
+	public void miser(Double montant) { // Double pour pouvoir miser des petites
 										// somme (Ex: 0.5euro)
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			mise = montant;
-			table.setPot(table.getPot() + mise);
-			return true;
+			this.mise = montant;
+			table.setPot(table.getPot() + this.mise);
 		}
 		System.out.println("Credit insuffisant pour miser " + montant);
-		return false;
 	}
 
 	public void relancer(Double montant) {
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			mise += montant;
+			this.mise += montant;
 			table.setPot(table.getPot() + mise);
 			for (Joueur j : table.getJoueursEnJeu()) { // On réinitialise le
 														// flag aSuivi en cas de
@@ -234,7 +231,7 @@ public class Joueur {
 		}
 	}
 
-	public boolean suivre(Double montantPrecedent) { // Pour utiliser cette
+	public void suivre(Double montantPrecedent) { // Pour utiliser cette
 													// fonction il faut faire un
 													// getMise()
 		if (creditPartie - montantPrecedent >= 0) { // sur le joueur précedent
@@ -243,10 +240,9 @@ public class Joueur {
 			mise += montantPrecedent;
 			table.setPot(table.getPot() + mise);
 			setaSuivi(true);
-			return true;
 		} else {
+			System.out.println("Credit insuffisant");
 			setaSuivi(false);
-			return false;
 		}
 	}
 
