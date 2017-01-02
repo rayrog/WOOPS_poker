@@ -79,7 +79,6 @@ public class JoueurServeur extends Joueur implements Runnable{
 			break;
 		case ConstantesServeur.CHECK :
 			System.out.println("Je check");
-			this.setaSuivi(true);
 			maSalle.getMaPartie().setJoueurCourantParle(false);
 			break;
 		case ConstantesServeur.REJOINDRETABLE :
@@ -114,12 +113,6 @@ public class JoueurServeur extends Joueur implements Runnable{
 			creditPartie -= montant;
 			mise += montant;
 			maSalle.getTable().setPot(maSalle.getTable().getPot() + mise);
-			for (Joueur j : maSalle.getTable().getJoueursEnJeu()) { // On réinitialise le
-				// flag aSuivi en cas de
-				// relance
-				j.setaSuivi(false);
-			}
-			setaSuivi(true);
 			maSalle.getMaPartie().setJoueurCourantParle(false);
 		} else {
 			System.out.println("Credit insuffisant");
@@ -135,12 +128,10 @@ public class JoueurServeur extends Joueur implements Runnable{
 			// parametre.
 			mise += montantPrecedent;
 			maSalle.getTable().setPot(maSalle.getTable().getPot() + mise);
-			setaSuivi(true);
 			maSalle.getMaPartie().setJoueurCourantParle(false);
 		} else {
 			System.out.println("Credit insuffisant");
 			this.out.println(ConstantesClient.NOTIFICATIONSPARTIE+" "+"Credit%insuffisant%pour%suivre");
-			setaSuivi(false);
 		}
 	}
 
@@ -152,6 +143,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 		this.out = out;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		String message;

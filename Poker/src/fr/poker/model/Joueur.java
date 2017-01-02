@@ -9,17 +9,17 @@ public class Joueur {
 	protected Double creditPartie; // Cagnotte avec laquelle le joueur d�cide de
 									// commencer la partie
 	private int numeroJoueurTable;
+	
+	/* Flag pour aider le client a connaitre l'etat du jeu*/
 	private boolean jouer;  //a la fonction de token
 	private boolean tourGagne;
 	private boolean tourFini;
 	private boolean partieGagne;
 	protected boolean partieFinie;
 	protected boolean etat; // True = en jeu ; False = Spectateur
-	private String role; // Dealer, Petite blinde, Grosse blinde, Neutre
 	private boolean isDown; // True = couch�; false = en jeu
-	private boolean aSuivi; // Index pour savoir si le joueur a jouer depuis une
-							// ou
-	// plusieurs relances
+
+	private String role; // Dealer, Petite blinde, Grosse blinde, Neutre
 	private List<Carte> cartes; // Cartes distribu�es au joueur au d�but de la
 								// partie
 	private String pseudo;
@@ -39,7 +39,6 @@ public class Joueur {
 		etat = false;
 		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
 		cartes = new ArrayList<>();
-		aSuivi = false;
 	}
 
 	public Joueur(Compte compte, Double creditPartie, String pseudo) {
@@ -53,7 +52,6 @@ public class Joueur {
 		etat = false;
 		jouer = false; // CE flag permet de débloquer les boutons de la vue du joueur
 		cartes = new ArrayList<>();
-		aSuivi = false;
 	}
 
 	public int getId() {
@@ -86,10 +84,6 @@ public class Joueur {
 
 	public String getRole() {
 		return role;
-	}
-
-	public boolean getaSuivi() {
-		return aSuivi;
 	}
 
 	public Double getMise() {
@@ -130,10 +124,6 @@ public class Joueur {
 
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
-	}
-
-	public void setaSuivi(boolean aSuivi) {
-		this.aSuivi = aSuivi;
 	}
 
 	public void setM() {
@@ -205,8 +195,7 @@ public class Joueur {
 		cartes.add(c);
 	}
 
-	public void miser(Double montant) { // Double pour pouvoir miser des petites
-										// somme (Ex: 0.5euro)
+	public void miser(Double montant) { 
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
 			this.mise = montant;
@@ -218,31 +207,21 @@ public class Joueur {
 	public void relancer(Double montant) {
 		if (creditPartie - montant >= 0) {
 			creditPartie -= montant;
-			this.mise += montant;
+			mise += montant;
+			table.setBestMise(mise);
 			table.setPot(table.getPot() + mise);
-			for (Joueur j : table.getJoueursEnJeu()) { // On réinitialise le
-														// flag aSuivi en cas de
-														// relance
-				j.setaSuivi(false);
-			}
-			setaSuivi(true);
 		} else {
-			System.out.println("Credit insuffisant");
+			System.out.println("Credit insuffisant pour relancer de " + montant);
 		}
 	}
 
-	public void suivre(Double montantPrecedent) { // Pour utiliser cette
-													// fonction il faut faire un
-													// getMise()
-		if (creditPartie - montantPrecedent >= 0) { // sur le joueur précedent
-													// et le proposer en
-													// parametre.
-			mise += montantPrecedent;
+	public void suivre() { 									
+		double aSuivre = table.getBestMise()- getMise();
+		if (creditPartie - aSuivre >= 0) {												
+			mise += aSuivre;
 			table.setPot(table.getPot() + mise);
-			setaSuivi(true);
 		} else {
-			System.out.println("Credit insuffisant");
-			setaSuivi(false);
+			System.out.println("Credit insuffisant pour suivre " + aSuivre);
 		}
 	}
 
@@ -283,7 +262,7 @@ public class Joueur {
 	@Override
 	public String toString() {
 		return "Joueur [id=" + id + ", creditPartie=" + creditPartie + ", etat=" + etat + ", role=" + role + ", isDown="
-				+ isDown + ", aSuivi=" + aSuivi + ", cartes=" + cartes + ", pseudo=" + pseudo + " m=" + m + ", mise="
+				+ isDown + ", cartes=" + cartes + ", pseudo=" + pseudo + " m=" + m + ", mise="
 				+ mise + "]";
 	}
 
