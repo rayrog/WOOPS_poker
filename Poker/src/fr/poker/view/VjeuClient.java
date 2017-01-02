@@ -16,10 +16,7 @@ import java.util.Timer;
 
 import javax.swing.SwingConstants;
 import fr.poker.controller.Cclient;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/rayrog/WOOPS_poker.git
 import fr.poker.controller.listener.CjeuListener;
 import fr.poker.controller.listener.JButtonListenerClient;
 
@@ -60,6 +57,8 @@ public class VjeuClient extends JPanel implements Observer{
 	private JTextField textField;
 	private JLabel cartesJoueurs [][];
 	private JLabel cartesTables [][];
+	private JLabel lblMC1;
+	private JLabel lblMC2;
 	/**
 	 * Create the application.
 	 */
@@ -318,12 +317,12 @@ public class VjeuClient extends JPanel implements Observer{
 		lblMJ.setBounds(1183, 610, 64, 70);
 		frame.getContentPane().add(lblMJ);
 		
-		JLabel lblMC1 = new JLabel("");
+		lblMC1 = new JLabel("");
 		lblMC1.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblMC1.setBounds(1210, 680, 64, 70);
 		frame.getContentPane().add(lblMC1);
 		
-		JLabel lblMC2 = new JLabel("");
+		lblMC2 = new JLabel("");
 		lblMC2.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/card_back.png")));
 		lblMC2.setBounds(1159, 680, 64, 70);
 		frame.getContentPane().add(lblMC2);
@@ -755,6 +754,11 @@ public class VjeuClient extends JPanel implements Observer{
 				cartesJoueurs[0][id].setVisible(true);
 				cartesJoueurs[1][id].setVisible(true);
 			}
+			if(client.getMesCartes().size() == 2){
+					lblMC1.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/"+client.getMesCartes().get(0)+".png")));
+					lblMC2.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/"+client.getMesCartes().get(1)+".png")));
+			}
+			client.setDistribution(false);
 		}
 		
 		if(client.isAdversaireOut()){

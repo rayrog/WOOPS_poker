@@ -58,6 +58,14 @@ public class Caccueil {
 
 	private Vaccueil vacc;
 	private JFrame frameacc;
+	public Vaccueil getVacc() {
+		return vacc;
+	}
+
+	public void setVacc(Vaccueil vacc) {
+		this.vacc = vacc;
+	}
+
 	private Cconnexion ccon;
 	private int IDplayer;
 	private Cparametre cParam;
