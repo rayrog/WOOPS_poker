@@ -53,7 +53,9 @@ public class Cclient extends Observable implements Runnable {
 	private String potTable;
 	protected boolean distribution;
 	protected ArrayList<String> mesCartes;
+	protected ArrayList<String> cartesTable;
 	private ClientChat clientChat;
+	private boolean newCarteTable;
 	
 	public Cclient(Socket socket, int idjoueur, Double creditJoueur, String pseudo, int portSalle, int portChat, Caccueil c) throws Exception{
 		//On lance la communication
@@ -79,7 +81,9 @@ public class Cclient extends Observable implements Runnable {
 		this.partieTerminee = false;
 		this.idAdversaires = new ArrayList<Integer>();
 		this.mesCartes = new ArrayList<String>();
+		this.cartesTable = new ArrayList<String>();
 		this.distribution = false;
+		this.newCarteTable = false;
 		this.vJeu = new VjeuClient(this);
 		this.tempsDecision = 10000;
 		//Socket socketChat = new Socket("172.23.2.15", 5009);
@@ -88,7 +92,7 @@ public class Cclient extends Observable implements Runnable {
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);
 		new Thread(this).start();
-		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
+		//this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
 	}
 	
@@ -184,7 +188,9 @@ public class Cclient extends Observable implements Runnable {
 			break;
 		case ConstantesClient.CARTETABLE :
 			//String nouvelleCarteTable = scan.next();
-
+			this.newCarteTable = true;
+			String laCarteTable = scan.next();
+			cartesTable.add(laCarteTable);
 			break;
 		case ConstantesClient.MESCARTES :
 			this.distribution = true;
@@ -196,6 +202,22 @@ public class Cclient extends Observable implements Runnable {
 		vJeu.update(this, null);
 	}
 
+
+	public ArrayList<String> getCartesTable() {
+		return cartesTable;
+	}
+
+	public void setCartesTable(ArrayList<String> cartesTable) {
+		this.cartesTable = cartesTable;
+	}
+
+	public boolean isNewCarteTable() {
+		return newCarteTable;
+	}
+
+	public void setNewCarteTable(boolean newCarteTable) {
+		this.newCarteTable = newCarteTable;
+	}
 
 	public ArrayList<String> getMesCartes() {
 		return mesCartes;
@@ -272,7 +294,7 @@ public class Cclient extends Observable implements Runnable {
 
 		int portSalle = 4555; // Le port sera trasnmis par la méthode réécrite
 		//TODO : adresse du serveur 
-		Socket socketh = new Socket("172.23.2.15", portSalle);
+		Socket socketh = new Socket("127.0.0.1", portSalle);
 		System.out.println(Integer.parseInt(monid));
 		Cclient c = new Cclient(socketh, Integer.parseInt(monid), cagnotte, pseudo, portSalle, portSalle, null);	
 		//On envoie l'id du joueur

@@ -54,7 +54,7 @@ public class VjeuClient extends JPanel implements Observer{
 	private Cclient client;
 	private JTextField textField;
 	private JLabel cartesJoueurs [][];
-	private JLabel cartesTables [][];
+	private JLabel cartesTables [];
 	private JLabel lblMC1;
 	private JLabel lblMC2;
 	/**
@@ -543,6 +543,8 @@ public class VjeuClient extends JPanel implements Observer{
 		potsJoueurs = tabPotJoueurs;
 		JLabel cartesJ [][] = {{lblJ1C1, lblJ2C1, lblJ3C1, lblJ4C1, lblJ5C1, lblJ6C1, lblJ7C1},{lblJ1C2, lblJ2C2, lblJ3C2, lblJ4C2, lblJ5C2, lblJ6C2}};
 		cartesJoueurs = cartesJ;
+		JLabel cartesTable [] = {lblC1, lblC2, lblC3, lblC4, lblC5};
+		cartesTables = cartesTable;
 		
 		textFieldMise = new JTextField();
 		textFieldMise.setBounds(430, 729, 108, 28);
@@ -787,6 +789,14 @@ public class VjeuClient extends JPanel implements Observer{
 					lblMC2.setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/"+client.getMesCartes().get(1)+".png")));
 			}
 			client.setDistribution(false);
+		}
+		if(client.isNewCarteTable()){
+			int i = 0;
+			for(String carte : client.getCartesTable()){
+				cartesTables[i].setIcon(new ImageIcon(VjeuClient.class.getResource("/fr/poker/view/pictures/cards/"+carte+".png")));
+				i++;
+			}
+			client.setNewAdversaire(false);
 		}
 		
 		if(client.isAdversaireOut()){

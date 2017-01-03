@@ -264,9 +264,7 @@ public class Caccueil {
 		int tempport = 4555 ;
 
 		Socket socketClient = new Socket("172.23.2.15",tempport);
-		System.out.println("socket OK");
 		Cclient c = new Cclient(socketClient,iDplayer,credit,pseudo,portSalle, portChat, this);	
-		c.lancementClient();
 
 	
 		

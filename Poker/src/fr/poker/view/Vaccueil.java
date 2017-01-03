@@ -106,7 +106,7 @@ public class Vaccueil{
 			btnCreate.setBounds(519, 321, 215, 51);
 			frame.getContentPane().add(btnCreate);
 			
-			this.btnRefresh = new JButton("Raffraichir");
+			this.btnRefresh = new JButton("Rafraichir");
 			btnRefresh.addActionListener(new JButtonListenerAccueil(cacc));
 			btnRefresh.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			btnRefresh.setBounds(519,558, 215, 51);

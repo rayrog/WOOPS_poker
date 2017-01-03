@@ -46,7 +46,7 @@ public class JButtonListenerAccueil implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		if (e.getActionCommand() == "Raffraichir"){
+		if (e.getActionCommand() == "Rafraichir"){
 			//System.out.println("Raffraichir");
 			CAcc.reloadData();
 			

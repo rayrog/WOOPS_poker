@@ -36,7 +36,7 @@ public class Salle{
 	}
 	
 	//TODO : POUR TESTS A SUPPRIMER
-/*	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		int port = 4555;
 		Salle newSalle = new Salle("salleTest", 0, "", port);
 		ServerSocket  receptionniste =  new ServerSocket(port);
@@ -44,16 +44,17 @@ public class Salle{
 		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
 		System.out.println(newSalle.finPartie);
 		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
-	}*/
+	}
 	
 	public void ajouterJoueur (Socket socket) throws Exception {
 		//Process ajout nouveau joueur à la salle
 		numSuivantJoueur++;
 		JoueurServeur newJoueur = new JoueurServeur(socket, this);
 		while(!ajoutSuccess){
-			attendre(3000);
+			//attendre(1000);
 			System.out.println("On attend la réponse du joueur pour sa création");
 			System.out.println(ajoutSuccess);
+			//attendre(1000);
 		}
 		joueurs.add(newJoueur);
 		//Envois des adversaires au nouvel arrivant
