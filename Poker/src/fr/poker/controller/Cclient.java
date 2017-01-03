@@ -90,7 +90,7 @@ public class Cclient extends Observable implements Runnable {
 		ActionListener taskPerformer = new taskPerformed(this);
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);
-		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
+		//this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
 	}
 	
 	public Timer getTimerDecision() {
@@ -272,7 +272,7 @@ public class Cclient extends Observable implements Runnable {
 
 		int portSalle = 4555; // Le port sera trasnmis par la méthode réécrite
 		//TODO : adresse du serveur 
-		Socket socket = new Socket("127.0.0.1", portSalle);
+		Socket socket = new Socket("172.23.2.15", portSalle);
 		System.out.println(Integer.parseInt(monid));
 		Cclient c = new Cclient(socket, Integer.parseInt(monid), cagnotte, pseudo, portSalle, portSalle, null);	
 		//On envoie l'id du joueur

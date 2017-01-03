@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import fr.poker.controller.CpartieServeur;
 
-public class Salle implements Runnable{
+public class Salle{
 	private int id;
 	private String nom;
 	private int privat; // 1: salle privee ; 0: salle publique
@@ -31,16 +31,15 @@ public class Salle implements Runnable{
 		this.joueurs = new ArrayList<JoueurServeur>();
 		this.maPartie = new CpartieServeur(this);
 		this.finPartie = false;
-		(new Thread(this)).start();
 	}
 	
 	//TODO : POUR TESTS A SUPPRIMER
 	public static void main(String[] args) throws Exception {
-		int port = 4555;
+	int port = 4555;
 		Salle newSalle = new Salle("salleTest", 0, "", port);
 		ServerSocket  receptionniste =  new ServerSocket(port);
 		//Maximum 10 joueurs dans la salle
-		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
+	JoueurServeur[] lesJoueurs = new JoueurServeur[10];
 		System.out.println(newSalle.finPartie);
 		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
 	}
@@ -94,7 +93,8 @@ public class Salle implements Runnable{
 	}
 	
 	public void lancement() throws Exception{
-		ServerSocket  receptionniste =  new ServerSocket(monPort);
+		int port = 4555;
+		ServerSocket  receptionniste =  new ServerSocket(port);
 		//Maximum 10 joueurs dans la salle
 		while(!this.finPartie ) this.ajouterJoueur(receptionniste.accept());
 	}
@@ -176,11 +176,5 @@ public class Salle implements Runnable{
 
 	public void setJoueurs(ArrayList<JoueurServeur> joueurs) {
 		this.joueurs = joueurs;
-	}
-
-	@Override
-	public void run() {
-		while (finPartie==false) {
-		}	
 	}
 }

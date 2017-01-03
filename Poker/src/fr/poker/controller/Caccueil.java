@@ -255,8 +255,23 @@ public class Caccueil {
 		
 
 		
-		Socket socketClient = new Socket("172.23.2.15",portSalle);
-		Cclient c = new Cclient(socketClient,iDplayer,credit,pseudo,portSalle, portChat, this);	
+		System.out.println(iDplayer);
+		System.out.println(credit);
+		System.out.println(pseudo);
+		System.out.println(portSalle);
+		System.out.println(portChat);
+		int tempport = 4555 ;
+
+        try {	
+        	Socket socketClient = new Socket("172.23.2.15",tempport);
+        	System.out.println("socket OK");
+        	Cclient c = new Cclient(socketClient,iDplayer,credit,pseudo,portSalle, portChat, this);	
+    		
+         } catch (IOException e) {
+            System.err.println("Le port " + portSalle + " est déjà utilisé ! ");
+         }
+	
+		
 		
 		//cSalle.isPrivate();
 		
