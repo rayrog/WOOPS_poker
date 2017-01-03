@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import fr.poker.controller.bdd.CBcompte;
 import fr.poker.controller.bdd.CBconnect;
 import fr.poker.controller.bdd.CBsalle;
+import fr.poker.model.ConstantesServeur;
 import fr.poker.view.Vaccueil;
 import fr.poker.view.Vinscription;
 import fr.poker.view.Vparametres;
@@ -262,14 +263,11 @@ public class Caccueil {
 		System.out.println(portChat);
 		int tempport = 4555 ;
 
-        try {	
-        	Socket socketClient = new Socket("172.23.2.15",tempport);
-        	System.out.println("socket OK");
-        	Cclient c = new Cclient(socketClient,iDplayer,credit,pseudo,portSalle, portChat, this);	
-    		
-         } catch (IOException e) {
-            System.err.println("Le port " + portSalle + " est déjà utilisé ! ");
-         }
+		Socket socketClient = new Socket("172.23.2.15",tempport);
+		System.out.println("socket OK");
+		Cclient c = new Cclient(socketClient,iDplayer,credit,pseudo,portSalle, portChat, this);	
+		c.lancementClient();
+
 	
 		
 		

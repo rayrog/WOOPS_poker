@@ -55,9 +55,6 @@ public class Cclient extends Observable implements Runnable {
 	protected ArrayList<String> mesCartes;
 	private ClientChat clientChat;
 	
-	public Cclient(Compte c) {
-		this.compte = c;
-	}
 	public Cclient(Socket socket, int idjoueur, Double creditJoueur, String pseudo, int portSalle, int portChat, Caccueil c) throws Exception{
 		//On lance la communication
 		try {
@@ -66,9 +63,9 @@ public class Cclient extends Observable implements Runnable {
 		}
 		catch (Exception exc) {
 			exc.printStackTrace();
+			
 		}
-		this.t = new Thread(this);
-		t.start();
+		
 		this.j = new JoueurClient(idjoueur);
 		j.setCreditPartie(creditJoueur);
 		j.setPseudo(pseudo);
@@ -90,7 +87,9 @@ public class Cclient extends Observable implements Runnable {
 		ActionListener taskPerformer = new taskPerformed(this);
 		this.timerDecision = new Timer(tempsDecision, taskPerformer);
 		this.timerDecision.setRepeats(false);
-		//this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
+		new Thread(this).start();
+		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
+		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(idjoueur)+" "+pseudo+" "+Double.toString(creditJoueur));
 	}
 	
 	public Timer getTimerDecision() {
@@ -248,21 +247,22 @@ public class Cclient extends Observable implements Runnable {
 	}
 	
 
-	/*public void lancementClient() throws Exception {			
+	public void lancementClient() throws Exception {
+		int portSalle = 4555;
 		Socket socket = new Socket("172.23.2.15", portSalle);
-		System.out.println(monId);
-		Cclient c = new Cclient(socket, monId, cagnotte, pseudo, cAcc);	
+		//System.out.println(monId);
+		//Cclient c = new Cclient(socket, monId, cagnotte, pseudo, cAcc);	
 		//On envoie l'id du joueur
-		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(monId)+" "+pseudo+" "+Double.toString(cagnotte));
-		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monId+" "+pseudo+" "+Double.toString(cagnotte));
-	}*/
+		this.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(j.getId())+" "+j.getPseudo()+" "+Double.toString(j.getCreditPartie())+" ");
+		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+Integer.toString(j.getId())+" "+j.getPseudo()+" "+Double.toString(j.getCreditPartie()));
+	}
 	
 	public void fermerClient() {
 		vJeu.getFrame().dispose();
 		cAcc.getVacc().getFrame().setVisible(true);
 		t.stop();
 	}
-	
+
 	public static void main(String[] args) throws Exception { // Cette méthode ne sera plus un main et sera appelée par l'action du bouton rejoindre salle
 		String monid = JOptionPane.showInputDialog
 		(null, "Donner l'id du nouveau joueur");
@@ -272,9 +272,9 @@ public class Cclient extends Observable implements Runnable {
 
 		int portSalle = 4555; // Le port sera trasnmis par la méthode réécrite
 		//TODO : adresse du serveur 
-		Socket socket = new Socket("172.23.2.15", portSalle);
+		Socket socketh = new Socket("172.23.2.15", portSalle);
 		System.out.println(Integer.parseInt(monid));
-		Cclient c = new Cclient(socket, Integer.parseInt(monid), cagnotte, pseudo, portSalle, portSalle, null);	
+		Cclient c = new Cclient(socketh, Integer.parseInt(monid), cagnotte, pseudo, portSalle, portSalle, null);	
 		//On envoie l'id du joueur
 		c.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+cagnotte);
 		System.out.println(ConstantesServeur.MESINFORMATIONS+" "+monid+" "+pseudo+" "+Double.toString(cagnotte));

@@ -1,5 +1,6 @@
 package fr.poker.model;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -31,25 +32,28 @@ public class Salle{
 		this.joueurs = new ArrayList<JoueurServeur>();
 		this.maPartie = new CpartieServeur(this);
 		this.finPartie = false;
+		this.ajoutSuccess = false;
 	}
 	
 	//TODO : POUR TESTS A SUPPRIMER
-	public static void main(String[] args) throws Exception {
-	int port = 4555;
+/*	public static void main(String[] args) throws Exception {
+		int port = 4555;
 		Salle newSalle = new Salle("salleTest", 0, "", port);
 		ServerSocket  receptionniste =  new ServerSocket(port);
 		//Maximum 10 joueurs dans la salle
-	JoueurServeur[] lesJoueurs = new JoueurServeur[10];
+		JoueurServeur[] lesJoueurs = new JoueurServeur[10];
 		System.out.println(newSalle.finPartie);
 		while(!newSalle.finPartie ) newSalle.ajouterJoueur(receptionniste.accept());
-	}
+	}*/
 	
 	public void ajouterJoueur (Socket socket) throws Exception {
 		//Process ajout nouveau joueur à la salle
 		numSuivantJoueur++;
 		JoueurServeur newJoueur = new JoueurServeur(socket, this);
 		while(!ajoutSuccess){
+			attendre(3000);
 			System.out.println("On attend la réponse du joueur pour sa création");
+			System.out.println(ajoutSuccess);
 		}
 		joueurs.add(newJoueur);
 		//Envois des adversaires au nouvel arrivant
@@ -95,14 +99,23 @@ public class Salle{
 	public void lancement() throws Exception{
 		int port = 4555;
 		ServerSocket  receptionniste =  new ServerSocket(port);
+		System.out.println(receptionniste);
 		//Maximum 10 joueurs dans la salle
-		while(!this.finPartie ) this.ajouterJoueur(receptionniste.accept());
+		while(!this.finPartie ) ajouterJoueur(receptionniste.accept());
 	}
 	
 	public void notifierLesJoueurs(String message){
 		for(JoueurServeur j : joueurs){
 			j.getOut().println(message);
 			
+		}
+	}
+	
+	public void attendre(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (Exception exc) {
+			exc.printStackTrace();
 		}
 	}
 	

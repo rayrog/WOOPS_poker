@@ -37,7 +37,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 		this.mise = 0.0;
 	}
 	
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	public void traiterMessage(String message) throws Exception { //message représente les informations envoyés par le controleur Cpartie
 		Scanner scan = new Scanner(message);
 		int type = scan.nextInt();
@@ -124,7 +124,7 @@ public class JoueurServeur extends Joueur implements Runnable{
 		this.out = out;
 	}
 
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	@Override
 	public void run() {
 		String message;
